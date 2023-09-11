@@ -1,25 +1,31 @@
 import React from 'react';
-import { Typography, Card, CardActionArea, CardMedia, CardContent } from '@mui/material';
+import { Box } from '@mui/material';
+import styled from 'styled-components';
+import Logo from './components/Logo';
+import Heading from './components/Heading';
+import Form from './components/Form';
+
+const Main = styled(Box)`
+  box-sizing: border-box;
+  width: 380px;
+  margin: 0 auto;
+  margin-top: 140px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 32px;
+`;
 
 const Login: React.FC = () => {
   return (
     <div>
-      <Card sx={{ maxWidth: 316 }}>
-        <CardActionArea>
-          <CardMedia
-            component='img'
-            width='48'
-            height='48'
-            image={process.env.PUBLIC_URL + '/assets/logo.svg'}
-            alt='logo'
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='div' align='center'>
-              Dashboard Kit
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <Main component='main'>
+        <Logo />
+        <Heading heading='Log In to Dashboard Kit' description='Enter your email and password' />
+        <Form />
+      </Main>
     </div>
   );
 };
