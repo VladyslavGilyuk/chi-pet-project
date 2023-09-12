@@ -1,45 +1,21 @@
-import { Button, InputLabel, TextField, Typography, styled } from '@mui/material';
+import { Typography } from '@mui/material';
 import React from 'react';
+import { StyledLabel, StyledButton, StyledInput } from './styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-interface ILogin {
+interface ISignIn {
   email: string;
   password: string;
 }
-const StyledLabel = styled(InputLabel)`
-  && {
-    box-sizing: border-box;
-    background-color: #fcfdfe;
-    color: #9fa2b4;
-    font-size: 12px;
-  }
-`;
-const StyledInput = styled(TextField)`
-  && {
-    box-sizing: border-box;
-    margin-top: 6px;
-    background-color: #fcfdfe;
-    color: #4b506d;
-    font-size: 14px;
-  }
-`;
-const StyledButton = styled(Button)`
-  && {
-    box-sizing: border-box;
-    background-color: blue;
-    color: white;
-    font-size: 14px;
-  }
-`;
 
-export default function Form() {
+export default function SignInForm() {
   const {
     //register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<ILogin>();
-  const onSubmit: SubmitHandler<ILogin> = (data) => console.log(data);
+  } = useForm<ISignIn>();
+  const onSubmit: SubmitHandler<ISignIn> = (data) => console.log(data);
 
   console.log(watch('email')); // watch input value by passing the name of it
 
