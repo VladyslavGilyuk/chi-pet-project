@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from '@mui/material';
-import { HeadingText, Text } from './Heading.styled';
+import { HeadingText, Text } from './styled';
 
 interface HeadingProps {
   heading: string;

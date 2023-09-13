@@ -1,5 +1,5 @@
 import { Typography, CardMedia, styled } from '@mui/material';
-import { graySideBar } from '../../theme';
+import { graySideBar } from '../../../theme';
 
 const StyledCardMedia = styled(CardMedia)`
   display: block;

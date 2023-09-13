@@ -1,5 +1,5 @@
 import { Typography, styled } from '@mui/material';
-import { primaryBlack, primaryGray } from '../../theme';
+import { primaryBlack, primaryGray } from '../../../theme';
 
 const HeadingText = styled(Typography)`
   color: ${primaryBlack};

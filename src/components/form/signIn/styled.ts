@@ -1,24 +1,119 @@
-import { Button, InputLabel, TextField, styled } from '@mui/material';
-import { grayDark, grayExtraLight, primaryBlue, primaryGray, primaryWhite } from '../../../theme';
+import {
+  Button,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+  Typography,
+  Link,
+  styled,
+} from '@mui/material';
+import {
+  grayDark,
+  primaryBlue,
+  primaryGray,
+  primaryWhite,
+  grayExtraLight,
+  grayLightest,
+} from '../../../theme';
 
 const StyledLabel = styled(InputLabel)`
   box-sizing: border-box;
-  background-color: ${grayExtraLight};
   color: ${primaryGray};
+  background-color: purple;
+  font-family: Mulish;
   font-size: 12px;
-`;
-const StyledInput = styled(TextField)`
-  box-sizing: border-box;
-  margin-top: 6px;
-  background-color: ${grayExtraLight};
-  color: ${grayDark};
-  font-size: 14px;
-`;
-const StyledButton = styled(Button)`
-  box-sizing: border-box;
-  background-color: ${primaryBlue};
-  color: ${primaryWhite};
-  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 `;
 
-export { StyledLabel, StyledInput, StyledButton };
+const StyledInput = styled(TextField)`
+  box-sizing: border-box;
+  color: ${grayDark};
+  background-color: white;
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  //opacity: 0.4;
+  border-radius: 8px;
+  border: 1px solid (${grayLightest}, #f0f1f7);
+  background: (${grayExtraLight}, #fcfdfe);
+  margin-top: 6px;
+`;
+const StyledOutlinedInput = styled(OutlinedInput)`
+  box-sizing: border-box;
+  color: ${grayDark};
+  background-color: white;
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  //opacity: 0.4;
+  border-radius: 8px;
+  border: 1px solid var(${grayLightest}, #f0f1f7);
+  background: var(${grayExtraLight}, #fcfdfe);
+  margin-top: 6px;
+`;
+const StyledLoginButton = styled(Button)`
+  background-color: ${primaryBlue};
+  color: ${primaryWhite};
+  box-sizing: border-box;
+  text-align: center;
+  font-family: Mulish !important;
+  font-size: 14px !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.2px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px 0px rgba(55, 81, 255, 0.24);
+  margin-top: 24px;
+  height: 48px;
+`;
+const FlexContainer = styled('div')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+`;
+
+const StyledFooterText = styled(Typography)`
+  color: ${primaryGray};
+  text-align: center;
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  margin-right: 5px;
+`;
+
+const StyledSignUpLink = styled(Link)`
+  box-sizing: border-box;
+  color: ${primaryBlue};
+  text-align: center;
+  /* SemiBold/14px */
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.2px;
+`;
+export {
+  StyledLabel,
+  StyledInput,
+  StyledLoginButton,
+  StyledOutlinedInput,
+  StyledFooterText,
+  StyledSignUpLink,
+  FlexContainer,
+};

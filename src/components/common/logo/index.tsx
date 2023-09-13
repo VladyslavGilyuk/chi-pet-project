@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent } from '@mui/material';
-import { StyledCardMedia, Text } from './Logo.styled';
+import { StyledCardMedia, Text } from './styled';
 
 const Logo: React.FC = () => {
   return (
