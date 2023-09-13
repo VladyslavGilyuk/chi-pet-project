@@ -1,5 +1,9 @@
-import { IconButton, InputAdornment } from '@mui/material';
 import React from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { IconButton, InputAdornment } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 import {
   StyledLabel,
   StyledLoginButton,
@@ -8,10 +12,8 @@ import {
   StyledFooterText,
   StyledSignUpLink,
   FlexContainer,
+  StyledFormHelperText,
 } from './styled';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 interface ISignIn {
   email: string;
@@ -25,40 +27,48 @@ export default function SignInForm() {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
   const {
-    //register,
     handleSubmit,
-    watch,
+    register,
     formState: { errors },
   } = useForm<ISignIn>();
+
   const onSubmit: SubmitHandler<ISignIn> = (data) => console.log(data);
 
-  console.log(watch('email')); // watch input value by passing the name of it
-
   return (
-    <div>
-      {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-      <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-        <StyledLabel htmlFor='email'>EMAIL</StyledLabel>
-        <StyledInput
-          InputProps={{ sx: { height: 42, fontSize: 14 } }}
-          //label='Email adress' // забрав і начало норм працювати
-          //onChange={(e) => field.onChange(e)}
-          //value={field.value}
-          placeholder='Email address'
-          fullWidth={true}
-          error={!!errors.email?.message}
-          helperText={errors?.email?.message}
-        />
-        <StyledLabel htmlFor='email'>PASSWORD</StyledLabel>
+    <div style={{ width: '100%' }}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div style={{ width: '100%', marginBottom: '24px' }}>
+          <StyledLabel htmlFor='email'>EMAIL</StyledLabel>
+          <StyledInput
+            {...register('email', {
+              required: 'Email is required',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'Invalid email address',
+              },
+            })}
+            InputProps={{ sx: { height: 42, fontSize: 14 } }}
+            placeholder='Email address'
+            fullWidth={true}
+            error={!!errors.email}
+          />
+          <StyledFormHelperText>{errors.email?.message}</StyledFormHelperText>
+        </div>
+        <StyledLabel htmlFor='password'>PASSWORD</StyledLabel>
         <StyledOutlinedInput
+          {...register('password', {
+            required: 'Password is required',
+            pattern: {
+              value: /^.{9,}$/i,
+              message: 'Password should be longer than 8 characters',
+            },
+          })}
           sx={{
             height: 42,
           }}
           placeholder='Password'
-          //label='Password'
-          //onChange={(e) => field.onChange(e)}
-          //value={field.value}
           type={showPassword ? 'text' : 'password'}
           endAdornment={
             <InputAdornment position='end'>
@@ -73,9 +83,9 @@ export default function SignInForm() {
             </InputAdornment>
           }
           fullWidth={true}
-          error={!!errors?.password?.message}
-          //helperText={errors?.password?.message}
+          error={!!errors.password}
         />
+        <StyledFormHelperText>{errors.password?.message}</StyledFormHelperText>
         <StyledLoginButton
           type='submit'
           variant='contained'

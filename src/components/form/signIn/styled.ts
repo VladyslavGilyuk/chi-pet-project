@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
   Link,
+  FormHelperText,
   styled,
 } from '@mui/material';
 import {
@@ -17,6 +18,7 @@ import {
 } from '../../../theme';
 
 const StyledLabel = styled(InputLabel)`
+  width: 100%;
   box-sizing: border-box;
   color: ${primaryGray};
   font-family: Mulish;
@@ -41,9 +43,9 @@ const StyledInput = styled(TextField)`
   border: 1px solid (${grayLightest}, #f0f1f7);
   background: (${grayExtraLight}, #fcfdfe);
   margin-top: 6px;
-  margin-bottom: 24px;
 `;
 const StyledOutlinedInput = styled(OutlinedInput)`
+  width: 100%;
   box-sizing: border-box;
   color: ${grayDark};
   font-family: Mulish;
@@ -56,7 +58,6 @@ const StyledOutlinedInput = styled(OutlinedInput)`
   border: 1px solid ${grayLightest};
   background: ${grayExtraLight};
   margin-top: 6px;
-  margin-bottom: 24px;
 `;
 const StyledLoginButton = styled(Button)`
   background-color: ${primaryBlue};
@@ -72,6 +73,7 @@ const StyledLoginButton = styled(Button)`
   border-radius: 8px;
   box-shadow: 0px 4px 12px 0px rgba(55, 81, 255, 0.24);
   height: 48px;
+  margin-top: 24px;
 `;
 const FlexContainer = styled('div')`
   display: flex;
@@ -103,6 +105,12 @@ const StyledSignUpLink = styled(Link)`
   line-height: 20px;
   letter-spacing: 0.2px;
 `;
+const StyledFormHelperText = styled(FormHelperText)`
+  width: 100%;
+  color: #d22d2d;
+  margin-left: 13px;
+  height: 16px;
+`;
 export {
   StyledLabel,
   StyledInput,
@@ -111,4 +119,5 @@ export {
   StyledFooterText,
   StyledSignUpLink,
   FlexContainer,
+  StyledFormHelperText,
 };
