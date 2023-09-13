@@ -9,6 +9,7 @@ const THEME = {
     grayExtraLight: '#FCFDFE',
     grayLightest: '#F0F1F7',
     grayBackground: '#838383',
+    grayDivider: '#DFE0EB',
   },
 };
 
@@ -22,6 +23,7 @@ export const {
   grayExtraLight,
   grayLightest,
   grayBackground,
+  grayDivider,
 } = THEME.colors;
 
 export default THEME;

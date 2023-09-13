@@ -1,9 +1,15 @@
 import { Typography, styled } from '@mui/material';
 import { primaryBlack, primaryGray } from '../../../theme';
 
+const StyledWrapper = styled('div')`
+  width: 100%;
+  word-wrap: break-word;
+  margin-bottom: 48px;
+`;
 const HeadingText = styled(Typography)`
   color: ${primaryBlack};
   text-align: center;
+  font-family: Mulish;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -14,11 +20,12 @@ const HeadingText = styled(Typography)`
 const Text = styled(Typography)`
   color: ${primaryGray};
   text-align: center;
+  font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
   letter-spacing: 0.3px;
 `;
 
-export { HeadingText, Text };
+export { HeadingText, Text, StyledWrapper };

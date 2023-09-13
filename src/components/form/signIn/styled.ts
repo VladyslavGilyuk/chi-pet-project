@@ -19,7 +19,6 @@ import {
 const StyledLabel = styled(InputLabel)`
   box-sizing: border-box;
   color: ${primaryGray};
-  background-color: purple;
   font-family: Mulish;
   font-size: 12px;
   font-style: normal;
@@ -32,34 +31,32 @@ const StyledLabel = styled(InputLabel)`
 const StyledInput = styled(TextField)`
   box-sizing: border-box;
   color: ${grayDark};
-  background-color: white;
   font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.3px;
-  //opacity: 0.4;
   border-radius: 8px;
   border: 1px solid (${grayLightest}, #f0f1f7);
   background: (${grayExtraLight}, #fcfdfe);
   margin-top: 6px;
+  margin-bottom: 24px;
 `;
 const StyledOutlinedInput = styled(OutlinedInput)`
   box-sizing: border-box;
   color: ${grayDark};
-  background-color: white;
   font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.3px;
-  //opacity: 0.4;
   border-radius: 8px;
-  border: 1px solid var(${grayLightest}, #f0f1f7);
-  background: var(${grayExtraLight}, #fcfdfe);
+  border: 1px solid ${grayLightest};
+  background: ${grayExtraLight};
   margin-top: 6px;
+  margin-bottom: 24px;
 `;
 const StyledLoginButton = styled(Button)`
   background-color: ${primaryBlue};
@@ -70,11 +67,10 @@ const StyledLoginButton = styled(Button)`
   font-size: 14px !important;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
   letter-spacing: 0.2px;
   border-radius: 8px;
   box-shadow: 0px 4px 12px 0px rgba(55, 81, 255, 0.24);
-  margin-top: 24px;
   height: 48px;
 `;
 const FlexContainer = styled('div')`
@@ -100,12 +96,11 @@ const StyledSignUpLink = styled(Link)`
   box-sizing: border-box;
   color: ${primaryBlue};
   text-align: center;
-  /* SemiBold/14px */
   font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
   letter-spacing: 0.2px;
 `;
 export {

@@ -45,7 +45,7 @@ export default function SignInForm() {
           //label='Email adress' // забрав і начало норм працювати
           //onChange={(e) => field.onChange(e)}
           //value={field.value}
-          placeholder='Email adress'
+          placeholder='Email address'
           fullWidth={true}
           error={!!errors.email?.message}
           helperText={errors?.email?.message}

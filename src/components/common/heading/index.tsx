@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, CardContent } from '@mui/material';
-import { HeadingText, Text } from './styled';
+import { StyledWrapper, HeadingText, Text } from './styled';
 
 interface HeadingProps {
   heading: string;
@@ -9,18 +8,14 @@ interface HeadingProps {
 
 const Heading: React.FC<HeadingProps> = ({ heading, description }) => {
   return (
-    <div style={{ width: '100%' }}>
-      <Card>
-        <CardContent>
-          <HeadingText gutterBottom variant='h2'>
-            {heading}
-          </HeadingText>
-          <Text gutterBottom variant='h5'>
-            {description}
-          </Text>
-        </CardContent>
-      </Card>
-    </div>
+    <StyledWrapper>
+      <HeadingText gutterBottom variant='h2'>
+        {heading}
+      </HeadingText>
+      <Text gutterBottom variant='h5'>
+        {description}
+      </Text>
+    </StyledWrapper>
   );
 };
 
