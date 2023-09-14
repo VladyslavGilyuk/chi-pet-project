@@ -21,7 +21,7 @@ const StyledLabel = styled(InputLabel)`
   width: 100%;
   box-sizing: border-box;
   color: ${primaryGray};
-  font-family: Mulish;
+
   font-size: 12px;
   font-style: normal;
   font-weight: 700;

@@ -14,6 +14,7 @@ import {
   FlexContainer,
   StyledFormHelperText,
 } from './styled';
+import { SingInFormHelper } from '../../../utils/formHelpers';
 
 interface ISignIn {
   email: string;
@@ -40,21 +41,27 @@ export default function SignInForm() {
     <div style={{ width: '100%' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ width: '100%', marginBottom: '24px' }}>
-          <StyledLabel htmlFor='email'>EMAIL</StyledLabel>
-          <StyledInput
-            {...register('email', {
-              required: 'Email is required',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: 'Invalid email address',
-              },
-            })}
-            InputProps={{ sx: { height: 42, fontSize: 14 } }}
-            placeholder='Email address'
-            fullWidth={true}
-            error={!!errors.email}
-          />
-          <StyledFormHelperText>{errors.email?.message}</StyledFormHelperText>
+          {SingInFormHelper.map((elem) => {
+            return (
+              <>
+                <StyledLabel htmlFor={elem.name}>EMAIL</StyledLabel>
+                <StyledInput
+                  {...register(elem.name, {
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: 'Invalid email address',
+                    },
+                  })}
+                  InputProps={{ sx: { height: 42, fontSize: 14 } }}
+                  placeholder='Email address'
+                  fullWidth={true}
+                  error={!!errors.email} // equals to !!errors['email']
+                />
+                <StyledFormHelperText>{errors.email?.message}</StyledFormHelperText>
+              </>
+            );
+          })}
         </div>
         <StyledLabel htmlFor='password'>PASSWORD</StyledLabel>
         <StyledOutlinedInput
