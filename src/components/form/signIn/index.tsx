@@ -38,61 +38,38 @@ export default function SignInForm() {
   return (
     <div style={{ width: '100%' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ width: '100%', marginBottom: '24px' }}>
+        <div style={{ width: '100%' }}>
           {SingInFormHelper.map((elem) => {
             return (
               <>
-                <StyledLabel htmlFor={elem.name}>EMAIL</StyledLabel>
+                <StyledLabel htmlFor={elem.name}>{elem.label}</StyledLabel>
                 <StyledInput
-                  {...register(elem.name, {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: 'Invalid email address',
-                    },
-                  })}
-                  InputProps={{ sx: { height: 42, fontSize: 14 } }}
-                  placeholder='Email address'
+                  {...register(elem.name, elem.validations)}
+                  InputProps={{
+                    sx: { height: 42, fontSize: 14 },
+                    endAdornment: elem.name === 'password' && ( // Only add for password input
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='toggle password visibility'
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge='end'
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  placeholder={elem.placeholder}
                   fullWidth={true}
-                  error={!!errors.email} // equals to !!errors['email']
-                  helperText={errors.password?.message}
+                  type={elem.name === 'password' && !showPassword ? 'password' : 'text'}
+                  error={!!errors[elem.name]}
+                  helperText={errors[elem.name]?.message}
                 />
               </>
             );
           })}
         </div>
-        <StyledLabel htmlFor='password'>PASSWORD</StyledLabel>
-        <StyledInput
-          {...register('password', {
-            required: 'Password is required',
-            pattern: {
-              value: /^.{9,}$/i,
-              message: 'Password should be longer than 8 characters',
-            },
-          })}
-          sx={{
-            height: 42,
-          }}
-          placeholder='Password'
-          type={showPassword ? 'text' : 'password'}
-          fullWidth={true}
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
         <StyledLoginButton
           type='submit'
           variant='contained'

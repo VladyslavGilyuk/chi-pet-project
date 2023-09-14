@@ -1,12 +1,4 @@
-import {
-  Button,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-  Typography,
-  Link,
-  styled,
-} from '@mui/material';
+import { Button, InputLabel, TextField, Typography, Link, styled } from '@mui/material';
 
 import {
   grayDark,
@@ -43,22 +35,9 @@ const StyledInput = styled(TextField)`
   border: 1px solid (${grayLightest}, #f0f1f7);
   background: (${grayExtraLight}, #fcfdfe);
   margin-top: 6px;
+  margin-bottom: 24px;
 `;
-const StyledOutlinedInput = styled(OutlinedInput)`
-  width: 100%;
-  box-sizing: border-box;
-  color: ${grayDark};
-  font-family: Mulish;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0.3px;
-  border-radius: 8px;
-  border: 1px solid ${grayLightest};
-  background: ${grayExtraLight};
-  margin-top: 6px;
-`;
+
 const StyledLoginButton = styled(Button)`
   background-color: ${primaryBlue};
   color: ${primaryWhite};
@@ -73,7 +52,6 @@ const StyledLoginButton = styled(Button)`
   border-radius: 8px;
   box-shadow: 0px 4px 12px 0px rgba(55, 81, 255, 0.24);
   height: 48px;
-  margin-top: 24px;
 `;
 const FlexContainer = styled('div')`
   display: flex;
@@ -110,7 +88,6 @@ export {
   StyledLabel,
   StyledInput,
   StyledLoginButton,
-  StyledOutlinedInput,
   StyledFooterText,
   StyledSignUpLink,
   FlexContainer,
