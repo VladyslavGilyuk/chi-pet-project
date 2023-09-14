@@ -5,6 +5,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { grayBackground } from './theme';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
+import ROUTESPATHS from './routes';
 
 const applicationGlobalStyles = {
   //font-family = 'https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap';
@@ -29,9 +30,9 @@ function App() {
     <div className='App'>
       <GlobalStyles styles={applicationGlobalStyles} />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/signIn' index element={<SignIn />} />
-        <Route path='/signUp' element={<SignUp />} />
+        <Route path={ROUTESPATHS.HomePath} element={<Home />} />
+        <Route path={ROUTESPATHS.SingInPath} index element={<SignIn />} />
+        <Route path={ROUTESPATHS.SingUpPath} element={<SignUp />} />
       </Routes>
     </div>
   );
