@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-import { grayDivider, primaryWhite } from '../theme';
+import { grayDivider, primaryWhite } from '../../theme';
 
 const FormWrapper = styled(Box)`
   box-sizing: border-box;

@@ -8,11 +8,9 @@ import {
   StyledLabel,
   StyledLoginButton,
   StyledInput,
-  StyledOutlinedInput,
   StyledFooterText,
   StyledSignUpLink,
   FlexContainer,
-  StyledFormHelperText,
 } from './styled';
 import { SingInFormHelper } from '../../../utils/formHelpers';
 
@@ -57,14 +55,14 @@ export default function SignInForm() {
                   placeholder='Email address'
                   fullWidth={true}
                   error={!!errors.email} // equals to !!errors['email']
+                  helperText={errors.password?.message}
                 />
-                <StyledFormHelperText>{errors.email?.message}</StyledFormHelperText>
               </>
             );
           })}
         </div>
         <StyledLabel htmlFor='password'>PASSWORD</StyledLabel>
-        <StyledOutlinedInput
+        <StyledInput
           {...register('password', {
             required: 'Password is required',
             pattern: {
@@ -77,22 +75,24 @@ export default function SignInForm() {
           }}
           placeholder='Password'
           type={showPassword ? 'text' : 'password'}
-          endAdornment={
-            <InputAdornment position='end'>
-              <IconButton
-                aria-label='toggle password visibility'
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge='end'
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
           fullWidth={true}
           error={!!errors.password}
+          helperText={errors.password?.message}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <IconButton
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge='end'
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
-        <StyledFormHelperText>{errors.password?.message}</StyledFormHelperText>
         <StyledLoginButton
           type='submit'
           variant='contained'

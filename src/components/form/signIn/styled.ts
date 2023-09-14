@@ -5,9 +5,9 @@ import {
   TextField,
   Typography,
   Link,
-  FormHelperText,
   styled,
 } from '@mui/material';
+
 import {
   grayDark,
   primaryBlue,
@@ -105,12 +105,7 @@ const StyledSignUpLink = styled(Link)`
   line-height: 20px;
   letter-spacing: 0.2px;
 `;
-const StyledFormHelperText = styled(FormHelperText)`
-  width: 100%;
-  color: #d22d2d;
-  margin-left: 13px;
-  height: 16px;
-`;
+
 export {
   StyledLabel,
   StyledInput,
@@ -119,5 +114,4 @@ export {
   StyledFooterText,
   StyledSignUpLink,
   FlexContainer,
-  StyledFormHelperText,
 };

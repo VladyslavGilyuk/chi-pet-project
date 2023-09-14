@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from '../components/common/logo';
-import Heading from '../components/common/heading';
-import SignInForm from '../components/form/signIn';
-import { FormWrapper } from './SignIn.styled';
+import Logo from '../../components/common/logo';
+import Heading from '../../components/common/heading';
+import SignInForm from '../../components/form/signIn';
+import { FormWrapper } from './styled';
 
 const SignIn: React.FC = () => {
   return (
