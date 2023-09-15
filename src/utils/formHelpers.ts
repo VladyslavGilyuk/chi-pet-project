@@ -1,5 +1,6 @@
-type FieldNames = 'password' | 'email';
-interface ISingInFormHelper {
+export type FieldNames = 'password' | 'email';
+export type PasswordType = 'password' | 'text';
+export interface ISingInFormHelper {
   name: FieldNames;
   label: string;
   validations: {
@@ -10,7 +11,7 @@ interface ISingInFormHelper {
     };
   };
   placeholder: string;
-  type: string;
+  type: PasswordType;
 }
 
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -37,7 +38,7 @@ const SingInFormHelper: ISingInFormHelper[] = [
       required: 'Password is required',
     },
     placeholder: 'Password',
-    type: 'password',
+    type: 'password', //check this
   },
 ];
 
