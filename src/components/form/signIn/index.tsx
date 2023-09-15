@@ -18,7 +18,7 @@ interface ISignIn {
   password: string;
 }
 
-export default function SignInForm() {
+const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -93,4 +93,6 @@ export default function SignInForm() {
       </div>
     </div>
   );
-}
+};
+
+export default SignInForm;

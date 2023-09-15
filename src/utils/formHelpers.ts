@@ -4,7 +4,7 @@ interface ISingInFormHelper {
   label: string;
   validations: {
     required: string;
-    pattern: {
+    pattern?: {
       value: RegExp;
       message: string;
     };
@@ -14,7 +14,7 @@ interface ISingInFormHelper {
 }
 
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const passwordPattern: RegExp = /^.{9,}$/i;
+//const passwordPattern: RegExp = /^.{9,}$/i;
 
 const SingInFormHelper: ISingInFormHelper[] = [
   {
@@ -35,16 +35,10 @@ const SingInFormHelper: ISingInFormHelper[] = [
     label: 'Password',
     validations: {
       required: 'Password is required',
-      pattern: {
-        value: passwordPattern,
-        message: 'Password should be longer than 8 characters',
-      },
     },
     placeholder: 'Password',
     type: 'password',
   },
 ];
-
-// map this
 
 export { SingInFormHelper };
