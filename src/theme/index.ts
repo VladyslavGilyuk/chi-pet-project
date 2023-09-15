@@ -11,10 +11,6 @@ const THEME = {
     grayBackground: '#838383',
     grayDivider: '#DFE0EB',
   },
-  fonts: {
-    regularSize: '14px',
-    regularWeight: 400,
-  },
 };
 
 export const {
@@ -29,7 +25,5 @@ export const {
   grayBackground,
   grayDivider,
 } = THEME.colors;
-
-export const { regularSize, regularWeight } = THEME.fonts;
 
 export default THEME;

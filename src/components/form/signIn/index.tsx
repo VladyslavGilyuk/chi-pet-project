@@ -5,7 +5,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import {
-  StyledWrapper,
   StyledLabel,
   StyledLoginButton,
   StyledInput,
@@ -37,9 +36,9 @@ export default function SignInForm() {
   const onSubmit: SubmitHandler<ISignIn> = (data) => console.log(data);
 
   return (
-    <StyledWrapper>
+    <div style={{ width: '100%' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <StyledWrapper>
+        <div style={{ width: '100%' }}>
           {SingInFormHelper.map((elem) => {
             return (
               <>
@@ -70,7 +69,7 @@ export default function SignInForm() {
               </>
             );
           })}
-        </StyledWrapper>
+        </div>
         <StyledLoginButton
           type='submit'
           variant='contained'
@@ -88,6 +87,6 @@ export default function SignInForm() {
           </StyledSignUpLink>
         </FlexContainer>
       </div>
-    </StyledWrapper>
+    </div>
   );
 }

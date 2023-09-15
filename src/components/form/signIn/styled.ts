@@ -9,9 +9,6 @@ import {
   grayLightest,
 } from '../../../theme';
 
-const StyledWrapper = styled('div')`
-  width: 100%;
-`;
 const StyledLabel = styled(InputLabel)`
   width: 100%;
   box-sizing: border-box;
@@ -88,7 +85,6 @@ const StyledSignUpLink = styled(Link)`
 `;
 
 export {
-  StyledWrapper,
   StyledLabel,
   StyledInput,
   StyledLoginButton,

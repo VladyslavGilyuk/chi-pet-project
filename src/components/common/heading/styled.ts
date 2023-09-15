@@ -1,5 +1,5 @@
 import { Typography, styled } from '@mui/material';
-import { primaryBlack, primaryGray, regularSize, regularWeight } from '../../../theme';
+import { primaryBlack, primaryGray } from '../../../theme';
 
 const StyledWrapper = styled('div')`
   width: 100%;
@@ -21,9 +21,9 @@ const Text = styled(Typography)`
   color: ${primaryGray};
   text-align: center;
   font-family: Mulish;
-  font-size: ${regularSize};
+  font-size: 14px;
   font-style: normal;
-  font-weight: ${regularWeight};
+  font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.3px;
 `;

@@ -7,7 +7,7 @@ import { FormWrapper } from './styled';
 const SignIn: React.FC = () => {
   return (
     <div>
-      <FormWrapper>
+      <FormWrapper component='div'>
         <Logo />
         <Heading heading='Log In to Dashboard Kit' description='Enter your email and password' />
         <SignInForm />
