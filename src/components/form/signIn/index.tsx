@@ -1,18 +1,17 @@
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { IconButton, InputAdornment } from '@mui/material';
+import { SingInFormHelper } from '../../../utils/formHelpers';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { useState } from 'react';
 import {
+  FlexContainer,
+  StyledFooterText,
+  StyledInput,
   StyledLabel,
   StyledLoginButton,
-  StyledInput,
-  StyledFooterText,
   StyledSignUpLink,
-  FlexContainer,
 } from './styled';
-import { SingInFormHelper } from '../../../utils/formHelpers';
+import { IconButton, InputAdornment } from '@mui/material';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface ISignIn {
   email: string;
@@ -20,7 +19,7 @@ interface ISignIn {
 }
 
 export default function SignInForm() {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,21 +32,23 @@ export default function SignInForm() {
     formState: { errors },
   } = useForm<ISignIn>();
 
-  const onSubmit: SubmitHandler<ISignIn> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<ISignIn> = (data: { email: string; password: string }) =>
+    console.log(data);
 
   return (
     <div style={{ width: '100%' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ width: '100%' }}>
-          {SingInFormHelper.map((elem) => {
+          {SingInFormHelper.map(({ name, label, validations, placeholder }) => {
+            // destructure { name }
             return (
-              <>
-                <StyledLabel htmlFor={elem.name}>{elem.label}</StyledLabel>
+              <div key={name}>
+                <StyledLabel htmlFor={name}>{label}</StyledLabel>
                 <StyledInput
-                  {...register(elem.name, elem.validations)}
+                  {...register(name, validations)}
                   InputProps={{
                     sx: { height: 42, fontSize: 14 },
-                    endAdornment: elem.name === 'password' && ( // Only add for password input
+                    endAdornment: name === 'password' && ( // Only add for password input
                       <InputAdornment position='end'>
                         <IconButton
                           aria-label='toggle password visibility'
@@ -60,13 +61,16 @@ export default function SignInForm() {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder={elem.placeholder}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  placeholder={placeholder}
                   fullWidth={true}
-                  type={elem.name === 'password' && !showPassword ? 'password' : 'text'}
-                  error={!!errors[elem.name]}
-                  helperText={errors[elem.name]?.message}
+                  type={name === 'password' && !showPassword ? 'password' : 'text'}
+                  error={!!errors[name]}
+                  helperText={errors[name]?.message ?? ' '}
                 />
-              </>
+              </div>
             );
           })}
         </div>

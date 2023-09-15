@@ -1,5 +1,6 @@
+type FieldNames = 'password' | 'email';
 interface ISingInFormHelper {
-  name: 'password' | 'email';
+  name: FieldNames;
   label: string;
   validations: {
     required: string;

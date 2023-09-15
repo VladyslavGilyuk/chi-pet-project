@@ -1,6 +1,6 @@
-import { Typography, styled } from '@mui/material';
 import SvgIcon from '@mui/material/SvgIcon';
 import { graySideBar } from '../../../theme';
+import { Typography, styled } from '@mui/material';
 
 const StyledWrapper = styled('div')`
   width: 100%;
@@ -16,7 +16,6 @@ const StyledImage = styled(SvgIcon)`
   margin: 0 auto;
 `;
 const Text = styled(Typography)`
-  font-family: Mulish;
   text-align: center;
   color: ${graySideBar};
   font-size: 19px;

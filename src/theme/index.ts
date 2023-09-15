@@ -25,5 +25,3 @@ export const {
   grayBackground,
   grayDivider,
 } = THEME.colors;
-
-export default THEME;

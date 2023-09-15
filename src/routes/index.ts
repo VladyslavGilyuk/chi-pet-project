@@ -1,10 +1,8 @@
-const ROUTESPATHS = {
-  HomePath: '/',
-  SingInPath: '/SignIn',
-  SingUpPath: '/SignUp',
+export const ROUTE_PATH = {
+  Home: '/',
+  SingIn: '/SignIn',
+  SingUp: '/SignUp',
 };
-
-export default ROUTESPATHS;
 
 // [ { }]
 

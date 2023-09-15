@@ -1,12 +1,12 @@
-import { Button, InputLabel, TextField, Typography, Link, styled } from '@mui/material';
+import { Button, InputLabel, Link, TextField, Typography, styled } from '@mui/material';
 
 import {
   grayDark,
+  grayExtraLight,
+  grayLightest,
   primaryBlue,
   primaryGray,
   primaryWhite,
-  grayExtraLight,
-  grayLightest,
 } from '../../../theme';
 
 const StyledLabel = styled(InputLabel)`
@@ -25,7 +25,6 @@ const StyledLabel = styled(InputLabel)`
 const StyledInput = styled(TextField)`
   box-sizing: border-box;
   color: ${grayDark};
-  font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -34,8 +33,11 @@ const StyledInput = styled(TextField)`
   border-radius: 8px;
   border: 1px solid (${grayLightest}, #f0f1f7);
   background: (${grayExtraLight}, #fcfdfe);
-  margin-top: 6px;
-  margin-bottom: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  & .MuiTextField-root {
+    margin-bottom: 0;
+  }
 `;
 
 const StyledLoginButton = styled(Button)`
@@ -43,7 +45,6 @@ const StyledLoginButton = styled(Button)`
   color: ${primaryWhite};
   box-sizing: border-box;
   text-align: center;
-  font-family: Mulish !important;
   font-size: 14px !important;
   font-style: normal;
   font-weight: 600;
@@ -63,7 +64,6 @@ const FlexContainer = styled('div')`
 const StyledFooterText = styled(Typography)`
   color: ${primaryGray};
   text-align: center;
-  font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -76,7 +76,6 @@ const StyledSignUpLink = styled(Link)`
   box-sizing: border-box;
   color: ${primaryBlue};
   text-align: center;
-  font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;

@@ -9,7 +9,6 @@ const StyledWrapper = styled('div')`
 const HeadingText = styled(Typography)`
   color: ${primaryBlack};
   text-align: center;
-  font-family: Mulish;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -20,7 +19,6 @@ const HeadingText = styled(Typography)`
 const Text = styled(Typography)`
   color: ${primaryGray};
   text-align: center;
-  font-family: Mulish;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

@@ -24,6 +24,17 @@
             {
               "endOfLine": "auto"
             }
-          ]
+          ],
+          "react/react-in-jsx-scope": "off",
+          "react/jsx-uses-react": "off",
+          "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+          "react/prop-types": "off",
+          "sort-imports": ["error", {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "single", "multiple"],
+            "allowSeparatedGroups": false
+        }]
     }
 }

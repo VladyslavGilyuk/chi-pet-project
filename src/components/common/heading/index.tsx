@@ -1,5 +1,4 @@
-import React from 'react';
-import { StyledWrapper, HeadingText, Text } from './styled';
+import { HeadingText, StyledWrapper, Text } from './styled';
 
 interface HeadingProps {
   heading: string;
