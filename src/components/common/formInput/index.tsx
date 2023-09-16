@@ -1,5 +1,7 @@
+import { FieldErrors } from '../../form/signIn/index';
 import { ISingInFormHelper } from '../../../utils/formHelpers';
 import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -8,10 +10,8 @@ interface FormInputProps extends ISingInFormHelper {
   showPassword: boolean;
   handleClickShowPassword: () => void;
   handleMouseDownPassword: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errors: any;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
 }
 
 const FormInput: React.FC<FormInputProps> = ({

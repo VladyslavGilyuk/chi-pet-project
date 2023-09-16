@@ -1,6 +1,7 @@
 import FormInput from '../../common/formInput';
 import { SingInFormHelper } from '../../../utils/formHelpers';
 import { useState } from 'react';
+import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
 import {
   FlexContainer,
   FormInputWrapper,
@@ -8,13 +9,14 @@ import {
   StyledLoginButton,
   StyledSignUpLink,
 } from './styled';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface ISignIn {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }
-
+export interface FieldErrors {
+  [key: string]: FieldError | undefined;
+}
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -32,7 +34,6 @@ const SignInForm = () => {
   const onSubmit: SubmitHandler<ISignIn> = (data) => {
     console.log('Form submitted with data:', data);
   };
-
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +49,7 @@ const SignInForm = () => {
             handleClickShowPassword={handleClickShowPassword}
             handleMouseDownPassword={handleMouseDownPassword}
             register={register}
-            errors={errors}
+            errors={errors as FieldErrors}
           />
         ))}
 
