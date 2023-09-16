@@ -1,6 +1,6 @@
 import SvgIcon from '@mui/material/SvgIcon';
-import { graySideBar } from '../../../theme';
 import { Typography, styled } from '@mui/material';
+import { colors, fonts } from '../../../theme';
 
 const StyledWrapper = styled('div')`
   width: 100%;
@@ -17,12 +17,13 @@ const StyledImage = styled(SvgIcon)`
 `;
 const Text = styled(Typography)`
   text-align: center;
-  color: ${graySideBar};
+  color: ${colors.graySideBar};
   font-size: 19px;
-  font-weight: 700;
+  font-weight: ${fonts.weight.large};
+
+  letter-spacing: ${fonts.spacing.large};
   font-style: normal;
   line-height: normal;
-  letter-spacing: 0.4px;
   opacity: 0.7;
   margin-top: 12px;
 `;

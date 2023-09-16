@@ -1,5 +1,5 @@
 import { Typography, styled } from '@mui/material';
-import { primaryBlack, primaryGray } from '../../../theme';
+import { colors, fonts } from '../../../theme';
 
 const StyledWrapper = styled('div')`
   width: 100%;
@@ -7,23 +7,23 @@ const StyledWrapper = styled('div')`
   margin-bottom: 48px;
 `;
 const HeadingText = styled(Typography)`
-  color: ${primaryBlack};
+  color: ${colors.primaryBlack};
   text-align: center;
-  font-size: 24px;
+  font-size: ${fonts.size.large};
+  font-weight: ${fonts.weight.large};
+  letter-spacing: ${fonts.spacing.medium};
   font-style: normal;
-  font-weight: 700;
   line-height: normal;
-  letter-spacing: 0.3px;
 `;
 
 const Text = styled(Typography)`
-  color: ${primaryGray};
+  color: ${colors.primaryGray};
   text-align: center;
-  font-size: 14px;
+  font-size: ${fonts.size.medium};
+  font-weight: ${fonts.weight.small};
+  letter-spacing: ${fonts.spacing.medium};
   font-style: normal;
-  font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.3px;
 `;
 
 export { HeadingText, Text, StyledWrapper };

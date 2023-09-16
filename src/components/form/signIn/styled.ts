@@ -1,55 +1,43 @@
 import { Button, InputLabel, Link, TextField, Typography, styled } from '@mui/material';
 
-import {
-  grayDark,
-  grayExtraLight,
-  grayLightest,
-  primaryBlue,
-  primaryGray,
-  primaryWhite,
-} from '../../../theme';
+import { colors, fonts } from '../../../theme';
 
 const StyledLabel = styled(InputLabel)`
   width: 100%;
   box-sizing: border-box;
-  color: ${primaryGray};
-
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
+  color: ${colors.primaryGray};
+  font-size: ${fonts.size.small};
+  font-weight: ${fonts.weight.large};
+  letter-spacing: ${fonts.spacing.medium};
   line-height: normal;
-  letter-spacing: 0.3px;
   text-transform: uppercase;
 `;
 
 const StyledInput = styled(TextField)`
   box-sizing: border-box;
-  color: ${grayDark};
-  font-size: 14px;
+  color: ${colors.grayDark};
+  font-size: ${fonts.size.medium};
+  font-weight: ${fonts.weight.small};
+  letter-spacing: ${fonts.spacing.medium};
   font-style: normal;
-  font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.3px;
   border-radius: 8px;
-  border: 1px solid (${grayLightest}, #f0f1f7);
-  background: (${grayExtraLight}, #fcfdfe);
+  border: 1px solid ${colors.grayLightest};
+  background: ${colors.grayExtraLight};
   margin-top: 5px;
   margin-bottom: 5px;
-  & .MuiTextField-root {
-    margin-bottom: 0;
-  }
 `;
 
 const StyledLoginButton = styled(Button)`
-  background-color: ${primaryBlue};
-  color: ${primaryWhite};
+  background-color: ${colors.primaryBlue};
+  color: ${colors.primaryWhite};
   box-sizing: border-box;
   text-align: center;
-  font-size: 14px !important;
+  font-size: ${fonts.size.medium} !important; // ?
+  font-weight: ${fonts.weight.medium};
+  letter-spacing: ${fonts.spacing.small};
   font-style: normal;
-  font-weight: 600;
   line-height: 20px;
-  letter-spacing: 0.2px;
   border-radius: 8px;
   box-shadow: 0px 4px 12px 0px rgba(55, 81, 255, 0.24);
   height: 48px;
@@ -62,25 +50,25 @@ const FlexContainer = styled('div')`
 `;
 
 const StyledFooterText = styled(Typography)`
-  color: ${primaryGray};
+  color: ${colors.primaryGray};
   text-align: center;
-  font-size: 14px;
+  font-size: ${fonts.size.medium};
+  font-weight: ${fonts.weight.small};
+  letter-spacing: ${fonts.spacing.medium};
   font-style: normal;
-  font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.3px;
   margin-right: 5px;
 `;
 
 const StyledSignUpLink = styled(Link)`
   box-sizing: border-box;
-  color: ${primaryBlue};
+  color: ${colors.primaryBlue};
   text-align: center;
-  font-size: 14px;
+  font-size: ${fonts.size.medium};
+  font-weight: ${fonts.weight.medium};
+  letter-spacing: ${fonts.spacing.small};
   font-style: normal;
-  font-weight: 600;
   line-height: 20px;
-  letter-spacing: 0.2px;
 `;
 
 export {

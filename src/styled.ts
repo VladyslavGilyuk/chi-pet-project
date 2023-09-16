@@ -1,6 +1,6 @@
+import { colors } from './theme';
 import { createGlobalStyle } from 'styled-components';
 import { createTheme } from '@mui/material/styles';
-import { grayBackground } from './theme';
 
 const theme = createTheme({
   typography: {
@@ -15,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: 'border-box';
     margin: 0;
     padding: 0;
-    background-color: ${grayBackground};
+    background-color: ${colors.grayBackground};
 }
 `;
 
