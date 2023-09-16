@@ -1,4 +1,5 @@
 import { InputLabel, TextField, styled } from '@mui/material';
+
 import { colors, fonts } from '../../../theme';
 
 const StyledLabel = styled(InputLabel)`
@@ -19,11 +20,11 @@ const StyledInput = styled(TextField)`
   font-size: ${fonts.size.medium};
   font-weight: ${fonts.weight.small};
   letter-spacing: ${fonts.spacing.medium};
-  line-height: 20px;
   font-style: normal;
+  line-height: 20px;
   border-radius: 8px;
-  border: 1px solid ${colors.grayLightest};
-  background: ${colors.grayExtraLight};
+  border: 1px solid (${colors.grayLightest}, #f0f1f7);
+  background: (${colors.grayExtraLight}, #fcfdfe);
   margin-top: 5px;
   margin-bottom: 5px;
 `;

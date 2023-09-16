@@ -13,7 +13,6 @@ const FormWrapper = styled(Box)`
   flex-direction: column;
   padding: 40px 32px;
   border-radius: 8px;
-  border: 1px solid ${colors.grayDivider};
   background: ${colors.primaryWhite};
 `;
 

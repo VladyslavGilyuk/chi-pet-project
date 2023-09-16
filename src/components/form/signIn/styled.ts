@@ -39,7 +39,6 @@ const StyledLoginButton = styled(Button)`
   font-style: normal;
   line-height: 20px;
   border-radius: 8px;
-  box-shadow: 0px 4px 12px 0px rgba(55, 81, 255, 0.24);
   height: 48px;
 `;
 const FlexContainer = styled('div')`
