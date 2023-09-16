@@ -1,7 +1,13 @@
 import FormInput from '../../common/formInput';
 import { SingInFormHelper } from '../../../utils/formHelpers';
 import { useState } from 'react';
-import { FlexContainer, StyledFooterText, StyledLoginButton, StyledSignUpLink } from './styled';
+import {
+  FlexContainer,
+  FormInputWrapper,
+  StyledFooterText,
+  StyledLoginButton,
+  StyledSignUpLink,
+} from './styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface ISignIn {
@@ -28,7 +34,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div style={{ width: '100%' }}>
+    <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
         {SingInFormHelper.map(({ name, label, validations, placeholder }) => (
           <FormInput
@@ -63,7 +69,7 @@ const SignInForm = () => {
           </StyledSignUpLink>
         </FlexContainer>
       </div>
-    </div>
+    </FormInputWrapper>
   );
 };
 

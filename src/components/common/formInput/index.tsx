@@ -1,7 +1,7 @@
 import { ISingInFormHelper } from '../../../utils/formHelpers';
 import React from 'react';
+import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IconButton, InputAdornment } from '@mui/material';
-import { StyledInput, StyledLabel } from './styled';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 interface FormInputProps extends ISingInFormHelper {
@@ -27,7 +27,7 @@ const FormInput: React.FC<FormInputProps> = ({
   errors,
 }) => {
   return (
-    <div className='this'>
+    <FormInputWrapper>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <StyledInput
         {...register(name, validations)}
@@ -52,7 +52,7 @@ const FormInput: React.FC<FormInputProps> = ({
         error={!!errors[name]}
         helperText={errors[name]?.message ?? ' '}
       />
-    </div>
+    </FormInputWrapper>
   );
 };
 

@@ -1,6 +1,10 @@
-import { Button, InputLabel, Link, TextField, Typography, styled } from '@mui/material';
+import { Box, Button, InputLabel, Link, TextField, Typography, styled } from '@mui/material';
 
 import { colors, fonts } from '../../../theme';
+
+const FormInputWrapper = styled(Box)`
+  width: 100%;
+`;
 
 const StyledLabel = styled(InputLabel)`
   width: 100%;
@@ -71,6 +75,7 @@ const StyledSignUpLink = styled(Link)`
 `;
 
 export {
+  FormInputWrapper,
   StyledLabel,
   StyledInput,
   StyledLoginButton,

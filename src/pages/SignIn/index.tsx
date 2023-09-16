@@ -7,7 +7,7 @@ import SignInForm from '../../components/form/signIn';
 const SignIn: React.FC = () => {
   return (
     <div>
-      <FormWrapper component='div'>
+      <FormWrapper>
         <Logo />
         <Heading heading='Log In to Dashboard Kit' description='Enter your email and password' />
         <SignInForm />

@@ -1,7 +1,10 @@
-import { InputLabel, TextField, styled } from '@mui/material';
+import { Box, InputLabel, TextField, styled } from '@mui/material';
 
 import { colors, fonts } from '../../../theme';
 
+const FormInputWrapper = styled(Box)`
+  width: 100%;
+`;
 const StyledLabel = styled(InputLabel)`
   width: 100%;
   box-sizing: border-box;
@@ -29,4 +32,4 @@ const StyledInput = styled(TextField)`
   margin-bottom: 5px;
 `;
 
-export { StyledInput, StyledLabel };
+export { FormInputWrapper, StyledInput, StyledLabel };
