@@ -18,6 +18,7 @@ const StyledLabel = styled(InputLabel)`
 `;
 
 const StyledInput = styled(TextField)`
+  width: 100%;
   box-sizing: border-box;
   color: ${colors.grayDark};
   font-size: ${fonts.size.medium};

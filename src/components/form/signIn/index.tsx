@@ -34,20 +34,43 @@ const SignInForm = () => {
   const onSubmit: SubmitHandler<ISignIn> = (data) => {
     console.log('Form submitted with data:', data);
   };
+  const generateAdornmentProps = (name: string) => {
+    switch (name) {
+      case 'password':
+        return {
+          position: 'end',
+          show: showPassword,
+          handleClick: handleClickShowPassword,
+          handleMouseDown: handleMouseDownPassword,
+        };
+      /*case 'email':
+        return {
+          position:'end',
+          show: showEmail,
+          handleClick: handleClickShowEmail,
+          handleMouseDown: handleMouseDownEmail,
+        };
+      // other types
+      */
+      default:
+        return undefined;
+    }
+  };
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {SingInFormHelper.map(({ name, label, validations, placeholder }) => (
+        {SingInFormHelper.map(({ name, label, validations, placeholder, type }) => (
           <FormInput
             key={name}
             name={name}
             label={label}
             validations={validations}
             placeholder={placeholder}
-            type={name === 'password' && !showPassword ? 'password' : 'text'} //ok?
+            type={type}
             showPassword={showPassword}
             handleClickShowPassword={handleClickShowPassword}
             handleMouseDownPassword={handleMouseDownPassword}
+            adornmentProps={generateAdornmentProps(name)}
             register={register}
             errors={errors as FieldErrors}
           />
