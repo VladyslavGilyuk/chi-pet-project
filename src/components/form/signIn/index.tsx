@@ -1,7 +1,10 @@
 import FormInput from '../../common/formInput';
+import { Link } from 'react-router-dom';
+import { ROUTE_PATH } from '../../../routes';
 import { SingInFormHelper } from '../../../utils/formHelpers';
 import { useState } from 'react';
 import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
+
 import {
   FlexContainer,
   FormInputWrapper,
@@ -88,9 +91,11 @@ const SignInForm = () => {
       <div>
         <FlexContainer>
           <StyledFooterText variant='subtitle1'>Don’t have an account? </StyledFooterText>
-          <StyledSignUpLink variant='subtitle1' underline='none' sx={{ color: 'blue' }}>
-            Sign up
-          </StyledSignUpLink>
+          <Link to={ROUTE_PATH.SingUp}>
+            <StyledSignUpLink variant='subtitle1' underline='none' sx={{ color: 'blue' }}>
+              Sign up
+            </StyledSignUpLink>
+          </Link>
         </FlexContainer>
       </div>
     </FormInputWrapper>
