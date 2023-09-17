@@ -10,6 +10,11 @@ const theme = createTheme({
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+  * {
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px ${colors.grayExtraLight} inset;
+    -webkit-text-fill-color: ${colors.grayDark};
+  }}
   body {
     font-family: 'Mulish', sans-serif;
     box-sizing: 'border-box';
