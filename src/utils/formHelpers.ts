@@ -36,7 +36,7 @@ const SingInFormHelper: ISingInFormHelper[] = [
       required: 'Password is required',
     },
     placeholder: 'Password',
-    type: 'password', //check this
+    type: 'password',
   },
 ];
 
@@ -92,7 +92,7 @@ const SingUpFormHelper: ISingInFormHelper[] = [
       required: 'Password confirmation is required',
     },
     placeholder: 'Password',
-    type: 'password', //check this
+    type: 'password',
   },
 ];
 
