@@ -1,4 +1,4 @@
-import EndAdornment from '../endAdorment';
+import EndAdornment from './endAdorment';
 import { FieldErrors } from '../../form/signIn/index';
 import { ISingInFormHelper } from '../../../utils/formHelpers';
 import React from 'react';

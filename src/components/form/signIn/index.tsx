@@ -1,9 +1,9 @@
+import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { Link } from 'react-router-dom';
 import { ROUTE_PATH } from '../../../routes';
 import { SingInFormHelper } from '../../../utils/formHelpers';
-import { useState } from 'react';
-import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
+import useSignInForm from '../../../hooks';
 
 import {
   FlexContainer,
@@ -13,7 +13,7 @@ import {
   StyledSignUpLink,
 } from './styled';
 
-interface ISignIn {
+export interface ISignIn {
   email?: string;
   password?: string;
 }
@@ -21,44 +21,17 @@ export interface FieldErrors {
   [key: string]: FieldError | undefined;
 }
 const SignInForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const {
+    showPassword,
+    handleClickShowPassword,
+    handleMouseDownPassword,
     handleSubmit,
     register,
-    formState: { errors },
-  } = useForm<ISignIn>();
+    errors,
+    onSubmit,
+    generateAdornmentProps,
+  } = useSignInForm();
 
-  const onSubmit: SubmitHandler<ISignIn> = (data) => {
-    console.log('Form submitted with data:', data);
-  };
-  const generateAdornmentProps = (name: string) => {
-    switch (name) {
-      case 'password':
-        return {
-          position: 'end',
-          show: showPassword,
-          handleClick: handleClickShowPassword,
-          handleMouseDown: handleMouseDownPassword,
-        };
-      /*case 'email':
-        return {
-          position:'end',
-          show: showEmail,
-          handleClick: handleClickShowEmail,
-          handleMouseDown: handleMouseDownEmail,
-        };
-      // other types
-      */
-      default:
-        return undefined;
-    }
-  };
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
