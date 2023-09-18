@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import { ROUTE_PATH } from '../../../routes';
 import { StyledImage, StyledWrapper, Text } from './styled';
 
 const Logo = () => {
@@ -28,9 +26,7 @@ const Logo = () => {
 
   return (
     <StyledWrapper>
-      <Link to={ROUTE_PATH.Home}>
-        <StyledImage>{svgContent}</StyledImage>
-      </Link>
+      <StyledImage>{svgContent}</StyledImage>
       <Text> Dashboard Kit </Text>
     </StyledWrapper>
   );

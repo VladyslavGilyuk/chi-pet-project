@@ -1,6 +1,5 @@
 import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
-import { Link } from 'react-router-dom';
 import { ROUTE_PATH } from '../../../routes';
 import { SingInFormHelper } from '../../../utils/formHelpers';
 import useSignInForm from '../../../hooks';
@@ -64,11 +63,9 @@ const SignInForm = () => {
       <div>
         <FlexContainer>
           <StyledFooterText variant='subtitle1'>Don’t have an account? </StyledFooterText>
-          <Link to={ROUTE_PATH.SingUp}>
-            <StyledSignUpLink variant='subtitle1' underline='none' sx={{ color: 'blue' }}>
-              Sign up
-            </StyledSignUpLink>
-          </Link>
+          <StyledSignUpLink href={ROUTE_PATH.SingUp} underline='none'>
+            Sign up
+          </StyledSignUpLink>
         </FlexContainer>
       </div>
     </FormInputWrapper>
