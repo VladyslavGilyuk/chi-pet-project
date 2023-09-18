@@ -14,12 +14,8 @@ interface FormInputProps extends ISingInFormHelper {
     handleClick?: () => void;
     handleMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  watch?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  password?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  passwordConfirmation?: any;
+  password?: string;
+  passwordConfirmation?: string;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }

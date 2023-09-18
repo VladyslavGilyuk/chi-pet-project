@@ -44,7 +44,6 @@ const SignUpForm = () => {
             handleMouseDownPassword={handleMouseDownPassword}
             adornmentProps={generateAdornmentProps(name)}
             register={register}
-            watch={watch}
             password={password}
             passwordConfirmation={passwordConfirmation}
             errors={errors as FieldErrors}
