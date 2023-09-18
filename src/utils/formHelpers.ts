@@ -5,6 +5,8 @@ export interface ISingInFormHelper {
   label: string;
   validations: {
     required: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    validate?: any;
     pattern?: {
       value: RegExp;
       message: string;
@@ -36,7 +38,7 @@ const SingInFormHelper: ISingInFormHelper[] = [
       required: 'Password is required',
     },
     placeholder: 'Password',
-    type: 'password', //check this
+    type: 'password',
   },
 ];
 
@@ -90,9 +92,13 @@ const SingUpFormHelper: ISingInFormHelper[] = [
     label: 'Confirm Password',
     validations: {
       required: 'Password confirmation is required',
+      pattern: {
+        value: passwordPattern,
+        message: 'Passwords do not match',
+      },
     },
     placeholder: 'Password',
-    type: 'password', //check this
+    type: 'password',
   },
 ];
 

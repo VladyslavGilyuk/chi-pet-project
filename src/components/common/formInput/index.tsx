@@ -14,6 +14,12 @@ interface FormInputProps extends ISingInFormHelper {
     handleClick?: () => void;
     handleMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  watch?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  password?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  passwordConfirmation?: any;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }
@@ -28,6 +34,8 @@ const FormInput: React.FC<FormInputProps> = ({
   adornmentProps,
   register,
   errors,
+  password,
+  passwordConfirmation,
 }) => {
   return (
     <FormInputWrapper>
@@ -42,7 +50,13 @@ const FormInput: React.FC<FormInputProps> = ({
         fullWidth={true}
         type={type === 'password' && !showPassword ? 'password' : 'text'}
         error={!!errors[name]}
-        helperText={errors[name]?.message ?? ' '}
+        helperText={
+          name === 'passwordConfirmation'
+            ? password === passwordConfirmation
+              ? ' '
+              : errors[name]?.message ?? ' '
+            : errors[name]?.message ?? ' '
+        }
       />
     </FormInputWrapper>
   );
