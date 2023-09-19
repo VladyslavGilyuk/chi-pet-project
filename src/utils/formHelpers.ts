@@ -5,8 +5,6 @@ export interface ISingInFormHelper {
   label: string;
   validations: {
     required: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    validate?: any;
     pattern?: {
       value: RegExp;
       message: string;
