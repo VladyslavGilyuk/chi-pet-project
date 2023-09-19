@@ -1,21 +1,17 @@
-import { ISignUp } from '../components/form/singUp';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { ISignUp } from '.';
+import { SubmitHandler } from 'react-hook-form';
+import useAuthForm from '../../../hooks/useAuthForm';
 
 const useSignUpForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const {
+    showPassword,
+    handleClickShowPassword,
+    handleMouseDownPassword,
     handleSubmit,
     register,
     watch,
-    formState: { errors },
-  } = useForm<ISignUp>();
+    errors,
+  } = useAuthForm();
 
   const onSubmit: SubmitHandler<ISignUp> = (data) => {
     console.log('Form submitted with data:', data);

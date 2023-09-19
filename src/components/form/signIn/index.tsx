@@ -2,7 +2,7 @@ import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { ROUTE_PATH } from '../../../routes';
 import { SingInFormHelper } from '../../../utils/formHelpers';
-import useSignInForm from '../../../hooks/useSignInForm';
+import useSignInForm from './useSignInForm';
 
 import {
   FlexContainer,

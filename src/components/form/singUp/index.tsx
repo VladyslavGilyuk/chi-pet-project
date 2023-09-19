@@ -1,7 +1,7 @@
 import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { SingUpFormHelper } from '../../../utils/formHelpers';
-import useSignUpForm from '../../../hooks/useSignUpForm';
+import useSignUpForm from './useSignUpForm';
 import { FormInputWrapper, StyledLoginButton } from './styled';
 
 export interface ISignUp {
