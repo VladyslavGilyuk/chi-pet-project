@@ -1,55 +1,30 @@
-import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { SingUpFormHelper } from '../../../utils/formHelpers';
 import useSignUpForm from './useSignUpForm';
 import { FormInputWrapper, StyledLoginButton } from './styled';
-
 export interface ISignUp {
   email?: string;
   password?: string;
   passwordConfirmation?: string;
 }
-export interface FieldErrors {
-  [key: string]: FieldError | undefined;
-}
 const SignUpForm = () => {
-  const {
-    showPassword,
-    handleClickShowPassword,
-    handleMouseDownPassword,
-    handleSubmit,
-    register,
-    watch,
-    errors,
-    onSubmit,
-    generateAdornmentProps,
-  } = useSignUpForm();
-
-  const password = watch('password', '');
-  const passwordConfirmation = watch('passwordConfirmation', '');
+  const { showPassword, handleSubmit, register, errors, onSubmit, generateAdornmentProps } =
+    useSignUpForm();
 
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {SingUpFormHelper.map(({ name, label, validations, placeholder, type }) => (
+        {SingUpFormHelper.map((instance) => (
           <FormInput
-            key={name}
-            name={name}
-            label={label}
-            validations={validations}
-            placeholder={placeholder}
-            type={type}
+            {...instance}
+            key={instance.name}
             showPassword={showPassword}
-            handleClickShowPassword={handleClickShowPassword}
-            handleMouseDownPassword={handleMouseDownPassword}
-            adornmentProps={generateAdornmentProps(name)}
+            adornmentProps={generateAdornmentProps(instance.name)}
             register={register}
-            password={password}
-            passwordConfirmation={passwordConfirmation}
-            errors={errors as FieldErrors}
+            isError={!!errors[instance.name]}
+            helperMsg={errors[instance.name]?.message}
           />
         ))}
-
         <StyledLoginButton
           type='submit'
           variant='contained'

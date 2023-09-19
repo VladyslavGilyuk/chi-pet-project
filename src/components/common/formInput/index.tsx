@@ -1,38 +1,35 @@
 import EndAdornment from './endAdorment';
-import { FieldErrors } from '../../form/signIn/index';
-import { ISingInFormHelper } from '../../../utils/formHelpers';
-import React from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { useState } from 'react';
+import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegister } from 'react-hook-form';
 import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
+import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
 
-interface FormInputProps extends ISingInFormHelper {
+interface FormInputProps extends IBaseField {
+  name: TSignInFieldNames | TSignUpFieldNames;
   showPassword: boolean;
-  handleClickShowPassword: () => void;
-  handleMouseDownPassword: (event: React.MouseEvent<HTMLButtonElement>) => void;
   adornmentProps?: {
     show?: boolean;
     handleClick?: () => void;
     handleMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   };
-  password?: string;
-  passwordConfirmation?: string;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  isError: boolean;
+  helperMsg: string | FieldError | Merge<FieldError, FieldErrorsImpl<FieldValues>> | undefined;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
-  name,
   label,
+  name,
   validations,
   placeholder,
   type,
-  showPassword,
   adornmentProps,
   register,
-  errors,
-  password,
-  passwordConfirmation,
+  isError,
+  helperMsg,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <FormInputWrapper>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
@@ -40,19 +37,20 @@ const FormInput: React.FC<FormInputProps> = ({
         {...register(name, validations)}
         InputProps={{
           sx: { height: 42, fontSize: 14 },
-          endAdornment: <EndAdornment adornmentProps={adornmentProps} />,
+          endAdornment: (
+            <EndAdornment
+              adornmentProps={{
+                ...adornmentProps,
+                handleClick: () => setShowPassword(!showPassword),
+              }}
+            />
+          ),
         }}
         placeholder={placeholder}
         fullWidth={true}
         type={type === 'password' && !showPassword ? 'password' : 'text'}
-        error={!!errors[name]}
-        helperText={
-          name === 'passwordConfirmation'
-            ? password === passwordConfirmation
-              ? ' '
-              : errors[name]?.message ?? ' '
-            : errors[name]?.message ?? ' '
-        }
+        error={isError}
+        helperText={(helperMsg as string) || ' '}
       />
     </FormInputWrapper>
   );

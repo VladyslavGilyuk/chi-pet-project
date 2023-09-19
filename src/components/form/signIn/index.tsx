@@ -1,4 +1,3 @@
-import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { ROUTE_PATH } from '../../../routes';
 import { SingInFormHelper } from '../../../utils/formHelpers';
@@ -16,41 +15,24 @@ export interface ISignIn {
   email?: string;
   password?: string;
 }
-export interface FieldErrors {
-  [key: string]: FieldError | undefined;
-}
 const SignInForm = () => {
-  const {
-    showPassword,
-    handleClickShowPassword,
-    handleMouseDownPassword,
-    handleSubmit,
-    register,
-    errors,
-    onSubmit,
-    generateAdornmentProps,
-  } = useSignInForm();
+  const { showPassword, handleSubmit, register, errors, onSubmit, generateAdornmentProps } =
+    useSignInForm();
 
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {SingInFormHelper.map(({ name, label, validations, placeholder, type }) => (
+        {SingInFormHelper.map((instance) => (
           <FormInput
-            key={name}
-            name={name}
-            label={label}
-            validations={validations}
-            placeholder={placeholder}
-            type={type}
+            {...instance}
+            key={instance.name}
             showPassword={showPassword}
-            handleClickShowPassword={handleClickShowPassword}
-            handleMouseDownPassword={handleMouseDownPassword}
-            adornmentProps={generateAdornmentProps(name)}
+            adornmentProps={generateAdornmentProps(instance.name)}
             register={register}
-            errors={errors as FieldErrors}
+            isError={!!errors[instance.name]}
+            helperMsg={errors[instance.name]?.message}
           />
         ))}
-
         <StyledLoginButton
           type='submit'
           variant='contained'

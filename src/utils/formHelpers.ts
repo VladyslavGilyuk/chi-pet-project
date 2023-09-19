@@ -1,7 +1,12 @@
-export type FieldNames = 'password' | 'email' | 'firstName' | 'lastName' | 'passwordConfirmation';
-export type PasswordType = 'password' | 'text';
-export interface ISingInFormHelper {
-  name: FieldNames;
+export type TSignInFieldNames = 'password' | 'email';
+export type TSignUpFieldNames =
+  | 'password'
+  | 'email'
+  | 'firstName'
+  | 'lastName'
+  | 'passwordConfirmation';
+export type TFieldType = 'password' | 'text';
+export interface IBaseField {
   label: string;
   validations: {
     required: string;
@@ -11,10 +16,20 @@ export interface ISingInFormHelper {
     };
   };
   placeholder: string;
-  type: PasswordType;
+  type: TFieldType;
 }
+
+export interface ISingInFormHelper extends IBaseField {
+  name: TSignInFieldNames;
+}
+
+export interface ISingUpFormHelper extends IBaseField {
+  name: TSignUpFieldNames;
+}
+
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const passwordPattern: RegExp = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+
 const SingInFormHelper: ISingInFormHelper[] = [
   {
     name: 'email',
@@ -40,7 +55,7 @@ const SingInFormHelper: ISingInFormHelper[] = [
   },
 ];
 
-const SingUpFormHelper: ISingInFormHelper[] = [
+const SingUpFormHelper: ISingUpFormHelper[] = [
   {
     name: 'email',
     label: 'Email',
