@@ -1,7 +1,8 @@
 import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
-import { SingUpFormHelper } from '../../../utils/formHelpers';
+import { getFormHelper } from '../../../utils/formHelpers';
 import useSignUpForm from '../../../hooks/useSignUpForm';
+import { useTranslation } from 'react-i18next';
 import { FormInputWrapper, StyledLoginButton } from './styled';
 
 export interface ISignUp {
@@ -13,6 +14,8 @@ export interface FieldErrors {
   [key: string]: FieldError | undefined;
 }
 const SignUpForm = () => {
+  const { SingUpFormHelper } = getFormHelper();
+  const { t } = useTranslation();
   const {
     showPassword,
     handleClickShowPassword,
@@ -56,7 +59,7 @@ const SignUpForm = () => {
           fullWidth={true}
           disableElevation={true}
         >
-          Register
+          {t('button.signUp')}
         </StyledLoginButton>
       </form>
     </FormInputWrapper>

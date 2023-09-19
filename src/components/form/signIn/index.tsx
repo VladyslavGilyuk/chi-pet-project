@@ -1,8 +1,9 @@
 import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { ROUTE_PATH } from '../../../routes';
-import { SingInFormHelper } from '../../../utils/formHelpers';
+import { getFormHelper } from '../../../utils/formHelpers';
 import useSignInForm from '../../../hooks/useSignInForm';
+import { useTranslation } from 'react-i18next';
 
 import {
   FlexContainer,
@@ -19,7 +20,10 @@ export interface ISignIn {
 export interface FieldErrors {
   [key: string]: FieldError | undefined;
 }
+
 const SignInForm = () => {
+  const { SingInFormHelper } = getFormHelper();
+  const { t } = useTranslation();
   const {
     showPassword,
     handleClickShowPassword,
@@ -57,14 +61,14 @@ const SignInForm = () => {
           fullWidth={true}
           disableElevation={true}
         >
-          Log in
+          {t('button.signIn')}
         </StyledLoginButton>
       </form>
       <div>
         <FlexContainer>
-          <StyledFooterText variant='subtitle1'>Don’t have an account? </StyledFooterText>
+          <StyledFooterText variant='subtitle1'>{t('footer.signIn')}</StyledFooterText>
           <StyledSignUpLink href={ROUTE_PATH.SingUp} underline='none'>
-            Sign up
+            {t('link.signIn')}
           </StyledSignUpLink>
         </FlexContainer>
       </div>
