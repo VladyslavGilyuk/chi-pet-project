@@ -1,4 +1,3 @@
-export {};
 import { colors } from '../../theme';
 import { Box, styled } from '@mui/material';
 

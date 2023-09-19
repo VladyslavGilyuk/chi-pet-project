@@ -1,7 +1,7 @@
 import Home from './pages/Home';
 import { ROUTE_PATH } from './routes';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
+import SignInPage from './pages/SignIn';
+import SignUpPage from './pages/SignUp';
 import { ThemeProvider } from '@mui/material';
 import { GlobalStyles, theme } from './styled';
 import { Route, Routes } from 'react-router-dom';
@@ -13,8 +13,8 @@ function App() {
         <GlobalStyles />
         <Routes>
           <Route path={ROUTE_PATH.Home} element={<Home />} />
-          <Route path={ROUTE_PATH.SingIn} index element={<SignIn />} />
-          <Route path={ROUTE_PATH.SingUp} element={<SignUp />} />
+          <Route path={ROUTE_PATH.SingIn} index element={<SignInPage />} />
+          <Route path={ROUTE_PATH.SingUp} element={<SignUpPage />} />
         </Routes>
       </ThemeProvider>
     </div>
