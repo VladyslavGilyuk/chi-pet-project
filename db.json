@@ -7,6 +7,22 @@
       "lastName": "lad",
       "passwordConfirmation": "1234Aa",
       "id": 1
+    },
+    {
+      "email": "lado2@gmail.com",
+      "password": "$2a$10$HPXgyVvKP7/klix/Sce3RekmkP2lwmT9sJu2uLzIQl0IbJ2gopbh6",
+      "firstName": "lado2",
+      "lastName": "lao",
+      "passwordConfirmation": "12345Aa",
+      "id": 2
+    },
+    {
+      "email": "wefwefwf@fdsf.comf",
+      "password": "$2a$10$2XyzE/mkIY.Uhf.s4SlnYum3wu/Aa1tPPttdk7IQ00/U57nvzDrwW",
+      "firstName": "efrsf",
+      "lastName": "sdfsd",
+      "passwordConfirmation": "1234Aa",
+      "id": 3
     }
   ]
 }

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+
 interface ISignIn {
   email: string;
   password: string;
@@ -19,6 +22,21 @@ export interface CommonFieldValues extends FieldValues {
   passwordConfirmation: string;
 }
 const useAuthForm = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, setUser] = useState({
+    email: '',
+  });
+  /*const value = {
+    user,
+    setUser,
+  };*/
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser !== null) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -32,7 +50,20 @@ const useAuthForm = () => {
   const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
     axios
       .post('http://localhost:8080/register', data)
-      .then((res) => console.log(res))
+      .then(({ data }) => {
+        setUser({
+          token: data.accessToken,
+          ...data.user,
+        });
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            token: data.accessToken,
+            ...data.user,
+          }),
+        );
+        navigate('/');
+      })
       .catch((err) => console.log(err.message));
     console.log('Form data:', data);
   };
