@@ -4,11 +4,11 @@ import useAuthForm from '../../../hooks/useAuthForm';
 import { FormInputWrapper, StyledLoginButton } from './styled';
 
 const SignUpForm = () => {
-  const { handleSubmit, register, errors, onSubmit } = useAuthForm();
+  const { handleSubmit, register, errors, onSignUpSubmit } = useAuthForm();
 
   return (
     <FormInputWrapper>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSignUpSubmit)}>
         {SingUpFormHelper.map((instance) => (
           <FormInput
             {...instance}

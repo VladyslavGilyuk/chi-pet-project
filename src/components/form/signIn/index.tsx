@@ -12,10 +12,10 @@ import {
 } from './styled';
 
 const SignInForm = () => {
-  const { handleSubmit, register, errors, onSubmit } = useAuthForm();
+  const { handleSubmit, register, errors, onSignInSubmit } = useAuthForm();
   return (
     <FormInputWrapper>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSignInSubmit)}>
         {SingInFormHelper.map((instance) => (
           <FormInput
             {...instance}
