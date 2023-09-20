@@ -7,13 +7,13 @@ import SignUpForm from '../../components/form/singUp';
 import { useTranslation } from 'react-i18next';
 
 const SignUp: React.FC = () => {
-  const { t } = useTranslation();
+const { t } = useTranslation();
   return (
     <div>
       <FormWrapper>
-        <LanguageSwitcher />
+         <LanguageSwitcher />
         <Logo />
-        <Heading heading={t('heading.signUp')} description={t('description.signUp')} />
+         <Heading heading={t('heading.signUp')} description={t('description.signUp')} />
         <SignUpForm />
       </FormWrapper>
     </div>

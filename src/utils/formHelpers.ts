@@ -1,9 +1,13 @@
 import { useTranslation } from 'react-i18next';
-
-export type FieldNames = 'password' | 'email' | 'firstName' | 'lastName' | 'passwordConfirmation';
-export type PasswordType = 'password' | 'text';
-export interface ISingInFormHelper {
-  name: FieldNames;
+export type TSignInFieldNames = 'password' | 'email';
+export type TSignUpFieldNames =
+  | 'password'
+  | 'email'
+  | 'firstName'
+  | 'lastName'
+  | 'passwordConfirmation';
+export type TFieldType = 'password' | 'text';
+export interface IBaseField {
   label: string;
   validations: {
     required: string;
@@ -13,29 +17,34 @@ export interface ISingInFormHelper {
     };
   };
   placeholder: string;
-  type: PasswordType;
+  type: TFieldType;
+  showIcon?: boolean;
 }
 
 export interface TranslatedLabels {
   SingInFormHelper: ISingInFormHelper[];
   SingUpFormHelper: ISingInFormHelper[];
 }
+export interface ISingInFormHelper extends IBaseField {
+  name: TSignInFieldNames;
+}
+
+export interface ISingUpFormHelper extends IBaseField {
+  name: TSignUpFieldNames;
+}
+
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const passwordPattern: RegExp = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-export const getFormHelper = (): TranslatedLabels => {
-  const { t } = useTranslation();
-
-  const SingInFormHelper: ISingInFormHelper[] = [
-    {
-      name: 'email',
-      label: t('label.email'),
-      validations: {
-        required: t('required.email'),
-        pattern: {
-          value: emailPattern,
-          message: t('message.email'),
-        },
+const SingInFormHelper: ISingInFormHelper[] = [
+  {
+    name: 'email',
+     label: t('label.email'),
+    validations: {
+      required: t('required.email'),
+      pattern: {
+        value: emailPattern,
+        message: t('message.email'),
       },
       placeholder: t('placeholder.email'),
       type: 'text',
@@ -49,18 +58,21 @@ export const getFormHelper = (): TranslatedLabels => {
       placeholder: t('placeholder.password'),
       type: 'password',
     },
-  ];
+    showIcon: true,
+    placeholder: 'Password',
+    type: 'password',
+  },
+];
 
-  const SingUpFormHelper: ISingInFormHelper[] = [
-    {
-      name: 'email',
-      label: t('label.email'),
-      validations: {
-        required: t('required.email'),
-        pattern: {
-          value: emailPattern,
-          message: t('message.email'),
-        },
+const SingUpFormHelper: ISingUpFormHelper[] = [
+  {
+    name: 'email',
+    label: t('label.email'),
+    validations: {
+      required: t('required.email'),
+      pattern: {
+        value: emailPattern,
+        message: t('message.email'),
       },
       placeholder: t('placeholder.email'),
       type: 'text',
@@ -96,19 +108,24 @@ export const getFormHelper = (): TranslatedLabels => {
       placeholder: t('placeholder.password'),
       type: 'password',
     },
-    {
-      name: 'passwordConfirmation',
-      label: t('label.confirmPassword'),
-      validations: {
-        required: t('required.passwordConfirmation'),
-        pattern: {
-          value: passwordPattern,
-          message: t('message.passwordConfirmation'),
-        },
+    placeholder: 'Password',
+    type: 'password',
+    showIcon: true,
+  },
+  {
+    name: 'passwordConfirmation',
+    label: t('label.confirmPassword'),
+    validations: {
+      required: t('required.passwordConfirmation'),
+      pattern: {
+        value: passwordPattern,
+        message: t('message.passwordConfirmation'),
       },
-      placeholder: t('placeholder.passwordConfirmation'),
-      type: 'password',
     },
-  ];
-  return { SingInFormHelper, SingUpFormHelper };
-};
+    placeholder: t('placeholder.passwordConfirmation'),
+    type: 'password',
+    showIcon: true,
+  },
+];
+
+export { SingInFormHelper, SingUpFormHelper };

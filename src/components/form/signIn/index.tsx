@@ -1,9 +1,8 @@
-import { FieldError } from 'react-hook-form';
 import FormInput from '../../common/formInput';
 import { ROUTE_PATH } from '../../../routes';
-import { getFormHelper } from '../../../utils/formHelpers';
-import useSignInForm from '../../../hooks/useSignInForm';
 import { useTranslation } from 'react-i18next';
+import { SingInFormHelper } from '../../../utils/formHelpers';
+import useAuthForm from '../../../hooks/useAuthForm';
 
 import {
   FlexContainer,
@@ -13,48 +12,21 @@ import {
   StyledSignUpLink,
 } from './styled';
 
-export interface ISignIn {
-  email?: string;
-  password?: string;
-}
-export interface FieldErrors {
-  [key: string]: FieldError | undefined;
-}
-
 const SignInForm = () => {
-  const { SingInFormHelper } = getFormHelper();
+  const { handleSubmit, register, errors, onSignInSubmit } = useAuthForm();
   const { t } = useTranslation();
-  const {
-    showPassword,
-    handleClickShowPassword,
-    handleMouseDownPassword,
-    handleSubmit,
-    register,
-    errors,
-    onSubmit,
-    generateAdornmentProps,
-  } = useSignInForm();
-
   return (
     <FormInputWrapper>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {SingInFormHelper.map(({ name, label, validations, placeholder, type }) => (
+      <form onSubmit={handleSubmit(onSignInSubmit)}>
+        {SingInFormHelper.map((instance) => (
           <FormInput
-            key={name}
-            name={name}
-            label={label}
-            validations={validations}
-            placeholder={placeholder}
-            type={type}
-            showPassword={showPassword}
-            handleClickShowPassword={handleClickShowPassword}
-            handleMouseDownPassword={handleMouseDownPassword}
-            adornmentProps={generateAdornmentProps(name)}
+            {...instance}
+            key={instance.name}
             register={register}
-            errors={errors as FieldErrors}
+            isError={!!errors[instance.name]}
+            helperMsg={errors[instance.name]?.message}
           />
         ))}
-
         <StyledLoginButton
           type='submit'
           variant='contained'
