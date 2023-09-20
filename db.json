@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "email": "lado000@gamail.com",
+      "password": "$2a$10$5lY5xVjs0TAwQQSOQzSGVemY4KFTFKR3GNzVqmqrGmLNr1tPpbPJG",
+      "firstName": "lado",
+      "lastName": "lad",
+      "passwordConfirmation": "1234Aa",
+      "id": 1
+    }
+  ]
+}
