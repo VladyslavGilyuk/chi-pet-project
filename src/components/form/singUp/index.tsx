@@ -1,15 +1,10 @@
 import FormInput from '../../common/formInput';
 import { SingUpFormHelper } from '../../../utils/formHelpers';
-import useSignUpForm from './useSignUpForm';
+import useAuthForm from '../../../hooks/useAuthForm';
 import { FormInputWrapper, StyledLoginButton } from './styled';
-export interface ISignUp {
-  email?: string;
-  password?: string;
-  passwordConfirmation?: string;
-}
+
 const SignUpForm = () => {
-  const { showPassword, handleSubmit, register, errors, onSubmit, generateAdornmentProps } =
-    useSignUpForm();
+  const { handleSubmit, register, errors, onSubmit } = useAuthForm();
 
   return (
     <FormInputWrapper>
@@ -18,8 +13,6 @@ const SignUpForm = () => {
           <FormInput
             {...instance}
             key={instance.name}
-            showPassword={showPassword}
-            adornmentProps={generateAdornmentProps(instance.name)}
             register={register}
             isError={!!errors[instance.name]}
             helperMsg={errors[instance.name]?.message}

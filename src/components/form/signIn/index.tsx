@@ -1,7 +1,7 @@
 import FormInput from '../../common/formInput';
 import { ROUTE_PATH } from '../../../routes';
 import { SingInFormHelper } from '../../../utils/formHelpers';
-import useSignInForm from './useSignInForm';
+import useAuthForm from '../../../hooks/useAuthForm';
 
 import {
   FlexContainer,
@@ -11,14 +11,8 @@ import {
   StyledSignUpLink,
 } from './styled';
 
-export interface ISignIn {
-  email?: string;
-  password?: string;
-}
 const SignInForm = () => {
-  const { showPassword, handleSubmit, register, errors, onSubmit, generateAdornmentProps } =
-    useSignInForm();
-
+  const { handleSubmit, register, errors, onSubmit } = useAuthForm();
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -26,8 +20,6 @@ const SignInForm = () => {
           <FormInput
             {...instance}
             key={instance.name}
-            showPassword={showPassword}
-            adornmentProps={generateAdornmentProps(instance.name)}
             register={register}
             isError={!!errors[instance.name]}
             helperMsg={errors[instance.name]?.message}

@@ -1,0 +1,372 @@
+diff --git a/src/components/common/formInput/endAdorment/index.tsx b/src/components/common/formInput/endAdorment/index.tsx
+index 09a9ca1..99b5764 100644
+--- a/src/components/common/formInput/endAdorment/index.tsx
++++ b/src/components/common/formInput/endAdorment/index.tsx
+@@ -3,33 +3,18 @@ import { IconButton, InputAdornment } from '@mui/material';
+ import { Visibility, VisibilityOff } from '@mui/icons-material';
+ 
+ interface EndAdornmentProps {
+-  adornmentProps?: {
+-    position?: 'end' | 'start';
+-    show?: boolean;
+-    handleClick?: () => void;
+-    handleMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+-  };
++  show?: boolean;
++  handleClick?: () => void;
+ }
+ 
+-const EndAdornment: React.FC<EndAdornmentProps> = ({ adornmentProps }) => {
+-  const { position, show, handleClick, handleMouseDown } = adornmentProps || {};
+-
+-  if (position && show !== undefined && handleClick && handleMouseDown) {
+-    return (
+-      <InputAdornment position={position}>
+-        <IconButton
+-          aria-label='toggle visibility'
+-          onClick={handleClick}
+-          onMouseDown={handleMouseDown}
+-          edge='end'
+-        >
+-          {show ? <VisibilityOff /> : <Visibility />}
+-        </IconButton>
+-      </InputAdornment>
+-    );
+-  }
+-
+-  return null;
++const EndAdornment: React.FC<EndAdornmentProps> = ({ show, handleClick }) => {
++  return (
++    <InputAdornment position='end'>
++      <IconButton aria-label='toggle visibility' onClick={handleClick} edge='end'>
++        {show ? <VisibilityOff /> : <Visibility />}
++      </IconButton>
++    </InputAdornment>
++  );
+ };
+ 
+ export default EndAdornment;
+diff --git a/src/components/common/formInput/index.tsx b/src/components/common/formInput/index.tsx
+index 9672f9f..2f8fbd9 100644
+--- a/src/components/common/formInput/index.tsx
++++ b/src/components/common/formInput/index.tsx
+@@ -1,20 +1,16 @@
+ import EndAdornment from './endAdorment';
+-import { useState } from 'react';
+ import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegister } from 'react-hook-form';
+ import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
+ import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
++import { useCallback, useState } from 'react';
+ 
+ interface FormInputProps extends IBaseField {
+   name: TSignInFieldNames | TSignUpFieldNames;
+-  showPassword: boolean;
+-  adornmentProps?: {
+-    show?: boolean;
+-    handleClick?: () => void;
+-    handleMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+-  };
+   register: UseFormRegister<FieldValues>;
++  showIcon?: boolean;
+   isError: boolean;
+   helperMsg: string | FieldError | Merge<FieldError, FieldErrorsImpl<FieldValues>> | undefined;
++  isFullWidth?: boolean;
+ }
+ 
+ const FormInput: React.FC<FormInputProps> = ({
+@@ -23,31 +19,30 @@ const FormInput: React.FC<FormInputProps> = ({
+   validations,
+   placeholder,
+   type,
+-  adornmentProps,
+   register,
+   isError,
++  showIcon,
+   helperMsg,
++  isFullWidth,
+ }) => {
+   const [showPassword, setShowPassword] = useState(false);
+ 
++  const handleShowPasswordClick = useCallback(() => setShowPassword((prev) => !prev), []);
++
+   return (
+     <FormInputWrapper>
+       <StyledLabel htmlFor={name}>{label}</StyledLabel>
+       <StyledInput
+         {...register(name, validations)}
+         InputProps={{
++          autoComplete: 'off',
+           sx: { height: 42, fontSize: 14 },
+-          endAdornment: (
+-            <EndAdornment
+-              adornmentProps={{
+-                ...adornmentProps,
+-                handleClick: () => setShowPassword(!showPassword),
+-              }}
+-            />
++          endAdornment: showIcon && (
++            <EndAdornment show={showPassword} handleClick={handleShowPasswordClick} />
+           ),
+         }}
+         placeholder={placeholder}
+-        fullWidth={true}
++        fullWidth={isFullWidth ?? true}
+         type={type === 'password' && !showPassword ? 'password' : 'text'}
+         error={isError}
+         helperText={(helperMsg as string) || ' '}
+diff --git a/src/components/form/signIn/index.tsx b/src/components/form/signIn/index.tsx
+index c51f686..9e12003 100644
+--- a/src/components/form/signIn/index.tsx
++++ b/src/components/form/signIn/index.tsx
+@@ -1,7 +1,7 @@
+ import FormInput from '../../common/formInput';
+ import { ROUTE_PATH } from '../../../routes';
+ import { SingInFormHelper } from '../../../utils/formHelpers';
+-import useSignInForm from './useSignInForm';
++import useAuthForm from '../../../hooks/useAuthForm';
+ 
+ import {
+   FlexContainer,
+@@ -11,23 +11,16 @@ import {
+   StyledSignUpLink,
+ } from './styled';
+ 
+-export interface ISignIn {
+-  email?: string;
+-  password?: string;
+-}
+ const SignInForm = () => {
+-  const { showPassword, handleSubmit, register, errors, onSubmit, generateAdornmentProps } =
+-    useSignInForm();
++  const { handleSubmit, register, errors, onSignInSubmit } = useAuthForm();
+ 
+   return (
+     <FormInputWrapper>
+-      <form onSubmit={handleSubmit(onSubmit)}>
++      <form onSubmit={handleSubmit(onSignInSubmit)}>
+         {SingInFormHelper.map((instance) => (
+           <FormInput
+             {...instance}
+             key={instance.name}
+-            showPassword={showPassword}
+-            adornmentProps={generateAdornmentProps(instance.name)}
+             register={register}
+             isError={!!errors[instance.name]}
+             helperMsg={errors[instance.name]?.message}
+diff --git a/src/components/form/signIn/useSignInForm.tsx b/src/components/form/signIn/useSignInForm.tsx
+deleted file mode 100644
+index c83d338..0000000
+--- a/src/components/form/signIn/useSignInForm.tsx
++++ /dev/null
+@@ -1,45 +0,0 @@
+-import { ISignIn } from '.';
+-import { SubmitHandler } from 'react-hook-form';
+-import useAuthForm from '../../../hooks/useAuthForm';
+-
+-const useSignInForm = () => {
+-  const {
+-    showPassword,
+-    handleClickShowPassword,
+-    handleMouseDownPassword,
+-    handleSubmit,
+-    register,
+-    errors,
+-  } = useAuthForm();
+-
+-  const onSubmit: SubmitHandler<ISignIn> = (data) => {
+-    console.log('Form submitted with data:', data);
+-  };
+-
+-  const generateAdornmentProps = (name: string) => {
+-    switch (name) {
+-      case 'password':
+-        return {
+-          position: 'end',
+-          show: showPassword,
+-          handleClick: handleClickShowPassword,
+-          handleMouseDown: handleMouseDownPassword,
+-        };
+-      default:
+-        return undefined;
+-    }
+-  };
+-
+-  return {
+-    showPassword,
+-    handleClickShowPassword,
+-    handleMouseDownPassword,
+-    handleSubmit,
+-    register,
+-    errors,
+-    onSubmit,
+-    generateAdornmentProps,
+-  };
+-};
+-
+-export default useSignInForm;
+diff --git a/src/components/form/singUp/index.tsx b/src/components/form/singUp/index.tsx
+index b1f8dba..0e2dc1a 100644
+--- a/src/components/form/singUp/index.tsx
++++ b/src/components/form/singUp/index.tsx
+@@ -1,25 +1,18 @@
+ import FormInput from '../../common/formInput';
+ import { SingUpFormHelper } from '../../../utils/formHelpers';
+-import useSignUpForm from './useSignUpForm';
++import useAuthForm from '../../../hooks/useAuthForm';
+ import { FormInputWrapper, StyledLoginButton } from './styled';
+-export interface ISignUp {
+-  email?: string;
+-  password?: string;
+-  passwordConfirmation?: string;
+-}
++
+ const SignUpForm = () => {
+-  const { showPassword, handleSubmit, register, errors, onSubmit, generateAdornmentProps } =
+-    useSignUpForm();
++  const { handleSubmit, register, errors, onSignUpSubmit } = useAuthForm();
+ 
+   return (
+     <FormInputWrapper>
+-      <form onSubmit={handleSubmit(onSubmit)}>
++      <form onSubmit={handleSubmit(onSignUpSubmit)}>
+         {SingUpFormHelper.map((instance) => (
+           <FormInput
+             {...instance}
+             key={instance.name}
+-            showPassword={showPassword}
+-            adornmentProps={generateAdornmentProps(instance.name)}
+             register={register}
+             isError={!!errors[instance.name]}
+             helperMsg={errors[instance.name]?.message}
+diff --git a/src/components/form/singUp/useSignUpForm.tsx b/src/components/form/singUp/useSignUpForm.tsx
+deleted file mode 100644
+index c13f899..0000000
+--- a/src/components/form/singUp/useSignUpForm.tsx
++++ /dev/null
+@@ -1,53 +0,0 @@
+-import { ISignUp } from '.';
+-import { SubmitHandler } from 'react-hook-form';
+-import useAuthForm from '../../../hooks/useAuthForm';
+-
+-const useSignUpForm = () => {
+-  const {
+-    showPassword,
+-    handleClickShowPassword,
+-    handleMouseDownPassword,
+-    handleSubmit,
+-    register,
+-    watch,
+-    errors,
+-  } = useAuthForm();
+-
+-  const onSubmit: SubmitHandler<ISignUp> = (data) => {
+-    console.log('Form submitted with data:', data);
+-  };
+-  const generateAdornmentProps = (name: string) => {
+-    switch (name) {
+-      case 'password':
+-        return {
+-          position: 'end',
+-          show: showPassword,
+-          handleClick: handleClickShowPassword,
+-          handleMouseDown: handleMouseDownPassword,
+-        };
+-      case 'passwordConfirmation':
+-        return {
+-          position: 'end',
+-          show: showPassword,
+-          handleClick: handleClickShowPassword,
+-          handleMouseDown: handleMouseDownPassword,
+-        };
+-      default:
+-        return undefined;
+-    }
+-  };
+-
+-  return {
+-    showPassword,
+-    handleClickShowPassword,
+-    handleMouseDownPassword,
+-    handleSubmit,
+-    register,
+-    watch,
+-    errors,
+-    onSubmit,
+-    generateAdornmentProps,
+-  };
+-};
+-
+-export default useSignUpForm;
+diff --git a/src/hooks/useAuthForm.tsx b/src/hooks/useAuthForm.tsx
+deleted file mode 100644
+index 33a90d2..0000000
+--- a/src/hooks/useAuthForm.tsx
++++ /dev/null
+@@ -1,31 +0,0 @@
+-import { useForm } from 'react-hook-form';
+-import { useState } from 'react';
+-
+-const useAuthForm = () => {
+-  const [showPassword, setShowPassword] = useState(false);
+-
+-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+-
+-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+-    event.preventDefault();
+-  };
+-
+-  const {
+-    handleSubmit,
+-    register,
+-    watch,
+-    formState: { errors },
+-  } = useForm();
+-
+-  return {
+-    handleSubmit,
+-    register,
+-    watch,
+-    errors,
+-    showPassword,
+-    handleClickShowPassword,
+-    handleMouseDownPassword,
+-  };
+-};
+-
+-export default useAuthForm;
+diff --git a/src/utils/formHelpers.ts b/src/utils/formHelpers.ts
+index 771672f..a0f5c6c 100644
+--- a/src/utils/formHelpers.ts
++++ b/src/utils/formHelpers.ts
+@@ -17,6 +17,7 @@ export interface IBaseField {
+   };
+   placeholder: string;
+   type: TFieldType;
++  showIcon?: boolean;
+ }
+ 
+ export interface ISingInFormHelper extends IBaseField {
+@@ -50,6 +51,7 @@ const SingInFormHelper: ISingInFormHelper[] = [
+     validations: {
+       required: 'Password is required',
+     },
++    showIcon: true,
+     placeholder: 'Password',
+     type: 'password',
+   },
+@@ -99,6 +101,7 @@ const SingUpFormHelper: ISingUpFormHelper[] = [
+     },
+     placeholder: 'Password',
+     type: 'password',
++    showIcon: true,
+   },
+   {
+     name: 'passwordConfirmation',
+@@ -112,6 +115,7 @@ const SingUpFormHelper: ISingUpFormHelper[] = [
+     },
+     placeholder: 'Password',
+     type: 'password',
++    showIcon: true,
+   },
+ ];
+ 

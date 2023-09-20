@@ -17,6 +17,7 @@ export interface IBaseField {
   };
   placeholder: string;
   type: TFieldType;
+  showIcon?: boolean;
 }
 
 export interface ISingInFormHelper extends IBaseField {
@@ -50,6 +51,7 @@ const SingInFormHelper: ISingInFormHelper[] = [
     validations: {
       required: 'Password is required',
     },
+    showIcon: true,
     placeholder: 'Password',
     type: 'password',
   },
@@ -99,6 +101,7 @@ const SingUpFormHelper: ISingUpFormHelper[] = [
     },
     placeholder: 'Password',
     type: 'password',
+    showIcon: true,
   },
   {
     name: 'passwordConfirmation',
@@ -112,6 +115,7 @@ const SingUpFormHelper: ISingUpFormHelper[] = [
     },
     placeholder: 'Password',
     type: 'password',
+    showIcon: true,
   },
 ];
 
