@@ -21,10 +21,6 @@ export interface IBaseField {
   showIcon?: boolean;
 }
 
-export interface TranslatedLabels {
-  SingInFormHelper: ISingInFormHelper[];
-  SingUpFormHelper: ISingInFormHelper[];
-}
 export interface ISingInFormHelper extends IBaseField {
   name: TSignInFieldNames;
 }
@@ -36,96 +32,102 @@ export interface ISingUpFormHelper extends IBaseField {
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const passwordPattern: RegExp = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-const SingInFormHelper: ISingInFormHelper[] = [
-  {
-    name: 'email',
-     label: t('label.email'),
-    validations: {
-      required: t('required.email'),
-      pattern: {
-        value: emailPattern,
-        message: t('message.email'),
+const useFormHelpers = () => {
+  const { t } = useTranslation();
+
+  const SingInFormHelper: ISingInFormHelper[] = [
+    {
+      name: 'email',
+      label: t('signIn.label.email'),
+      validations: {
+        required: t('signIn.required.email'),
+        pattern: {
+          value: emailPattern,
+          message: t('signIn.message.email'),
+        },
       },
-      placeholder: t('placeholder.email'),
+      placeholder: t('signIn.placeholder.email'),
       type: 'text',
     },
     {
       name: 'password',
-      label: t('label.password'),
+      label: t('signIn.label.password'),
       validations: {
-        required: t('required.password'),
+        required: t('signIn.required.password'),
+        pattern: {
+          value: passwordPattern,
+          message: t('signIn.message.password'),
+        },
       },
-      placeholder: t('placeholder.password'),
+      placeholder: t('signIn.placeholder.password'),
       type: 'password',
+      showIcon: true,
     },
-    showIcon: true,
-    placeholder: 'Password',
-    type: 'password',
-  },
-];
+  ];
 
-const SingUpFormHelper: ISingUpFormHelper[] = [
-  {
-    name: 'email',
-    label: t('label.email'),
-    validations: {
-      required: t('required.email'),
-      pattern: {
-        value: emailPattern,
-        message: t('message.email'),
+  const SingUpFormHelper: ISingUpFormHelper[] = [
+    {
+      name: 'email',
+      label: t('signUp.label.email'),
+      validations: {
+        required: t('signUp.required.email'),
+        pattern: {
+          value: emailPattern,
+          message: t('signUp.message.email'),
+        },
       },
-      placeholder: t('placeholder.email'),
+      placeholder: t('signUp.placeholder.email'),
       type: 'text',
     },
     {
       name: 'firstName',
-      label: t('label.firstName'),
+      label: t('signUp.label.firstName'),
       validations: {
-        required: t('required.firstName'),
+        required: t('signUp.required.firstName'),
       },
-      placeholder: t('placeholder.firstName'),
+      placeholder: t('signUp.placeholder.firstName'),
       type: 'text',
     },
     {
       name: 'lastName',
-      label: t('label.lastName'),
+      label: t('signUp.label.lastName'),
       validations: {
-        required: t('required.lastName'),
+        required: t('signUp.required.lastName'),
       },
-      placeholder: t('placeholder.lastName'),
+      placeholder: t('signUp.placeholder.lastName'),
       type: 'text',
     },
     {
       name: 'password',
-      label: t('label.password'),
+      label: t('signUp.label.password'),
       validations: {
-        required: t('required.password'),
+        required: t('signUp.required.password'),
         pattern: {
           value: passwordPattern,
-          message: t('message.password'),
+          message: t('signUp.message.password'),
         },
       },
-      placeholder: t('placeholder.password'),
+      placeholder: t('signUp.placeholder.password'),
       type: 'password',
+      showIcon: true,
     },
-    placeholder: 'Password',
-    type: 'password',
-    showIcon: true,
-  },
-  {
-    name: 'passwordConfirmation',
-    label: t('label.confirmPassword'),
-    validations: {
-      required: t('required.passwordConfirmation'),
-      pattern: {
-        value: passwordPattern,
-        message: t('message.passwordConfirmation'),
+    {
+      name: 'passwordConfirmation',
+      label: t('signUp.label.confirmPassword'),
+      validations: {
+        required: t('signUp.required.passwordConfirmation'),
+        pattern: {
+          value: passwordPattern,
+          message: t('signUp.message.passwordConfirmation'),
+        },
       },
+      placeholder: t('signUp.placeholder.passwordConfirmation'),
+      type: 'password',
+      showIcon: true,
     },
-    placeholder: t('placeholder.passwordConfirmation'),
-    type: 'password',
-    showIcon: true,
-  },
-];
+  ];
 
-export { SingInFormHelper, SingUpFormHelper };
+  return { SingInFormHelper, SingUpFormHelper };
+};
+
+export default useFormHelpers;

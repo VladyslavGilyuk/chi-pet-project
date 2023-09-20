@@ -1,8 +1,8 @@
 import FormInput from '../../common/formInput';
 import { ROUTE_PATH } from '../../../routes';
-import { useTranslation } from 'react-i18next';
-import { SingInFormHelper } from '../../../utils/formHelpers';
 import useAuthForm from '../../../hooks/useAuthForm';
+import useFormHelpers from '../../../utils/formHelpers';
+import { useTranslation } from 'react-i18next';
 
 import {
   FlexContainer,
@@ -15,6 +15,7 @@ import {
 const SignInForm = () => {
   const { handleSubmit, register, errors, onSignInSubmit } = useAuthForm();
   const { t } = useTranslation();
+  const { SingInFormHelper } = useFormHelpers();
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSignInSubmit)}>
@@ -33,14 +34,14 @@ const SignInForm = () => {
           fullWidth={true}
           disableElevation={true}
         >
-          {t('button.signIn')}
+          {t('signIn.button')}
         </StyledLoginButton>
       </form>
       <div>
         <FlexContainer>
-          <StyledFooterText variant='subtitle1'>{t('footer.signIn')}</StyledFooterText>
+          <StyledFooterText variant='subtitle1'>{t('signIn.footer')}</StyledFooterText>
           <StyledSignUpLink href={ROUTE_PATH.SingUp} underline='none'>
-            {t('link.signIn')}
+            {t('signIn.link')}
           </StyledSignUpLink>
         </FlexContainer>
       </div>

@@ -13,7 +13,7 @@ const SignIn: React.FC = () => {
       <FormWrapper>
         <LanguageSwitcher />
         <Logo />
-        <Heading heading={t('heading.signIn')} description={t('description.signIn')} />
+        <Heading heading={t('signIn.heading')} description={t('signIn.description')} />
         <SignInForm />
       </FormWrapper>
     </div>
