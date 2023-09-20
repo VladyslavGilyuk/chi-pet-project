@@ -1,3 +1,4 @@
+import { StyledButton } from './styled';
 import { useTranslation } from 'react-i18next';
 
 function LanguageSwitcher() {
@@ -9,8 +10,8 @@ function LanguageSwitcher() {
 
   return (
     <div>
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('uk')}>Українська</button>
+      <StyledButton onClick={() => changeLanguage('en')}>English</StyledButton>
+      <StyledButton onClick={() => changeLanguage('uk')}>Українська</StyledButton>
     </div>
   );
 }
