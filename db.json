@@ -23,6 +23,14 @@
       "lastName": "sdfsd",
       "passwordConfirmation": "1234Aa",
       "id": 3
+    },
+    {
+      "email": "lado1@gmail.com",
+      "password": "$2a$10$QaikocKSU.cgLDvrqPG0R.7VxMyqA4KGSqOxolrpDAEB7E/i2/Pta",
+      "firstName": "lad",
+      "lastName": "lad",
+      "passwordConfirmation": "1234Aa",
+      "id": 4
     }
   ]
 }

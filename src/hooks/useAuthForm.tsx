@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../utils/axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
@@ -44,12 +44,37 @@ const useAuthForm = () => {
   } = useForm<CommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
-    console.log('Form data:', data);
+    axios
+      .post('/login', data)
+      .then(({ data }) => {
+        setUser({
+          token: data.accessToken,
+          ...data.user,
+        });
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            token: data.accessToken,
+            ...data.user,
+          }),
+        );
+        navigate('/');
+      })
+      .catch((error) => {
+        // Handle errors from the server
+        if (error.response.data === 'Cannot find user') {
+          alert('Invalid email');
+        } else if (error.response.data === 'Incorrect password') {
+          alert('Incorrect password');
+        } else {
+          console.error('Error:', error);
+        }
+      });
   };
 
   const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
     axios
-      .post('http://localhost:8080/register', data)
+      .post('/register', data)
       .then(({ data }) => {
         setUser({
           token: data.accessToken,
