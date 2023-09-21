@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 export type TSignInFieldNames = 'password' | 'email';
 export type TSignUpFieldNames =
   | 'password'
