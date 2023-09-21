@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 export type TSignInFieldNames = 'password' | 'email';
 export type TSignUpFieldNames =
   | 'password'
@@ -32,9 +31,7 @@ export interface ISingUpFormHelper extends IBaseField {
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const passwordPattern: RegExp = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-const useFormHelpers = () => {
-  const { t } = useTranslation();
-
+const useFormHelpers = (t: (key: string) => string) => {
   const SingInFormHelper: ISingInFormHelper[] = [
     {
       name: 'email',
