@@ -31,6 +31,14 @@
       "lastName": "lad",
       "passwordConfirmation": "1234Aa",
       "id": 4
+    },
+    {
+      "email": "redux@gmail.com",
+      "password": "$2a$10$BIkQtHI77kXJrqy6g1cvNOSbSHHekOzAwoaFf6801rA.1sTf.XH8O",
+      "firstName": "redux",
+      "lastName": "redux",
+      "passwordConfirmation": "Redux1",
+      "id": 5
     }
   ]
 }

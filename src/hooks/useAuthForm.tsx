@@ -1,8 +1,10 @@
 import axios from '../utils/axios';
+import { setUser } from '../redux/userSlice';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { useEffect, useState } from 'react';
 
 interface ISignIn {
   email: string;
@@ -22,18 +24,12 @@ export interface CommonFieldValues extends FieldValues {
   passwordConfirmation: string;
 }
 const useAuthForm = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, setUser] = useState({
-    email: '',
-  });
-  /*const value = {
-    user,
-    setUser,
-  };*/
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser !== null) {
-      setUser(JSON.parse(storedUser));
+      dispatch(setUser(JSON.parse(storedUser)));
     }
   }, []);
   const navigate = useNavigate();
@@ -47,10 +43,12 @@ const useAuthForm = () => {
     axios
       .post('/login', data)
       .then(({ data }) => {
-        setUser({
-          token: data.accessToken,
-          ...data.user,
-        });
+        dispatch(
+          setUser({
+            token: data.accessToken,
+            ...data.user,
+          }),
+        );
         localStorage.setItem(
           'user',
           JSON.stringify({
@@ -61,7 +59,6 @@ const useAuthForm = () => {
         navigate('/');
       })
       .catch((error) => {
-        // Handle errors from the server
         if (error.response.data === 'Cannot find user') {
           alert('Invalid email');
         } else if (error.response.data === 'Incorrect password') {
@@ -76,10 +73,12 @@ const useAuthForm = () => {
     axios
       .post('/register', data)
       .then(({ data }) => {
-        setUser({
-          token: data.accessToken,
-          ...data.user,
-        });
+        dispatch(
+          setUser({
+            token: data.accessToken,
+            ...data.user,
+          }),
+        );
         localStorage.setItem(
           'user',
           JSON.stringify({
