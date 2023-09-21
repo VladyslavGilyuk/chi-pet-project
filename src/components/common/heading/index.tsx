@@ -2,7 +2,7 @@ import { HeadingText, StyledWrapper, Text } from './styled';
 
 interface HeadingProps {
   heading: string;
-  description?: string; //change to ? optional
+  description?: string;
 }
 
 const Heading: React.FC<HeadingProps> = ({ heading, description }) => {

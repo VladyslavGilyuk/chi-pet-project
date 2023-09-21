@@ -1,11 +1,13 @@
 import FormInput from '../../common/formInput';
-import { SingUpFormHelper } from '../../../utils/formHelpers';
 import useAuthForm from '../../../hooks/useAuthForm';
+import useFormHelpers from '../../../utils/formHelpers';
+import { useTranslation } from 'react-i18next';
 import { FormInputWrapper, StyledLoginButton } from './styled';
 
 const SignUpForm = () => {
   const { handleSubmit, register, errors, onSignUpSubmit } = useAuthForm();
-
+  const { t } = useTranslation();
+  const { SingUpFormHelper } = useFormHelpers(t);
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSignUpSubmit)}>
@@ -24,7 +26,7 @@ const SignUpForm = () => {
           fullWidth={true}
           disableElevation={true}
         >
-          Register
+          {t('signUp.button')}
         </StyledLoginButton>
       </form>
     </FormInputWrapper>

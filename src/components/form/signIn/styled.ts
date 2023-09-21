@@ -11,7 +11,7 @@ const StyledLoginButton = styled(Button)`
   color: ${colors.primaryWhite};
   box-sizing: border-box;
   text-align: center;
-  font-size: ${fonts.size.medium} !important; // ?
+  font-size: ${fonts.size.medium} !important;
   font-weight: ${fonts.weight.medium};
   letter-spacing: ${fonts.spacing.small};
   font-style: normal;
