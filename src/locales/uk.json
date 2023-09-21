@@ -1,69 +1,66 @@
 {
-    "translation": {
-      "signIn": {
-        "heading": "Увійти до Dashboard Kit",
-        "description": "Введіть свою електронну пошту та пароль",
-        "button": "Увійти",
-        "footer": "Немає облікового запису?",
-        "link": "Зареєструйтесь",
-        "label": {
-          "email": "Електронна Пошта",
-          "password": "Пароль",
-          "firstName": "Ім’я",
-          "lastName": "Прізвище",
-          "confirmPassword": "Підтвердити Пароль"
-        },
-        "required": {
-          "email": "Електронну пошта обов’язкова",
-          "password": "Пароль обов’язковий",
-          "firstName": "Ім’я обов’язкове",
-          "lastName": "Прізвище обов’язкове",
-          "passwordConfirmation": "Підтвердження пароля обов’язкове"
-        },
-        "placeholder": {
-          "email": "Електронна пошта",
-          "password": "Пароль",
-          "firstName": "Ім’я",
-          "lastName": "Прізвище",
-          "passwordConfirmation": "Пароль"
-        },
-        "message": {
-          "email": "Невірний формат електронної пошти",
-          "password": "Мінімум 6 символів, 1 цифра, 1 велика літера",
-          "passwordConfirmation": "Паролі не співпадають"
-        }
-      },
-      "signUp": {
-        "heading": "Зареєструватися",
-        "description": "Створити новий обліковий запис",
-        "button": "Зареєструватися",
-        "label": {
-          "email": "Електронна Пошта",
-          "password": "Пароль",
-          "firstName": "Ім’я",
-          "lastName": "Прізвище",
-          "confirmPassword": "Підтвердити Пароль"
-        },
-        "required": {
-          "email": "Електронну пошта обов’язкова",
-          "password": "Пароль обов’язковий",
-          "firstName": "Ім’я обов’язкове",
-          "lastName": "Прізвище обов’язкове",
-          "passwordConfirmation": "Паролі не співпадають"
-        },
-        "placeholder": {
-          "email": "Електронна пошта",
-          "password": "Пароль",
-          "firstName": "Ім’я",
-          "lastName": "Прізвище",
-          "passwordConfirmation": "Пароль"
-        },
-        "message": {
-          "email": "Невірний формат електронної пошти",
-          "password": "Мінімум 6 символів, 1 цифра, 1 велика літера",
-          "passwordConfirmation": "Паролі не співпадають"
-        }
-      }
+  "signIn": {
+    "heading": "Увійти до Dashboard Kit",
+    "description": "Введіть свою електронну пошту та пароль",
+    "button": "Увійти",
+    "footer": "Немає облікового запису?",
+    "link": "Зареєструйтесь",
+    "label": {
+      "email": "Електронна Пошта",
+      "password": "Пароль",
+      "firstName": "Ім’я",
+      "lastName": "Прізвище",
+      "confirmPassword": "Підтвердити Пароль"
+    },
+    "required": {
+      "email": "Електронну пошта обов’язкова",
+      "password": "Пароль обов’язковий",
+      "firstName": "Ім’я обов’язкове",
+      "lastName": "Прізвище обов’язкове",
+      "passwordConfirmation": "Підтвердження пароля обов’язкове"
+    },
+    "placeholder": {
+      "email": "Електронна пошта",
+      "password": "Пароль",
+      "firstName": "Ім’я",
+      "lastName": "Прізвище",
+      "passwordConfirmation": "Пароль"
+    },
+    "message": {
+      "email": "Невірний формат електронної пошти",
+      "password": "Мінімум 6 символів, 1 цифра, 1 велика літера",
+      "passwordConfirmation": "Паролі не співпадають"
+    }
+  },
+  "signUp": {
+    "heading": "Зареєструватися",
+    "description": "Створити новий обліковий запис",
+    "button": "Зареєструватися",
+    "label": {
+      "email": "Електронна Пошта",
+      "password": "Пароль",
+      "firstName": "Ім’я",
+      "lastName": "Прізвище",
+      "confirmPassword": "Підтвердити Пароль"
+    },
+    "required": {
+      "email": "Електронну пошта обов’язкова",
+      "password": "Пароль обов’язковий",
+      "firstName": "Ім’я обов’язкове",
+      "lastName": "Прізвище обов’язкове",
+      "passwordConfirmation": "Паролі не співпадають"
+    },
+    "placeholder": {
+      "email": "Електронна пошта",
+      "password": "Пароль",
+      "firstName": "Ім’я",
+      "lastName": "Прізвище",
+      "passwordConfirmation": "Пароль"
+    },
+    "message": {
+      "email": "Невірний формат електронної пошти",
+      "password": "Мінімум 6 символів, 1 цифра, 1 велика літера",
+      "passwordConfirmation": "Паролі не співпадають"
     }
   }
-  
+}

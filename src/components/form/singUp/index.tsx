@@ -7,7 +7,7 @@ import { FormInputWrapper, StyledLoginButton } from './styled';
 const SignUpForm = () => {
   const { handleSubmit, register, errors, onSignUpSubmit } = useAuthForm();
   const { t } = useTranslation();
-  const { SingUpFormHelper } = useFormHelpers();
+  const { SingUpFormHelper } = useFormHelpers(t);
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSignUpSubmit)}>

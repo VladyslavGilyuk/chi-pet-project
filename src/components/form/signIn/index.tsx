@@ -15,7 +15,7 @@ import {
 const SignInForm = () => {
   const { handleSubmit, register, errors, onSignInSubmit } = useAuthForm();
   const { t } = useTranslation();
-  const { SingInFormHelper } = useFormHelpers();
+  const { SingInFormHelper } = useFormHelpers(t);
   return (
     <FormInputWrapper>
       <form onSubmit={handleSubmit(onSignInSubmit)}>

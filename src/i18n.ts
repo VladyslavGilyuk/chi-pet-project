@@ -12,10 +12,10 @@ i18n
     fallbackLng: 'en',
     resources: {
       en: {
-        translation: en.translation,
+        translation: en,
       },
       uk: {
-        translation: uk.translation,
+        translation: uk,
       },
     },
   });
