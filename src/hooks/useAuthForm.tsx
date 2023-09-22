@@ -1,36 +1,20 @@
 import { AppDispatch } from '../store';
-import axios from '../utils/axios';
+import { SubmitHandler } from 'react-hook-form';
+import UserService from '../service/UserService';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setUser } from '../store/user/actions';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { ICommonFieldValues, ISignIn, ISignUp } from '../types/auth';
 
-interface ISignIn {
-  email: string;
-  password: string;
-}
-interface ISignUp extends ISignIn {
-  firstname: string;
-  lastname: string;
-  passwordConfirmation: string;
-}
-
-export interface CommonFieldValues extends FieldValues {
-  email: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  passwordConfirmation: string;
-}
 export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn) => {
-  const response = await axios.post('/login', data);
+  const response = await UserService.login(data);
   return response.data;
 });
 
 export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp) => {
-  const response = await axios.post('/register', data);
+  const response = await UserService.register(data);
   return response.data;
 });
 
@@ -42,7 +26,7 @@ const useAuthForm = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<CommonFieldValues>();
+  } = useForm<ICommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
     dispatch(signInAsync(data))
