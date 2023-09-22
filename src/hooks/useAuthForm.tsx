@@ -3,7 +3,6 @@ import axios from '../utils/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setUser } from '../store/user/actions';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
@@ -38,12 +37,6 @@ export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp)
 const useAuthForm = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser !== null) {
-      dispatch(setUser(JSON.parse(storedUser)));
-    }
-  }, []);
   const navigate = useNavigate();
   const {
     handleSubmit,
