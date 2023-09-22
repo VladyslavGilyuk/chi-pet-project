@@ -1,4 +1,6 @@
+import { AppDispatch } from '../store';
 import axios from '../utils/axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setUser } from '../store/user/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -23,8 +25,18 @@ export interface CommonFieldValues extends FieldValues {
   lastname: string;
   passwordConfirmation: string;
 }
+export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn) => {
+  const response = await axios.post('/login', data);
+  return response.data;
+});
+
+export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp) => {
+  const response = await axios.post('/register', data);
+  return response.data;
+});
+
 const useAuthForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -40,20 +52,20 @@ const useAuthForm = () => {
   } = useForm<CommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
-    axios
-      .post('/login', data)
-      .then(({ data }) => {
+    dispatch(signInAsync(data))
+      .then((action) => {
+        const responseData = action.payload;
         dispatch(
           setUser({
-            token: data.accessToken,
-            ...data.user,
+            token: responseData.accessToken,
+            ...responseData.user,
           }),
         );
         localStorage.setItem(
           'user',
           JSON.stringify({
-            token: data.accessToken,
-            ...data.user,
+            token: responseData.accessToken,
+            ...responseData.user,
           }),
         );
         navigate('/');
@@ -70,20 +82,20 @@ const useAuthForm = () => {
   };
 
   const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
-    axios
-      .post('/register', data)
-      .then(({ data }) => {
+    dispatch(singUpAsync(data))
+      .then((action) => {
+        const responceData = action.payload;
         dispatch(
           setUser({
-            token: data.accessToken,
-            ...data.user,
+            token: responceData.accessToken,
+            ...responceData.user,
           }),
         );
         localStorage.setItem(
           'user',
           JSON.stringify({
-            token: data.accessToken,
-            ...data.user,
+            token: responceData.accessToken,
+            ...responceData.user,
           }),
         );
         navigate('/');

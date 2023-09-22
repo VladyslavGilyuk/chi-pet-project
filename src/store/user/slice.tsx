@@ -1,4 +1,4 @@
-import { UserState } from '..';
+import { UserState } from '../../types/user';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: UserState = {
