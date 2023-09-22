@@ -1,5 +1,5 @@
 import axios from '../utils/axios';
-import { setUser } from '../redux/userSlice';
+import { setUser } from '../store/user/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
