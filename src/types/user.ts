@@ -1,9 +1,11 @@
 export interface UserState {
-  user: {
-    email: string;
-    token: string;
-  };
+  token: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  id: number;
+  error: boolean;
 }
-export interface RootState {
+/*export interface RootState {
   user: UserState;
-}
+}*/

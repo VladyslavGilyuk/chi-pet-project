@@ -8,19 +8,72 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ICommonFieldValues, ISignIn, ISignUp } from '../types/auth';
 
-export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn) => {
-  const response = await UserService.login(data);
-  return response.data;
+export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn, { dispatch }) => {
+  try {
+    const response = await UserService.login(data);
+    const responseData = response.data;
+
+    dispatch(
+      setUser({
+        token: responseData.accessToken,
+        ...responseData.user,
+      }),
+    );
+
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        token: responseData.accessToken,
+        ...responseData.user,
+      }),
+    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    if (error.response && error.response.status === 400) {
+      alert('Invalid email or password');
+    } else if (error.response && error.response.status === 500) {
+      alert('Server error: Please try again later.');
+    } else {
+      alert('An error occurred. Please try again later.');
+    }
+    throw error;
+  }
 });
 
-export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp) => {
-  const response = await UserService.register(data);
-  return response.data;
+export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp, { dispatch }) => {
+  try {
+    const response = await UserService.register(data);
+    const responseData = response.data;
+
+    dispatch(
+      setUser({
+        token: responseData.accessToken,
+        ...responseData.user,
+      }),
+    );
+
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        token: responseData.accessToken,
+        ...responseData.user,
+      }),
+    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    if (error.response && error.response.status === 400) {
+      alert('Invalid email or password');
+    } else if (error.response && error.response.status === 500) {
+      alert('Server error: Please try again later.');
+    } else {
+      alert('An error occurred. Please try again later.');
+    }
+    throw error;
+  }
 });
 
 const useAuthForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -28,57 +81,26 @@ const useAuthForm = () => {
     formState: { errors },
   } = useForm<ICommonFieldValues>();
 
-  const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
-    dispatch(signInAsync(data))
-      .then((action) => {
-        const responseData = action.payload;
-        dispatch(
-          setUser({
-            token: responseData.accessToken,
-            ...responseData.user,
-          }),
-        );
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            token: responseData.accessToken,
-            ...responseData.user,
-          }),
-        );
+  const onSignInSubmit: SubmitHandler<ISignIn> = async (data: ISignIn) => {
+    try {
+      const action = await dispatch(signInAsync(data));
+      if (action.meta.requestStatus === 'fulfilled') {
         navigate('/');
-      })
-      .catch((error) => {
-        if (error.response.data === 'Cannot find user') {
-          alert('Invalid email');
-        } else if (error.response.data === 'Incorrect password') {
-          alert('Incorrect password');
-        } else {
-          console.error('Error:', error);
-        }
-      });
+      }
+    } catch (error) {
+      console.error('Error occurred during sign in:', error);
+    }
   };
 
-  const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
-    dispatch(singUpAsync(data))
-      .then((action) => {
-        const responceData = action.payload;
-        dispatch(
-          setUser({
-            token: responceData.accessToken,
-            ...responceData.user,
-          }),
-        );
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            token: responceData.accessToken,
-            ...responceData.user,
-          }),
-        );
+  const onSignUpSubmit: SubmitHandler<ISignUp> = async (data: ISignUp) => {
+    try {
+      const action = await dispatch(singUpAsync(data));
+      if (action.meta.requestStatus === 'fulfilled') {
         navigate('/');
-      })
-      .catch((err) => console.log(err.message));
-    console.log('Form data:', data);
+      }
+    } catch (error) {
+      console.error('Error occurred during sign up:', error);
+    }
   };
 
   return {
