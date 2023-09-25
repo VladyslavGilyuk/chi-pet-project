@@ -1,6 +1,6 @@
 import { UserState } from '../../types/user';
 import { createSlice } from '@reduxjs/toolkit';
-//import { signInAsync, singUpAsync } from '../../hooks/useAuthForm';
+import { signInAsync, signUpAsync } from './actions';
 
 const initialState: UserState = {
   token: '',
@@ -8,35 +8,29 @@ const initialState: UserState = {
   firstName: '',
   lastName: '',
   id: 0,
-  error: false,
 };
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
-  /*
   extraReducers(builder) {
-    builder.addCase(signInAsync.fulfilled, (state) => {
+    builder.addCase(signInAsync.fulfilled, (state, action) => {
+      const responseData = action.payload;
       return {
         ...state,
-        error: false,
+        token: responseData.accessToken,
+        ...responseData.user,
       };
     });
-    builder.addCase(signInAsync.rejected, (state) => {
-      console.log('Error rejected');
-      state.error = true;
-    });
-    builder.addCase(singUpAsync.fulfilled, (state, action) => {
+    builder.addCase(signUpAsync.fulfilled, (state, action) => {
+      const responseData = action.payload;
       return {
         ...state,
-        error: false,
+        token: responseData.accessToken,
+        ...responseData.user,
       };
-    });
-    builder.addCase(singUpAsync.rejected, (state) => {
-      state.error = true;
     });
   },
-  */
 });
 
 export default userSlice.reducer;

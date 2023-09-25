@@ -1,3 +1,12 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "qqq@gmail.com",
+      "password": "$2a$10$I.U29JTZvHjLGwv0WEHRMO.jBk4ELile3fE.LWZz7mhDsNW9hS8hG",
+      "firstName": "qq",
+      "lastName": "qq",
+      "passwordConfirmation": "qqq@gmail.comA1",
+      "id": 1
+    }
+  ]
 }

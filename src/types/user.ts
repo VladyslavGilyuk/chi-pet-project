@@ -4,8 +4,4 @@ export interface UserState {
   firstName: string;
   lastName: string;
   id: number;
-  error: boolean;
 }
-/*export interface RootState {
-  user: UserState;
-}*/
