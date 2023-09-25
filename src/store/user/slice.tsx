@@ -17,7 +17,6 @@ export const userSlice = createSlice({
     builder.addCase(signInAsync.fulfilled, (state, action) => {
       const responseData = action.payload;
       return {
-        ...state,
         token: responseData.accessToken,
         ...responseData.user,
       };
@@ -25,7 +24,6 @@ export const userSlice = createSlice({
     builder.addCase(signUpAsync.fulfilled, (state, action) => {
       const responseData = action.payload;
       return {
-        ...state,
         token: responseData.accessToken,
         ...responseData.user,
       };
