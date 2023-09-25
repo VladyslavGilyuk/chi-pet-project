@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { SubmitHandler } from 'react-hook-form';
 import UserService from '../service/UserService';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -26,11 +27,11 @@ export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn,
         ...responseData.user,
       }),
     );
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    if (error.response && error.response.status === 400) {
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    if (axiosError.response && axiosError.response.status === 400) {
       alert('Invalid email or password');
-    } else if (error.response && error.response.status === 500) {
+    } else if (axiosError.response && axiosError.response.status === 500) {
       alert('Server error: Please try again later.');
     } else {
       alert('An error occurred. Please try again later.');
@@ -58,11 +59,11 @@ export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp,
         ...responseData.user,
       }),
     );
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    if (error.response && error.response.status === 400) {
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    if (axiosError.response && axiosError.response.status === 400) {
       alert('Invalid email or password');
-    } else if (error.response && error.response.status === 500) {
+    } else if (axiosError.response && axiosError.response.status === 500) {
       alert('Server error: Please try again later.');
     } else {
       alert('An error occurred. Please try again later.');
