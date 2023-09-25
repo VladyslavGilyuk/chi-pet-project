@@ -1,12 +1,3 @@
 {
-  "users": [
-    {
-      "email": "ddd@ff.cd",
-      "password": "$2a$10$mT7pyEfYe6wj9DdenfkA9u6krWHL5rm6EhPw0Zi7xmisSpJh27w8q",
-      "firstName": "vdzfv",
-      "lastName": "vdzfv",
-      "passwordConfirmation": "ddd@ff.cdA1",
-      "id": 1
-    }
-  ]
+  "users": []
 }

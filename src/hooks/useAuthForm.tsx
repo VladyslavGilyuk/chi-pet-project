@@ -1,9 +1,8 @@
-import { AppDispatch } from '../store';
 import { SubmitHandler } from 'react-hook-form';
 import UserService from '../service/UserService';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setUser } from '../store/user/actions';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../store';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ICommonFieldValues, ISignIn, ISignUp } from '../types/auth';
@@ -73,7 +72,7 @@ export const singUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUp,
 });
 
 const useAuthForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
     handleSubmit,

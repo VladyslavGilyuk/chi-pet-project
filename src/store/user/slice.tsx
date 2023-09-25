@@ -27,7 +27,10 @@ export const userSlice = createSlice({
       state.error = true;
     });
     builder.addCase(singUpAsync.fulfilled, (state, action) => {
-      return action.payload;
+      return {
+        ...state,
+        error: false,
+      };
     });
     builder.addCase(singUpAsync.rejected, (state) => {
       state.error = true;
