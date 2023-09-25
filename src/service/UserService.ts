@@ -1,4 +1,4 @@
-import axios from './axiosService';
+import axios from './axiosConfig';
 import { ISignIn, ISignUp } from '../types/auth';
 
 class UserService {

@@ -1,3 +1,3 @@
 import { RootState } from '..';
 
-export const selectUser = (state: RootState) => state.user;
+export const User = (state: RootState) => state.user;

@@ -1,20 +1,3 @@
 {
-  "users": [
-    {
-      "email": "qqq@gmail.com",
-      "password": "$2a$10$I.U29JTZvHjLGwv0WEHRMO.jBk4ELile3fE.LWZz7mhDsNW9hS8hG",
-      "firstName": "qq",
-      "lastName": "qq",
-      "passwordConfirmation": "qqq@gmail.comA1",
-      "id": 1
-    },
-    {
-      "email": "www@gmail.com",
-      "password": "$2a$10$G8puxdgTwt0FYiw7SES4veNL4nYynnR8zQ9uLfmmVtbn1Pbgo0AaG",
-      "firstName": "ww",
-      "lastName": "ww",
-      "passwordConfirmation": "www@gmail.comA1",
-      "id": 2
-    }
-  ]
+  "users": []
 }
