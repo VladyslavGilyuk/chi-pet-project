@@ -15,25 +15,23 @@ const useAuthForm = () => {
   } = useForm<ICommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = async (data: ISignIn) => {
-    try {
-      const action = await dispatch(signInAsync(data));
-      if (action.meta.requestStatus === 'fulfilled') {
+    await dispatch(signInAsync(data))
+      .then(() => {
         navigate('/');
-      }
-    } catch (error) {
-      console.error('Error occurred during sign in:', error);
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onSignUpSubmit: SubmitHandler<ISignUp> = async (data: ISignUp) => {
-    try {
-      const action = await dispatch(signUpAsync(data));
-      if (action.meta.requestStatus === 'fulfilled') {
+    await dispatch(signUpAsync(data))
+      .then(() => {
         navigate('/');
-      }
-    } catch (error) {
-      console.error('Error occurred during sign up:', error);
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return {
