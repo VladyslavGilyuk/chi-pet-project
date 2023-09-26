@@ -5,7 +5,6 @@ import LanguageSwitcher from '../../components/common/languageSwitcher';
 import Logo from '../../components/common/logo';
 import React from 'react';
 import SignInForm from '../../components/form/signIn';
-import ToastError from '../../components/common/toast';
 import { useTranslation } from 'react-i18next';
 
 const SignIn: React.FC = () => {
@@ -13,7 +12,6 @@ const SignIn: React.FC = () => {
   return (
     <div>
       <FormWrapper>
-        <ToastError />
         <LanguageSwitcher />
         <Logo />
         <Heading heading={t('signIn.heading')} description={t('signIn.description')} />

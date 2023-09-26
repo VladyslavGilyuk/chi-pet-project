@@ -16,8 +16,8 @@ const useAuthForm = () => {
   } = useForm<ICommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
-    dispatch(signInAsync(data)).then((responseData) => {
-      if (responseData.payload) {
+    dispatch(signInAsync(data)).then((response) => {
+      if (response.payload) {
         navigate(ROUTE_PATH.Home);
       }
     });
@@ -26,8 +26,8 @@ const useAuthForm = () => {
   const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
     const { email, password, firstName, lastName } = data;
     const body = { email, password, firstName, lastName };
-    dispatch(signUpAsync(body)).then((responseData) => {
-      if (responseData.payload) {
+    dispatch(signUpAsync(body)).then((response) => {
+      if (response.payload) {
         navigate(ROUTE_PATH.Home);
       }
     });

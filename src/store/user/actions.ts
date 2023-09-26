@@ -1,6 +1,6 @@
+import { Notify } from '../../utils/notify';
 import UserService from '../../service/UserService';
 import { UserState } from '../../types/user';
-import { notify } from '../../components/common/toast';
 import { ISignIn, ISignUpAsync } from '../../types/auth';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -22,7 +22,7 @@ export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn)
       return responseData;
     })
     .catch(() => {
-      notify();
+      Notify('Invalid email or password');
     });
 });
 
@@ -42,6 +42,6 @@ export const signUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUpA
       return responseData;
     })
     .catch(() => {
-      notify();
+      Notify('Sign up error');
     });
 });
