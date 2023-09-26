@@ -1,3 +1,4 @@
+import { ROUTE_PATH } from '../routes';
 import { SubmitHandler } from 'react-hook-form';
 import { useAppDispatch } from '../store/hooks';
 import { useForm } from 'react-hook-form';
@@ -14,17 +15,22 @@ const useAuthForm = () => {
     formState: { errors },
   } = useForm<ICommonFieldValues>();
 
-  const onSignInSubmit: SubmitHandler<ISignIn> = async (data: ISignIn) => {
-    await dispatch(signInAsync(data)).then(() => {
-      navigate('/');
-    });
+  const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
+    dispatch(signInAsync(data))
+      .then(() => {
+        navigate(ROUTE_PATH.Home);
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      });
   };
 
-  const onSignUpSubmit: SubmitHandler<ISignUp> = async (data: ISignUp) => {
+  const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
     const { email, password, firstName, lastName } = data;
     const body = { email, password, firstName, lastName };
-    await dispatch(signUpAsync(body)).then(() => {
-      navigate('/');
+    dispatch(signUpAsync(body)).then(() => {
+      navigate(ROUTE_PATH.Home);
     });
   };
 

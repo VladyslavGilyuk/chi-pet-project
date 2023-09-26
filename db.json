@@ -1,3 +1,11 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "dsfvdfv@fdsf.csd",
+      "password": "$2a$10$BXCyfgS6NKUPzKOjyek.3.tZhl1ZB1Vu903iJP4ZbX5EYqF/f2mmy",
+      "firstName": "desd",
+      "lastName": "dsas",
+      "id": 1
+    }
+  ]
 }
