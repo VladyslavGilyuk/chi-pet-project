@@ -4,15 +4,21 @@ export interface ISignIn {
   password: string;
 }
 export interface ISignUp extends ISignIn {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   passwordConfirmation: string;
 }
 
 export interface ICommonFieldValues extends FieldValues {
   email: string;
   password: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   passwordConfirmation: string;
+}
+export interface ISignUpAsync {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
 }

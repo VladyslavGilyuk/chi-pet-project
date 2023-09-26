@@ -25,7 +25,9 @@ const useAuthForm = () => {
   };
 
   const onSignUpSubmit: SubmitHandler<ISignUp> = async (data: ISignUp) => {
-    await dispatch(signUpAsync(data))
+    const { email, password, firstName, lastName } = data;
+    const body = { email, password, firstName, lastName };
+    await dispatch(signUpAsync(body))
       .then(() => {
         navigate('/');
       })

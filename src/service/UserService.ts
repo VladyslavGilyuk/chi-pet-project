@@ -1,11 +1,11 @@
 import axios from './axiosConfig';
-import { ISignIn, ISignUp } from '../types/auth';
+import { ISignIn, ISignUpAsync } from '../types/auth';
 
 class UserService {
   login(body: ISignIn) {
     return axios.post('/login', body);
   }
-  register(body: ISignUp) {
+  register(body: ISignUpAsync) {
     return axios.post('/register', body);
   }
 }
