@@ -15,25 +15,17 @@ const useAuthForm = () => {
   } = useForm<ICommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = async (data: ISignIn) => {
-    await dispatch(signInAsync(data))
-      .then(() => {
-        navigate('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    await dispatch(signInAsync(data)).then(() => {
+      navigate('/');
+    });
   };
 
   const onSignUpSubmit: SubmitHandler<ISignUp> = async (data: ISignUp) => {
     const { email, password, firstName, lastName } = data;
     const body = { email, password, firstName, lastName };
-    await dispatch(signUpAsync(body))
-      .then(() => {
-        navigate('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    await dispatch(signUpAsync(body)).then(() => {
+      navigate('/');
+    });
   };
 
   return {

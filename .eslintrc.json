@@ -35,6 +35,7 @@
             "ignoreMemberSort": false,
             "memberSyntaxSortOrder": ["none", "all", "single", "multiple"],
             "allowSeparatedGroups": false
-        }]
+        }],
+        "no-console": "error"
     }
 }

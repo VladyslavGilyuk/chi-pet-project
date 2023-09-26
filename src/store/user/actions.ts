@@ -9,7 +9,6 @@ export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn)
   return UserService.login(data)
     .then((response) => {
       const responseData = response.data;
-      console.log(responseData);
       if (responseData) {
         localStorage.setItem(
           'user',
@@ -21,8 +20,7 @@ export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn)
       }
       return responseData;
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
       alert('An error occurred. Please try again later.');
     });
 });
@@ -31,7 +29,6 @@ export const signUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUpA
   return UserService.register(data)
     .then((response) => {
       const responseData = response.data;
-      console.log(responseData);
       if (responseData) {
         localStorage.setItem(
           'user',
@@ -43,8 +40,7 @@ export const signUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUpA
       }
       return responseData;
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
       alert('An error occurred. Please try again later.');
     });
 });
