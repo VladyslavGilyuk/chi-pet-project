@@ -1,5 +1,6 @@
 import UserService from '../../service/UserService';
 import { UserState } from '../../types/user';
+import { notify } from '../../components/common/toast';
 import { ISignIn, ISignUpAsync } from '../../types/auth';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -21,7 +22,7 @@ export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn)
       return responseData;
     })
     .catch(() => {
-      alert('An error occurred. Please try again later.');
+      notify();
     });
 });
 
@@ -41,6 +42,6 @@ export const signUpAsync = createAsyncThunk('auth/signUp', async (data: ISignUpA
       return responseData;
     })
     .catch(() => {
-      alert('An error occurred. Please try again later.');
+      notify();
     });
 });
