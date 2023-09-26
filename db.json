@@ -1,11 +1,18 @@
 {
   "users": [
     {
-      "email": "dsfvdfv@fdsf.csd",
-      "password": "$2a$10$BXCyfgS6NKUPzKOjyek.3.tZhl1ZB1Vu903iJP4ZbX5EYqF/f2mmy",
-      "firstName": "desd",
-      "lastName": "dsas",
+      "email": "hfgd@fs.com",
+      "password": "$2a$10$nNzS3u3J2Vx2xfxq1.kFtevDlCbUt1w/byh0HIWSO/VIULUhgKmbG",
+      "firstName": "fdssdg",
+      "lastName": "dfdsgdfsgd",
       "id": 1
+    },
+    {
+      "email": "www@fsdf.co",
+      "password": "$2a$10$jCUcNjFMSPZYysL9wBp2z.x46j4.cVo/KEQh8EpnD928HDRAhQuGS",
+      "firstName": "wefd",
+      "lastName": "fsd",
+      "id": 2
     }
   ]
 }

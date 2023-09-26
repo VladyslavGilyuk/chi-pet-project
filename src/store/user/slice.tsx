@@ -16,17 +16,21 @@ export const userSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(signInAsync.fulfilled, (state, action) => {
       const responseData = action.payload;
-      return {
-        token: responseData.accessToken,
-        ...responseData.user,
-      };
+      if (responseData) {
+        return {
+          token: responseData.accessToken,
+          ...responseData.user,
+        };
+      }
     });
     builder.addCase(signUpAsync.fulfilled, (state, action) => {
       const responseData = action.payload;
-      return {
-        token: responseData.accessToken,
-        ...responseData.user,
-      };
+      if (responseData) {
+        return {
+          token: responseData.accessToken,
+          ...responseData.user,
+        };
+      }
     });
   },
 });

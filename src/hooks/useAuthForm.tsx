@@ -16,21 +16,20 @@ const useAuthForm = () => {
   } = useForm<ICommonFieldValues>();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
-    dispatch(signInAsync(data))
-      .then(() => {
+    dispatch(signInAsync(data)).then((responseData) => {
+      if (responseData.payload) {
         navigate(ROUTE_PATH.Home);
-      })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log(err);
-      });
+      }
+    });
   };
 
   const onSignUpSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
     const { email, password, firstName, lastName } = data;
     const body = { email, password, firstName, lastName };
-    dispatch(signUpAsync(body)).then(() => {
-      navigate(ROUTE_PATH.Home);
+    dispatch(signUpAsync(body)).then((responseData) => {
+      if (responseData.payload) {
+        navigate(ROUTE_PATH.Home);
+      }
     });
   };
 
