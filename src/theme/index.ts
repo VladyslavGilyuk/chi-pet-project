@@ -8,7 +8,7 @@ const THEME = {
     grayDark: '#4B506D',
     grayExtraLight: '#FCFDFE',
     grayLightest: '#F0F1F7',
-    grayBackground: '#838383',
+    grayBackground: '#363740',
     grayDivider: '#DFE0EB',
   },
   fonts: {
