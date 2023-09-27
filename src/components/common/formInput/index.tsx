@@ -1,5 +1,5 @@
-import { CommonFieldValues } from '../../../hooks/useAuthForm';
 import EndAdornment from './endAdorment';
+import { ICommonFieldValues } from '../../../types/auth';
 import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegister } from 'react-hook-form';
 import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
@@ -7,7 +7,7 @@ import { useCallback, useState } from 'react';
 
 interface FormInputProps extends IBaseField {
   name: TSignInFieldNames | TSignUpFieldNames;
-  register: UseFormRegister<CommonFieldValues>;
+  register: UseFormRegister<ICommonFieldValues>;
   showIcon?: boolean;
   isError: boolean;
   helperMsg: string | FieldError | Merge<FieldError, FieldErrorsImpl<FieldValues>> | undefined;

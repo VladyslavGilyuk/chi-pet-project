@@ -51,10 +51,6 @@ const useFormHelpers = (t: (key: string) => string) => {
       label: t('signIn.label.password'),
       validations: {
         required: t('signIn.required.password'),
-        pattern: {
-          value: passwordPattern,
-          message: t('signIn.message.password'),
-        },
       },
       placeholder: t('signIn.placeholder.password'),
       type: 'password',

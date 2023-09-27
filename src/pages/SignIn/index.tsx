@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { FormWrapper } from './styled';
 import Heading from '../../components/common/heading';
 import LanguageSwitcher from '../../components/common/languageSwitcher';
