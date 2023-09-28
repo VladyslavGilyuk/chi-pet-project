@@ -13,6 +13,9 @@ const Container = styled.div`
 
 const NavBarWrapper = styled.div``;
 
-const ContentWrapper = styled.div``;
+const ContentWrapper = styled.div`
+  width: 100%;
+  margin: 30px;
+`;
 
 export { Container, NavBarWrapper, ContentWrapper, GlobalStyle };
