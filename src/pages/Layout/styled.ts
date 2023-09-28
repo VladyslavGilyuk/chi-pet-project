@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { Box, Divider, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
@@ -7,12 +8,12 @@ const LayoutWrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   margin-top: 35px;
-  padding-left: 32px;
 `;
 const HeaderWrapper = styled(Box)`
   display: flex;
   align-items: center;
   margin-bottom: 60px;
+  padding-left: 32px;
 `;
 const HeadingText = styled(Typography)`
   color: ${colors.graySideBar};
@@ -24,8 +25,42 @@ const HeadingText = styled(Typography)`
   margin-left: 12px;
 `;
 
-const StyledDivider = styled(Divider)`
-  width: 100%;
-  color: ${colors.grayDivider};
+const LinksWrapper = styled(Box)`
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  &.isActive {
+    background-color: rgba(169, 169, 169, 0.08);
+  }
 `;
-export { LayoutWrapper, HeaderWrapper, HeadingText, StyledDivider };
+const StyledLink = styled(NavLink)`
+  padding: 18px 24px;
+  color: ${colors.graySideBar};
+  font-size: 16px;
+  font-style: normal;
+  font-weight: ${fonts.weight.small};
+  line-height: normal;
+  letter-spacing: ${fonts.spacing.small};
+  text-decoration: none;
+  &.isActive {
+    color: ${colors.primaryWhite};
+  }
+`;
+const StyledIconWrapper = styled(Box)`
+  &.isActive {
+    color: ${colors.primaryWhite} !important;
+  }
+`;
+const StyledDivider = styled(Divider)`
+  display: block;
+  width: 100%;
+`;
+export {
+  LayoutWrapper,
+  HeaderWrapper,
+  HeadingText,
+  StyledDivider,
+  StyledIconWrapper,
+  LinksWrapper,
+  StyledLink,
+};

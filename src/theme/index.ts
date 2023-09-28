@@ -2,6 +2,7 @@ const THEME = {
   colors: {
     primaryWhite: '#FFFFFF',
     primaryBlue: '#3751FF,',
+    primaryLightBlue: '#DDE2FF',
     primaryBlack: '#252733',
     primaryGray: '#9FA2B4',
     graySideBar: '#A4A6B3',
