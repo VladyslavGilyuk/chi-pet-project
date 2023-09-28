@@ -1,7 +1,13 @@
-import OverviewIcon from '../../components/common/icons/overview';
+import { ReactComponent as AgentsIcon } from '../../assets/agents.svg';
+import { ReactComponent as ArticlesIcon } from '../../assets/articles.svg';
+import { ReactComponent as ContactsIcon } from '../../assets/contacts.svg';
+import { ReactComponent as IdeasIcon } from '../../assets/ideas.svg';
+import { ReactComponent as OverviewIcon } from '../../assets/overview.svg';
 import { ROUTE_PATH } from '../../routes';
+import { ReactComponent as SettingsIcon } from '../../assets/settings.svg';
 import { StyledDivider } from './styled';
-import TicketsIcon from '../../components/common/icons/tickets';
+import { ReactComponent as SubscriptionIcon } from '../../assets/subscription.svg';
+import { ReactComponent as TicketsIcon } from '../../assets/tickets.svg';
 
 interface INavLinks {
   icon: React.ReactElement;
@@ -22,33 +28,33 @@ export const links: INavLinks[] = [
     name: 'Tickets',
   },
   {
-    icon: <OverviewIcon />,
+    icon: <IdeasIcon />,
     to: ROUTE_PATH.Home,
     name: 'Ideas',
   },
   {
-    icon: <OverviewIcon />,
+    icon: <ContactsIcon />,
     to: ROUTE_PATH.Home,
     name: 'Contacts',
   },
   {
-    icon: <OverviewIcon />,
+    icon: <AgentsIcon />,
     to: ROUTE_PATH.Home,
     name: 'Agents',
   },
   {
-    icon: <OverviewIcon />,
+    icon: <ArticlesIcon />,
     to: ROUTE_PATH.Home,
     name: 'Articles',
   },
   {
     divider: <StyledDivider />,
-    icon: <OverviewIcon />,
+    icon: <SettingsIcon />,
     to: ROUTE_PATH.Home,
     name: 'Settings',
   },
   {
-    icon: <OverviewIcon />,
+    icon: <SubscriptionIcon />,
     to: ROUTE_PATH.Home,
     name: 'Subscription',
   },
