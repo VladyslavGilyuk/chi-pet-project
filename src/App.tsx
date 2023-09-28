@@ -19,11 +19,6 @@ function App() {
           <Route path={ROUTE_PATH.Home} element={<Layout />}>
             <Route index path={ROUTE_PATH.Home} element={<Overview />} />
             <Route path={ROUTE_PATH.Tickets} element={<Tickets />} />
-            <Route path={ROUTE_PATH.Home} element={<Overview />} />
-            <Route path={ROUTE_PATH.Home} element={<Overview />} />
-            <Route path={ROUTE_PATH.Home} element={<Overview />} />
-            <Route path={ROUTE_PATH.Home} element={<Overview />} />
-            <Route path={ROUTE_PATH.Home} element={<Overview />} />
           </Route>
         </Routes>
       </ThemeProvider>
