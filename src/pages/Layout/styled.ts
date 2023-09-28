@@ -34,7 +34,7 @@ const LinksWrapper = styled(Box)`
   }
 `;
 const StyledLink = styled(NavLink)`
-  padding: 18px 24px;
+  padding: 18px 25px;
   color: ${colors.graySideBar};
   font-size: 16px;
   font-style: normal;
