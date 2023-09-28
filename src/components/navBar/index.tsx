@@ -1,8 +1,17 @@
 import LogoImage from '../../components/common/logoImage';
 import { links } from './helper';
-import { HeaderWrapper, HeadingText, LinksWrapper, NavBarWrapper, StyledLink } from './styled';
+import { useLocation } from 'react-router-dom';
+import {
+  HeaderWrapper,
+  HeadingText,
+  LinksWrapper,
+  NavBarWrapper,
+  StyledIconWrapper,
+  StyledLink,
+} from './styled';
 
 const NavBar: React.FC = () => {
+  const location = useLocation();
   return (
     <>
       <NavBarWrapper>
@@ -13,9 +22,13 @@ const NavBar: React.FC = () => {
         {links.map((link) => (
           <div key={link.name}>
             {link.divider}
-            <LinksWrapper>
-              {link.icon}
-              <StyledLink to={link.to}>{link.name}</StyledLink>
+            <LinksWrapper $active={location.pathname === link.to}>
+              <StyledIconWrapper $active={location.pathname === link.to}>
+                {link.icon}
+              </StyledIconWrapper>
+              <StyledLink to={link.to} $active={location.pathname === link.to}>
+                {link.name}
+              </StyledLink>
             </LinksWrapper>
           </div>
         ))}

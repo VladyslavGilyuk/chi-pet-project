@@ -26,30 +26,27 @@ const HeadingText = styled(Typography)`
   margin-left: 12px;
 `;
 
-const LinksWrapper = styled(Box)`
+const LinksWrapper = styled(Box)<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   padding-left: 32px;
-  &.isActive {
-    background-color: rgba(169, 169, 169, 0.08);
-  }
+  background-color: ${(props) =>
+    props.$active ? 'rgba(169, 169, 169, 0.08)' : colors.grayBackground};
 `;
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(NavLink)<{ $active?: boolean }>`
   padding: 18px 25px;
-  color: ${colors.graySideBar};
+  color: ${(props) => (props.$active ? colors.primaryLightBlue : colors.graySideBar)};
   font-size: 16px;
   font-style: normal;
   font-weight: ${fonts.weight.small};
   line-height: normal;
   letter-spacing: ${fonts.spacing.small};
   text-decoration: none;
-  &.isActive {
-    color: ${colors.primaryWhite};
-  }
 `;
-const StyledIconWrapper = styled(Box)`
-  &.isActive {
-    color: ${colors.primaryWhite} !important;
+
+const StyledIconWrapper = styled(Box)<{ $active?: boolean }>`
+  svg path {
+    fill: ${(props) => (props.$active ? colors.primaryLightBlue : colors.graySideBar)};
   }
 `;
 const StyledDivider = styled(Divider)`
