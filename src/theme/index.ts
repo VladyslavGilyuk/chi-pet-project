@@ -5,6 +5,7 @@ const THEME = {
     primaryLightBlue: '#DDE2FF',
     primaryBlack: '#252733',
     primaryGray: '#9FA2B4',
+    whiteBackground: '#F7F8FC',
     graySideBar: '#A4A6B3',
     grayDark: '#4B506D',
     grayExtraLight: '#FCFDFE',

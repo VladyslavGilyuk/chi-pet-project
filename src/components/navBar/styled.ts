@@ -7,11 +7,12 @@ const NavBarWrapper = styled(Box)`
   background: ${colors.grayBackground};
   display: flex;
   flex-direction: column;
-  margin-top: 35px;
+  height: 100vh;
 `;
 const HeaderWrapper = styled(Box)`
   display: flex;
   align-items: center;
+  margin-top: 35px;
   margin-bottom: 60px;
   padding-left: 32px;
 `;
