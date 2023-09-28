@@ -3,5 +3,5 @@ export interface UserState {
   email: string;
   firstName: string;
   lastName: string;
-  id: number;
+  id: null | number;
 }

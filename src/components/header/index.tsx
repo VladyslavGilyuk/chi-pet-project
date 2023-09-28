@@ -4,7 +4,6 @@ import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { Typography } from '@mui/material';
 import { links } from '../navBar/helper';
 import { useLocation } from 'react-router-dom';
-
 import {
   HeaderContainer,
   IconsContainer,
