@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Box, Divider, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
-const NavBarWrapper = styled(Box)`
+const NavBarContainer = styled(Box)`
   width: 255px;
   background: ${colors.grayBackground};
   display: flex;
@@ -60,7 +60,7 @@ const StyledDivider = styled(Divider)`
   width: 100%;
 `;
 export {
-  NavBarWrapper,
+  NavBarContainer,
   HeaderWrapper,
   HeadingText,
   StyledImage,
