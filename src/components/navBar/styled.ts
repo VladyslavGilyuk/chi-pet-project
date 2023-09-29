@@ -25,7 +25,13 @@ const HeadingText = styled(Typography)`
   letter-spacing: ${fonts.spacing.large};
   margin-left: 12px;
 `;
-
+const StyledImage = styled(Box)`
+  cursor: pointer;
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+`;
 const LinksWrapper = styled(Box)<{ active?: string }>`
   display: flex;
   align-items: center;
@@ -57,6 +63,7 @@ export {
   NavBarWrapper,
   HeaderWrapper,
   HeadingText,
+  StyledImage,
   StyledDivider,
   StyledIconWrapper,
   LinksWrapper,

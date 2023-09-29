@@ -1,4 +1,4 @@
-import LogoImage from '../../components/common/logoImage';
+import { ReactComponent as LogoIcon } from '../../assets/logo.svg';
 import { links } from './helper';
 import { useLocation } from 'react-router-dom';
 import {
@@ -7,6 +7,7 @@ import {
   LinksWrapper,
   NavBarWrapper,
   StyledIconWrapper,
+  StyledImage,
   StyledLink,
 } from './styled';
 
@@ -16,7 +17,9 @@ const NavBar: React.FC = () => {
     <>
       <NavBarWrapper>
         <HeaderWrapper>
-          <LogoImage />
+          <StyledImage>
+            <LogoIcon />
+          </StyledImage>
           <HeadingText variant='h3'>Dashboard Kit</HeadingText>
         </HeaderWrapper>
         {links.map((link) => (
