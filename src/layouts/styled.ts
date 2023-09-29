@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${colors.whiteBackground};;
   }
 `;
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
 `;
 
