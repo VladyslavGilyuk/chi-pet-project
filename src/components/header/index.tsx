@@ -24,6 +24,7 @@ const Header: React.FC = () => {
         sx={{
           fontSize: fonts.size.large,
           fontWeight: fonts.weight.large,
+          lineHeight: 'normal',
         }}
       >
         {headerText}
@@ -34,7 +35,16 @@ const Header: React.FC = () => {
           <RingIcon />
         </IconsContainer>
         <StyledHr />
-        <StyledTypography>Jones Ferdinand</StyledTypography>
+        <StyledTypography
+          variant='body1'
+          sx={{
+            fontSize: fonts.size.medium,
+            fontWeight: fonts.weight.medium,
+            lineHeight: '20px',
+          }}
+        >
+          Jones Ferdinand
+        </StyledTypography>
         <ProfileIcon />
       </ProfileContainer>
     </HeaderContainer>

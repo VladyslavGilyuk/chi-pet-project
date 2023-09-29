@@ -22,10 +22,7 @@ const ProfileContainer = styled(Box)`
 const StyledTypography = styled(Typography)`
   display: inline;
   color: ${colors.primaryBlack};
-  font-size: ${fonts.size.medium};
   font-style: normal;
-  font-weight: ${fonts.weight.medium};
-  line-height: 20px;
   letter-spacing: ${fonts.spacing.small};
   padding-right: 14px;
 `;
