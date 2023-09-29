@@ -1,14 +1,9 @@
 import { colors } from '../theme';
-import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${colors.whiteBackground};;
-  }
-`;
 const Container = styled.main`
   display: flex;
+  background-color: ${colors.whiteBackground};
 `;
 
 const ContentWrapper = styled.div`
@@ -16,4 +11,4 @@ const ContentWrapper = styled.div`
   margin: 30px;
 `;
 
-export { Container, ContentWrapper, GlobalStyle };
+export { Container, ContentWrapper };
