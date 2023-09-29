@@ -8,8 +8,12 @@ const HeaderContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
   margin-bottom: 55px;
+`;
+const StyledHeaderText = styled(Typography)`
+  color: ${colors.primaryBlack};
+  font-style: normal;
+  letter-spacing: ${fonts.spacing.medium};
 `;
 const ProfileContainer = styled(Box)`
   display: flex;
@@ -36,4 +40,11 @@ const StyledHr = styled('hr')`
   margin: 0 32px;
   color: ${colors.grayDivider};
 `;
-export { HeaderContainer, StyledTypography, ProfileContainer, StyledHr, IconsContainer };
+export {
+  HeaderContainer,
+  StyledHeaderText,
+  StyledTypography,
+  ProfileContainer,
+  StyledHr,
+  IconsContainer,
+};
