@@ -22,11 +22,11 @@ const NavBar: React.FC = () => {
         {links.map((link) => (
           <div key={link.name}>
             {link.divider}
-            <LinksWrapper $active={location.pathname === link.to}>
-              <StyledIconWrapper $active={location.pathname === link.to}>
+            <LinksWrapper active={location.pathname === link.to ? 'true' : ''}>
+              <StyledIconWrapper active={location.pathname === link.to ? 'true' : ''}>
                 {link.icon}
               </StyledIconWrapper>
-              <StyledLink to={link.to} $active={location.pathname === link.to}>
+              <StyledLink to={link.to} active={location.pathname === link.to ? 'true' : ''}>
                 {link.name}
               </StyledLink>
             </LinksWrapper>

@@ -26,16 +26,16 @@ const HeadingText = styled(Typography)`
   margin-left: 12px;
 `;
 
-const LinksWrapper = styled(Box)<{ $active?: boolean }>`
+const LinksWrapper = styled(Box)<{ active?: string }>`
   display: flex;
   align-items: center;
   padding-left: 32px;
   background-color: ${(props) =>
-    props.$active ? 'rgba(169, 169, 169, 0.08)' : colors.grayBackground};
+    props.active ? 'rgba(169, 169, 169, 0.08)' : colors.grayBackground};
 `;
-const StyledLink = styled(NavLink)<{ $active?: boolean }>`
+const StyledLink = styled(NavLink)<{ active?: string }>`
   padding: 18px 25px;
-  color: ${(props) => (props.$active ? colors.primaryLightBlue : colors.graySideBar)};
+  color: ${(props) => (props.active ? colors.primaryLightBlue : colors.graySideBar)};
   font-size: 16px;
   font-style: normal;
   font-weight: ${fonts.weight.small};
@@ -44,9 +44,9 @@ const StyledLink = styled(NavLink)<{ $active?: boolean }>`
   text-decoration: none;
 `;
 
-const StyledIconWrapper = styled(Box)<{ $active?: boolean }>`
+const StyledIconWrapper = styled(Box)<{ active?: string }>`
   svg path {
-    fill: ${(props) => (props.$active ? colors.primaryLightBlue : colors.graySideBar)};
+    fill: ${(props) => (props.active ? colors.primaryLightBlue : colors.graySideBar)};
   }
 `;
 const StyledDivider = styled(Divider)`
