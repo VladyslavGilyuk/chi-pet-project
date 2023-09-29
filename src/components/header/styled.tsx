@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Box, Typography } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
-const HeaderContainer = styled(Box)`
+const HeaderContainer = styled('header')`
   width: 100%;
   display: flex;
   justify-content: space-between;
