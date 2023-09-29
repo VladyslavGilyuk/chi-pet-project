@@ -9,7 +9,7 @@ import { StyledDivider } from './styled';
 import { ReactComponent as SubscriptionIcon } from '../../assets/subscription.svg';
 import { ReactComponent as TicketsIcon } from '../../assets/tickets.svg';
 
-interface INavLinks {
+export interface INavLinks {
   icon: React.ReactElement;
   to: string;
   name: string;
