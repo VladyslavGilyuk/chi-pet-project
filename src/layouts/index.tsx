@@ -1,14 +1,12 @@
 import Header from '../components/header';
 import NavBar from '../components/navBar';
 import { Outlet } from 'react-router-dom';
-import { Container, ContentWrapper, GlobalStyle, NavBarWrapper } from './styled';
+import { Container, ContentWrapper, GlobalStyle } from './styled';
 
 const Layout: React.FC = () => {
   return (
     <Container>
-      <NavBarWrapper>
-        <NavBar />
-      </NavBarWrapper>
+      <NavBar />
       <GlobalStyle />
       <ContentWrapper>
         <Header />
