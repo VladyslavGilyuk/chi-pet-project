@@ -4,7 +4,6 @@ import { colors, fonts } from '../../theme';
 
 const HeaderContainer = styled(Box)`
   width: 100%;
-  background: wheat;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,6 +36,20 @@ const StyledHr = styled('hr')`
   margin: 0 32px;
   color: ${colors.grayDivider};
 `;
+const PhotoContainer = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid ${colors.grayDivider};
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  svg {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+`;
 export {
   HeaderContainer,
   StyledHeaderText,
@@ -44,4 +57,5 @@ export {
   ProfileContainer,
   StyledHr,
   IconsContainer,
+  PhotoContainer,
 };

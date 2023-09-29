@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import {
   HeaderContainer,
   IconsContainer,
+  PhotoContainer,
   ProfileContainer,
   StyledHeaderText,
   StyledHr,
@@ -45,7 +46,9 @@ const Header: React.FC = () => {
         >
           Jones Ferdinand
         </StyledTypography>
-        <ProfileIcon />
+        <PhotoContainer>
+          <ProfileIcon />
+        </PhotoContainer>
       </ProfileContainer>
     </HeaderContainer>
   );
