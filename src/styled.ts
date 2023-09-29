@@ -1,10 +1,19 @@
-import { colors } from './theme';
 import { createGlobalStyle } from 'styled-components';
 import { createTheme } from '@mui/material/styles';
-
+import { colors, fonts } from './theme';
 const theme = createTheme({
   typography: {
     fontFamily: 'Mulish, sans-serif',
+    body1: {
+      fontWeight: fonts.weight.medium,
+      fontSize: fonts.size.medium,
+      lineHeight: '20px',
+    },
+    h5: {
+      fontWeight: fonts.weight.large,
+      fontSize: fonts.size.large,
+      lineHeight: 'normal',
+    },
   },
 });
 
