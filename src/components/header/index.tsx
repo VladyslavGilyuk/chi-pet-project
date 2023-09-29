@@ -16,7 +16,7 @@ import {
 const Header: React.FC = () => {
   const location = useLocation();
   const currentLink = links.find((link) => link.to === location.pathname);
-  const headerText = currentLink ? currentLink.name : 'Overview';
+  const headerText = currentLink ? currentLink.name : links[0].name;
   return (
     <HeaderContainer>
       <StyledHeaderText variant='h5'>{headerText}</StyledHeaderText>
