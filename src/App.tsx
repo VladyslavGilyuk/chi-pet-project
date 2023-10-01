@@ -1,4 +1,4 @@
-import Layout from './layouts';
+import Layout from './layouts/mainLayout';
 import Overview from './pages/Overview';
 import { ROUTE_PATH } from './routes';
 import SignInPage from './pages/SignIn';
