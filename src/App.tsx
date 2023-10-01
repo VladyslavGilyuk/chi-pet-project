@@ -1,5 +1,6 @@
 import Layout from './layouts/mainLayout';
 import Overview from './pages/Overview';
+import PageNotFound from './pages/NotFound';
 import { ROUTE_PATH } from './routes';
 import SignInPage from './pages/SignIn';
 import SignUpPage from './pages/SignUp';
@@ -20,6 +21,7 @@ function App() {
             <Route index path={ROUTE_PATH.Home} element={<Overview />} />
             <Route path={ROUTE_PATH.Tickets} element={<Tickets />} />
           </Route>
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
       </ThemeProvider>
     </div>
