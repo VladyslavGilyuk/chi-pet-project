@@ -1,11 +1,9 @@
 import { ReactComponent as LogoIcon } from '../../assets/logo.svg';
+import NavLink from '../links';
 import { links } from './helper';
-import { useLocation } from 'react-router-dom';
 import { HeaderWrapper, HeadingText, NavBarContainer, StyledImage } from './styled';
-import Links, { LocationType } from '../links';
 
 const NavBar: React.FC = () => {
-  const location: LocationType = useLocation();
   return (
     <NavBarContainer>
       <HeaderWrapper>
@@ -14,7 +12,9 @@ const NavBar: React.FC = () => {
         </StyledImage>
         <HeadingText variant='h3'>Dashboard Kit</HeadingText>
       </HeaderWrapper>
-      <Links links={links} location={location} />
+      {links.map((link) => (
+        <NavLink key={link.name} link={link} />
+      ))}
     </NavBarContainer>
   );
 };
