@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
 const HeaderContainer = styled('header')`
