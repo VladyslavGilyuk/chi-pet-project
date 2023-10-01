@@ -1,5 +1,5 @@
 import { ReactComponent as LogoIcon } from '../../assets/logo.svg';
-import NavLink from '../links';
+import NavLink from '../navLink';
 import { links } from './helper';
 import { HeaderWrapper, HeadingText, NavBarContainer, StyledImage } from './styled';
 
