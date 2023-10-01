@@ -10,6 +10,7 @@ const NavBarContainer = styled(Box)`
   height: 100vh;
 `;
 const HeaderWrapper = styled(Box)`
+  width: 255px;
   display: flex;
   align-items: center;
   margin-top: 35px;
