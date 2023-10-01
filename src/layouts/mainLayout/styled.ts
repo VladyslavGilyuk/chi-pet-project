@@ -1,14 +1,14 @@
 import { colors } from '../../theme';
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
-const Container = styled('main')`
+const Container = styled(Box)`
   display: flex;
   background-color: ${colors.whiteBackground};
 `;
 
-const ContentWrapper = styled('div')`
+const ContentContainer = styled(Box)`
   width: 100%;
   margin: 30px;
 `;
 
-export { Container, ContentWrapper };
+export { Container, ContentContainer };
