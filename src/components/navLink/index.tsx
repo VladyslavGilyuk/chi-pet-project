@@ -12,7 +12,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ link }) => {
   const location: LocationType = useLocation();
   return (
-    <div>
+    <>
       {link.divider}
       <LinksWrapper active={location.pathname === link.to ? 'true' : ''}>
         <StyledIconWrapper active={location.pathname === link.to ? 'true' : ''}>
@@ -22,7 +22,7 @@ const NavLink: React.FC<NavLinkProps> = ({ link }) => {
           {link.name}
         </StyledLink>
       </LinksWrapper>
-    </div>
+    </>
   );
 };
 
