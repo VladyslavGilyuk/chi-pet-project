@@ -3,6 +3,7 @@ import { ReactComponent as RingIcon } from '../../assets/ring.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { links } from '../navBar/helper';
 import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 import {
   HeaderContainer,
   IconsContainer,
@@ -15,11 +16,13 @@ import {
 
 const Header: React.FC = () => {
   const location = useLocation();
-  const currentLink = links.find((link) => link.to === location.pathname);
-  const headerText = currentLink ? currentLink.name : links[0].name;
+  const pageName = useMemo(
+    () => links.find((link) => link.to === location.pathname)?.name ?? '',
+    [location.pathname],
+  );
   return (
     <HeaderContainer>
-      <StyledHeaderText variant='h5'>{headerText}</StyledHeaderText>
+      <StyledHeaderText variant='h5'>{pageName}</StyledHeaderText>
       <ProfileContainer>
         <IconsContainer>
           <SearchIcon />
