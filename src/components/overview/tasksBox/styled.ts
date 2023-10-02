@@ -1,4 +1,4 @@
-import { Box, Button, Typography, styled } from '@mui/material';
+import { Box, Button, Checkbox, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
 const Container = styled(Box)`
@@ -47,14 +47,18 @@ const GroupContainer = styled(Box)`
   margin-bottom: 15px;
   padding: 0 32px;
 `;
-const Group = styled(Typography)`
+const TimelineText = styled(Typography)`
+  box-sizing: border-box;
+  width: 100%;
   color: ${colors.primaryGray};
   font-size: ${fonts.size.small};
   font-style: normal;
   font-weight: ${fonts.weight.small};
   line-height: 16px;
   letter-spacing: 0.1px;
+  padding: 0 32px;
 `;
+
 const GroupName = styled(Typography)`
   color: ${colors.grayDark};
   font-size: ${fonts.size.small};
@@ -63,15 +67,36 @@ const GroupName = styled(Typography)`
   line-height: 16px;
   letter-spacing: 0.1px;
 `;
-const TicketsContainer = styled(Box)`
+const CreateText = styled(Typography)`
+  color: ${colors.grayLight};
+  font-size: ${fonts.size.medium};
+  font-style: normal;
+  font-weight: ${fonts.weight.medium};
+  line-height: 20px;
+  letter-spacing: ${fonts.spacing.small};
+`;
+const CheckboxsContainer = styled(Box)`
   box-sizing: border-box;
   width: 100%;
-  background-color: ${colors.primaryWhite};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 32px;
+  padding: 4px 32px;
   border-radius: 8px;
+`;
+const StyledCheckbox = styled(Checkbox)`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const TicketsContainer = styled(Box)`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
 `;
 const StatusName = styled(Typography)`
   color: ${colors.primaryBlack};
@@ -98,10 +123,13 @@ export {
   Container,
   HeadingContainer,
   GroupContainer,
-  Group,
+  TimelineText,
+  CreateText,
   GroupName,
+  CheckboxsContainer,
   TicketsContainer,
   Value,
+  StyledCheckbox,
   HeadingText,
   StatusName,
   StyledButton,

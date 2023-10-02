@@ -6,8 +6,8 @@ import {
   HeadingContainer,
   HeadingText,
   StatusName,
+  StyledButton,
   StyledHr,
-  StyledLoginButton,
   TicketsContainer,
   Value,
 } from './styled';
@@ -18,7 +18,7 @@ const UnresolvedInfoBox = () => {
       <Container>
         <HeadingContainer>
           <HeadingText>Unresolved tickets</HeadingText>
-          <StyledLoginButton>View details</StyledLoginButton>
+          <StyledButton>View details</StyledButton>
         </HeadingContainer>
         <GroupContainer>
           <Group>Group:</Group>

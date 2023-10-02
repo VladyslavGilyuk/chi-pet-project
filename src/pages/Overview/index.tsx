@@ -1,5 +1,6 @@
 import { ActionContainer } from './styled';
 import MajorInfoBox from '../../components/overview/majorInfoBox';
+import TasksInfoBox from '../../components/overview/tasksBox';
 import UnresolvedInfoBox from '../../components/overview/unresolvedInfoBox';
 
 const Overview = () => {
@@ -8,7 +9,7 @@ const Overview = () => {
       <MajorInfoBox />
       <ActionContainer>
         <UnresolvedInfoBox />
-        <UnresolvedInfoBox />
+        <TasksInfoBox />
       </ActionContainer>
     </>
   );
