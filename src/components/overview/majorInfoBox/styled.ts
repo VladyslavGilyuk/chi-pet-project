@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from '@mui/material';
-import { colors, fonts } from '../../theme';
+import { colors, fonts } from '../../../theme';
 
 const BoxContainer = styled(Box)`
   box-sizing: border-box;
