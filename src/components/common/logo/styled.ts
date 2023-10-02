@@ -1,21 +1,21 @@
-import SvgIcon from '@mui/material/SvgIcon';
-import { Typography, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
-const StyledWrapper = styled('div')`
+const StyledWrapper = styled(Box)`
   width: 100%;
   max-width: 316px;
   word-wrap: break-word;
   margin-bottom: 32px;
 `;
-const StyledImage = styled(SvgIcon)`
+const StyledImage = styled(Box)`
+  text-align: center;
   cursor: pointer;
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto;
+  svg {
+    width: 48px;
+    height: 48px;
+  }
 `;
-const Text = styled(Typography)`
+const StyledTypography = styled(Typography)`
   text-align: center;
   color: ${colors.graySideBar};
   font-size: 19px;
@@ -28,4 +28,4 @@ const Text = styled(Typography)`
   margin-top: 12px;
 `;
 
-export { StyledWrapper, StyledImage, Text };
+export { StyledWrapper, StyledImage, StyledTypography };

@@ -2,13 +2,15 @@ const THEME = {
   colors: {
     primaryWhite: '#FFFFFF',
     primaryBlue: '#3751FF,',
+    primaryLightBlue: '#DDE2FF',
     primaryBlack: '#252733',
     primaryGray: '#9FA2B4',
+    whiteBackground: '#F7F8FC',
     graySideBar: '#A4A6B3',
     grayDark: '#4B506D',
     grayExtraLight: '#FCFDFE',
     grayLightest: '#F0F1F7',
-    grayBackground: '#838383',
+    grayBackground: '#363740',
     grayDivider: '#DFE0EB',
   },
   fonts: {
