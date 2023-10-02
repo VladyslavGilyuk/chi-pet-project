@@ -9,8 +9,6 @@ import { ThemeProvider } from '@mui/material';
 import Tickets from './pages/Tickets';
 import { GlobalStyles, theme } from './styled';
 import { Route, Routes } from 'react-router-dom';
-// eslint-disable-next-line sort-imports
-import MyComponent from './components/errTest';
 
 function App() {
   return (
@@ -24,7 +22,6 @@ function App() {
             <Route path={ROUTE_PATH.Home} element={<Layout />}>
               <Route index path={ROUTE_PATH.Home} element={<Overview />} />
               <Route path={ROUTE_PATH.Tickets} element={<Tickets />} />
-              <Route path='/test-error' element={<MyComponent />} />
             </Route>
             <Route path='*' element={<PageNotFound />} />
           </Routes>
