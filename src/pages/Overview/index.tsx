@@ -1,7 +1,11 @@
-import React from 'react';
+import MajorInfoBox from '../../components/majorInfoBox';
 
 const Overview = () => {
-  return <div>Overview</div>;
+  return (
+    <>
+      <MajorInfoBox />
+    </>
+  );
 };
 
 export default Overview;
