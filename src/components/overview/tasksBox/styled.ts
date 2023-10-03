@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Typography, styled } from '@mui/material';
+import { Box, Button, Checkbox, TextField, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
 const Container = styled(Box)`
@@ -119,6 +119,25 @@ const StyledHr = styled('hr')`
   width: 100%;
   color: ${colors.grayDivider};
 `;
+
+const InputContainer = styled(Box)`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 32px;
+`;
+const StyledInput = styled(TextField)`
+  width: 220px;
+  color: ${colors.grayLight};
+  font-size: ${fonts.size.medium};
+  font-style: normal;
+  font-weight: ${fonts.weight.medium};
+  line-height: 20px;
+  letter-spacing: ${fonts.spacing.small};
+  padding: 0;
+`;
 export {
   Container,
   HeadingContainer,
@@ -134,4 +153,6 @@ export {
   StatusName,
   StyledButton,
   StyledHr,
+  InputContainer,
+  StyledInput,
 };

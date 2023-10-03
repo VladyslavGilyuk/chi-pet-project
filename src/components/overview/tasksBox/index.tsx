@@ -5,16 +5,18 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../tags';
 import TasksModal from '../modals/tasks';
 import { useState } from 'react';
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, MenuItem, Select } from '@mui/material';
 import {
   CheckboxsContainer,
   Container,
   CreateText,
   HeadingContainer,
   HeadingText,
+  InputContainer,
   StatusName,
   StyledButton,
   StyledHr,
+  StyledInput,
   TicketsContainer,
   TimelineText,
 } from './styled';
@@ -51,29 +53,36 @@ const TasksInfoBox = () => {
           <StyledButton onClick={toggleModal}>View all</StyledButton>
         </HeadingContainer>
         <TimelineText>Today</TimelineText>
-        <TicketsContainer>
-          {!addingTask ? (
-            <>
-              <CreateText>Create new task</CreateText>
-              <AddIcon onClick={handleAddTask} />
-            </>
-          ) : (
-            <>
-              <input
-                type='text'
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
-                placeholder='Enter task text'
-              />
-              <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
-                <option value='Urgent'>Urgent</option>
-                <option value='New'>New</option>
-                <option value='Default'>Default</option>
-              </select>
-              <button onClick={handleCreateTask}>Create</button>
-            </>
-          )}
-        </TicketsContainer>
+
+        {!addingTask ? (
+          <TicketsContainer>
+            <CreateText>Create new task</CreateText>
+            <AddIcon onClick={handleAddTask} />
+          </TicketsContainer>
+        ) : (
+          <InputContainer>
+            <StyledInput
+              type='text'
+              size='small'
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              placeholder='Enter task text'
+            />
+            <Select
+              value={selectedStatus}
+              size='small'
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <MenuItem value='Urgent'>Urgent</MenuItem>
+              <MenuItem value='New'>New</MenuItem>
+              <MenuItem value='Default'>Default</MenuItem>
+            </Select>
+            <Button variant='contained' size='small' onClick={handleCreateTask}>
+              Create
+            </Button>
+          </InputContainer>
+        )}
+
         <StyledHr />
         {slicedTasks.map((task, index) => {
           const isLastTask = index === slicedTasks.length - 1;
