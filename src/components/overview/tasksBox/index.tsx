@@ -3,7 +3,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from './tags';
 import { Checkbox, FormControlLabel } from '@mui/material';
-
 import {
   CheckboxsContainer,
   Container,
@@ -16,8 +15,11 @@ import {
   TicketsContainer,
   TimelineText,
 } from './styled';
+import { Itasks, tasks } from './helper';
 
 const TasksInfoBox = () => {
+  const lastTasksNumber: number = -3;
+  const slicedTasks: Itasks[] = tasks.slice(lastTasksNumber);
   return (
     <>
       <Container>
@@ -31,39 +33,27 @@ const TasksInfoBox = () => {
           <AddIcon />
         </TicketsContainer>
         <StyledHr />
-        <CheckboxsContainer>
-          <FormControlLabel
-            control={
-              <Checkbox icon={<RadioButtonUncheckedIcon />} checkedIcon={<CheckCircleIcon />} />
-            }
-            label={<StatusName>Finish ticket update</StatusName>}
-          />
-          <Tag text='Urgent' />
-        </CheckboxsContainer>
-        <StyledHr />
-        <CheckboxsContainer>
-          <FormControlLabel
-            control={
-              <Checkbox icon={<RadioButtonUncheckedIcon />} checkedIcon={<CheckCircleIcon />} />
-            }
-            label={<StatusName>Create new ticket example</StatusName>}
-          />
-          <Tag text='New' />
-        </CheckboxsContainer>
-        <StyledHr />
-        <CheckboxsContainer>
-          <FormControlLabel
-            control={
-              <Checkbox
-                icon={<RadioButtonUncheckedIcon />}
-                checkedIcon={<CheckCircleIcon />}
-                defaultChecked
-              />
-            }
-            label={<StatusName>Update ticket report</StatusName>}
-          />
-          <Tag text='Default' />
-        </CheckboxsContainer>
+        {slicedTasks.map((task, index) => {
+          const isLastTask = index === slicedTasks.length - 1;
+          return (
+            <>
+              <CheckboxsContainer>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<CheckCircleIcon />}
+                      defaultChecked={isLastTask}
+                    />
+                  }
+                  label={<StatusName>{task.label}</StatusName>}
+                />
+                <Tag text={task.tag} />
+              </CheckboxsContainer>
+              {!isLastTask && <StyledHr />}
+            </>
+          );
+        })}
       </Container>
     </>
   );
