@@ -1,5 +1,5 @@
 import { StyledTag } from './styled';
-import { colors } from '../../../../theme';
+import { colors } from '../../../theme';
 
 interface TagProps {
   text: string;

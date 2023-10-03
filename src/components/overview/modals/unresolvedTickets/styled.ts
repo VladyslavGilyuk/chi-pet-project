@@ -40,13 +40,12 @@ const StyledButton = styled(Button)`
   }
 `;
 const TicketsContainer = styled(Box)`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.7fr;
   box-sizing: border-box;
   width: 100%;
   background-color: ${colors.primaryWhite};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 32px;
+  padding: 5px 5px 5px 32px;
   border-radius: 8px;
 `;
 const StatusName = styled(Typography)`

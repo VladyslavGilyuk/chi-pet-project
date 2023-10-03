@@ -85,6 +85,8 @@ const StatusName = styled(Typography)`
   letter-spacing: ${fonts.spacing.small};
 `;
 const Value = styled(Typography)`
+  display: flex;
+  align-items: center;
   color: ${colors.primaryGray};
   text-align: right;
   font-size: 14px;

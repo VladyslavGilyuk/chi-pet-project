@@ -1,4 +1,4 @@
-import { fonts } from '../../../../theme';
+import { fonts } from '../../../theme';
 import { styled } from '@mui/material';
 interface StyledTagProps {
   color: string;

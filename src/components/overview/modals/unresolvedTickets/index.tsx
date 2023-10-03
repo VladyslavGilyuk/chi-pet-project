@@ -1,5 +1,6 @@
 import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
 import React from 'react';
+import Tag from '../../tags';
 import { tickets } from '../../unresolvedInfoBox/helper';
 import {
   BoxContainer,
@@ -27,9 +28,15 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
           <MainInfoContainer>
             <StatusName>{ticket.status}</StatusName>
             <TicketsContainer>
-              <Value>Urgent: {ticket.urgent}</Value>
-              <Value>New: {ticket.new}</Value>
-              <Value>Default: {ticket.default}</Value>
+              <Value>
+                <Tag text={'Urgent'} /> : {ticket.urgent}
+              </Value>
+              <Value>
+                <Tag text={'New'} /> : {ticket.new}
+              </Value>
+              <Value>
+                <Tag text={'Default'} /> : {ticket.default}
+              </Value>
               <Value>Total: {ticket.value}</Value>
             </TicketsContainer>
           </MainInfoContainer>

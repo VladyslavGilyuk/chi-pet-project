@@ -1,7 +1,7 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import Tag from './tags';
+import Tag from '../tags';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
