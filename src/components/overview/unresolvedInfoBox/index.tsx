@@ -1,4 +1,5 @@
-import React from 'react';
+import { Overlay } from '../overlay/styled';
+import UnresolvedTicketsModal from '../modals/unresolvedTickets';
 import {
   Container,
   Group,
@@ -14,8 +15,13 @@ import {
   Value,
 } from './styled';
 import { IUnresolvedTickets, tickets } from './helper';
+import React, { useState } from 'react';
 
 const UnresolvedInfoBox = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
   const lastTicketsNumber: number = -4;
   const slicedTickets: IUnresolvedTickets[] = tickets.slice(lastTicketsNumber);
 
@@ -24,7 +30,7 @@ const UnresolvedInfoBox = () => {
       <Container>
         <HeadingContainer>
           <HeadingText>Unresolved tickets</HeadingText>
-          <StyledButton>View details</StyledButton>
+          <StyledButton onClick={toggleModal}>View details</StyledButton>
         </HeadingContainer>
         <GroupContainer>
           <Group>Group:</Group>
@@ -41,6 +47,12 @@ const UnresolvedInfoBox = () => {
             {index !== slicedTickets.length - 1 && <StyledHr />}
           </React.Fragment>
         ))}
+        {modalOpen && (
+          <>
+            <Overlay onClick={toggleModal} />
+            <UnresolvedTicketsModal toggleModal={toggleModal} />
+          </>
+        )}
       </Container>
     </>
   );

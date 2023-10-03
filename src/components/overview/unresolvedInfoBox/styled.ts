@@ -18,8 +18,8 @@ const HeadingContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 32px 8px 32px;
   border-radius: 8px;
+  padding: 32px 32px 8px 32px;
 `;
 const StyledButton = styled(Button)`
   color: ${colors.primaryBlue};
