@@ -1,4 +1,4 @@
-import { Box, Button, styled } from '@mui/material';
+import { Box, Button, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../../theme';
 
 const BoxContainer = styled(Box)`
@@ -6,7 +6,7 @@ const BoxContainer = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 650px;
+  width: 700px;
   height: 500px;
   background: white;
   color: black;
@@ -39,4 +39,23 @@ const StyledButton = styled(Button)`
     background: none;
   }
 `;
-export { BoxContainer, HeadingContainer, StyledButton };
+const TicketsContainer = styled(Box)`
+  box-sizing: border-box;
+  width: 100%;
+  background-color: ${colors.primaryWhite};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 32px;
+  border-radius: 8px;
+`;
+const StatusName = styled(Typography)`
+  color: ${colors.primaryBlack};
+  font-size: ${fonts.size.medium};
+  font-style: normal;
+  font-weight: ${fonts.weight.medium};
+  line-height: 20px;
+  letter-spacing: ${fonts.spacing.small};
+  padding: 0px 32px;
+`;
+export { BoxContainer, HeadingContainer, TicketsContainer, StyledButton, StatusName };
