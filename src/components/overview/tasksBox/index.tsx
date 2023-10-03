@@ -22,8 +22,24 @@ import { Itasks, tasks } from './helper';
 
 const TasksInfoBox = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [newTask, setNewTask] = useState('');
+  const [addingTask, setAddingTask] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState('Default');
+
   const toggleModal = () => {
     setModalOpen(!modalOpen);
+  };
+  const handleAddTask = () => {
+    setAddingTask(true);
+  };
+
+  const handleCreateTask = () => {
+    if (newTask.trim() !== '') {
+      tasks.push({ label: newTask, tag: selectedStatus });
+      setNewTask('');
+      setSelectedStatus('Default');
+      setAddingTask(false);
+    }
   };
   const lastTasksNumber: number = -3;
   const slicedTasks: Itasks[] = tasks.slice(lastTasksNumber);
@@ -36,8 +52,27 @@ const TasksInfoBox = () => {
         </HeadingContainer>
         <TimelineText>Today</TimelineText>
         <TicketsContainer>
-          <CreateText>Create new task</CreateText>
-          <AddIcon />
+          {!addingTask ? (
+            <>
+              <CreateText>Create new task</CreateText>
+              <AddIcon onClick={handleAddTask} />
+            </>
+          ) : (
+            <>
+              <input
+                type='text'
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                placeholder='Enter task text'
+              />
+              <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
+                <option value='Urgent'>Urgent</option>
+                <option value='New'>New</option>
+                <option value='Default'>Default</option>
+              </select>
+              <button onClick={handleCreateTask}>Create</button>
+            </>
+          )}
         </TicketsContainer>
         <StyledHr />
         {slicedTasks.map((task, index) => {
