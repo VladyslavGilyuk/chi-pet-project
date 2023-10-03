@@ -63,6 +63,9 @@ const GroupName = styled(Typography)`
   line-height: 16px;
   letter-spacing: 0.1px;
 `;
+const MainInfoContainer = styled(Box)`
+  width: 100%;
+`;
 const TicketsContainer = styled(Box)`
   box-sizing: border-box;
   width: 100%;
@@ -100,6 +103,7 @@ export {
   GroupContainer,
   Group,
   GroupName,
+  MainInfoContainer,
   TicketsContainer,
   Value,
   HeadingText,

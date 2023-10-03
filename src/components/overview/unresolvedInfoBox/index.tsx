@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Container,
   Group,
@@ -5,14 +6,19 @@ import {
   GroupName,
   HeadingContainer,
   HeadingText,
+  MainInfoContainer,
   StatusName,
   StyledButton,
   StyledHr,
   TicketsContainer,
   Value,
 } from './styled';
+import { IUnresolvedTickets, tickets } from './helper';
 
 const UnresolvedInfoBox = () => {
+  const lastTicketsNumber: number = -4;
+  const slicedTickets: IUnresolvedTickets[] = tickets.slice(lastTicketsNumber);
+
   return (
     <>
       <Container>
@@ -24,25 +30,17 @@ const UnresolvedInfoBox = () => {
           <Group>Group:</Group>
           <GroupName>Support</GroupName>
         </GroupContainer>
-        <TicketsContainer>
-          <StatusName>Waiting on Feature Request</StatusName>
-          <Value>4238</Value>
-        </TicketsContainer>
-        <StyledHr />
-        <TicketsContainer>
-          <StatusName>Awaiting Customer Response</StatusName>
-          <Value>1005</Value>
-        </TicketsContainer>
-        <StyledHr />
-        <TicketsContainer>
-          <StatusName>Awaiting Developer Fix</StatusName>
-          <Value>914</Value>
-        </TicketsContainer>
-        <StyledHr />
-        <TicketsContainer>
-          <StatusName>Pending</StatusName>
-          <Value>281</Value>
-        </TicketsContainer>
+        {slicedTickets.map((ticket, index) => (
+          <React.Fragment key={ticket.status}>
+            <MainInfoContainer>
+              <TicketsContainer>
+                <StatusName>{ticket.status}</StatusName>
+                <Value>{ticket.value}</Value>
+              </TicketsContainer>
+            </MainInfoContainer>
+            {index !== slicedTickets.length - 1 && <StyledHr />}
+          </React.Fragment>
+        ))}
       </Container>
     </>
   );
