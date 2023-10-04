@@ -1,10 +1,11 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CustomSelect from '../select';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../tags';
 import TasksModal from '../modals/tasks';
 import { useState } from 'react';
-import { Button, Checkbox, FormControlLabel, MenuItem, Select } from '@mui/material';
+import { Button, Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
   Container,
@@ -26,6 +27,12 @@ const TasksInfoBox = () => {
   const [newTask, setNewTask] = useState('');
   const [addingTask, setAddingTask] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('Default');
+
+  const statusOptions = {
+    Urgent: 'Urgent',
+    New: 'New',
+    Default: 'Default',
+  };
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
@@ -67,15 +74,11 @@ const TasksInfoBox = () => {
             onChange={(e) => setNewTask(e.target.value)}
             placeholder='Enter task text'
           />
-          <Select
+          <CustomSelect
             value={selectedStatus}
-            size='small'
             onChange={(e) => setSelectedStatus(e.target.value)}
-          >
-            <MenuItem value='Urgent'>Urgent</MenuItem>
-            <MenuItem value='New'>New</MenuItem>
-            <MenuItem value='Default'>Default</MenuItem>
-          </Select>
+            options={statusOptions}
+          />
           <Button variant='contained' size='small' onClick={handleCreateTask}>
             Create
           </Button>
