@@ -15,6 +15,14 @@ import { HeadingText, MainInfoContainer, StyledHr, Value } from '../../unresolve
 interface UnresolvedTicketsModalProps {
   toggleModal: () => void;
 }
+
+const TicketStatus: Record<string, string> = {
+  Urgent: 'Urgent',
+  New: 'New',
+  Default: 'Default',
+  Total: 'Total',
+};
+
 const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) => {
   return (
     <Overlay toggleModal={toggleModal}>
@@ -30,16 +38,17 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
             <MainInfoContainer>
               <StatusName>{ticket.status}</StatusName>
               <TicketsContainer>
-                <Value>
-                  <Tag text={'Urgent'} /> : {ticket.urgent}
-                </Value>
-                <Value>
-                  <Tag text={'New'} /> : {ticket.new}
-                </Value>
-                <Value>
-                  <Tag text={'Default'} /> : {ticket.default}
-                </Value>
-                <Value>Total: {ticket.value}</Value>
+                {Object.keys(TicketStatus).map((text) => (
+                  <Value key={text}>
+                    {text === 'Total' ? (
+                      `Total: ${ticket.value}`
+                    ) : (
+                      <>
+                        <Tag text={TicketStatus[text]} /> : {ticket.value}
+                      </>
+                    )}
+                  </Value>
+                ))}
               </TicketsContainer>
             </MainInfoContainer>
             {index !== tickets.length - 1 && <StyledHr />}
