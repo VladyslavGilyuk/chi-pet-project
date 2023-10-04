@@ -11,8 +11,8 @@ import {
   HeadingContainer,
   HeadingText,
   StatusName,
-  StyledButton,
   StyledHr,
+  ViewButton,
 } from '../../tasksBox/styled';
 
 interface TasksModalProps {
@@ -24,9 +24,9 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
       <BoxContainer>
         <HeadingContainer>
           <HeadingText>Tasks</HeadingText>
-          <StyledButton onClick={toggleModal}>
+          <ViewButton onClick={toggleModal}>
             <CloseIcon />
-          </StyledButton>
+          </ViewButton>
         </HeadingContainer>
         <StyledHr />
         {tasks.map((task, index) => {

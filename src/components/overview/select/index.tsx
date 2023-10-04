@@ -1,21 +1,21 @@
 import React from 'react';
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { StyledSelect } from './styled';
+import { MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface SelectProps {
   value: string;
   onChange: (event: SelectChangeEvent<string>) => void;
   options: { [key: string]: string };
 }
-
 const CustomSelect: React.FC<SelectProps> = ({ value, onChange, options }) => {
   return (
-    <Select value={value} onChange={onChange} size='small'>
+    <StyledSelect value={value} onChange={(e) => onChange(e as SelectChangeEvent<string>)}>
       {Object.entries(options).map(([value, label]) => (
         <MenuItem key={value} value={value}>
           {label}
         </MenuItem>
       ))}
-    </Select>
+    </StyledSelect>
   );
 };
 

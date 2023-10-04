@@ -5,20 +5,21 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../tags';
 import TasksModal from '../modals/tasks';
 import { useState } from 'react';
-import { Button, Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
   Container,
+  CreateButton,
   CreateText,
   HeadingContainer,
   HeadingText,
   InputContainer,
   StatusName,
-  StyledButton,
   StyledHr,
   StyledInput,
   TicketsContainer,
   TimelineText,
+  ViewButton,
 } from './styled';
 import { ITask, tasks } from './helper';
 
@@ -56,7 +57,7 @@ const TasksInfoBox = () => {
     <Container>
       <HeadingContainer>
         <HeadingText>Tasks</HeadingText>
-        <StyledButton onClick={toggleModal}>View all</StyledButton>
+        <ViewButton onClick={toggleModal}>View all</ViewButton>
       </HeadingContainer>
       <TimelineText>Today</TimelineText>
 
@@ -69,7 +70,6 @@ const TasksInfoBox = () => {
         <InputContainer>
           <StyledInput
             type='text'
-            size='small'
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
             placeholder='Enter task text'
@@ -79,9 +79,9 @@ const TasksInfoBox = () => {
             onChange={(e) => setSelectedStatus(e.target.value)}
             options={statusOptions}
           />
-          <Button variant='contained' size='small' onClick={handleCreateTask}>
+          <CreateButton variant='contained' size='small' onClick={handleCreateTask}>
             Create
-          </Button>
+          </CreateButton>
         </InputContainer>
       )}
 

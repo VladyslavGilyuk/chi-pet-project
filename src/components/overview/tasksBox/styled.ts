@@ -21,7 +21,7 @@ const HeadingContainer = styled(Box)`
   padding: 32px 32px 8px 32px;
   border-radius: 8px;
 `;
-const StyledButton = styled(Button)`
+const ViewButton = styled(Button)`
   color: ${colors.primaryBlue};
   text-align: right;
   font-size: ${fonts.size.medium};
@@ -129,14 +129,26 @@ const InputContainer = styled(Box)`
   padding: 14px 32px;
 `;
 const StyledInput = styled(TextField)`
-  width: 220px;
+  width: 200px;
   color: ${colors.grayLight};
   font-size: ${fonts.size.medium};
   font-style: normal;
   font-weight: ${fonts.weight.medium};
   line-height: 20px;
   letter-spacing: ${fonts.spacing.small};
-  padding: 0;
+  & input {
+    padding: 8px;
+  }
+`;
+const CreateButton = styled(Button)`
+  color: ${colors.primaryWhite};
+  text-align: right;
+  font-size: ${fonts.size.small};
+  font-weight: ${fonts.weight.small};
+  letter-spacing: ${fonts.spacing.small};
+  font-style: normal;
+  line-height: 20px;
+  padding: 8px;
 `;
 export {
   Container,
@@ -151,8 +163,9 @@ export {
   StyledCheckbox,
   HeadingText,
   StatusName,
-  StyledButton,
+  ViewButton,
   StyledHr,
   InputContainer,
   StyledInput,
+  CreateButton,
 };
