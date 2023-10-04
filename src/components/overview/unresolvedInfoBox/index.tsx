@@ -19,9 +19,11 @@ import React, { useState } from 'react';
 
 const UnresolvedInfoBox = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
+
   const lastTicketsNumber: number = -4;
   const visibleTickets: IUnresolvedTickets[] = tickets.slice(lastTicketsNumber);
 

@@ -45,6 +45,7 @@ const TasksInfoBox = () => {
   };
   const lastTasksNumber: number = -3;
   const visibleTasks: ITask[] = tasks.slice(lastTasksNumber);
+
   return (
     <Container>
       <HeadingContainer>
