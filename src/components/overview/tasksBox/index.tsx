@@ -2,6 +2,7 @@ import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CustomSelect from '../select';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import React from 'react';
 import Tag from '../tags';
 import TasksModal from '../modals/tasks';
 import { useState } from 'react';
@@ -89,7 +90,7 @@ const TasksInfoBox = () => {
       {visibleTasks.map((task, index) => {
         const isLastTask = index === visibleTasks.length - 1;
         return (
-          <>
+          <React.Fragment key={index}>
             <CheckboxsContainer>
               <FormControlLabel
                 control={
@@ -104,7 +105,7 @@ const TasksInfoBox = () => {
               <Tag text={task.tag} />
             </CheckboxsContainer>
             {!isLastTask && <StyledHr />}
-          </>
+          </React.Fragment>
         );
       })}
       {modalOpen && (
