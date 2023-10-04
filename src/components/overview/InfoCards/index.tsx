@@ -1,10 +1,10 @@
-import { majorData } from './helper';
+import { cardsData } from './helper';
 import { BoxContainer, HeadingText, StyledBox, StyledTypography } from './styled';
 
-const MajorInfoBox = () => {
+const InfoCards = () => {
   return (
     <BoxContainer>
-      {majorData.map((data) => {
+      {cardsData.map((data) => {
         return (
           <StyledBox key={data.heading}>
             <HeadingText>{data.heading}</HeadingText>
@@ -16,4 +16,4 @@ const MajorInfoBox = () => {
   );
 };
 
-export default MajorInfoBox;
+export default InfoCards;
