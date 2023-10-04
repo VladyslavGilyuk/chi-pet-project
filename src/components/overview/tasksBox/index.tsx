@@ -44,7 +44,7 @@ const TasksInfoBox = () => {
     }
   };
   const lastTasksNumber: number = -3;
-  const slicedTasks: ITask[] = tasks.slice(lastTasksNumber);
+  const visibleTasks: ITask[] = tasks.slice(lastTasksNumber);
   return (
     <Container>
       <HeadingContainer>
@@ -83,8 +83,8 @@ const TasksInfoBox = () => {
       )}
 
       <StyledHr />
-      {slicedTasks.map((task, index) => {
-        const isLastTask = index === slicedTasks.length - 1;
+      {visibleTasks.map((task, index) => {
+        const isLastTask = index === visibleTasks.length - 1;
         return (
           <>
             <CheckboxsContainer>

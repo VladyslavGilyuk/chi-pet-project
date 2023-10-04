@@ -23,7 +23,7 @@ const UnresolvedInfoBox = () => {
     setModalOpen(!modalOpen);
   };
   const lastTicketsNumber: number = -4;
-  const slicedTickets: IUnresolvedTickets[] = tickets.slice(lastTicketsNumber);
+  const visibleTickets: IUnresolvedTickets[] = tickets.slice(lastTicketsNumber);
 
   return (
     <Container>
@@ -35,7 +35,7 @@ const UnresolvedInfoBox = () => {
         <Group>Group:</Group>
         <GroupName>Support</GroupName>
       </GroupContainer>
-      {slicedTickets.map((ticket, index) => (
+      {visibleTickets.map((ticket, index) => (
         <React.Fragment key={ticket.status}>
           <MainInfoContainer>
             <TicketsContainer>
@@ -43,7 +43,7 @@ const UnresolvedInfoBox = () => {
               <Value>{ticket.value}</Value>
             </TicketsContainer>
           </MainInfoContainer>
-          {index !== slicedTickets.length - 1 && <StyledHr />}
+          {index !== visibleTickets.length - 1 && <StyledHr />}
         </React.Fragment>
       ))}
       {modalOpen && (
