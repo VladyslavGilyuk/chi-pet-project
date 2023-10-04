@@ -20,7 +20,7 @@ import {
   TicketsContainer,
   TimelineText,
 } from './styled';
-import { Itasks, tasks } from './helper';
+import { ITask, tasks } from './helper';
 
 const TasksInfoBox = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -44,7 +44,7 @@ const TasksInfoBox = () => {
     }
   };
   const lastTasksNumber: number = -3;
-  const slicedTasks: Itasks[] = tasks.slice(lastTasksNumber);
+  const slicedTasks: ITask[] = tasks.slice(lastTasksNumber);
   return (
     <Container>
       <HeadingContainer>

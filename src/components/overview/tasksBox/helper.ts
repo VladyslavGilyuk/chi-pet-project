@@ -1,9 +1,9 @@
-export interface Itasks {
+export interface ITask {
   label: string;
   tag: string;
 }
 
-export const tasks: Itasks[] = [
+export const tasks: ITask[] = [
   {
     label: 'Delete ticket',
     tag: 'Urgent',
