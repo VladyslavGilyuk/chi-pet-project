@@ -6,12 +6,11 @@ const BoxContainer = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
+  width: 350px;
   height: 500px;
-  background: white;
+  background: ${colors.primaryWhite};
   color: black;
   z-index: 10;
-  border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   overflow-x: hidden;
   overflow-y: auto;
@@ -40,12 +39,13 @@ const StyledButton = styled(Button)`
   }
 `;
 const TicketsContainer = styled(Box)`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.7fr;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
+  gap: 10px;
   width: 100%;
   background-color: ${colors.primaryWhite};
-  padding: 5px 5px 5px 32px;
+  padding: 5px 32px 5px 32px;
   border-radius: 8px;
 `;
 const StatusName = styled(Typography)`
@@ -57,4 +57,18 @@ const StatusName = styled(Typography)`
   letter-spacing: ${fonts.spacing.small};
   padding: 0px 32px;
 `;
-export { BoxContainer, HeadingContainer, TicketsContainer, StyledButton, StatusName };
+const Value = styled(Typography)`
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  color: ${colors.primaryGray};
+  text-align: right;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: ${fonts.weight.medium};
+  line-height: 20px;
+  letter-spacing: ${fonts.spacing.small};
+`;
+export { BoxContainer, HeadingContainer, TicketsContainer, StyledButton, Value, StatusName };

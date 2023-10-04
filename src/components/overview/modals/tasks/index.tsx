@@ -1,14 +1,13 @@
-import { BoxContainer } from './styled';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ReactComponent as CloseIcon } from '..//../../../assets/close.svg';
 import Overlay from '../../overlay';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../../tags';
 import { tasks } from '../../tasksBox/helper';
+import { BoxContainer, HeadingContainer } from './styled';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
-  HeadingContainer,
   HeadingText,
   StatusName,
   StyledHr,

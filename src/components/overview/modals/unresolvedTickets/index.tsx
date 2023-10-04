@@ -2,6 +2,7 @@ import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
 import Overlay from '../../overlay';
 import React from 'react';
 import Tag from '../../tags';
+import { Typography } from '@mui/material';
 import { tickets } from '../../unresolvedInfoBox/helper';
 import {
   BoxContainer,
@@ -9,8 +10,9 @@ import {
   StatusName,
   StyledButton,
   TicketsContainer,
+  Value,
 } from './styled';
-import { HeadingText, MainInfoContainer, StyledHr, Value } from '../../unresolvedInfoBox/styled';
+import { HeadingText, MainInfoContainer, StyledHr } from '../../unresolvedInfoBox/styled';
 
 interface UnresolvedTicketsModalProps {
   toggleModal: () => void;
@@ -36,15 +38,18 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
         {tickets.map((ticket, index) => (
           <React.Fragment key={ticket.status}>
             <MainInfoContainer>
-              <StatusName>{ticket.status}</StatusName>
+              <StatusName>{ticket.status}:</StatusName>
               <TicketsContainer>
                 {Object.keys(TicketStatus).map((text) => (
                   <Value key={text}>
                     {text === 'Total' ? (
-                      `Total: ${ticket.value}`
+                      <>
+                        <Typography>Total:</Typography>
+                        <Typography>{ticket.value}</Typography>
+                      </>
                     ) : (
                       <>
-                        <Tag text={TicketStatus[text]} /> : {ticket.value}
+                        <Tag text={TicketStatus[text]} /> {ticket.value}
                       </>
                     )}
                   </Value>
