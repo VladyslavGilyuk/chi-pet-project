@@ -46,73 +46,71 @@ const TasksInfoBox = () => {
   const lastTasksNumber: number = -3;
   const slicedTasks: Itasks[] = tasks.slice(lastTasksNumber);
   return (
-    <>
-      <Container>
-        <HeadingContainer>
-          <HeadingText>Tasks</HeadingText>
-          <StyledButton onClick={toggleModal}>View all</StyledButton>
-        </HeadingContainer>
-        <TimelineText>Today</TimelineText>
+    <Container>
+      <HeadingContainer>
+        <HeadingText>Tasks</HeadingText>
+        <StyledButton onClick={toggleModal}>View all</StyledButton>
+      </HeadingContainer>
+      <TimelineText>Today</TimelineText>
 
-        {!addingTask ? (
-          <TicketsContainer>
-            <CreateText>Create new task</CreateText>
-            <AddIcon onClick={handleAddTask} />
-          </TicketsContainer>
-        ) : (
-          <InputContainer>
-            <StyledInput
-              type='text'
-              size='small'
-              value={newTask}
-              onChange={(e) => setNewTask(e.target.value)}
-              placeholder='Enter task text'
-            />
-            <Select
-              value={selectedStatus}
-              size='small'
-              onChange={(e) => setSelectedStatus(e.target.value)}
-            >
-              <MenuItem value='Urgent'>Urgent</MenuItem>
-              <MenuItem value='New'>New</MenuItem>
-              <MenuItem value='Default'>Default</MenuItem>
-            </Select>
-            <Button variant='contained' size='small' onClick={handleCreateTask}>
-              Create
-            </Button>
-          </InputContainer>
-        )}
+      {!addingTask ? (
+        <TicketsContainer>
+          <CreateText>Create new task</CreateText>
+          <AddIcon onClick={handleAddTask} />
+        </TicketsContainer>
+      ) : (
+        <InputContainer>
+          <StyledInput
+            type='text'
+            size='small'
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            placeholder='Enter task text'
+          />
+          <Select
+            value={selectedStatus}
+            size='small'
+            onChange={(e) => setSelectedStatus(e.target.value)}
+          >
+            <MenuItem value='Urgent'>Urgent</MenuItem>
+            <MenuItem value='New'>New</MenuItem>
+            <MenuItem value='Default'>Default</MenuItem>
+          </Select>
+          <Button variant='contained' size='small' onClick={handleCreateTask}>
+            Create
+          </Button>
+        </InputContainer>
+      )}
 
-        <StyledHr />
-        {slicedTasks.map((task, index) => {
-          const isLastTask = index === slicedTasks.length - 1;
-          return (
-            <>
-              <CheckboxsContainer>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<CheckCircleIcon />}
-                      defaultChecked={isLastTask}
-                    />
-                  }
-                  label={<StatusName>{task.label}</StatusName>}
-                />
-                <Tag text={task.tag} />
-              </CheckboxsContainer>
-              {!isLastTask && <StyledHr />}
-            </>
-          );
-        })}
-        {modalOpen && (
+      <StyledHr />
+      {slicedTasks.map((task, index) => {
+        const isLastTask = index === slicedTasks.length - 1;
+        return (
           <>
-            <Overlay onClick={toggleModal} />
-            <TasksModal toggleModal={toggleModal} />
+            <CheckboxsContainer>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<CheckCircleIcon />}
+                    defaultChecked={isLastTask}
+                  />
+                }
+                label={<StatusName>{task.label}</StatusName>}
+              />
+              <Tag text={task.tag} />
+            </CheckboxsContainer>
+            {!isLastTask && <StyledHr />}
           </>
-        )}
-      </Container>
-    </>
+        );
+      })}
+      {modalOpen && (
+        <>
+          <Overlay onClick={toggleModal} />
+          <TasksModal toggleModal={toggleModal} />
+        </>
+      )}
+    </Container>
   );
 };
 
