@@ -1,6 +1,5 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { Overlay } from '../overlay/styled';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../tags';
 import TasksModal from '../modals/tasks';
@@ -107,7 +106,6 @@ const TasksInfoBox = () => {
       })}
       {modalOpen && (
         <>
-          <Overlay onClick={toggleModal} />
           <TasksModal toggleModal={toggleModal} />
         </>
       )}

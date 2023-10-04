@@ -1,4 +1,3 @@
-import { Overlay } from '../overlay/styled';
 import UnresolvedTicketsModal from '../modals/unresolvedTickets';
 import {
   Container,
@@ -50,7 +49,6 @@ const UnresolvedInfoBox = () => {
       ))}
       {modalOpen && (
         <>
-          <Overlay onClick={toggleModal} />
           <UnresolvedTicketsModal toggleModal={toggleModal} />
         </>
       )}

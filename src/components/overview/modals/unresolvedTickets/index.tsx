@@ -1,4 +1,5 @@
 import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
+import Overlay from '../../overlay';
 import React from 'react';
 import Tag from '../../tags';
 import { tickets } from '../../unresolvedInfoBox/helper';
@@ -16,34 +17,36 @@ interface UnresolvedTicketsModalProps {
 }
 const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) => {
   return (
-    <BoxContainer>
-      <HeadingContainer>
-        <HeadingText>Unresolved tickets</HeadingText>
-        <StyledButton onClick={toggleModal}>
-          <CloseIcon />
-        </StyledButton>
-      </HeadingContainer>
-      {tickets.map((ticket, index) => (
-        <React.Fragment key={ticket.status}>
-          <MainInfoContainer>
-            <StatusName>{ticket.status}</StatusName>
-            <TicketsContainer>
-              <Value>
-                <Tag text={'Urgent'} /> : {ticket.urgent}
-              </Value>
-              <Value>
-                <Tag text={'New'} /> : {ticket.new}
-              </Value>
-              <Value>
-                <Tag text={'Default'} /> : {ticket.default}
-              </Value>
-              <Value>Total: {ticket.value}</Value>
-            </TicketsContainer>
-          </MainInfoContainer>
-          {index !== tickets.length - 1 && <StyledHr />}
-        </React.Fragment>
-      ))}
-    </BoxContainer>
+    <Overlay toggleModal={toggleModal}>
+      <BoxContainer>
+        <HeadingContainer>
+          <HeadingText>Unresolved tickets</HeadingText>
+          <StyledButton onClick={toggleModal}>
+            <CloseIcon />
+          </StyledButton>
+        </HeadingContainer>
+        {tickets.map((ticket, index) => (
+          <React.Fragment key={ticket.status}>
+            <MainInfoContainer>
+              <StatusName>{ticket.status}</StatusName>
+              <TicketsContainer>
+                <Value>
+                  <Tag text={'Urgent'} /> : {ticket.urgent}
+                </Value>
+                <Value>
+                  <Tag text={'New'} /> : {ticket.new}
+                </Value>
+                <Value>
+                  <Tag text={'Default'} /> : {ticket.default}
+                </Value>
+                <Value>Total: {ticket.value}</Value>
+              </TicketsContainer>
+            </MainInfoContainer>
+            {index !== tickets.length - 1 && <StyledHr />}
+          </React.Fragment>
+        ))}
+      </BoxContainer>
+    </Overlay>
   );
 };
 
