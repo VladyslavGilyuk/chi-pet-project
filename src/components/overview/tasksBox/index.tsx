@@ -1,11 +1,11 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CustomSelect from '../select';
+import { Fragment } from 'react';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import React from 'react';
 import { RootState } from '../../../store';
 import Tag from '../tags';
-import TasksModal from '../modals/tasks';
+import TasksModal from '../../common/modals/tasks';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
@@ -37,7 +37,7 @@ const TasksInfoBox = () => {
     status: selectedStatus,
     modal: modalOpen,
     addingTask,
-  } = useSelector((state: RootState) => state.task);
+  } = useSelector((state: RootState) => state.tasks);
 
   const dispatch = useDispatch();
 
@@ -102,7 +102,7 @@ const TasksInfoBox = () => {
       {visibleTasks.map((task, index) => {
         const isLastTask = index === visibleTasks.length - 1;
         return (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <CheckboxsContainer>
               <FormControlLabel
                 control={
@@ -117,7 +117,7 @@ const TasksInfoBox = () => {
               <Tag text={task.tag} />
             </CheckboxsContainer>
             {!isLastTask && <StyledHr />}
-          </React.Fragment>
+          </Fragment>
         );
       })}
       {modalOpen && (

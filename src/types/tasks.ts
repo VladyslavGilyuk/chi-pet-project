@@ -1,4 +1,4 @@
-export interface ITaskState {
+export interface ITasksState {
   label: string;
   status: string;
   modal: boolean;

@@ -1,4 +1,4 @@
-import UnresolvedTicketsModal from '../modals/unresolvedTickets';
+import UnresolvedTicketsModal from '../../common/modals/unresolvedTickets';
 import {
   Container,
   Group,
@@ -13,8 +13,8 @@ import {
   TicketsContainer,
   Value,
 } from './styled';
+import { Fragment, useState } from 'react';
 import { IUnresolvedTickets, tickets } from './helper';
-import React, { useState } from 'react';
 
 const UnresolvedInfoBox = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,7 +37,7 @@ const UnresolvedInfoBox = () => {
         <GroupName>Support</GroupName>
       </GroupContainer>
       {visibleTickets.map((ticket, index) => (
-        <React.Fragment key={ticket.status}>
+        <Fragment key={index}>
           <MainInfoContainer>
             <TicketsContainer>
               <StatusName>{ticket.status}</StatusName>
@@ -45,7 +45,7 @@ const UnresolvedInfoBox = () => {
             </TicketsContainer>
           </MainInfoContainer>
           {index !== visibleTickets.length - 1 && <StyledHr />}
-        </React.Fragment>
+        </Fragment>
       ))}
       {modalOpen && (
         <>

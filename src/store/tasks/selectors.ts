@@ -1,3 +1,3 @@
 import { RootState } from '..';
 
-export const Task = (state: RootState) => state.task;
+export const Tasks = (state: RootState) => state.tasks;

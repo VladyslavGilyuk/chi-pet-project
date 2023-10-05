@@ -1,16 +1,16 @@
 import * as taskActions from './actions';
-import { ITaskState } from '../../types/tasks';
+import { ITasksState } from '../../types/tasks';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: ITaskState = {
+const initialState: ITasksState = {
   label: '',
   status: 'Default',
   modal: false,
   addingTask: false,
 };
 
-export const taskSlice = createSlice({
-  name: 'task',
+export const tasksSlice = createSlice({
+  name: 'tasks',
   initialState,
   reducers: {
     setNewLabel: taskActions.setNewLabel,
@@ -20,6 +20,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { setNewLabel, setSelectedStatus, setModalOpen, setAddingTask } = taskSlice.actions;
+export const { setNewLabel, setSelectedStatus, setModalOpen, setAddingTask } = tasksSlice.actions;
 
-export default taskSlice.reducer;
+export default tasksSlice.reducer;

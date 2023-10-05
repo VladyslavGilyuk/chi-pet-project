@@ -1,10 +1,10 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ReactComponent as CloseIcon } from '..//../../../assets/close.svg';
-import Overlay from '../../overlay';
+import { Fragment } from 'react';
+import Overlay from '../../../overview/overlay';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import React from 'react';
-import Tag from '../../tags';
-import { tasks } from '../../tasksBox/helper';
+import Tag from '../../../overview/tags';
+import { tasks } from '../../../overview/tasksBox/helper';
 import { BoxContainer, HeadingContainer } from './styled';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
@@ -13,7 +13,7 @@ import {
   StatusName,
   StyledHr,
   ViewButton,
-} from '../../tasksBox/styled';
+} from '../../../overview/tasksBox/styled';
 
 interface TasksModalProps {
   toggleModal: () => void;
@@ -32,7 +32,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
         {tasks.map((task, index) => {
           const isLastTask = index === tasks.length - 1;
           return (
-            <React.Fragment key={index}>
+            <Fragment key={index}>
               <CheckboxsContainer>
                 <FormControlLabel
                   control={
@@ -47,7 +47,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
                 <Tag text={task.tag} />
               </CheckboxsContainer>
               {!isLastTask && <StyledHr />}
-            </React.Fragment>
+            </Fragment>
           );
         })}
       </BoxContainer>

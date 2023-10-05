@@ -1,5 +1,5 @@
 import { ActionContainer } from './styled';
-import InfoCards from '../../components/overview/InfoCards';
+import InfoCards from '../../components/overview/infoCards';
 import TasksInfoBox from '../../components/overview/tasksBox';
 import UnresolvedInfoBox from '../../components/overview/unresolvedInfoBox';
 

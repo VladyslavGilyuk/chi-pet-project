@@ -1,9 +1,9 @@
 import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
-import Overlay from '../../overlay';
-import React from 'react';
-import Tag from '../../tags';
+import { Fragment } from 'react';
+import Overlay from '../../../overview/overlay';
+import Tag from '../../../overview/tags';
 import { Typography } from '@mui/material';
-import { tickets } from '../../unresolvedInfoBox/helper';
+import { tickets } from '../../../overview/unresolvedInfoBox/helper';
 import {
   BoxContainer,
   HeadingContainer,
@@ -12,7 +12,11 @@ import {
   TicketsContainer,
   Value,
 } from './styled';
-import { HeadingText, MainInfoContainer, StyledHr } from '../../unresolvedInfoBox/styled';
+import {
+  HeadingText,
+  MainInfoContainer,
+  StyledHr,
+} from '../../../overview/unresolvedInfoBox/styled';
 
 interface UnresolvedTicketsModalProps {
   toggleModal: () => void;
@@ -36,7 +40,7 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
           </StyledButton>
         </HeadingContainer>
         {tickets.map((ticket, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <MainInfoContainer>
               <StatusName>{ticket.status}:</StatusName>
               <TicketsContainer>
@@ -64,7 +68,7 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
               </TicketsContainer>
             </MainInfoContainer>
             {index !== tickets.length - 1 && <StyledHr />}
-          </React.Fragment>
+          </Fragment>
         ))}
       </BoxContainer>
     </Overlay>
