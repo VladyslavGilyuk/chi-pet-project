@@ -3,9 +3,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CustomSelect from '../select';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import React from 'react';
+import { RootState } from '../../../store';
 import Tag from '../tags';
 import TasksModal from '../modals/tasks';
-import { useState } from 'react';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
@@ -23,12 +23,39 @@ import {
   ViewButton,
 } from './styled';
 import { ITask, tasks } from './helper';
+import {
+  setAddingTask,
+  setModalOpen,
+  setNewLabel,
+  setSelectedStatus,
+} from '../../../store/tasks/slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const TasksInfoBox = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [newTask, setNewTask] = useState('');
-  const [addingTask, setAddingTask] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState('Default');
+  const {
+    label: newTask,
+    status: selectedStatus,
+    modal: modalOpen,
+    addingTask,
+  } = useSelector((state: RootState) => state.task);
+
+  const dispatch = useDispatch();
+
+  const toggleModal = () => {
+    dispatch(setModalOpen(!modalOpen));
+  };
+  const handleAddTask = () => {
+    dispatch(setAddingTask(true));
+  };
+
+  const handleCreateTask = () => {
+    if (newTask.trim() !== '') {
+      tasks.push({ label: newTask, tag: selectedStatus });
+      dispatch(setNewLabel(''));
+      dispatch(setSelectedStatus('Default'));
+      dispatch(setAddingTask(false));
+    }
+  };
 
   const statusOptions = {
     Urgent: 'Urgent',
@@ -36,21 +63,6 @@ const TasksInfoBox = () => {
     Default: 'Default',
   };
 
-  const toggleModal = () => {
-    setModalOpen(!modalOpen);
-  };
-  const handleAddTask = () => {
-    setAddingTask(true);
-  };
-
-  const handleCreateTask = () => {
-    if (newTask.trim() !== '') {
-      tasks.push({ label: newTask, tag: selectedStatus });
-      setNewTask('');
-      setSelectedStatus('Default');
-      setAddingTask(false);
-    }
-  };
   const lastTasksNumber: number = -3;
   const visibleTasks: ITask[] = tasks.slice(lastTasksNumber);
 
@@ -72,15 +84,15 @@ const TasksInfoBox = () => {
           <StyledInput
             type='text'
             value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
+            onChange={(e) => dispatch(setNewLabel(e.target.value))}
             placeholder='Enter task text'
           />
           <CustomSelect
             value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
+            onChange={(e) => dispatch(setSelectedStatus(e.target.value))}
             options={statusOptions}
           />
-          <CreateButton variant='contained' size='small' onClick={handleCreateTask}>
+          <CreateButton variant='contained' onClick={handleCreateTask}>
             Create
           </CreateButton>
         </InputContainer>
