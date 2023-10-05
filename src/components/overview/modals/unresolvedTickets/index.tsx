@@ -36,12 +36,12 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
           </StyledButton>
         </HeadingContainer>
         {tickets.map((ticket, index) => (
-          <React.Fragment key={ticket.status}>
+          <React.Fragment key={index}>
             <MainInfoContainer>
               <StatusName>{ticket.status}:</StatusName>
               <TicketsContainer>
-                {Object.keys(TicketStatus).map((text) => (
-                  <Value key={text}>
+                {Object.keys(TicketStatus).map((text, index) => (
+                  <Value key={index}>
                     {text === 'Total' ? (
                       <>
                         <Typography>Total:</Typography>
@@ -49,7 +49,14 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
                       </>
                     ) : (
                       <>
-                        <Tag text={TicketStatus[text]} /> {ticket.value}
+                        <Tag text={TicketStatus[text]} />
+                        {text === TicketStatus.Urgent
+                          ? ticket.urgent
+                          : text === TicketStatus.New
+                          ? ticket.new
+                          : text === TicketStatus.Default
+                          ? ticket.default
+                          : null}
                       </>
                     )}
                   </Value>

@@ -2,6 +2,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ReactComponent as CloseIcon } from '..//../../../assets/close.svg';
 import Overlay from '../../overlay';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import React from 'react';
 import Tag from '../../tags';
 import { tasks } from '../../tasksBox/helper';
 import { BoxContainer, HeadingContainer } from './styled';
@@ -31,7 +32,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
         {tasks.map((task, index) => {
           const isLastTask = index === tasks.length - 1;
           return (
-            <>
+            <React.Fragment key={index}>
               <CheckboxsContainer>
                 <FormControlLabel
                   control={
@@ -46,7 +47,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
                 <Tag text={task.tag} />
               </CheckboxsContainer>
               {!isLastTask && <StyledHr />}
-            </>
+            </React.Fragment>
           );
         })}
       </BoxContainer>

@@ -57,7 +57,7 @@ const StatusName = styled(Typography)`
   letter-spacing: ${fonts.spacing.small};
   padding: 0px 32px;
 `;
-const Value = styled(Typography)`
+const Value = styled(Box)`
   width: 100%;
   justify-content: space-between;
   padding-left: 5px;
