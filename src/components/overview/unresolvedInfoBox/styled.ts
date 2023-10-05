@@ -9,6 +9,7 @@ const Container = styled(Box)`
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
+  padding-bottom: 8px;
   border: 1px solid ${colors.grayDivider};
 `;
 const HeadingContainer = styled(Box)`
@@ -73,7 +74,7 @@ const TicketsContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 32px;
+  padding: 18px 32px;
   border-radius: 8px;
 `;
 const StatusName = styled(Typography)`

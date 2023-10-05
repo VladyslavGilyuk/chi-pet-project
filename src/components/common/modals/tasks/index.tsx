@@ -1,26 +1,25 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ReactComponent as CloseIcon } from '..//../../../assets/close.svg';
 import { Fragment } from 'react';
-import Overlay from '../../../overview/overlay';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../../../overview/tags';
-import { tasks } from '../../../overview/tasksBox/helper';
+import { tasks } from '../../../overview/tasksInfoBox/helper';
 import { BoxContainer, HeadingContainer } from './styled';
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel, Modal } from '@mui/material';
 import {
   CheckboxsContainer,
   HeadingText,
   StatusName,
   StyledHr,
   ViewButton,
-} from '../../../overview/tasksBox/styled';
+} from '../../../overview/tasksInfoBox/styled';
 
 interface TasksModalProps {
   toggleModal: () => void;
 }
 const TasksModal = ({ toggleModal }: TasksModalProps) => {
   return (
-    <Overlay toggleModal={toggleModal}>
+    <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
         <HeadingContainer>
           <HeadingText>Tasks</HeadingText>
@@ -51,7 +50,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
           );
         })}
       </BoxContainer>
-    </Overlay>
+    </Modal>
   );
 };
 

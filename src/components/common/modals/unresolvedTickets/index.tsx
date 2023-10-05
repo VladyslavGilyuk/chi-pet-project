@@ -1,8 +1,6 @@
 import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
 import { Fragment } from 'react';
-import Overlay from '../../../overview/overlay';
 import Tag from '../../../overview/tags';
-import { Typography } from '@mui/material';
 import { tickets } from '../../../overview/unresolvedInfoBox/helper';
 import {
   BoxContainer,
@@ -17,6 +15,7 @@ import {
   MainInfoContainer,
   StyledHr,
 } from '../../../overview/unresolvedInfoBox/styled';
+import { Modal, Typography } from '@mui/material';
 
 interface UnresolvedTicketsModalProps {
   toggleModal: () => void;
@@ -31,7 +30,7 @@ const TicketStatus: Record<string, string> = {
 
 const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) => {
   return (
-    <Overlay toggleModal={toggleModal}>
+    <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
         <HeadingContainer>
           <HeadingText>Unresolved tickets</HeadingText>
@@ -71,7 +70,7 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
           </Fragment>
         ))}
       </BoxContainer>
-    </Overlay>
+    </Modal>
   );
 };
 

@@ -29,33 +29,33 @@ export const links: INavLinks[] = [
   },
   {
     icon: <IdeasIcon />,
-    to: ROUTE_PATH.Home,
+    to: ROUTE_PATH.Ideas,
     name: 'Ideas',
   },
   {
     icon: <ContactsIcon />,
-    to: ROUTE_PATH.Home,
+    to: ROUTE_PATH.Contacts,
     name: 'Contacts',
   },
   {
     icon: <AgentsIcon />,
-    to: ROUTE_PATH.Home,
+    to: ROUTE_PATH.Agents,
     name: 'Agents',
   },
   {
     icon: <ArticlesIcon />,
-    to: ROUTE_PATH.Home,
+    to: ROUTE_PATH.Articles,
     name: 'Articles',
   },
   {
     divider: <StyledDivider />,
     icon: <SettingsIcon />,
-    to: ROUTE_PATH.Home,
+    to: ROUTE_PATH.Settings,
     name: 'Settings',
   },
   {
     icon: <SubscriptionIcon />,
-    to: ROUTE_PATH.Home,
+    to: ROUTE_PATH.Subscription,
     name: 'Subscription',
   },
 ];

@@ -9,6 +9,7 @@ const Container = styled(Box)`
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
+  padding-bottom: 8px;
   border: 1px solid ${colors.grayDivider};
 `;
 const HeadingContainer = styled(Box)`
@@ -81,7 +82,7 @@ const CheckboxsContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 32px;
+  padding: 7px 32px;
   border-radius: 8px;
 `;
 const StyledCheckbox = styled(Checkbox)`
@@ -96,7 +97,7 @@ const TicketsContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 32px;
+  padding: 32px 32px 15px 32px;
 `;
 const StatusName = styled(Typography)`
   color: ${colors.primaryBlack};

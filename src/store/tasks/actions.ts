@@ -9,10 +9,6 @@ export const setSelectedStatus = (state: ITasksState, action: PayloadAction<stri
   state.status = action.payload;
 };
 
-export const setModalOpen = (state: ITasksState, action: PayloadAction<boolean>) => {
-  state.modal = action.payload;
-};
-
 export const setAddingTask = (state: ITasksState, action: PayloadAction<boolean>) => {
   state.addingTask = action.payload;
 };

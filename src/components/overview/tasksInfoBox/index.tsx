@@ -1,7 +1,7 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CustomSelect from '../select';
-import { Fragment } from 'react';
+
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import { RootState } from '../../../store';
 import Tag from '../tags';
@@ -22,27 +22,24 @@ import {
   TimelineText,
   ViewButton,
 } from './styled';
+import { Fragment, useState } from 'react';
 import { ITask, tasks } from './helper';
-import {
-  setAddingTask,
-  setModalOpen,
-  setNewLabel,
-  setSelectedStatus,
-} from '../../../store/tasks/slice';
+import { setAddingTask, setNewLabel, setSelectedStatus } from '../../../store/tasks/slice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TasksInfoBox = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const {
     label: newTask,
     status: selectedStatus,
-    modal: modalOpen,
     addingTask,
   } = useSelector((state: RootState) => state.tasks);
 
   const dispatch = useDispatch();
 
   const toggleModal = () => {
-    dispatch(setModalOpen(!modalOpen));
+    setModalOpen(!modalOpen);
   };
   const handleAddTask = () => {
     dispatch(setAddingTask(true));
@@ -57,11 +54,11 @@ const TasksInfoBox = () => {
     }
   };
 
-  const statusOptions = {
-    Urgent: 'Urgent',
-    New: 'New',
-    Default: 'Default',
-  };
+  const statusOptions = [
+    { value: 'Urgent', label: 'Urgent' },
+    { value: 'New', label: 'New' },
+    { value: 'Default', label: 'Default' },
+  ];
 
   const lastTasksNumber: number = -3;
   const visibleTasks: ITask[] = tasks.slice(lastTasksNumber);

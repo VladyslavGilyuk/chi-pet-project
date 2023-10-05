@@ -15,11 +15,10 @@ export const tasksSlice = createSlice({
   reducers: {
     setNewLabel: taskActions.setNewLabel,
     setSelectedStatus: taskActions.setSelectedStatus,
-    setModalOpen: taskActions.setModalOpen,
     setAddingTask: taskActions.setAddingTask,
   },
 });
 
-export const { setNewLabel, setSelectedStatus, setModalOpen, setAddingTask } = tasksSlice.actions;
+export const { setNewLabel, setSelectedStatus, setAddingTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
