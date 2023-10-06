@@ -1,25 +1,32 @@
+import { Controller } from 'react-hook-form';
 import CustomSelect from '../../overview/select';
-import { RootState } from '../../../store';
+import { addTask } from '../../../store/tasks/slice';
 import { t } from 'i18next';
-import { tasks } from '../../overview/tasksInfoBox/helper';
 import useAuthForm from '../../../hooks/useAuthForm';
+import { useDispatch } from 'react-redux';
 import useFormHelpers from '../../../utils/formHelpers';
+import { useState } from 'react';
 import { CreateButton, Form, StyledBox, StyledInput } from './styled';
-import { setAddingTask, setNewLabel, setSelectedStatus } from '../../../store/tasks/slice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const TaskForm = () => {
-  const { label: newTask, status: selectedStatus } = useSelector((state: RootState) => state.tasks);
+  const [value, setValue] = useState('');
 
   const dispatch = useDispatch();
 
-  const { handleSubmit, register, errors } = useAuthForm();
+  const { handleSubmit, register, errors, control, getValues } = useAuthForm();
 
   const handleCreateTask = () => {
-    tasks.push({ label: newTask, tag: selectedStatus });
-    dispatch(setNewLabel(''));
-    dispatch(setSelectedStatus('Default'));
-    dispatch(setAddingTask(false));
+    const formData = getValues();
+    dispatch(
+      addTask({
+        text: value,
+        tag: formData.selectValue,
+        checked: false,
+        id: Date.now().toString(36),
+      }),
+    );
+
+    setValue('');
   };
 
   const statusOptions = [
@@ -27,6 +34,7 @@ const TaskForm = () => {
     { value: 'New', label: 'New' },
     { value: 'Default', label: 'Default' },
   ];
+
   const { TasksFormHelper } = useFormHelpers(t);
   return (
     <Form onSubmit={handleSubmit(handleCreateTask)}>
@@ -34,19 +42,27 @@ const TaskForm = () => {
         <StyledInput
           key={instance.name}
           {...register(instance.name, instance.validations)}
-          value={newTask}
-          onChange={(e) => dispatch(setNewLabel(e.target.value))}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
           placeholder={instance.placeholder}
           type={instance.type}
           error={!!errors[instance.name]}
         />
       ))}
       <StyledBox>
-        <CustomSelect
-          value={selectedStatus}
-          onChange={(e) => dispatch(setSelectedStatus(e.target.value))}
-          options={statusOptions}
+        <Controller
+          name='selectValue'
+          control={control}
+          defaultValue='Default'
+          render={({ field }) => (
+            <CustomSelect
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              options={statusOptions}
+            />
+          )}
         />
+
         <CreateButton variant='contained' type='submit'>
           Create
         </CreateButton>

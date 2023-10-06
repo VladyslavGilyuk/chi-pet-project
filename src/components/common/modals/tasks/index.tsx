@@ -2,8 +2,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ReactComponent as CloseIcon } from '..//../../../assets/close.svg';
 import { Fragment } from 'react';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import { RootState } from '../../../../store';
 import Tag from '../../../overview/tags';
-import { tasks } from '../../../overview/tasksInfoBox/helper';
+import { toggleTask } from '../../../../store/tasks/slice';
 import { BoxContainer, HeadingContainer } from './styled';
 import { Checkbox, FormControlLabel, Modal } from '@mui/material';
 import {
@@ -13,11 +14,20 @@ import {
   StyledHr,
   ViewButton,
 } from '../../../overview/tasksInfoBox/styled';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface TasksModalProps {
   toggleModal: () => void;
 }
+
 const TasksModal = ({ toggleModal }: TasksModalProps) => {
+  const dispatch = useDispatch();
+
+  const handleCheck = (id: string) => {
+    dispatch(toggleTask({ id }));
+  };
+
+  const { tasks } = useSelector((state: RootState) => state.tasks);
   const visibleTasks = [...tasks].reverse();
   return (
     <Modal open={true} onClose={toggleModal}>
@@ -39,9 +49,11 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
                     <Checkbox
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<CheckCircleIcon />}
+                      checked={task.checked}
+                      onChange={() => handleCheck(task.id)}
                     />
                   }
-                  label={<StatusName>{task.label}</StatusName>}
+                  label={<StatusName>{task.text}</StatusName>}
                 />
                 <Tag text={task.tag} />
               </CheckboxsContainer>

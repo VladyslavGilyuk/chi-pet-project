@@ -1,14 +1,13 @@
-import { ITasksState } from '../../types/tasks';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { ITask, ITasksState, ToggleTaskPayload } from '../../types/tasks';
 
-export const setNewLabel = (state: ITasksState, action: PayloadAction<string>) => {
-  state.label = action.payload;
+export const addTaskReducer = (state: ITasksState, action: PayloadAction<ITask>) => {
+  state.tasks.push(action.payload);
 };
 
-export const setSelectedStatus = (state: ITasksState, action: PayloadAction<string>) => {
-  state.status = action.payload;
-};
-
-export const setAddingTask = (state: ITasksState, action: PayloadAction<boolean>) => {
-  state.addingTask = action.payload;
+export const toggleTaskReducer = (state: ITasksState, action: PayloadAction<ToggleTaskPayload>) => {
+  const taskIndex = state.tasks.findIndex((task) => task.id === action.payload.id);
+  if (taskIndex !== -1) {
+    state.tasks[taskIndex].checked = !state.tasks[taskIndex].checked;
+  }
 };

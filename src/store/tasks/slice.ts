@@ -1,24 +1,52 @@
-import * as taskActions from './actions';
 import { ITasksState } from '../../types/tasks';
 import { createSlice } from '@reduxjs/toolkit';
+import { addTaskReducer, toggleTaskReducer } from './actions';
 
 const initialState: ITasksState = {
-  label: '',
-  status: 'Default',
-  modal: false,
-  addingTask: false,
+  tasks: [
+    {
+      id: '1',
+      text: 'Delete ticket',
+      tag: 'Urgent',
+      checked: false,
+    },
+    {
+      id: '2',
+      text: 'Redisign ticket',
+      tag: 'New',
+      checked: false,
+    },
+
+    {
+      id: '3',
+      text: 'Update ticket report',
+      tag: 'Default',
+      checked: true,
+    },
+    {
+      id: '4',
+      text: 'Create new ticket example',
+      tag: 'New',
+      checked: false,
+    },
+    {
+      id: '5',
+      text: 'Finish ticket update',
+      tag: 'Urgent',
+      checked: false,
+    },
+  ],
 };
 
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    setNewLabel: taskActions.setNewLabel,
-    setSelectedStatus: taskActions.setSelectedStatus,
-    setAddingTask: taskActions.setAddingTask,
+    addTask: addTaskReducer,
+    toggleTask: toggleTaskReducer,
   },
 });
 
-export const { setNewLabel, setSelectedStatus, setAddingTask } = tasksSlice.actions;
+export const { addTask, toggleTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

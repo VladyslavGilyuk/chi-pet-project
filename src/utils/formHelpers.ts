@@ -133,7 +133,7 @@ const useFormHelpers = (t: (key: string) => string) => {
       name: 'task',
       label: 'task',
       validations: {
-        required: 'Password is required',
+        required: 'required',
       },
       placeholder: 'Enter text',
       type: 'text',

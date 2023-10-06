@@ -1,12 +1,12 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
+import { ITask } from '../../../types/tasks';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import { RootState } from '../../../store';
 import Tag from '../tags';
 import TaskForm from '../../form/tasks';
 import TasksModal from '../../common/modals/tasks';
-import { setAddingTask } from '../../../store/tasks/slice';
+import { toggleTask } from '../../../store/tasks/slice';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
@@ -21,13 +21,12 @@ import {
   ViewButton,
 } from './styled';
 import { Fragment, useState } from 'react';
-import { ITask, tasks } from './helper';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TasksInfoBox = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
-  const { addingTask } = useSelector((state: RootState) => state.tasks);
+  const [addingTask, setAddingTask] = useState(false);
+  const { tasks } = useSelector((state: RootState) => state.tasks);
 
   const dispatch = useDispatch();
 
@@ -35,7 +34,10 @@ const TasksInfoBox = () => {
     setModalOpen(!modalOpen);
   };
   const handleAddTask = () => {
-    dispatch(setAddingTask(true));
+    setAddingTask(true);
+  };
+  const handleCheck = (id: string) => {
+    dispatch(toggleTask({ id }));
   };
 
   const lastTasksNumber: number = -3;
@@ -66,9 +68,14 @@ const TasksInfoBox = () => {
             <CheckboxsContainer>
               <FormControlLabel
                 control={
-                  <Checkbox icon={<RadioButtonUncheckedIcon />} checkedIcon={<CheckCircleIcon />} />
+                  <Checkbox
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<CheckCircleIcon />}
+                    checked={task.checked}
+                    onChange={() => handleCheck(task.id)}
+                  />
                 }
-                label={<StatusName>{task.label}</StatusName>}
+                label={<StatusName>{task.text}</StatusName>}
               />
               <Tag text={task.tag} />
             </CheckboxsContainer>
