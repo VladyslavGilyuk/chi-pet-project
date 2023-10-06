@@ -12,16 +12,17 @@ export const tasks: ITask[] = [
     label: 'Redisign ticket',
     tag: 'New',
   },
+
   {
-    label: 'Finish ticket update',
-    tag: 'Urgent',
+    label: 'Update ticket report',
+    tag: 'Default',
   },
   {
     label: 'Create new ticket example',
     tag: 'New',
   },
   {
-    label: 'Update ticket report',
-    tag: 'Default',
+    label: 'Finish ticket update',
+    tag: 'Urgent',
   },
 ];

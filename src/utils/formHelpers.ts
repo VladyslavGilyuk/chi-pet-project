@@ -27,6 +27,15 @@ export interface ISingInFormHelper extends IBaseField {
 export interface ISingUpFormHelper extends IBaseField {
   name: TSignUpFieldNames;
 }
+export interface ITasksFormHelper {
+  name: string;
+  label: string;
+  validations: {
+    required: string;
+  };
+  placeholder: string;
+  type: string;
+}
 
 const emailPattern: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const passwordPattern: RegExp = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
@@ -119,8 +128,19 @@ const useFormHelpers = (t: (key: string) => string) => {
       showIcon: true,
     },
   ];
+  const TasksFormHelper: ITasksFormHelper[] = [
+    {
+      name: 'task',
+      label: 'task',
+      validations: {
+        required: 'Password is required',
+      },
+      placeholder: 'Enter text',
+      type: 'text',
+    },
+  ];
 
-  return { SingInFormHelper, SingUpFormHelper };
+  return { SingInFormHelper, SingUpFormHelper, TasksFormHelper };
 };
 
 export default useFormHelpers;

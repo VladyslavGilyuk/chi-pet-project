@@ -118,7 +118,9 @@ const Value = styled(Typography)`
 `;
 const StyledHr = styled('hr')`
   width: 100%;
-  color: ${colors.grayDivider};
+  height: 1px;
+  background-color: ${colors.grayDivider};
+  border: none;
 `;
 
 const InputContainer = styled(Box)`
@@ -127,10 +129,10 @@ const InputContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 32px;
+  padding: 25px 32px 10px 32px;
 `;
 const StyledInput = styled(TextField)`
-  width: 200px;
+  width: 300px;
   color: ${colors.grayLight};
   font-size: ${fonts.size.medium};
   font-style: normal;
@@ -141,6 +143,10 @@ const StyledInput = styled(TextField)`
     padding: 8px;
   }
 `;
+const StyledBox = styled(Box)`
+  display: flex;
+  align-items: center;
+`;
 const CreateButton = styled(Button)`
   color: ${colors.primaryWhite};
   text-align: right;
@@ -150,6 +156,7 @@ const CreateButton = styled(Button)`
   font-style: normal;
   line-height: 20px;
   padding: 8px;
+  margin-left: 5px;
 `;
 export {
   Container,
@@ -168,5 +175,6 @@ export {
   StyledHr,
   InputContainer,
   StyledInput,
+  StyledBox,
   CreateButton,
 };

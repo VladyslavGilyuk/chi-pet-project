@@ -98,7 +98,9 @@ const Value = styled(Typography)`
 `;
 const StyledHr = styled('hr')`
   width: 100%;
-  color: ${colors.grayDivider};
+  height: 1px;
+  background-color: ${colors.grayDivider};
+  border: none;
 `;
 export {
   Container,

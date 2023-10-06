@@ -1,40 +1,33 @@
 import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CustomSelect from '../select';
 
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import { RootState } from '../../../store';
 import Tag from '../tags';
+import TaskForm from '../../form/tasks';
 import TasksModal from '../../common/modals/tasks';
+import { setAddingTask } from '../../../store/tasks/slice';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxsContainer,
   Container,
-  CreateButton,
   CreateText,
   HeadingContainer,
   HeadingText,
-  InputContainer,
   StatusName,
   StyledHr,
-  StyledInput,
   TicketsContainer,
   TimelineText,
   ViewButton,
 } from './styled';
 import { Fragment, useState } from 'react';
 import { ITask, tasks } from './helper';
-import { setAddingTask, setNewLabel, setSelectedStatus } from '../../../store/tasks/slice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TasksInfoBox = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const {
-    label: newTask,
-    status: selectedStatus,
-    addingTask,
-  } = useSelector((state: RootState) => state.tasks);
+  const { addingTask } = useSelector((state: RootState) => state.tasks);
 
   const dispatch = useDispatch();
 
@@ -45,23 +38,8 @@ const TasksInfoBox = () => {
     dispatch(setAddingTask(true));
   };
 
-  const handleCreateTask = () => {
-    if (newTask.trim() !== '') {
-      tasks.push({ label: newTask, tag: selectedStatus });
-      dispatch(setNewLabel(''));
-      dispatch(setSelectedStatus('Default'));
-      dispatch(setAddingTask(false));
-    }
-  };
-
-  const statusOptions = [
-    { value: 'Urgent', label: 'Urgent' },
-    { value: 'New', label: 'New' },
-    { value: 'Default', label: 'Default' },
-  ];
-
   const lastTasksNumber: number = -3;
-  const visibleTasks: ITask[] = tasks.slice(lastTasksNumber);
+  const visibleTasks: ITask[] = tasks.slice(lastTasksNumber).reverse();
 
   return (
     <Container>
@@ -77,22 +55,7 @@ const TasksInfoBox = () => {
           <AddIcon onClick={handleAddTask} />
         </TicketsContainer>
       ) : (
-        <InputContainer>
-          <StyledInput
-            type='text'
-            value={newTask}
-            onChange={(e) => dispatch(setNewLabel(e.target.value))}
-            placeholder='Enter task text'
-          />
-          <CustomSelect
-            value={selectedStatus}
-            onChange={(e) => dispatch(setSelectedStatus(e.target.value))}
-            options={statusOptions}
-          />
-          <CreateButton variant='contained' onClick={handleCreateTask}>
-            Create
-          </CreateButton>
-        </InputContainer>
+        <TaskForm />
       )}
 
       <StyledHr />
@@ -103,11 +66,7 @@ const TasksInfoBox = () => {
             <CheckboxsContainer>
               <FormControlLabel
                 control={
-                  <Checkbox
-                    icon={<RadioButtonUncheckedIcon />}
-                    checkedIcon={<CheckCircleIcon />}
-                    defaultChecked={isLastTask}
-                  />
+                  <Checkbox icon={<RadioButtonUncheckedIcon />} checkedIcon={<CheckCircleIcon />} />
                 }
                 label={<StatusName>{task.label}</StatusName>}
               />

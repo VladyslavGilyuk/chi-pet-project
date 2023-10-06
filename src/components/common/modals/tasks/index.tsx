@@ -18,6 +18,7 @@ interface TasksModalProps {
   toggleModal: () => void;
 }
 const TasksModal = ({ toggleModal }: TasksModalProps) => {
+  const visibleTasks = [...tasks].reverse();
   return (
     <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
@@ -28,7 +29,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
           </ViewButton>
         </HeadingContainer>
         <StyledHr />
-        {tasks.map((task, index) => {
+        {visibleTasks.map((task, index) => {
           const isLastTask = index === tasks.length - 1;
           return (
             <Fragment key={index}>
@@ -38,7 +39,6 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
                     <Checkbox
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<CheckCircleIcon />}
-                      defaultChecked={isLastTask}
                     />
                   }
                   label={<StatusName>{task.label}</StatusName>}
