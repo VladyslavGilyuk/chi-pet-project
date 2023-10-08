@@ -4,7 +4,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../tags';
 import TaskForm from '../../form/tasks';
 import TasksModal from '../../modals/tasks';
-import { toggleTask } from '../../../store/tasks/slice';
+import { toggleTask } from '../../../store/tasks/actions';
 import { visibleTasks } from '../../../store/tasks/selectors';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const TasksInfoBox = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTaskCreation, setIsAddingTask] = useState(false);
+
   const tasks = useSelector(visibleTasks);
   const dispatch = useDispatch();
 

@@ -11,3 +11,12 @@ export interface ITaskInput {
 export interface ITasksState {
   tasks: ITask[];
 }
+
+export interface IAddTaskPayload {
+  text: string;
+  tag: string;
+}
+
+export interface IToggleTaskPayload {
+  id: string;
+}

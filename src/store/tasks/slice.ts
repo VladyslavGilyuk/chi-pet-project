@@ -1,7 +1,8 @@
-import { ITasksState } from '../../types/tasks';
-import { createSlice } from '@reduxjs/toolkit';
 import { tasks } from '../../utils/mockData';
-import { addTaskReducer, toggleTaskReducer } from './actions';
+import { v4 as uuidv4 } from 'uuid';
+import { IAddTaskPayload, ITasksState, IToggleTaskPayload } from '../../types/tasks';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { addTask, toggleTask } from './actions';
 
 const initialState: ITasksState = {
   tasks,
@@ -10,12 +11,23 @@ const initialState: ITasksState = {
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {
-    addTask: addTaskReducer,
-    toggleTask: toggleTaskReducer,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(addTask, (state, action: PayloadAction<IAddTaskPayload>) => {
+      state.tasks.push({
+        text: action.payload.text,
+        tag: action.payload.tag,
+        checked: false,
+        id: uuidv4(),
+      });
+    });
+    builder.addCase(toggleTask, (state, action: PayloadAction<IToggleTaskPayload>) => {
+      const task = state.tasks.find((task) => task.id === action.payload.id);
+      if (task) {
+        task.checked = !task.checked;
+      }
+    });
   },
 });
-
-export const { addTask, toggleTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

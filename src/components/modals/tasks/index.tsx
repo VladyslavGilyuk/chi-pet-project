@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../../overview/tags';
 import { modalTasks } from '../../../store/tasks/selectors';
-import { toggleTask } from '../../../store/tasks/slice';
+import { toggleTask } from '../../../store/tasks/actions';
 import { BoxContainer, HeadingContainer } from './styled';
 import { Checkbox, FormControlLabel, Modal } from '@mui/material';
 import {
