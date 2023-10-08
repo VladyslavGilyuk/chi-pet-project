@@ -1,4 +1,4 @@
-import { colors } from '../../../../theme';
+import { colors } from '../../../theme';
 import { Box, styled } from '@mui/material';
 
 const BoxContainer = styled(Box)`
@@ -6,7 +6,7 @@ const BoxContainer = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
+  width: 380px;
   height: 500px;
   background: ${colors.primaryWhite};
   color: black;

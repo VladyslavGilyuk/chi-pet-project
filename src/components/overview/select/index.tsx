@@ -2,18 +2,18 @@ import React from 'react';
 import { StyledSelect } from './styled';
 import { MenuItem, SelectChangeEvent } from '@mui/material';
 
-interface SelectOption {
+export interface ISelectOptions {
   value: string;
   label: string;
 }
 
-interface SelectProps {
+interface ISelectProps {
   value: string;
   onChange: (event: SelectChangeEvent<string>) => void;
-  options: SelectOption[];
+  options: ISelectOptions[];
 }
 
-const CustomSelect: React.FC<SelectProps> = ({ value, onChange, options }) => {
+const CustomSelect: React.FC<ISelectProps> = ({ value, onChange, options }) => {
   return (
     <StyledSelect value={value} onChange={(e) => onChange(e as SelectChangeEvent<string>)}>
       {options.map(({ value, label }) => (

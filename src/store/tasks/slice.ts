@@ -1,41 +1,10 @@
 import { ITasksState } from '../../types/tasks';
 import { createSlice } from '@reduxjs/toolkit';
+import { tasks } from '../../utils/mockData';
 import { addTaskReducer, toggleTaskReducer } from './actions';
 
 const initialState: ITasksState = {
-  tasks: [
-    {
-      id: '1',
-      text: 'Delete ticket',
-      tag: 'Urgent',
-      checked: false,
-    },
-    {
-      id: '2',
-      text: 'Redisign ticket',
-      tag: 'New',
-      checked: false,
-    },
-
-    {
-      id: '3',
-      text: 'Update ticket report',
-      tag: 'Default',
-      checked: true,
-    },
-    {
-      id: '4',
-      text: 'Create new ticket example',
-      tag: 'New',
-      checked: false,
-    },
-    {
-      id: '5',
-      text: 'Finish ticket update',
-      tag: 'Urgent',
-      checked: false,
-    },
-  ],
+  tasks,
 };
 
 export const tasksSlice = createSlice({

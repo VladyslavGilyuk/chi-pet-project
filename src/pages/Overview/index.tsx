@@ -1,14 +1,14 @@
 import { ActionContainer } from './styled';
 import InfoCards from '../../components/overview/infoCards';
 import TasksInfoBox from '../../components/overview/tasksInfoBox';
-import UnresolvedInfoBox from '../../components/overview/unresolvedInfoBox';
+import UnresolvedTicketsBox from '../../components/overview/unresolvedTicketsBox';
 
 const Overview = () => {
   return (
     <>
       <InfoCards />
       <ActionContainer>
-        <UnresolvedInfoBox />
+        <UnresolvedTicketsBox />
         <TasksInfoBox />
       </ActionContainer>
     </>

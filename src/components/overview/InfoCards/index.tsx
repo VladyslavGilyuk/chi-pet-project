@@ -4,11 +4,11 @@ import { BoxContainer, HeadingText, StyledBox, StyledTypography } from './styled
 const InfoCards = () => {
   return (
     <BoxContainer>
-      {cardsData.map((data) => {
+      {cardsData.map(({ heading, value }) => {
         return (
-          <StyledBox key={data.heading}>
-            <HeadingText>{data.heading}</HeadingText>
-            <StyledTypography>{data.value}</StyledTypography>
+          <StyledBox key={heading}>
+            <HeadingText>{heading}</HeadingText>
+            <StyledTypography>{value}</StyledTypography>
           </StyledBox>
         );
       })}

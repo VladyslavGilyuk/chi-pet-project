@@ -1,9 +1,9 @@
-export interface ICardsData {
+export interface ICards {
   heading: string;
   value: number;
 }
 
-export const cardsData: ICardsData[] = [
+export const cardsData: ICards[] = [
   {
     heading: 'Unresolved',
     value: 60,

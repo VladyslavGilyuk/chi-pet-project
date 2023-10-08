@@ -1,7 +1,8 @@
-import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
+import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import { Fragment } from 'react';
-import Tag from '../../../overview/tags';
-import { tickets } from '../../../overview/unresolvedInfoBox/helper';
+import Tag from '../../overview/tags';
+import { TicketStatus } from './helper';
+import { tickets } from '../../overview/unresolvedTicketsBox/helper';
 import {
   BoxContainer,
   HeadingContainer,
@@ -14,19 +15,12 @@ import {
   HeadingText,
   MainInfoContainer,
   StyledHr,
-} from '../../../overview/unresolvedInfoBox/styled';
+} from '../../overview/unresolvedTicketsBox/styled';
 import { Modal, Typography } from '@mui/material';
 
 interface UnresolvedTicketsModalProps {
   toggleModal: () => void;
 }
-
-const TicketStatus: Record<string, string> = {
-  Urgent: 'Urgent',
-  New: 'New',
-  Default: 'Default',
-  Total: 'Total',
-};
 
 const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) => {
   return (
@@ -43,21 +37,21 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
             <MainInfoContainer>
               <StatusName>{ticket.status}:</StatusName>
               <TicketsContainer>
-                {Object.keys(TicketStatus).map((text, index) => (
+                {TicketStatus.map((status, index) => (
                   <Value key={index}>
-                    {text === 'Total' ? (
+                    {status.key === 'Total' ? (
                       <>
                         <Typography>Total:</Typography>
                         <Typography>{ticket.value}</Typography>
                       </>
                     ) : (
                       <>
-                        <Tag text={TicketStatus[text]} />
-                        {text === TicketStatus.Urgent
+                        <Tag text={status.value} />
+                        {status.key === 'Urgent'
                           ? ticket.urgent
-                          : text === TicketStatus.New
+                          : status.key === 'New'
                           ? ticket.new
-                          : text === TicketStatus.Default
+                          : status.key === 'Default'
                           ? ticket.default
                           : null}
                       </>

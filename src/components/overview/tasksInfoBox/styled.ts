@@ -76,7 +76,7 @@ const CreateText = styled(Typography)`
   line-height: 20px;
   letter-spacing: ${fonts.spacing.small};
 `;
-const CheckboxsContainer = styled(Box)`
+const CheckboxContainer = styled(Box)`
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -165,7 +165,7 @@ export {
   TimelineText,
   CreateText,
   GroupName,
-  CheckboxsContainer,
+  CheckboxContainer,
   TicketsContainer,
   Value,
   StyledCheckbox,

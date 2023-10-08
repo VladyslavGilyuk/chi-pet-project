@@ -36,5 +36,17 @@ const CreateButton = styled(Button)`
   padding: 8px;
   margin-left: 5px;
 `;
+const StyledButton = styled(Button)`
+  && {
+    color: red;
+    font-size: ${fonts.size.medium};
+    font-weight: ${fonts.weight.medium};
+    letter-spacing: ${fonts.spacing.small};
+    font-style: normal;
+    text-transform: none;
+    background: none;
+    min-width: 8px;
+  }
+`;
 
-export { CreateButton, Form, StyledInput, StyledBox };
+export { CreateButton, Form, StyledInput, StyledBox, StyledButton };

@@ -1,12 +1,12 @@
 import { Box, Button, Typography, styled } from '@mui/material';
-import { colors, fonts } from '../../../../theme';
+import { colors, fonts } from '../../../theme';
 
 const BoxContainer = styled(Box)`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
+  width: 380px;
   height: 500px;
   background: ${colors.primaryWhite};
   color: black;
