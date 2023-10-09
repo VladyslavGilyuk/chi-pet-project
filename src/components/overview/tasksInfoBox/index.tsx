@@ -4,8 +4,8 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../tags';
 import TaskForm from '../../form/tasks';
 import TasksModal from '../../modals/tasks';
-import { toggleTask } from '../../../store/tasks/actions';
-import { visibleTasks } from '../../../store/tasks/selectors';
+import { toggleTask } from '../../../store/tasks/slice';
+import { visibleTasks } from '../../../store/tasks/selector';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import {
   CheckboxContainer,
@@ -27,6 +27,7 @@ const TasksInfoBox = () => {
   const [isTaskCreation, setIsAddingTask] = useState(false);
 
   const tasks = useSelector(visibleTasks);
+
   const dispatch = useDispatch();
 
   const toggleModal = () => {

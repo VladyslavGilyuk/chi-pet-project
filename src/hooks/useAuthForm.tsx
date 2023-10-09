@@ -4,16 +4,17 @@ import { useAppDispatch } from '../store/hooks';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ICommonFieldValues, ISignIn, ISignUp } from '../types/auth';
-import { signInAsync, signUpAsync } from '../store/user/actions';
+import { signInAsync, signUpAsync } from '../store/user/thunk';
 
 const useAuthForm = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<ICommonFieldValues>();
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
 
   const onSignInSubmit: SubmitHandler<ISignIn> = (data: ISignIn) => {
     dispatch(signInAsync(data)).then((response) => {

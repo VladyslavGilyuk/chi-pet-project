@@ -1,10 +1,7 @@
 import { Notify } from '../../utils/notify';
 import UserService from '../../service/UserService';
-import { UserState } from '../../types/user';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ISignIn, ISignUpAsync } from '../../types/auth';
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-
-export const setUser = createAction<UserState>('user/setUser');
 
 export const signInAsync = createAsyncThunk('auth/signIn', async (data: ISignIn) => {
   return UserService.login(data)

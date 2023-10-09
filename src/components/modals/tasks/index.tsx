@@ -3,8 +3,8 @@ import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import { Fragment } from 'react';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../../overview/tags';
-import { modalTasks } from '../../../store/tasks/selectors';
-import { toggleTask } from '../../../store/tasks/actions';
+import { modalTasks } from '../../../store/tasks/selector';
+import { toggleTask } from '../../../store/tasks/slice';
 import { BoxContainer, HeadingContainer } from './styled';
 import { Checkbox, FormControlLabel, Modal } from '@mui/material';
 import {
@@ -21,13 +21,14 @@ interface TasksModalProps {
 }
 
 const TasksModal = ({ toggleModal }: TasksModalProps) => {
+  const tasks = useSelector(modalTasks);
+
   const dispatch = useDispatch();
 
   const handleCheck = (id: string) => {
     dispatch(toggleTask(id));
   };
 
-  const tasks = useSelector(modalTasks);
   return (
     <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
@@ -39,7 +40,7 @@ const TasksModal = ({ toggleModal }: TasksModalProps) => {
         </HeadingContainer>
         <StyledHr />
         {tasks.map(({ id, checked, text, tag }, index) => {
-          const isLastTask = id === tasks[tasks.length - 1].id;
+          const isLastTask = index === tasks.length - 1;
           return (
             <Fragment key={index}>
               <CheckboxContainer>

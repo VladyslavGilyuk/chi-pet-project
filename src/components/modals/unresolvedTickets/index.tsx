@@ -1,7 +1,6 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import { Fragment } from 'react';
 import Tag from '../../overview/tags';
-import { TicketStatus } from './helper';
 import { tickets } from '../../overview/unresolvedTicketsBox/helper';
 import {
   BoxContainer,
@@ -37,27 +36,16 @@ const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) =>
             <MainInfoContainer>
               <StatusName>{ticket.status}:</StatusName>
               <TicketsContainer>
-                {TicketStatus.map((status, index) => (
+                {Object.entries(ticket.categories).map(([key, value], index) => (
                   <Value key={index}>
-                    {status.key === 'Total' ? (
-                      <>
-                        <Typography>Total:</Typography>
-                        <Typography>{ticket.value}</Typography>
-                      </>
-                    ) : (
-                      <>
-                        <Tag text={status.value} />
-                        {status.key === 'Urgent'
-                          ? ticket.urgent
-                          : status.key === 'New'
-                          ? ticket.new
-                          : status.key === 'Default'
-                          ? ticket.default
-                          : null}
-                      </>
-                    )}
+                    <Tag text={key} />
+                    <Typography>{value}</Typography>
                   </Value>
                 ))}
+                <Value>
+                  <Typography>Total: </Typography>
+                  <Typography>{ticket.Total}</Typography>
+                </Value>
               </TicketsContainer>
             </MainInfoContainer>
             {index !== tickets.length - 1 && <StyledHr />}

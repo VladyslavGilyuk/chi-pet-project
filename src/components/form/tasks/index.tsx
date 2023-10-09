@@ -1,17 +1,15 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import CustomSelect from '../../overview/select';
-import { addTask } from '../../../store/tasks/actions';
+import { addTask } from '../../../store/tasks/slice';
 import { statusOptions } from './helper';
 import { useDispatch } from 'react-redux';
 import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { CreateButton, Form, StyledBox, StyledButton, StyledInput } from './styled';
-interface UnresolvedTicketsModalProps {
+interface IProps {
   handleAddTask: () => void;
 }
 
-const TaskForm = ({ handleAddTask }: UnresolvedTicketsModalProps) => {
-  const dispatch = useDispatch();
-
+const TaskForm = ({ handleAddTask }: IProps) => {
   const {
     handleSubmit,
     register,
@@ -20,8 +18,10 @@ const TaskForm = ({ handleAddTask }: UnresolvedTicketsModalProps) => {
     reset,
   } = useForm();
 
+  const dispatch = useDispatch();
+
   const handleCreateTask: SubmitHandler<FieldValues> = ({ text, tag }) => {
-    dispatch(addTask(text, tag));
+    dispatch(addTask({ text, tag }));
     reset();
   };
 

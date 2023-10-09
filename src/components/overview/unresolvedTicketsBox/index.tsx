@@ -14,16 +14,16 @@ import {
   Value,
 } from './styled';
 import { Fragment, useState } from 'react';
-import { IUnresolvedTickets, tickets } from './helper';
+import { IUnresolvedTicket, tickets } from './helper';
 
 const UnresolvedTicketsBox = () => {
   const [isModalOpen, setisModalOpen] = useState(false);
 
+  const visibleTickets: IUnresolvedTicket[] = tickets.slice(-4);
+
   const toggleModal = () => {
     setisModalOpen((prev) => !prev);
   };
-
-  const visibleTickets: IUnresolvedTickets[] = tickets.slice(-4);
 
   return (
     <Container>
@@ -35,12 +35,12 @@ const UnresolvedTicketsBox = () => {
         <Group>Group:</Group>
         <GroupName>Support</GroupName>
       </GroupContainer>
-      {visibleTickets.map(({ status, value }, index) => (
+      {visibleTickets.map(({ status, Total }, index) => (
         <Fragment key={index}>
           <MainInfoContainer>
             <TicketsContainer>
               <StatusName>{status}</StatusName>
-              <Value>{value}</Value>
+              <Value>{Total}</Value>
             </TicketsContainer>
           </MainInfoContainer>
           {index !== visibleTickets.length - 1 && <StyledHr />}
