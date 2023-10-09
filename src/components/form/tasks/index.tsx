@@ -1,10 +1,12 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import CustomSelect from '../../overview/select';
 import { addTask } from '../../../store/tasks/slice';
+import { memo } from 'react';
 import { statusOptions } from './helper';
 import { useDispatch } from 'react-redux';
 import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { CreateButton, Form, StyledBox, StyledButton, StyledInput } from './styled';
+
 interface IProps {
   handleAddTask: () => void;
 }
@@ -60,4 +62,4 @@ const TaskForm = ({ handleAddTask }: IProps) => {
   );
 };
 
-export default TaskForm;
+export default memo(TaskForm);

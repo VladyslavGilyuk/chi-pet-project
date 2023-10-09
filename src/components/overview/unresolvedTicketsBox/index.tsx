@@ -13,17 +13,17 @@ import {
   TicketsContainer,
   Value,
 } from './styled';
-import { Fragment, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { IUnresolvedTicket, tickets } from './helper';
 
 const UnresolvedTicketsBox = () => {
   const [isModalOpen, setisModalOpen] = useState(false);
 
-  const visibleTickets: IUnresolvedTicket[] = tickets.slice(-4);
+  const visibleTickets: IUnresolvedTicket[] = useMemo(() => tickets.slice(-4), [tickets]);
 
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     setisModalOpen((prev) => !prev);
-  };
+  }, []);
 
   return (
     <Container>
@@ -35,17 +35,23 @@ const UnresolvedTicketsBox = () => {
         <Group>Group:</Group>
         <GroupName>Support</GroupName>
       </GroupContainer>
-      {visibleTickets.map(({ status, Total }, index) => (
-        <Fragment key={index}>
-          <MainInfoContainer>
-            <TicketsContainer>
-              <StatusName>{status}</StatusName>
-              <Value>{Total}</Value>
-            </TicketsContainer>
-          </MainInfoContainer>
-          {index !== visibleTickets.length - 1 && <StyledHr />}
-        </Fragment>
-      ))}
+      {useMemo(
+        () =>
+          visibleTickets.map(({ status, Total }, index) => {
+            return (
+              <Fragment key={index}>
+                <MainInfoContainer>
+                  <TicketsContainer>
+                    <StatusName>{status}</StatusName>
+                    <Value>{Total}</Value>
+                  </TicketsContainer>
+                </MainInfoContainer>
+                {index !== visibleTickets.length - 1 && <StyledHr />}
+              </Fragment>
+            );
+          }),
+        [visibleTickets],
+      )}
       {isModalOpen && (
         <>
           <UnresolvedTicketsModal toggleModal={toggleModal} />

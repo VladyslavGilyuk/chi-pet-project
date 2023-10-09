@@ -19,7 +19,7 @@ import {
   TimelineText,
   ViewButton,
 } from './styled';
-import { Fragment, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TasksInfoBox = () => {
@@ -27,18 +27,22 @@ const TasksInfoBox = () => {
   const [isTaskCreation, setIsAddingTask] = useState(false);
 
   const tasks = useSelector(visibleTasks);
-
   const dispatch = useDispatch();
 
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
-  };
-  const handleAddTask = () => {
+  }, []);
+
+  const handleAddTask = useCallback(() => {
     setIsAddingTask((prev) => !prev);
-  };
-  const handleCheck = (id: string) => {
-    dispatch(toggleTask(id));
-  };
+  }, []);
+
+  const handleCheck = useCallback(
+    (id: string) => {
+      dispatch(toggleTask(id));
+    },
+    [dispatch],
+  );
 
   return (
     <Container>
@@ -47,7 +51,6 @@ const TasksInfoBox = () => {
         <ViewButton onClick={toggleModal}>View all</ViewButton>
       </HeadingContainer>
       <TimelineText>Today</TimelineText>
-
       {!isTaskCreation ? (
         <TicketsContainer>
           <CreateText>Create new task</CreateText>
@@ -57,28 +60,32 @@ const TasksInfoBox = () => {
         <TaskForm handleAddTask={handleAddTask} />
       )}
       <StyledHr />
-      {tasks.map(({ id, text, checked, tag }, index) => {
-        const isLastTask = index === tasks.length - 1;
-        return (
-          <Fragment key={index}>
-            <CheckboxContainer>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    icon={<RadioButtonUncheckedIcon />}
-                    checkedIcon={<CheckCircleIcon />}
-                    checked={checked}
-                    onChange={() => handleCheck(id)}
+      {useMemo(
+        () =>
+          tasks.map(({ id, text, checked, tag }, index) => {
+            const isLastTask = index === tasks.length - 1;
+            return (
+              <Fragment key={index}>
+                <CheckboxContainer>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<RadioButtonUncheckedIcon />}
+                        checkedIcon={<CheckCircleIcon />}
+                        checked={checked}
+                        onChange={() => handleCheck(id)}
+                      />
+                    }
+                    label={<StatusName>{text}</StatusName>}
                   />
-                }
-                label={<StatusName>{text}</StatusName>}
-              />
-              <Tag text={tag} />
-            </CheckboxContainer>
-            {!isLastTask && <StyledHr />}
-          </Fragment>
-        );
-      })}
+                  <Tag text={tag} />
+                </CheckboxContainer>
+                {!isLastTask && <StyledHr />}
+              </Fragment>
+            );
+          }),
+        [tasks, handleCheck],
+      )}
       {isModalOpen && (
         <>
           <TasksModal toggleModal={toggleModal} />
