@@ -1,11 +1,11 @@
 import { StyledTag } from './styled';
 import { tagColorMap } from './helper';
 
-interface TagProp {
+interface IProps {
   text: string;
 }
 
-const Tag: React.FC<TagProp> = ({ text }) => {
+const Tag: React.FC<IProps> = ({ text }) => {
   const { color, backgroundColor } = tagColorMap[text] || tagColorMap.Default;
 
   return (

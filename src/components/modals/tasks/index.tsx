@@ -16,11 +16,11 @@ import {
 } from '../../overview/tasksInfoBox/styled';
 import { useDispatch, useSelector } from 'react-redux';
 
-interface TasksModalProps {
+interface IProps {
   toggleModal: () => void;
 }
 
-const TasksModal = ({ toggleModal }: TasksModalProps) => {
+const TasksModal = ({ toggleModal }: IProps) => {
   const tasks = useSelector(modalTasks);
 
   const dispatch = useDispatch();

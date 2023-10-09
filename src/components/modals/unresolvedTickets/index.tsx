@@ -17,11 +17,11 @@ import {
 } from '../../overview/unresolvedTicketsBox/styled';
 import { Modal, Typography } from '@mui/material';
 
-interface UnresolvedTicketsModalProps {
+interface IProps {
   toggleModal: () => void;
 }
 
-const UnresolvedTicketsModal = ({ toggleModal }: UnresolvedTicketsModalProps) => {
+const UnresolvedTicketsModal = ({ toggleModal }: IProps) => {
   return (
     <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
