@@ -5,7 +5,7 @@ import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
 import { useCallback, useState } from 'react';
 
-interface FormInputProps extends IBaseField {
+interface IProps extends IBaseField {
   name: TSignInFieldNames | TSignUpFieldNames;
   register: UseFormRegister<ICommonFieldValues>;
   showIcon?: boolean;
@@ -14,7 +14,7 @@ interface FormInputProps extends IBaseField {
   isFullWidth?: boolean;
 }
 
-const FormInput: React.FC<FormInputProps> = ({
+const FormInput: React.FC<IProps> = ({
   label,
   name,
   validations,

@@ -5,11 +5,11 @@ import { LinksWrapper, StyledIconWrapper, StyledLink } from './styled';
 export interface LocationType {
   pathname: string;
 }
-interface NavLinkProps {
+interface IProps {
   link: INavLinks;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ link }) => {
+const NavLink: React.FC<IProps> = ({ link }) => {
   const location: LocationType = useLocation();
   return (
     <>

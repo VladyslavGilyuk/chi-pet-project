@@ -1,11 +1,11 @@
 import { HeadingText, StyledWrapper, Text } from './styled';
 
-interface HeadingProps {
+interface IProps {
   heading: string;
   description?: string;
 }
 
-const Heading: React.FC<HeadingProps> = ({ heading, description }) => {
+const Heading: React.FC<IProps> = ({ heading, description }) => {
   return (
     <StyledWrapper>
       <HeadingText gutterBottom variant='h2'>

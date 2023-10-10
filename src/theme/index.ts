@@ -1,13 +1,16 @@
 const THEME = {
   colors: {
     primaryWhite: '#FFFFFF',
-    primaryBlue: '#3751FF,',
+    primaryBlue: '#3751FF',
     primaryLightBlue: '#DDE2FF',
     primaryBlack: '#252733',
     primaryGray: '#9FA2B4',
+    primaryYellow: '#FEC400',
+    primaryGreen: '#29CC97',
     whiteBackground: '#F7F8FC',
     graySideBar: '#A4A6B3',
     grayDark: '#4B506D',
+    grayLight: '#C5C7CD',
     grayExtraLight: '#FCFDFE',
     grayLightest: '#F0F1F7',
     grayBackground: '#363740',

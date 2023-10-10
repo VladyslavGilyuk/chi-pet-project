@@ -1,6 +1,6 @@
 import { UserState } from '../../types/user';
 import { createSlice } from '@reduxjs/toolkit';
-import { signInAsync, signUpAsync } from './actions';
+import { signInAsync, signUpAsync } from './thunk';
 
 const initialState: UserState = {
   token: '',
