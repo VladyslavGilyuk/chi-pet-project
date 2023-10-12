@@ -1,6 +1,6 @@
 import Chart from '../chart';
 import { additionalData } from './helper';
-import { format } from 'date-fns';
+import { formatAsOfDate } from '../../../utils/dateFunctions';
 import {
   AdditionalInfoContainer,
   ChartContainer,
@@ -18,15 +18,14 @@ import {
 } from './styled';
 
 const ChartBox = () => {
-  const currentDate = new Date();
-  const formattedDate = format(currentDate, "'as of' dd MMM yyyy, hh:mm a");
+  const date = formatAsOfDate(new Date());
 
   return (
     <Container>
       <ChartContainer>
         <StyledHeader>Today’s trends</StyledHeader>
         <DateContainer>
-          <StyledDate>{formattedDate}</StyledDate>
+          <StyledDate>{date}</StyledDate>
           <LegendContainer>
             <TodayHr />
             <StyledLegend>Today</StyledLegend>

@@ -15,6 +15,7 @@ const THEME = {
     grayLightest: '#F0F1F7',
     grayBackground: '#363740',
     grayDivider: '#DFE0EB',
+    graphDivider: '#EBEDF0',
   },
   fonts: {
     size: {

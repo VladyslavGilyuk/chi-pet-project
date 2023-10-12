@@ -1,5 +1,5 @@
+import { colors } from '../../../theme';
 import { data } from './helper';
-import { useState } from 'react';
 import {
   Area,
   AreaChart,
@@ -9,13 +9,42 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-
+import { FunctionComponent, useState } from 'react';
 const Chart = () => {
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
   const [isTodayHovered, setIsTodayHovered] = useState(false);
   const [isYesterdayHovered, setIsYesterdayHovered] = useState(false);
+  interface IProps {
+    cx: number;
+    cy: number;
+    gray?: boolean;
+  }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const CustomizedDot: FunctionComponent<IProps & any> = ({ cx, cy, gray }) => {
+    return (
+      <svg x={cx - 13} y={cy - 13} height='100' width='100'>
+        <circle
+          cx='13'
+          cy='13'
+          r='5'
+          stroke={gray ? `${colors.grayDark}` : `${colors.primaryBlue}`}
+          strokeWidth='4'
+          fill='white'
+        />
+        <circle
+          cx='13'
+          cy='13'
+          r='12'
+          stroke={gray ? `${colors.grayDark}` : `${colors.primaryBlue}`}
+          opacity='0.16'
+          strokeWidth='2'
+          fill='transparent'
+        />
+      </svg>
+    );
+  };
   const filteredData = data.map((entry) => ({
     ...entry,
     Today: entry.Today && parseInt(entry.hours) < currentHour ? entry.Today : null,
@@ -27,29 +56,30 @@ const Chart = () => {
       <AreaChart data={filteredData} margin={{ top: 20, right: 30, left: 5 }}>
         <defs>
           <linearGradient id='colorToday' x1='0' y1='0' x2='1' y2='0'>
-            <stop offset='5%' stopColor='#3751FF' stopOpacity={0.8} />
-            <stop offset='95%' stopColor='#3751FF' stopOpacity={0} />
+            <stop offset='5%' stopColor={colors.primaryBlue} stopOpacity={0.2} />
+            <stop offset='95%' stopColor={colors.primaryBlue} stopOpacity={0} />
           </linearGradient>
+
           <linearGradient id='colorYesterday' x1='0' y1='0' x2='1' y2='0'>
-            <stop offset='5%' stopColor='#DFE0EB' stopOpacity={0.8} />
-            <stop offset='95%' stopColor='#DFE0EB' stopOpacity={0} />
+            <stop offset='5%' stopColor={colors.grayLight} stopOpacity={0.5} />
+            <stop offset='95%' stopColor={colors.grayLight} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid vertical={false} stroke='#EBEDF0' />
+        <CartesianGrid vertical={false} stroke={colors.graphDivider} />
         <XAxis
           dataKey='hours'
           tickLine={false}
           axisLine={false}
           tickMargin={12}
           tickSize={6}
-          tick={{ fontSize: 10, fill: '#9FA2B4' }}
+          tick={{ fontSize: 10, fill: colors.primaryGray }}
           padding={{ right: 15 }}
         />
         <YAxis
           orientation='right'
           type='number'
           tickLine={false}
-          tick={{ fontSize: 10, fill: '#9FA2B4' }}
+          tick={{ fontSize: 10, fill: colors.primaryGray }}
           ticks={[0, 10, 20, 30, 40, 50, 60]}
           domain={[0, 60]}
           axisLine={false}
@@ -60,43 +90,26 @@ const Chart = () => {
         <Tooltip />
         <Area
           type='natural'
-          dataKey='Today'
-          stroke='#3751FF'
-          fill={isTodayHovered ? 'url(#colorToday)' : 'transparent'}
-          strokeWidth={2}
-          dot={false}
-          activeDot={
-            isTodayHovered
-              ? {
-                  r: 6,
-                  fill: 'white',
-                  strokeWidth: 4,
-                  stroke: '#3751FF',
-                }
-              : undefined
-          }
-          onMouseEnter={() => setIsTodayHovered(true)}
-          onMouseLeave={() => setIsTodayHovered(false)}
-        />
-        <Area
-          type='natural'
           dataKey='Yesterday'
-          stroke='#DFE0EB'
-          fill={isYesterdayHovered ? 'url(#colorYesterday)' : 'transparent'}
+          stroke={colors.grayDivider}
+          fill={isYesterdayHovered ? `url(#colorYesterday)` : 'transparent'}
           strokeWidth={2}
           dot={false}
-          activeDot={
-            isYesterdayHovered
-              ? {
-                  r: 6,
-                  fill: 'white',
-                  strokeWidth: 4,
-                  stroke: '#DFE0EB',
-                }
-              : undefined
-          }
+          activeDot={isYesterdayHovered ? <CustomizedDot gray={true} /> : undefined}
           onMouseEnter={() => setIsYesterdayHovered(true)}
           onMouseLeave={() => setIsYesterdayHovered(false)}
+        />
+
+        <Area
+          type='natural'
+          dataKey='Today'
+          stroke={colors.primaryBlue}
+          fill={isTodayHovered ? `url(#colorToday)` : 'transparent'}
+          strokeWidth={2}
+          dot={false}
+          activeDot={isTodayHovered ? <CustomizedDot gray={false} /> : undefined}
+          onMouseEnter={() => setIsTodayHovered(true)}
+          onMouseLeave={() => setIsTodayHovered(false)}
         />
       </AreaChart>
     </ResponsiveContainer>

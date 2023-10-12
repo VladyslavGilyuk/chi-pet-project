@@ -1,5 +1,5 @@
 import { RootState } from '..';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 
 export const tasks = (state: RootState) => state.tasks.tasks;
 
