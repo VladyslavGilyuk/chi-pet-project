@@ -5,7 +5,6 @@ const ActionContainer = styled(Box)`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
   gap: 30px;
 `;
 export { ActionContainer };
