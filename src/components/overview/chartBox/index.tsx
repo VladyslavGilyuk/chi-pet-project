@@ -6,7 +6,6 @@ import {
   ChartContainer,
   Container,
   DateContainer,
-  HeaderContainer,
   HeadingText,
   LegendContainer,
   StyledBox,
@@ -25,18 +24,16 @@ const ChartBox = () => {
   return (
     <Container>
       <ChartContainer>
-        <HeaderContainer>
-          <StyledHeader>Today’s trends</StyledHeader>
-          <DateContainer>
-            <StyledDate>{formattedDate}</StyledDate>
-            <LegendContainer>
-              <TodayHr />
-              <StyledLegend>Today</StyledLegend>
-              <YesterdayHr />
-              <StyledLegend>Yesterday</StyledLegend>
-            </LegendContainer>
-          </DateContainer>
-        </HeaderContainer>
+        <StyledHeader>Today’s trends</StyledHeader>
+        <DateContainer>
+          <StyledDate>{formattedDate}</StyledDate>
+          <LegendContainer>
+            <TodayHr />
+            <StyledLegend>Today</StyledLegend>
+            <YesterdayHr />
+            <StyledLegend>Yesterday</StyledLegend>
+          </LegendContainer>
+        </DateContainer>
         <Chart />
       </ChartContainer>
       <AdditionalInfoContainer>

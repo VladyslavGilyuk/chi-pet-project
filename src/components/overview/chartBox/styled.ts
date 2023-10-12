@@ -12,7 +12,6 @@ const ChartContainer = styled(Box)`
   width: 67%;
   padding: 32px;
 `;
-const HeaderContainer = styled(Box)``;
 const DateContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
@@ -37,6 +36,7 @@ const StyledDate = styled(Typography)`
 `;
 const LegendContainer = styled(Box)`
   display: flex;
+  align-items: center;
 `;
 const TodayHr = styled('hr')`
   width: 16px;
@@ -103,7 +103,6 @@ export {
   Container,
   TodayHr,
   YesterdayHr,
-  HeaderContainer,
   StyledLegend,
   DateContainer,
   StyledDate,
