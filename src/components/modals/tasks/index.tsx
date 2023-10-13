@@ -2,7 +2,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import { Fragment } from 'react';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import Tag from '../../overview/tags';
+import Tag from '../../common/tags';
 import { modalTasks } from '../../../store/tasks/selector';
 import { toggleTask } from '../../../store/tasks/slice';
 import { BoxContainer, HeadingContainer } from './styled';

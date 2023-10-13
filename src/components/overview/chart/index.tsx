@@ -1,5 +1,6 @@
+import CustomizedDot from '../customizedDot';
 import { colors } from '../../../theme';
-import { data } from './helper';
+import { useState } from 'react';
 import {
   Area,
   AreaChart,
@@ -9,62 +10,32 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { FunctionComponent, useState } from 'react';
+import { data, gradients, yDomain, yTicks } from './helper';
+import { tick, xTickPadding } from './styled';
+
 const Chart = () => {
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
   const [isTodayHovered, setIsTodayHovered] = useState(false);
   const [isYesterdayHovered, setIsYesterdayHovered] = useState(false);
-  interface IProps {
-    cx: number;
-    cy: number;
-    gray?: boolean;
-  }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const CustomizedDot: FunctionComponent<IProps & any> = ({ cx, cy, gray }) => {
-    return (
-      <svg x={cx - 13} y={cy - 13} height='100' width='100'>
-        <circle
-          cx='13'
-          cy='13'
-          r='5'
-          stroke={gray ? `${colors.grayDark}` : `${colors.primaryBlue}`}
-          strokeWidth='4'
-          fill='white'
-        />
-        <circle
-          cx='13'
-          cy='13'
-          r='12'
-          stroke={gray ? `${colors.grayDark}` : `${colors.primaryBlue}`}
-          opacity='0.16'
-          strokeWidth='2'
-          fill='transparent'
-        />
-      </svg>
-    );
-  };
   const filteredData = data.map((entry) => ({
     ...entry,
-    Today: entry.Today && parseInt(entry.hours) < currentHour ? entry.Today : null,
-    Yesterday: entry.Yesterday && parseInt(entry.hours) < currentHour ? entry.Yesterday : null,
+    today: entry.today && parseInt(entry.hours) < currentHour ? entry.today : null,
+    yesterday: entry.yesterday && parseInt(entry.hours) < currentHour ? entry.yesterday : null,
   }));
+
+  const linearGradients = gradients.map(({ id, color, opacity }) => (
+    <linearGradient key={id} id={id} x1='0' y1='0' x2='1' y2='0'>
+      <stop offset='5%' stopColor={color} stopOpacity={opacity} />
+      <stop offset='95%' stopColor={color} stopOpacity={0} />
+    </linearGradient>
+  ));
 
   return (
     <ResponsiveContainer width='100%' height={380}>
       <AreaChart data={filteredData} margin={{ top: 20, right: 30, left: 5 }}>
-        <defs>
-          <linearGradient id='colorToday' x1='0' y1='0' x2='1' y2='0'>
-            <stop offset='5%' stopColor={colors.primaryBlue} stopOpacity={0.2} />
-            <stop offset='95%' stopColor={colors.primaryBlue} stopOpacity={0} />
-          </linearGradient>
-
-          <linearGradient id='colorYesterday' x1='0' y1='0' x2='1' y2='0'>
-            <stop offset='5%' stopColor={colors.grayLight} stopOpacity={0.5} />
-            <stop offset='95%' stopColor={colors.grayLight} stopOpacity={0} />
-          </linearGradient>
-        </defs>
+        <defs>{linearGradients}</defs>
         <CartesianGrid vertical={false} stroke={colors.graphDivider} />
         <XAxis
           dataKey='hours'
@@ -72,16 +43,16 @@ const Chart = () => {
           axisLine={false}
           tickMargin={12}
           tickSize={6}
-          tick={{ fontSize: 10, fill: colors.primaryGray }}
-          padding={{ right: 15 }}
+          tick={tick}
+          padding={xTickPadding}
         />
         <YAxis
           orientation='right'
           type='number'
           tickLine={false}
-          tick={{ fontSize: 10, fill: colors.primaryGray }}
-          ticks={[0, 10, 20, 30, 40, 50, 60]}
-          domain={[0, 60]}
+          tick={tick}
+          ticks={yTicks}
+          domain={yDomain}
           axisLine={false}
           mirror={true}
           tickMargin={-5}
@@ -90,7 +61,7 @@ const Chart = () => {
         <Tooltip />
         <Area
           type='natural'
-          dataKey='Yesterday'
+          dataKey='yesterday'
           stroke={colors.grayDivider}
           fill={isYesterdayHovered ? `url(#colorYesterday)` : 'transparent'}
           strokeWidth={2}
@@ -102,7 +73,7 @@ const Chart = () => {
 
         <Area
           type='natural'
-          dataKey='Today'
+          dataKey='today'
           stroke={colors.primaryBlue}
           fill={isTodayHovered ? `url(#colorToday)` : 'transparent'}
           strokeWidth={2}

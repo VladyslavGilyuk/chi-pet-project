@@ -1,5 +1,5 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
-import CustomSelect from '../../overview/select';
+import CustomSelect from '../../common/select';
 import { addTask } from '../../../store/tasks/slice';
 import { memo } from 'react';
 import { statusOptions } from './helper';

@@ -1,4 +1,4 @@
-import { ISelectOptions } from '../../overview/select';
+import { ISelectOptions } from '../../common/select';
 
 export const statusOptions: ISelectOptions[] = [
   { value: 'Urgent', label: 'Urgent' },
