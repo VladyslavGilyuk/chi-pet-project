@@ -1,5 +1,11 @@
+import TicketsTable from '../../components/tickets';
+
 const Tickets = () => {
-  return <div>Tickets</div>;
+  return (
+    <div>
+      <TicketsTable />
+    </div>
+  );
 };
 
 export default Tickets;
