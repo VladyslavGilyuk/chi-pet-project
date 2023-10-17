@@ -1,4 +1,5 @@
 import CustomizedDot from '../customizedDot';
+import LinearGradients from '../linearGradients';
 import { colors } from '../../../theme';
 import { useState } from 'react';
 import {
@@ -18,24 +19,26 @@ const Chart = () => {
   const currentHour = currentDate.getHours();
   const [isTodayHovered, setIsTodayHovered] = useState(false);
   const [isYesterdayHovered, setIsYesterdayHovered] = useState(false);
+  interface IEntry {
+    today: number;
+    hours: string;
+  }
 
-  const filteredData = data.map((entry) => ({
+  function calculateTodayValue(entry: IEntry, currentHour: number): number | null {
+    return entry.today && parseInt(entry.hours) <= currentHour ? entry.today : null;
+  }
+
+  const currentData = data.map((entry) => ({
     ...entry,
-    today: entry.today && parseInt(entry.hours) < currentHour ? entry.today : null,
-    yesterday: entry.yesterday && parseInt(entry.hours) < currentHour ? entry.yesterday : null,
+    today: calculateTodayValue(entry, currentHour),
   }));
-
-  const linearGradients = gradients.map(({ id, color, opacity }) => (
-    <linearGradient key={id} id={id} x1='0' y1='0' x2='1' y2='0'>
-      <stop offset='5%' stopColor={color} stopOpacity={opacity} />
-      <stop offset='95%' stopColor={color} stopOpacity={0} />
-    </linearGradient>
-  ));
 
   return (
     <ResponsiveContainer width='100%' height={380}>
-      <AreaChart data={filteredData} margin={{ top: 20, right: 30, left: 5 }}>
-        <defs>{linearGradients}</defs>
+      <AreaChart data={currentData} margin={{ top: 20, right: 30, left: 5 }}>
+        <defs>
+          <LinearGradients gradients={gradients} />
+        </defs>
         <CartesianGrid vertical={false} stroke={colors.graphDivider} />
         <XAxis
           dataKey='hours'
@@ -70,7 +73,6 @@ const Chart = () => {
           onMouseEnter={() => setIsYesterdayHovered(true)}
           onMouseLeave={() => setIsYesterdayHovered(false)}
         />
-
         <Area
           type='natural'
           dataKey='today'
