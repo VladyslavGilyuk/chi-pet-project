@@ -12,4 +12,16 @@ export const tagColorMap: Record<string, { color: string; backgroundColor: strin
     color: colors.primaryGray,
     backgroundColor: colors.grayLightest,
   },
+  High: {
+    color: colors.primaryWhite,
+    backgroundColor: colors.primaryRed,
+  },
+  Normal: {
+    color: colors.primaryWhite,
+    backgroundColor: colors.primaryGreen,
+  },
+  Low: {
+    color: colors.primaryWhite,
+    backgroundColor: colors.primaryYellow,
+  },
 };

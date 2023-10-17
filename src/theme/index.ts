@@ -7,6 +7,7 @@ const THEME = {
     primaryGray: '#9FA2B4',
     primaryYellow: '#FEC400',
     primaryGreen: '#29CC97',
+    primaryRed: '#F12B2C',
     whiteBackground: '#F7F8FC',
     graySideBar: '#A4A6B3',
     grayDark: '#4B506D',

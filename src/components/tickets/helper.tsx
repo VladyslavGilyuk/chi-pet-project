@@ -1,4 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid';
+import Tag from '../common/tags';
 import profilePhoto1 from '../../assets/images/profilePhoto1.png';
 import profilePhoto2 from '../../assets/images/profilePhoto2.png';
 import profilePhoto3 from '../../assets/images/profilePhoto3.png';
@@ -9,7 +10,7 @@ import profilePhoto7 from '../../assets/images/profilePhoto7.png';
 import profilePhoto8 from '../../assets/images/profilePhoto8.png';
 import { v4 as uuidv4 } from 'uuid';
 import { Box, Stack } from '@mui/material';
-import { StyledStack, UserPhoto } from './styled';
+import { StyledHeading, StyledStack, StyledText, UserPhoto } from './styled';
 import {
   formatAsCreateDate,
   formatAsDedlineDate,
@@ -36,13 +37,11 @@ export const columns: GridColDef[] = [
     renderCell: (params) => {
       return (
         <StyledStack>
+          <UserPhoto src={params.row.profilePhoto} alt='userPhoto' />
           <Box>
-            <UserPhoto src={params.row.profilePhoto} alt='userPhoto' />
-          </Box>
-          <Box>
-            <Box>{params.value}</Box>
+            <StyledHeading>{params.value}</StyledHeading>
             <Box>
-              <Box>Updated {updatedDifference(params.row.updatedDate)} days ago</Box>
+              <StyledText>Updated {updatedDifference(params.row.updatedDate)} days ago</StyledText>
             </Box>
           </Box>
         </StyledStack>
@@ -57,8 +56,8 @@ export const columns: GridColDef[] = [
     renderCell: (params) => {
       return (
         <Stack>
-          <span>{params.value}</span>
-          <span>{formatAsCreateDate(params.row.createDate)}</span>
+          <StyledHeading>{params.value}</StyledHeading>
+          <StyledText>{formatAsCreateDate(params.row.createDate)}</StyledText>
         </Stack>
       );
     },
@@ -71,8 +70,8 @@ export const columns: GridColDef[] = [
     renderCell: (params) => {
       return (
         <Stack>
-          <span>{formatAsDedlineDate(params.value)}</span>
-          <span>{formatAsHoursDate(params.row.deadlineDate)}</span>
+          <StyledHeading>{formatAsDedlineDate(params.value)}</StyledHeading>
+          <StyledText>{formatAsHoursDate(params.row.deadlineDate)}</StyledText>
         </Stack>
       );
     },
@@ -81,6 +80,9 @@ export const columns: GridColDef[] = [
     field: 'priority',
     headerName: 'Priority',
     width: 160,
+    renderCell: (params) => {
+      return <Tag text={params.value} />;
+    },
   },
 ];
 
