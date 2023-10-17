@@ -13,20 +13,19 @@ import {
 } from 'recharts';
 import { data, gradients, yDomain, yTicks } from './helper';
 import { tick, xTickPadding } from './styled';
-
+interface IEntry {
+  today: number;
+  hours: string;
+}
 const Chart = () => {
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
   const [isTodayHovered, setIsTodayHovered] = useState(false);
   const [isYesterdayHovered, setIsYesterdayHovered] = useState(false);
-  interface IEntry {
-    today: number;
-    hours: string;
-  }
 
-  function calculateTodayValue(entry: IEntry, currentHour: number): number | null {
+  const calculateTodayValue = (entry: IEntry, currentHour: number): number | null => {
     return entry.today && parseInt(entry.hours) <= currentHour ? entry.today : null;
-  }
+  };
 
   const currentData = data.map((entry) => ({
     ...entry,
