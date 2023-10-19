@@ -15,5 +15,5 @@ export const StyledTag = styled('div')<StyledTagProps>`
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 5px 12px;
-  border-radius: 8px;
+  border-radius: 100px;
 `;

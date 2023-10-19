@@ -17,18 +17,24 @@ const StyledLabel = styled(InputLabel)`
 `;
 
 const StyledInput = styled(TextField)`
-  box-sizing: border-box;
-  color: ${colors.grayDark};
-  font-size: ${fonts.size.medium};
-  font-weight: ${fonts.weight.small};
-  letter-spacing: ${fonts.spacing.medium};
-  font-style: normal;
-  line-height: 20px;
   border-radius: 8px;
   border: 1px solid (${colors.grayLightest}, #f0f1f7);
-  background: (${colors.grayExtraLight}, #fcfdfe);
   margin-top: 5px;
   margin-bottom: 5px;
+
+  & div {
+    box-sizing: border-box;
+    color: ${colors.grayDark};
+    font-size: ${fonts.size.medium};
+    font-weight: ${fonts.weight.small};
+    letter-spacing: ${fonts.spacing.medium};
+    font-style: normal;
+    line-height: 20px;
+    background: (${colors.grayExtraLight}, #fcfdfe);
+  }
+  & input {
+    color: ${colors.primaryBlack};
+  }
 `;
 
 export { FormInputWrapper, StyledInput, StyledLabel };
