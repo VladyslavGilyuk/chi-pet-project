@@ -1,6 +1,52 @@
+import { CurveType } from 'recharts/types/shape/Curve';
 import { colors } from '../../../theme';
+import { tick, xTickPadding } from './styled';
 
-export const data = [
+interface IEntry {
+  today: number;
+  hours: string;
+}
+interface IBaseAreaConfig {
+  type: CurveType;
+  strokeWidth: number;
+  dot: boolean;
+}
+interface IGradient {
+  id: string;
+  color: string;
+  opacity: number;
+}
+
+interface AxisConfig {
+  dataKey: string;
+  tickLine: boolean;
+  axisLine: boolean;
+  tickMargin: number;
+  tickSize: number;
+  tick: { fontSize: number; fill: string };
+  padding: { right: number };
+}
+
+interface YAxisConfig {
+  orientation: 'left' | 'right';
+  type: 'number' | 'category';
+  tickLine: boolean;
+  tick: { fontSize: number; fill: string };
+  ticks: number[];
+  domain: [number, number];
+  axisLine: boolean;
+  mirror: boolean;
+  tickMargin: number;
+  dy: number;
+}
+
+interface IDataEntry {
+  hours: string;
+  today: number;
+  yesterday: number;
+}
+
+export const data: IDataEntry[] = [
   { hours: '0', today: 10, yesterday: 34 },
   { hours: '1', today: 20, yesterday: 36 },
   { hours: '2', today: 27, yesterday: 31 },
@@ -26,10 +72,42 @@ export const data = [
   { hours: '22', today: 25, yesterday: 47 },
 ];
 
-export const gradients = [
+export const calculateTodayValue = (entry: IEntry, currentHour: number): number | null => {
+  return entry.today && parseInt(entry.hours) <= currentHour ? entry.today : null;
+};
+export const gradients: IGradient[] = [
   { id: 'colorToday', color: colors.primaryBlue, opacity: 0.2 },
   { id: 'colorYesterday', color: colors.grayLight, opacity: 0.5 },
 ];
 
-export const yTicks = [0, 10, 20, 30, 40, 50, 60];
-export const yDomain = [0, 60];
+export const yTicks: number[] = [0, 10, 20, 30, 40, 50, 60];
+export const yDomain: [number, number] = [0, 60];
+
+export const XAxisConfig: AxisConfig = {
+  dataKey: 'hours',
+  tickLine: false,
+  axisLine: false,
+  tickMargin: 12,
+  tickSize: 6,
+  tick: tick,
+  padding: xTickPadding,
+};
+
+export const YAxisConfig: YAxisConfig = {
+  orientation: 'right',
+  type: 'number',
+  tickLine: false,
+  tick: tick,
+  ticks: yTicks,
+  domain: yDomain,
+  axisLine: false,
+  mirror: true,
+  tickMargin: -5,
+  dy: -10,
+};
+
+export const baseAreaConfig: IBaseAreaConfig = {
+  type: 'natural',
+  strokeWidth: 2,
+  dot: false,
+};

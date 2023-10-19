@@ -11,21 +11,20 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { data, gradients, yDomain, yTicks } from './helper';
-import { tick, xTickPadding } from './styled';
-interface IEntry {
-  today: number;
-  hours: string;
-}
+import {
+  XAxisConfig,
+  YAxisConfig,
+  baseAreaConfig,
+  calculateTodayValue,
+  data,
+  gradients,
+} from './helper';
+
 const Chart = () => {
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
   const [isTodayHovered, setIsTodayHovered] = useState(false);
   const [isYesterdayHovered, setIsYesterdayHovered] = useState(false);
-
-  const calculateTodayValue = (entry: IEntry, currentHour: number): number | null => {
-    return entry.today && parseInt(entry.hours) <= currentHour ? entry.today : null;
-  };
 
   const currentData = data.map((entry) => ({
     ...entry,
@@ -39,46 +38,23 @@ const Chart = () => {
           <LinearGradients gradients={gradients} />
         </defs>
         <CartesianGrid vertical={false} stroke={colors.graphDivider} />
-        <XAxis
-          dataKey='hours'
-          tickLine={false}
-          axisLine={false}
-          tickMargin={12}
-          tickSize={6}
-          tick={tick}
-          padding={xTickPadding}
-        />
-        <YAxis
-          orientation='right'
-          type='number'
-          tickLine={false}
-          tick={tick}
-          ticks={yTicks}
-          domain={yDomain}
-          axisLine={false}
-          mirror={true}
-          tickMargin={-5}
-          dy={-10}
-        />
+        <XAxis {...XAxisConfig} />
+        <YAxis {...YAxisConfig} />
         <Tooltip />
         <Area
-          type='natural'
+          {...baseAreaConfig}
           dataKey='yesterday'
           stroke={colors.grayDivider}
           fill={isYesterdayHovered ? `url(#colorYesterday)` : 'transparent'}
-          strokeWidth={2}
-          dot={false}
           activeDot={isYesterdayHovered ? <CustomizedDot gray={true} /> : undefined}
           onMouseEnter={() => setIsYesterdayHovered(true)}
           onMouseLeave={() => setIsYesterdayHovered(false)}
         />
         <Area
-          type='natural'
+          {...baseAreaConfig}
           dataKey='today'
           stroke={colors.primaryBlue}
           fill={isTodayHovered ? `url(#colorToday)` : 'transparent'}
-          strokeWidth={2}
-          dot={false}
           activeDot={isTodayHovered ? <CustomizedDot gray={false} /> : undefined}
           onMouseEnter={() => setIsTodayHovered(true)}
           onMouseLeave={() => setIsTodayHovered(false)}
