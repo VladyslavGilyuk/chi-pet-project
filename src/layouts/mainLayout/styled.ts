@@ -1,9 +1,7 @@
-import { colors } from '../../theme';
 import { Box, styled } from '@mui/material';
 
 const Container = styled(Box)`
   display: flex;
-  background-color: ${colors.whiteBackground};
 `;
 
 const ContentContainer = styled(Box)`

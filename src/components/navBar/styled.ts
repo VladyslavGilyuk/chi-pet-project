@@ -6,7 +6,7 @@ const NavBarContainer = styled('nav')`
   background: ${colors.grayBackground};
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 `;
 const HeaderWrapper = styled(Box)`
   width: 255px;

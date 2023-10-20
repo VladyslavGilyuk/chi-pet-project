@@ -1,7 +1,7 @@
 import { colors } from '../../theme';
 import { Box, styled } from '@mui/material';
 
-const FormWrapper = styled(Box)`
+const FormContainer = styled(Box)`
   box-sizing: border-box;
   width: 380px;
   margin: 0 auto;
@@ -15,5 +15,11 @@ const FormWrapper = styled(Box)`
   border-radius: 8px;
   background: ${colors.primaryWhite};
 `;
-
-export { FormWrapper };
+const Wrapper = styled('div')`
+  min-height: 100vh;
+  background-color: ${colors.grayBackground};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export { FormContainer, Wrapper };

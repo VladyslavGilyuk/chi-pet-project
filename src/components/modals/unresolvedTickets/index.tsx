@@ -1,6 +1,6 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import { Fragment } from 'react';
-import Tag from '../../overview/tags';
+import Tag from '../../common/tags';
 import { tickets } from '../../overview/unresolvedTicketsBox/helper';
 import {
   BoxContainer,

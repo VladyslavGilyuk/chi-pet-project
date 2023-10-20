@@ -1,11 +1,11 @@
 import { colors } from '../../theme';
-import { Box, styled } from '@mui/material';
+import { Container, styled } from '@mui/material';
 
-const FormWrapper = styled(Box)`
+const FormContainer = styled(Container)`
   box-sizing: border-box;
   width: 380px;
   margin: 0 auto;
-  margin-top: 140px;
+  padding: 140px;
   background-color: ${colors.primaryWhite};
   display: flex;
   justify-content: center;
@@ -13,7 +13,12 @@ const FormWrapper = styled(Box)`
   flex-direction: column;
   padding: 40px 32px;
   border-radius: 8px;
-  background: ${colors.primaryWhite};
 `;
-
-export { FormWrapper };
+const Wrapper = styled('div')`
+  min-height: 100vh;
+  background-color: ${colors.grayBackground};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export { FormContainer, Wrapper };
