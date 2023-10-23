@@ -1,5 +1,12 @@
-/* eslint-disable sort-imports */
+import { AppDispatch } from '../../../store';
+import BasicDatePicker from './datePicker';
+import CustomSelect from './select';
+import FormInput from '../../common/formInput';
+import { ITickets } from '../../../types/tickets';
+import { createTicketAsync } from '../../../store/tickets/thunk';
 import { memo } from 'react';
+import { useDispatch } from 'react-redux';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   EmptyHelperText,
   FlexContainer,
@@ -8,19 +15,20 @@ import {
   StyledHeading,
   StyledLoginButton,
 } from './styled';
-import FormInput from '../../common/formInput';
 import { ITicketFieldValues, TicketsFormHelper, statusOptions } from './helper';
-import { Controller, useForm } from 'react-hook-form';
-import CustomSelect from './select';
-import BasicDatePicker from './datePicker';
+
 interface IProps {
   toggleModal: () => void;
+  refetchTickets: () => void;
 }
-const TicketsForm = ({ toggleModal }: IProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSignInSubmit: any = () => {
-    // eslint-disable-next-line no-console
-    console.log('All good');
+const TicketsForm = ({ toggleModal, refetchTickets }: IProps) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
+    const body = { ...data };
+    await dispatch(createTicketAsync(body));
+    refetchTickets();
+    toggleModal();
   };
   const {
     handleSubmit,
@@ -31,7 +39,7 @@ const TicketsForm = ({ toggleModal }: IProps) => {
   return (
     <>
       <StyledHeading>Add tickets</StyledHeading>
-      <form onSubmit={handleSubmit(onSignInSubmit)}>
+      <form onSubmit={handleSubmit(handleCreateTicket)}>
         {TicketsFormHelper.map((instance) => (
           <FormInput
             {...instance}
@@ -42,21 +50,18 @@ const TicketsForm = ({ toggleModal }: IProps) => {
           />
         ))}
         <Controller
-          name='date' // Provide a name for the date field
+          name='deadlineDate'
           control={control}
+          defaultValue=''
           rules={{ required: true }}
           render={({ field }) => (
             <>
-              <BasicDatePicker
-                date={field.value} // Pass the selected date value
-                onChange={field.onChange} // Pass the onChange handler
-                errors={errors}
-              />
+              <BasicDatePicker date={field.value} onChange={field.onChange} errors={errors} />
             </>
           )}
         />
         <Controller
-          name='tag'
+          name='priority'
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -67,7 +72,7 @@ const TicketsForm = ({ toggleModal }: IProps) => {
                 options={statusOptions}
                 errors={errors}
               />
-              {(errors.tag && <HelperText>Tag is required</HelperText>) || (
+              {(errors.priority && <HelperText>Tag is required</HelperText>) || (
                 <EmptyHelperText>.</EmptyHelperText>
               )}
             </>
@@ -95,50 +100,5 @@ const TicketsForm = ({ toggleModal }: IProps) => {
       </form>
     </>
   );
-  /*const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    control,
-    reset,
-  } = useForm();
-*/
-  /*const dispatch = useDispatch();*/
-  /*const handleCreateTask: SubmitHandler<FieldValues> = ({ text, tag }) => {
-    dispatch(addTask({ text, tag }));
-    reset();*/
 };
-/*
-  return (
-    <Form onSubmit={handleSubmit(handleCreateTask)}>
-      <StyledInput
-        key='text'
-        {...register('text', { required: true })}
-        placeholder='Enter text'
-        type='text'
-        error={!!errors['text']}
-      />
-
-      <StyledBox>
-        <Controller
-          name='tag'
-          control={control}
-          defaultValue='Default'
-          render={({ field }) => (
-            <CustomSelect
-              value={field.value}
-              onChange={(e) => field.onChange(e.target.value)}
-              options={statusOptions}
-            />
-          )}
-        />
-
-        <CreateButton variant='contained' type='submit'>
-          Create
-        </CreateButton>
-      </StyledBox>
-    </Form>
-  );
-};
-*/
 export default memo(TicketsForm);

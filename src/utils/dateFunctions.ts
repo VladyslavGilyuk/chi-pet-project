@@ -4,16 +4,21 @@ import { format } from 'date-fns';
 export const formatAsOfDate = (currentDate: Date) => {
   return format(currentDate, "'as of' dd MMM yyyy, hh:mm a");
 };
-export const formatAsCreateDate = (currentDate: Date) => {
-  return format(currentDate, "'on' dd.MM.yyyy");
+export const formatAsCreateDate = (createDate: string) => {
+  return format(new Date(createDate), "'on' dd.MM.yyyy");
 };
-export const formatAsDedlineDate = (currentDate: Date) => {
-  return format(currentDate, 'MMMM d, yyyy');
+export const formatAsDeadlineDate = (deadlineDate: string) => {
+  return format(new Date(deadlineDate), 'MMMM d, yyyy');
 };
-export const formatAsHoursDate = (currentDate: Date) => {
-  return format(currentDate, 'h:mm a');
+export const formatAsHoursDate = (HoursDate: string) => {
+  return format(new Date(HoursDate), 'h:mm a');
 };
-export const updatedDifference = (updatedDate: Date) => {
-  const timeDifference = Math.abs(new Date().getTime() - updatedDate.getTime());
-  return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+export const updatedDifference = (updatedDate: string) => {
+  const today = new Date();
+  const dateObj = new Date(updatedDate);
+  const timeDifference = Math.abs(today.getTime() - dateObj.getTime());
+  const timePassed = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  return today.toDateString() === dateObj.toDateString()
+    ? 'Updated today'
+    : `Updated ${timePassed} days ago`;
 };

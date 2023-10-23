@@ -1,10 +1,11 @@
 import TicketsTable from '../../components/tickets';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
 const Tickets = () => {
+  const queryClient = new QueryClient();
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <TicketsTable />
-    </div>
+    </QueryClientProvider>
   );
 };
 

@@ -1,7 +1,8 @@
-/* eslint-disable sort-imports */
+import { DateTimePicker } from '@mui/x-date-pickers';
+import { FieldErrors } from 'react-hook-form';
+import { ITicketFieldValues } from '../helper';
 import { InputLabel, styled } from '@mui/material';
 import { colors, fonts } from '../../../../theme';
-import { DatePicker } from '@mui/x-date-pickers';
 
 const StyledInputLabel = styled(InputLabel)`
   color: ${colors.primaryGray};
@@ -13,11 +14,12 @@ const StyledInputLabel = styled(InputLabel)`
   text-transform: uppercase;
 `;
 interface StyledTagProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errors: any;
+  errors: FieldErrors<ITicketFieldValues>;
 }
-const StyledDatePicker = styled(DatePicker)<StyledTagProps>`
+
+const StyledDatePicker = styled(DateTimePicker)<StyledTagProps>`
   width: 100%;
+
   & input {
     padding: 11px;
     color: ${colors.primaryBlack};

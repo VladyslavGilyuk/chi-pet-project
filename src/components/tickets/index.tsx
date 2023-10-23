@@ -1,14 +1,15 @@
-/* eslint-disable sort-imports */
-import { StyledBox, StyledDataGrid, ViewButton } from './styled';
-import { columns, rowsData } from './helper';
-// eslint-disable-next-line sort-imports
-import { GridToolbarContainer, GridToolbarFilterButton } from '@mui/x-data-grid';
+import TicketService from '../../service/TicketService';
 import TicketsModal from '../modals/tickets';
+import { columns } from './helper';
+import { useQuery } from 'react-query';
+import { GridToolbarContainer, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { StyledBox, StyledDataGrid, ViewButton } from './styled';
 import { useCallback, useState } from 'react';
 
 const TicketsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { data: ticketsData, refetch } = useQuery('tickets', TicketService.get);
+  const reversedTicketsData = ticketsData ? [...ticketsData.data].reverse() : null;
   const toggleModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
   }, []);
@@ -20,7 +21,7 @@ const TicketsTable = () => {
         <ViewButton onClick={toggleModal}>Add Ticket</ViewButton>
         {isModalOpen && (
           <>
-            <TicketsModal toggleModal={toggleModal} />
+            <TicketsModal toggleModal={toggleModal} refetchTickets={refetch} />
           </>
         )}
       </GridToolbarContainer>
@@ -28,21 +29,23 @@ const TicketsTable = () => {
   }
   return (
     <StyledBox>
-      <StyledDataGrid
-        autoHeight
-        rows={[...rowsData]}
-        rowHeight={92}
-        columns={[...columns]}
-        initialState={{
-          pagination: { paginationModel: { pageSize: 8 } },
-        }}
-        pageSizeOptions={[5, 8, 10, 25]}
-        disableRowSelectionOnClick
-        disableColumnMenu
-        slots={{
-          toolbar: CustomToolbar,
-        }}
-      />
+      {reversedTicketsData && (
+        <StyledDataGrid
+          autoHeight
+          rows={reversedTicketsData}
+          rowHeight={92}
+          columns={[...columns]}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 8 } },
+          }}
+          pageSizeOptions={[5, 8, 10, 25]}
+          disableRowSelectionOnClick
+          disableColumnMenu
+          slots={{
+            toolbar: CustomToolbar,
+          }}
+        />
+      )}
     </StyledBox>
   );
 };

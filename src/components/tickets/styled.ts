@@ -1,6 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import styled from 'styled-components';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
 const StyledDataGrid = styled(DataGrid)`
@@ -9,8 +8,12 @@ const StyledDataGrid = styled(DataGrid)`
     & .MuiDataGrid-columnHeader {
       border-bottom: none;
     }
-    & .MuiDataGrid-cell:not(:last-child):not(:nth-last-child(2)),
-    & .MuiDataGrid-columnHeader:not(:last-child):not(:nth-last-child(2)) {
+    & .MuiDataGrid-root,
+    .MuiDataGrid-row::after {
+      display: none;
+    }
+    & .MuiDataGrid-cell:not(:nth-last-of-type(2)),
+    & .MuiDataGrid-columnHeader:not(:nth-last-of-type(2)) {
       margin-right: 40px;
       padding-right: 0;
     }
@@ -28,8 +31,8 @@ const StyledDataGrid = styled(DataGrid)`
       outline: none;
     }
 
-    & .MuiDataGrid-cell:first-child,
-    .MuiDataGrid-columnHeader:first-child {
+    & .MuiDataGrid-cell:first-of-type,
+    .MuiDataGrid-columnHeader:first-of-type {
       padding-left: 32px;
     }
     & .MuiDataGrid-cell:last-child,
@@ -70,20 +73,6 @@ const StyledDataGrid = styled(DataGrid)`
       line-height: 20px;
       letter-spacing: ${fonts.spacing.medium};
     }
-    & .MuiDataGrid-row {
-      &::after {
-        content: '...';
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-        color: ${colors.primaryGray};
-        font-size: ${fonts.size.medium};
-        font-style: normal;
-        font-weight: ${fonts.weight.large};
-        line-height: normal;
-        letter-spacing: ${fonts.spacing.small};
-      }
-    }
   }
 `;
 const ViewButton = styled(Button)`
@@ -122,8 +111,7 @@ const StyledText = styled(Typography)`
   letter-spacing: 0.1px;
   margin-top: 4px !important;
 `;
-const UserPhoto = styled.img`
-  // correct this img to MUI ?
+const UserPhoto = styled('img')`
   width: 44px;
   height: 44px;
   border-radius: 50%;

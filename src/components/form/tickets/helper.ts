@@ -1,11 +1,17 @@
 import { FieldValues } from 'react-hook-form';
 import { ISelectOptions } from '../../common/select';
-export type ITicketFieldNames = 'ticketDetails' | 'customerName';
+
+export type ITicketFieldNames = 'ticket' | 'customer';
 export type TFieldType = 'password' | 'text';
 
 export interface ITicketFieldValues extends FieldValues {
-  ticketDetails: string;
-  customerName: string;
+  id: string;
+  ticket: string;
+  customer: string;
+  createDate: Date | string;
+  deadlineDate: Date | string;
+  updatedDate: Date | string;
+  priority: string;
 }
 export interface ITicketField {
   name: ITicketFieldNames;
@@ -29,7 +35,7 @@ export const statusOptions: ISelectOptions[] = [
 
 export const TicketsFormHelper: ITicketField[] = [
   {
-    name: 'ticketDetails',
+    name: 'ticket',
     label: 'Ticket Details',
     validations: {
       required: 'Ticket details are required',
@@ -38,7 +44,7 @@ export const TicketsFormHelper: ITicketField[] = [
     type: 'text',
   },
   {
-    name: 'customerName',
+    name: 'customer',
     label: 'Customer Name',
     validations: {
       required: 'Customer name is required',

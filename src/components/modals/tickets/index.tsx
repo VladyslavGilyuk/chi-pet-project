@@ -1,16 +1,16 @@
-/* eslint-disable sort-imports */
+import { BoxContainer } from './styled';
 import { Modal } from '@mui/material';
 import TicketsForm from '../../form/tickets';
-import { BoxContainer } from './styled';
 interface IProps {
   toggleModal: () => void;
+  refetchTickets: () => void;
 }
 
-const TicketsModal = ({ toggleModal }: IProps) => {
+const TicketsModal = ({ toggleModal, refetchTickets }: IProps) => {
   return (
     <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
-        <TicketsForm toggleModal={toggleModal} />
+        <TicketsForm toggleModal={toggleModal} refetchTickets={refetchTickets} />
       </BoxContainer>
     </Modal>
   );

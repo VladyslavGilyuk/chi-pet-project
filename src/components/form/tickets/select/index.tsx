@@ -1,4 +1,5 @@
-import React from 'react';
+import { FieldErrors } from 'react-hook-form';
+import { ITicketFieldValues } from '../helper';
 import { SelectChangeEvent } from '@mui/material';
 import { StyledInputLabel, StyledMenuItem, StyledPlaceholder, StyledSelect } from './styled';
 
@@ -10,8 +11,7 @@ interface IProps {
   value: string;
   onChange: (event: SelectChangeEvent<string>) => void;
   options: ISelectOptions[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errors: any;
+  errors: FieldErrors<ITicketFieldValues>;
 }
 
 const CustomSelect: React.FC<IProps> = ({ value, onChange, options, errors }) => {
@@ -23,7 +23,6 @@ const CustomSelect: React.FC<IProps> = ({ value, onChange, options, errors }) =>
         onChange={(e) => onChange(e as SelectChangeEvent<string>)}
         error={!!errors.tag}
         displayEmpty
-        //defaultValue={'Default'}
         renderValue={(selected) => {
           if (selected === '' || selected === undefined) {
             return <StyledPlaceholder>Name</StyledPlaceholder>;
