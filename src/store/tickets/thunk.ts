@@ -1,7 +1,7 @@
-import { ITickets } from '../../types/tickets';
 import { Notify } from '../../utils/notify';
 import TicketService from '../../service/TicketService';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ITickets, IUpdateTickets } from '../../types/tickets';
 
 export const createTicketAsync = createAsyncThunk(
   'tickets/createTicket',
@@ -12,13 +12,35 @@ export const createTicketAsync = createAsyncThunk(
       updatedDate: new Date(),
     };
 
-    return TicketService.register(transformedData)
-      .then((response) => {
-        const responseData = response.data;
-        return responseData;
-      })
-      .catch(() => {
-        Notify('Ticket creation error');
-      });
+    try {
+      const response = await TicketService.register(transformedData);
+      return response.data;
+    } catch (error) {
+      Notify('Ticket creation error');
+    }
   },
 );
+
+export const updateTicketAsync = createAsyncThunk(
+  'tickets/updateTicket',
+  async ({ id, data }: { id: string; data: IUpdateTickets }) => {
+    const transformedData = {
+      ...data,
+      updatedDate: new Date(),
+    };
+
+    try {
+      await TicketService.patch(id, transformedData);
+    } catch (error) {
+      Notify('Error');
+    }
+  },
+);
+
+export const deleteTicketAsync = createAsyncThunk('tickets/deleteTicket', async (id: string) => {
+  try {
+    await TicketService.delete(id);
+  } catch (error) {
+    Notify('Error');
+  }
+});

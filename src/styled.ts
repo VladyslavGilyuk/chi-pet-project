@@ -37,6 +37,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     height: 45px;
   }
+
   body {
     font-family: 'Mulish', sans-serif;
     box-sizing: 'border-box';

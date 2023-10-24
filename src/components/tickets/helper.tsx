@@ -1,8 +1,7 @@
 import { GridColDef } from '@mui/x-data-grid';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tag from '../common/tags';
 import profilePhoto1 from '../../assets/images/profilePhoto1.png';
-import { Box, IconButton, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { StyledHeading, StyledStack, StyledText, UserPhoto } from './styled';
 import {
   formatAsCreateDate,
@@ -66,21 +65,6 @@ export const columns: GridColDef[] = [
     sortable: false,
     renderCell: (params) => {
       return <Tag text={params.value} />;
-    },
-  },
-  {
-    field: 'menu',
-    headerName: '',
-    width: 15,
-    sortable: false,
-    renderCell: () => {
-      return (
-        <Stack>
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        </Stack>
-      );
     },
   },
 ];

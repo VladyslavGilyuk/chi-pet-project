@@ -82,7 +82,7 @@
       "profilePhoto": "profilePhoto8"
     },
     {
-      "id": "1",
+      "id": "9",
       "ticket": "Contact Email not Linked",
       "customer": "Tom Cruise",
       "createDate": "Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
@@ -92,7 +92,7 @@
       "profilePhoto": "profilePhoto1"
     },
     {
-      "id": "2",
+      "id": "10",
       "ticket": "Adding Images to Featured Posts",
       "customer": "Matt Damon",
       "createDate": " Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
@@ -102,7 +102,7 @@
       "profilePhoto": "profilePhoto2"
     },
     {
-      "id": "3",
+      "id": "11",
       "ticket": "When will I be charged this month?",
       "customer": "Robert Downey",
       "createDate": "Sun Sep 24 2023 00:00:00 GMT+0000 (Coordinated Universal Time)",
@@ -112,7 +112,7 @@
       "profilePhoto": "profilePhoto3"
     },
     {
-      "id": "4",
+      "id": "12",
       "ticket": "Payment not going through",
       "customer": "Christian Bale",
       "createDate": "Sun Sep 24 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
@@ -122,7 +122,7 @@
       "profilePhoto": "profilePhoto4"
     },
     {
-      "id": "5",
+      "id": "13",
       "ticket": "Unable to add replies",
       "customer": "Henry Cavill",
       "createDate": "Sun Sep 24 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
@@ -132,18 +132,18 @@
       "profilePhoto": "profilePhoto5"
     },
     {
-      "id": "6",
+      "id": "14",
       "ticket": "Downtime since last week",
       "customer": "Chris Evans",
       "createDate": "Sat Sep 23 2023 14:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 14:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Mon Sep 25 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
+      "deadlineDate": "2023-09-25T14:00:00.000Z",
+      "updatedDate": "2023-10-24T17:21:21.045Z",
       "priority": "Normal",
       "profilePhoto": "profilePhoto6"
     },
     {
-      "id": "7",
-      "ticket": "Referral Bonus",
+      "id": "15",
+      "ticket": "No",
       "customer": "Sam Smith",
       "createDate": "Fri Sep 22 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
       "deadlineDate": "Mon Sep 25 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
@@ -152,7 +152,7 @@
       "profilePhoto": "profilePhoto7"
     },
     {
-      "id": "8",
+      "id": "16",
       "ticket": "How do I change my password?",
       "customer": "Steve Rogers",
       "createDate": "Thu Sep 21 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
@@ -160,15 +160,6 @@
       "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
       "priority": "Normal",
       "profilePhoto": "profilePhoto8"
-    },
-    {
-      "ticket": "33",
-      "customer": "33",
-      "deadlineDate": "2023-10-13T21:00:00.000Z",
-      "priority": "High",
-      "createDate": "2023-10-23T18:32:22.519Z",
-      "updatedDate": "2023-10-23T18:32:22.519Z",
-      "id": "jWkYTyv"
     }
   ]
 }

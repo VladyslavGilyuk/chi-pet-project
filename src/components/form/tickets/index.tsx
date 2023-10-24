@@ -1,11 +1,6 @@
-import { AppDispatch } from '../../../store';
 import BasicDatePicker from './datePicker';
 import CustomSelect from './select';
 import FormInput from '../../common/formInput';
-import { ITickets } from '../../../types/tickets';
-import { createTicketAsync } from '../../../store/tickets/thunk';
-import { memo } from 'react';
-import { useDispatch } from 'react-redux';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   EmptyHelperText,
@@ -16,30 +11,41 @@ import {
   StyledLoginButton,
 } from './styled';
 import { ITicketFieldValues, TicketsFormHelper, statusOptions } from './helper';
+import { ITicketInitialValues, ITickets, IUpdateTickets } from '../../../types/tickets';
+import { memo, useEffect } from 'react';
 
 interface IProps {
   toggleModal: () => void;
   refetchTickets: () => void;
+  handleForm: SubmitHandler<ITickets> | SubmitHandler<IUpdateTickets>;
+  initialValues: ITicketInitialValues | null;
 }
-const TicketsForm = ({ toggleModal, refetchTickets }: IProps) => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
-    const body = { ...data };
-    await dispatch(createTicketAsync(body));
-    refetchTickets();
-    toggleModal();
-  };
+const TicketsForm = ({ toggleModal, handleForm, initialValues }: IProps) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
+    setValue,
     control,
   } = useForm<ITicketFieldValues>();
+
+  useEffect(() => {
+    if (initialValues) {
+      const keys = Object.keys(initialValues);
+      keys.forEach((key) => {
+        if (key === 'deadlineDate') {
+          setValue(key, new Date(initialValues[key]));
+        } else {
+          setValue(key, initialValues[key]);
+        }
+      });
+    }
+  }, [initialValues]);
+
   return (
     <>
       <StyledHeading>Add tickets</StyledHeading>
-      <form onSubmit={handleSubmit(handleCreateTicket)}>
+      <form onSubmit={handleSubmit(handleForm)}>
         {TicketsFormHelper.map((instance) => (
           <FormInput
             {...instance}
@@ -63,6 +69,7 @@ const TicketsForm = ({ toggleModal, refetchTickets }: IProps) => {
         <Controller
           name='priority'
           control={control}
+          defaultValue={initialValues ? initialValues.priority : ''}
           rules={{ required: true }}
           render={({ field }) => (
             <>

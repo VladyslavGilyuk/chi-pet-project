@@ -1,5 +1,5 @@
-import { ITickets } from '../types/tickets';
 import axios from './axiosConfig';
+import { IPatchTickets, ITickets } from '../types/tickets';
 
 class TicketService {
   get() {
@@ -7,6 +7,12 @@ class TicketService {
   }
   register(body: ITickets) {
     return axios.post('/tickets', body);
+  }
+  patch(id: string, data: IPatchTickets) {
+    return axios.patch(`/tickets/${id}`, data);
+  }
+  delete(id: string) {
+    return axios.delete(`/tickets/${id}`);
   }
 }
 

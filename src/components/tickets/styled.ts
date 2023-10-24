@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { Box, Button, Typography, styled } from '@mui/material';
+import { Box, Button, Select, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
 const StyledDataGrid = styled(DataGrid)`
@@ -117,5 +117,20 @@ const UserPhoto = styled('img')`
   border-radius: 50%;
   object-fit: cover;
 `;
+const CustomSelect = styled(Select)`
+  width: 39px;
+  & .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+`;
 
-export { UserPhoto, StyledStack, StyledDataGrid, StyledHeading, StyledText, StyledBox, ViewButton };
+export {
+  UserPhoto,
+  StyledStack,
+  StyledDataGrid,
+  StyledHeading,
+  StyledText,
+  StyledBox,
+  ViewButton,
+  CustomSelect,
+};
