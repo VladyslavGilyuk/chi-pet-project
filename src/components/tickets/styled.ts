@@ -123,7 +123,18 @@ const CustomSelect = styled(Select)`
     border: none;
   }
 `;
-
+const SortSelect = styled(Select)`
+  width: 70px;
+  & .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+`;
+const FilterSelect = styled(Select)`
+  width: 90px;
+  & .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+`;
 export {
   UserPhoto,
   StyledStack,
@@ -133,4 +144,6 @@ export {
   StyledBox,
   ViewButton,
   CustomSelect,
+  SortSelect,
+  FilterSelect,
 };

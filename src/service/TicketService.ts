@@ -2,9 +2,10 @@ import axios from './axiosConfig';
 import { IPatchTickets, ITickets } from '../types/tickets';
 
 class TicketService {
-  get() {
-    return axios.get('/tickets');
+  get(queryParams = '') {
+    return axios.get(`/tickets${queryParams}`);
   }
+
   register(body: ITickets) {
     return axios.post('/tickets', body);
   }
