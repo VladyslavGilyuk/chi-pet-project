@@ -25,7 +25,7 @@ const Chart = () => {
   const currentHour = currentDate.getHours();
   const [isTodayHovered, setIsTodayHovered] = useState(false);
   const [isYesterdayHovered, setIsYesterdayHovered] = useState(false);
-  
+
   const currentData = data.map((entry) => ({
     ...entry,
     today: calculateTodayValue(entry, currentHour),

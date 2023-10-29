@@ -312,32 +312,6 @@
       "deadlineDate": "2023-09-24T13:00:00.000Z",
       "updatedDate": "2023-09-27T18:30:00.000Z",
       "priority": "Normal"
-    },
-    {
-      "id": "hgB_-SN",
-      "ticket": "AAA",
-      "createdBy": {
-        "name": "ggg"
-      },
-      "createDate": "2023-10-27T11:39:31.952Z",
-      "deadlineDate": "2023-10-27T21:00:00.000Z",
-      "updatedDate": "2023-10-29T13:00:49.761Z",
-      "priority": "High",
-      "customer": "ggg"
-    },
-    {
-      "ticket": "AAAA",
-      "customer": "aaa",
-      "deadlineDate": "2023-10-27T21:00:00.000Z",
-      "priority": "High",
-      "createdBy": {
-        "name": "aaa",
-        "imageUrl": "profilePhoto1.png",
-        "id": "1e1818bb-6286-44fd-bd46-7d0a22affda0"
-      },
-      "createDate": "2023-10-29T13:00:32.874Z",
-      "updatedDate": "2023-10-29T13:00:32.874Z",
-      "id": "WmJ9skU"
     }
   ]
 }
