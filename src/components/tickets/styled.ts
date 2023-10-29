@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { Box, Button, Select, Typography, styled } from '@mui/material';
+import { Box, MenuItem, Select, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../theme';
 
 const StyledDataGrid = styled(DataGrid)`
@@ -75,19 +75,15 @@ const StyledDataGrid = styled(DataGrid)`
     }
   }
 `;
-const ViewButton = styled(Button)`
-  color: ${colors.primaryBlue};
-  text-align: right;
-  font-size: ${fonts.size.medium};
-  font-weight: ${fonts.weight.medium};
-  letter-spacing: ${fonts.spacing.small};
-  font-style: normal;
-  line-height: 20px;
-  text-transform: none;
-`;
+
 const StyledBox = styled(Box)`
   width: 1200px;
   margin: 0 auto;
+  background-color: #fff;
+
+  & .MuiDataGrid-row:hover {
+    background-color: rgba(55, 81, 255, 0.04);
+  }
 `;
 const StyledStack = styled(Box)`
   display: flex;
@@ -116,6 +112,7 @@ const UserPhoto = styled('img')`
   height: 44px;
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid black;
 `;
 const CustomSelect = styled(Select)`
   width: 39px;
@@ -123,17 +120,14 @@ const CustomSelect = styled(Select)`
     border: none;
   }
 `;
-const SortSelect = styled(Select)`
-  width: 70px;
-  & .MuiOutlinedInput-notchedOutline {
-    border: none;
-  }
-`;
-const FilterSelect = styled(Select)`
-  width: 90px;
-  & .MuiOutlinedInput-notchedOutline {
-    border: none;
-  }
+
+const StyledMenuItem = styled(MenuItem)`
+  width: 100%;
+  display: flex;
+  padding: 15px 25px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 `;
 export {
   UserPhoto,
@@ -142,8 +136,6 @@ export {
   StyledHeading,
   StyledText,
   StyledBox,
-  ViewButton,
   CustomSelect,
-  SortSelect,
-  FilterSelect,
+  StyledMenuItem,
 };

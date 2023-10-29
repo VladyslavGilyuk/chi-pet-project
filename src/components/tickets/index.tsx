@@ -1,23 +1,15 @@
-import { GridToolbarContainer } from '@mui/x-data-grid';
+import CustomToolbar from './customToolbar';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Stack } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
 import TicketService from '../../service/TicketService';
 import TicketsModal from '../modals/tickets';
-import { columns } from './helper';
 import { useAppDispatch } from '../../store/hooks';
 import { useSearchParams } from 'react-router-dom';
-import { Button, FormControl, InputLabel, MenuItem, Stack } from '@mui/material';
-import {
-  CustomSelect,
-  FilterSelect,
-  SortSelect,
-  StyledBox,
-  StyledDataGrid,
-  ViewButton,
-} from './styled';
-
-import { ITicketInitialValues, ITickets, IUpdateTickets } from '../../types/tickets';
-import { createTicketAsync, deleteTicketAsync, updateTicketAsync } from '../../store/tickets/thunk';
+import { CustomSelect, StyledBox, StyledDataGrid, StyledMenuItem } from './styled';
+import { ITicketInitialValues, IUpdateTickets } from '../../types/tickets';
+import { columns, pageSizeOptions } from './helper';
+import { deleteTicketAsync, updateTicketAsync } from '../../store/tickets/thunk';
 import { useCallback, useEffect, useState } from 'react';
 
 const TicketsTable = () => {
@@ -29,30 +21,46 @@ const TicketsTable = () => {
 
   const _sort = searchParams.get('_sort');
   const _order = searchParams.get('_order');
-  const priority = searchParams.get('priority');
+  const priority = searchParams.getAll('priority');
   const _page = searchParams.get('_page');
   const pageSize = searchParams.get('pageSize');
+  const createDate_gte = searchParams.get('createDate_gte');
+  const createDate_lte = searchParams.get('createDate_lte');
 
+  const [selectedPriorities, setSelectedPriorities] = useState<string[]>(priority);
   const [paginationModel, setPaginationModel] = useState({
     pageSize: pageSize ? parseInt(pageSize) : 8,
     page: _page ? parseInt(_page) : 0,
   });
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     fetchTickets();
-  }, [_sort, _order, priority, _page, paginationModel]);
+  }, [_sort, _order, _page, paginationModel, createDate_gte, createDate_lte, selectedPriorities]);
 
   const buildApiUrl = () => {
     setSearchParams((params) => {
+      params.delete('priority');
+      selectedPriorities.forEach((p) => {
+        params.append('priority', p);
+      });
       params.set('_page', paginationModel.page.toString());
       params.set('pageSize', paginationModel.pageSize.toString());
+
       return params;
     });
+
     let apiUrl = `?_sort=${_sort || ''}&_order=${_order || ''}`;
 
-    if (priority) {
-      apiUrl += `&priority=${priority}`;
-    }
+    apiUrl += selectedPriorities.length
+      ? selectedPriorities.map((priority) => `&priority=${priority}`).join('')
+      : '';
+
+    apiUrl +=
+      createDate_gte && createDate_lte
+        ? `&createDate_gte=${createDate_gte}&createDate_lte=${createDate_lte}`
+        : '';
 
     return apiUrl;
   };
@@ -60,16 +68,12 @@ const TicketsTable = () => {
   const fetchTickets = async () => {
     try {
       const apiUrl = buildApiUrl();
-
       const response = await TicketService.get(apiUrl);
-
       setTicketsData(response.data);
     } catch (error) {
       throw new Error('Failed to fetch tickets');
     }
   };
-
-  const dispatch = useAppDispatch();
 
   const toggleModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
@@ -87,116 +91,11 @@ const TicketsTable = () => {
     toggleUpdateModal();
   };
 
-  const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
-    const body = { ...data };
-    await dispatch(createTicketAsync(body));
+  const handleDeleteClick = async (rowId: string) => {
+    await dispatch(deleteTicketAsync(rowId));
     fetchTickets();
-    toggleModal();
-  };
-  const sortingOptions = [
-    { label: 'Ticket Asc', value: 'ticket-asc' },
-    { label: 'Ticket Desc', value: 'ticket-desc' },
-    { label: 'Customer Asc', value: 'customer-asc' },
-    { label: 'Customer Desc', value: 'customer-desc' },
-    { label: 'Date Asc', value: 'date-asc' },
-    { label: 'Date Desc', value: 'date-desc' },
-    { label: 'Priority Asc', value: 'priority-asc' },
-    { label: 'Priority Desc', value: 'priority-desc' },
-  ];
-  const priorityOptions = ['High', 'Normal', 'Low'];
-
-  const handleSortByClick = async (option: string) => {
-    const [field, order] = option.split('-');
-    setSearchParams((params) => {
-      params.set('_sort', field);
-      params.set('_order', order);
-      params.set('_page', paginationModel.page.toString());
-      params.set('pageSize', paginationModel.pageSize.toString());
-      priority ? params.set('priority', priority) : '';
-      return params;
-    });
-
-    try {
-      const response = await TicketService.get(buildApiUrl());
-      setTicketsData(response.data);
-    } catch (error) {
-      throw new Error('Failed to fetch tickets');
-    }
   };
 
-  const handlePriorityFilter = async (prioritySearch: string) => {
-    setSearchParams((params) => {
-      _sort ? params.set('_sort', _sort) : '';
-      _order ? params.set('_order', _order) : '';
-      params.set('_page', paginationModel.page.toString());
-      params.set('pageSize', paginationModel.pageSize.toString());
-      params.set('priority', prioritySearch);
-      return params;
-    });
-
-    try {
-      const response = await TicketService.get(buildApiUrl());
-      setTicketsData(response.data);
-    } catch (error) {
-      throw new Error('Failed to fetch tickets');
-    }
-  };
-  function CustomToolbar() {
-    return (
-      <GridToolbarContainer>
-        <FormControl>
-          <InputLabel htmlFor='sort-select' shrink={false}>
-            Sort
-          </InputLabel>
-          <SortSelect
-            label='Sort'
-            value=''
-            onChange={(e) => handleSortByClick(e.target.value as string)}
-            inputProps={{
-              id: 'sort-select',
-            }}
-          >
-            {sortingOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </SortSelect>
-        </FormControl>
-        <FormControl>
-          <InputLabel htmlFor='priority-select' shrink={false}>
-            Filter
-          </InputLabel>
-          <FilterSelect
-            value=''
-            label='Priority'
-            onChange={(e) => handlePriorityFilter(e.target.value as string)}
-            inputProps={{
-              id: 'priority-select',
-            }}
-          >
-            {priorityOptions.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </FilterSelect>
-        </FormControl>
-
-        <ViewButton onClick={toggleModal}>Add Ticket</ViewButton>
-        {isModalOpen && (
-          <>
-            <TicketsModal
-              toggleModal={toggleModal}
-              handleForm={handleCreateTicket}
-              refetchTickets={fetchTickets}
-              initialValues={null}
-            />
-          </>
-        )}
-      </GridToolbarContainer>
-    );
-  }
   return (
     <StyledBox>
       {ticketsData && (
@@ -212,21 +111,16 @@ const TicketsTable = () => {
               width: 15,
               sortable: false,
               renderCell: (params) => {
-                const handleDeleteClick = async (rowId: string) => {
-                  await dispatch(deleteTicketAsync(rowId));
-                  fetchTickets();
-                };
-
                 return (
                   <>
                     <Stack>
                       <CustomSelect IconComponent={MoreVertIcon}>
-                        <MenuItem>
-                          <Button onClick={() => toggleUpdateModal(params.row.id)}>Edit</Button>
-                        </MenuItem>
-                        <MenuItem>
-                          <Button onClick={() => handleDeleteClick(params.row.id)}>Delete</Button>
-                        </MenuItem>
+                        <StyledMenuItem onClick={() => toggleUpdateModal(params.row.id)}>
+                          Edit
+                        </StyledMenuItem>
+                        <StyledMenuItem onClick={() => handleDeleteClick(params.row.id)}>
+                          Delete
+                        </StyledMenuItem>
                       </CustomSelect>
                     </Stack>
                   </>
@@ -234,13 +128,23 @@ const TicketsTable = () => {
               },
             },
           ]}
-          pageSizeOptions={[5, 8, 10, 25]}
+          pageSizeOptions={pageSizeOptions}
           paginationModel={paginationModel}
           onPaginationModelChange={setPaginationModel}
           disableRowSelectionOnClick
           disableColumnMenu
           slots={{
-            toolbar: CustomToolbar,
+            toolbar: () => (
+              <CustomToolbar
+                dispatch={dispatch}
+                fetchTickets={fetchTickets}
+                toggleModal={toggleModal}
+                setSearchParams={setSearchParams}
+                selectedPriorities={selectedPriorities}
+                setSelectedPriorities={setSelectedPriorities}
+                isModalOpen={isModalOpen}
+              />
+            ),
           }}
         />
       )}

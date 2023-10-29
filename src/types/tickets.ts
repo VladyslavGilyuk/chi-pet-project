@@ -1,3 +1,6 @@
+import { AppDispatch } from '../store';
+import { URLSearchParamsInit } from 'react-router-dom';
+
 export interface ITickets {
   id: string;
   ticket: string;
@@ -17,12 +20,20 @@ export interface IUpdateTickets {
   priority?: string;
 }
 export interface ITicketInitialValues {
-  name: string;
-  description: string;
-  priority: string;
+  ticket: string;
+  customer: string;
+  createDate: Date | string;
   deadlineDate: Date | string;
-  [key: string]: string | Date;
+  updatedDate: Date | string;
+  priority: string;
+  createdBy: {
+    name: string;
+    imageUrl: string;
+    id: string;
+  };
+  [key: string]: string | Date | object;
 }
+
 export interface IPatchTickets {
   id?: string;
   ticket?: string;
@@ -32,3 +43,13 @@ export interface IPatchTickets {
   updatedDate?: Date | string;
   priority?: string;
 }
+
+export type CustomToolbarProps = {
+  dispatch: AppDispatch;
+  fetchTickets: () => void;
+  toggleModal: () => void;
+  setSearchParams: (callback: (prev: URLSearchParams) => URLSearchParamsInit) => void;
+  selectedPriorities: string[];
+  setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
+  isModalOpen: boolean;
+};

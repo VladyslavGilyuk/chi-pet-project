@@ -24,7 +24,7 @@ export default function BasicDatePicker({ date, onChange, errors }: IProps) {
             errors={errors}
             slotProps={{
               textField: {
-                helperText: errors.date ? (
+                helperText: errors.deadlineDate ? (
                   <HelperText>Date is required</HelperText>
                 ) : (
                   <EmptyHelperText>.</EmptyHelperText>

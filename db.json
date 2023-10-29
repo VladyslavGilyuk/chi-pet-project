@@ -4,242 +4,340 @@
     {
       "id": "1",
       "ticket": "Contact Email not Linked",
-      "customer": "Tom Cruise",
-      "createDate": "Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto1"
+      "createdBy": {
+        "name": "Tom Cruise",
+        "imageUrl": "profilePhoto1.png",
+        "id": "1"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "2",
       "ticket": "Adding Images to Featured Posts",
-      "customer": "Matt Damon",
-      "createDate": " Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Low",
-      "profilePhoto": "profilePhoto2"
+      "createdBy": {
+        "name": "Matt Damon",
+        "imageUrl": "profilePhoto2",
+        "id": "2"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Low"
     },
     {
       "id": "3",
       "ticket": "When will I be charged this month?",
-      "customer": "Robert Downey",
-      "createDate": "Sun Sep 24 2023 00:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Tue Sep 26 2023 07:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto3"
+      "createdBy": {
+        "name": "Robert Downey",
+        "imageUrl": "profilePhoto3",
+        "id": "3"
+      },
+      "createDate": "2023-09-24T00:00:00.000Z",
+      "deadlineDate": "2023-09-26T07:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "4",
       "ticket": "Payment not going through",
-      "customer": "Christian Bale",
-      "createDate": "Sun Sep 24 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto4"
+      "createdBy": {
+        "name": "Christian",
+        "imageUrl": "profilePhoto4",
+        "id": "4"
+      },
+      "createDate": "2023-09-24T17:00:00.000Z",
+      "deadlineDate": "2023-09-25T17:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "Normal"
     },
     {
       "id": "5",
       "ticket": "Unable to add replies",
-      "customer": "Henry Cavill",
-      "createDate": "Sun Sep 24 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto5"
+      "createdBy": {
+        "name": "Henry Cavill",
+        "imageUrl": "profilePhoto5",
+        "id": "5"
+      },
+      "createDate": "2023-09-24T16:00:00.000Z",
+      "deadlineDate": "2023-09-25T16:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "6",
       "ticket": "Downtime since last week",
-      "customer": "Chris Evans",
-      "createDate": "Sat Sep 23 2023 14:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 14:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Mon Sep 25 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto6"
+      "createdBy": {
+        "name": "Chris Evans",
+        "imageUrl": "profilePhoto6",
+        "id": "6"
+      },
+      "createDate": "2023-09-23T14:00:00.000Z",
+      "deadlineDate": "2023-09-25T14:00:00.000Z",
+      "updatedDate": "2023-10-24T17:21:21.045Z",
+      "priority": "Normal"
     },
     {
       "id": "7",
       "ticket": "Referral Bonus",
-      "customer": "Sam Smith",
-      "createDate": "Fri Sep 22 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Sun Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Low",
-      "profilePhoto": "profilePhoto7"
+      "createdBy": {
+        "name": "Sam Smith",
+        "imageUrl": "profilePhoto7",
+        "id": "7"
+      },
+      "createDate": "2023-09-22T11:30:00.000Z",
+      "deadlineDate": "2023-09-25T11:30:00.000Z",
+      "updatedDate": "2023-09-24T18:30:00.000Z",
+      "priority": "Low"
     },
     {
       "id": "8",
       "ticket": "How do I change my password?",
-      "customer": "Steve Rogers",
-      "createDate": "Thu Sep 21 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Sun Sep 24 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto8"
+      "createdBy": {
+        "name": "Steve Rogers",
+        "imageUrl": "profilePhoto8",
+        "id": "8"
+      },
+      "createDate": "2023-09-21T13:00:00.000Z",
+      "deadlineDate": "2023-09-24T13:00:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Normal"
     },
     {
       "id": "9",
       "ticket": "Contact Email not Linked",
-      "customer": "Tom Cruise",
-      "createDate": "Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto1"
+      "createdBy": {
+        "name": "Tom Cruise",
+        "imageUrl": "profilePhoto1.png",
+        "id": "9"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "10",
       "ticket": "Adding Images to Featured Posts",
-      "customer": "Matt Damon",
-      "createDate": " Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Low",
-      "profilePhoto": "profilePhoto2"
+      "createdBy": {
+        "name": "Matt Damon",
+        "imageUrl": "profilePhoto2",
+        "id": "10"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Low"
     },
     {
       "id": "11",
       "ticket": "When will I be charged this month?",
-      "customer": "Robert Downey",
-      "createDate": "Sun Sep 24 2023 00:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Tue Sep 26 2023 07:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto3"
+      "createdBy": {
+        "name": "Robert Downey",
+        "imageUrl": "profilePhoto3",
+        "id": "11"
+      },
+      "createDate": "2023-09-24T00:00:00.000Z",
+      "deadlineDate": "2023-09-26T07:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "12",
       "ticket": "Payment not going through",
-      "customer": "Christian Bale",
-      "createDate": "Sun Sep 24 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto4"
+      "createdBy": {
+        "name": "Christian Bale",
+        "imageUrl": "profilePhoto4",
+        "id": "12"
+      },
+      "createDate": "2023-09-24T17:00:00.000Z",
+      "deadlineDate": "2023-09-25T17:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "Normal"
     },
     {
       "id": "13",
       "ticket": "Unable to add replies",
-      "customer": "Henry Cavill",
-      "createDate": "Sun Sep 24 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto5"
+      "createdBy": {
+        "name": "Henry Cavill",
+        "imageUrl": "profilePhoto5",
+        "id": "13"
+      },
+      "createDate": "2023-09-24T16:00:00.000Z",
+      "deadlineDate": "2023-09-25T16:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "14",
       "ticket": "Downtime since last week",
-      "customer": "Chris Evans",
-      "createDate": "Sat Sep 23 2023 14:00:00 GMT+0000 (Coordinated Universal Time)",
+      "createdBy": {
+        "name": "Chris Evans",
+        "imageUrl": "profilePhoto6",
+        "id": "14"
+      },
+      "createDate": "2023-09-23T14:00:00.000Z",
       "deadlineDate": "2023-09-25T14:00:00.000Z",
       "updatedDate": "2023-10-24T17:21:21.045Z",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto6"
+      "priority": "Normal"
     },
     {
       "id": "15",
       "ticket": "No",
-      "customer": "Sam Smith",
-      "createDate": "Fri Sep 22 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Sun Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Low",
-      "profilePhoto": "profilePhoto7"
+      "createdBy": {
+        "name": "Sam Smith",
+        "imageUrl": "profilePhoto7",
+        "id": "15"
+      },
+      "createDate": "2023-09-22T11:30:00.000Z",
+      "deadlineDate": "2023-09-25T11:30:00.000Z",
+      "updatedDate": "2023-09-24T18:30:00.000Z",
+      "priority": "Low"
     },
     {
       "id": "16",
       "ticket": "How do I change my password?",
-      "customer": "Steve Rogers",
-      "createDate": "Thu Sep 21 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Sun Sep 24 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto8"
+      "createdBy": {
+        "name": "Steve Rogers",
+        "imageUrl": "profilePhoto8",
+        "id": "16"
+      },
+      "createDate": "2023-09-21T13:00:00.000Z",
+      "deadlineDate": "2023-09-24T13:00:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Normal"
     },
     {
       "id": "17",
       "ticket": "Contact Email not Linked",
-      "customer": "Tom Cruise",
-      "createDate": "Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto1"
+      "createdBy": {
+        "name": "Tom Cruise",
+        "imageUrl": "profilePhoto1.png",
+        "id": "17"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "18",
       "ticket": "Adding Images to Featured Posts",
-      "customer": "Matt Damon",
-      "createDate": " Sat Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Low",
-      "profilePhoto": "profilePhoto2"
+      "createdBy": {
+        "name": "Matt Damon",
+        "imageUrl": "profilePhoto2",
+        "id": "18"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Low"
     },
     {
       "id": "19",
       "ticket": "When will I be charged this month?",
-      "customer": "Robert Downey",
-      "createDate": "Sun Sep 24 2023 00:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Tue Sep 26 2023 07:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto3"
+      "createdBy": {
+        "name": "Robert Downey",
+        "imageUrl": "profilePhoto3",
+        "id": "19"
+      },
+      "createDate": "2023-09-24T00:00:00.000Z",
+      "deadlineDate": "2023-09-26T07:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "20",
       "ticket": "Payment not going through",
-      "customer": "Christian Bale",
-      "createDate": "Sun Sep 24 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 17:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto4"
+      "createdBy": {
+        "name": "Christian Bale",
+        "imageUrl": "profilePhoto4",
+        "id": "20"
+      },
+      "createDate": "2023-09-24T17:00:00.000Z",
+      "deadlineDate": "2023-09-25T17:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "Normal"
     },
     {
       "id": "21",
       "ticket": "Unable to add replies",
-      "customer": "Henry Cavill",
-      "createDate": "Sun Sep 24 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 16:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 26 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "High",
-      "profilePhoto": "profilePhoto5"
+      "createdBy": {
+        "name": "Henry Cavill",
+        "imageUrl": "profilePhoto5",
+        "id": "21"
+      },
+      "createDate": "2023-09-24T16:00:00.000Z",
+      "deadlineDate": "2023-09-25T16:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "High"
     },
     {
       "id": "22",
       "ticket": "Downtime since last week",
-      "customer": "Chris Evans",
-      "createDate": "Sat Sep 23 2023 14:00:00 GMT+0000 (Coordinated Universal Time)",
+      "createdBy": {
+        "name": "Chris Evans",
+        "imageUrl": "profilePhoto6",
+        "id": "22"
+      },
+      "createDate": "2023-09-23T14:00:00.000Z",
       "deadlineDate": "2023-09-25T14:00:00.000Z",
       "updatedDate": "2023-10-24T17:21:21.045Z",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto6"
+      "priority": "Normal"
     },
     {
       "id": "23",
       "ticket": "No",
-      "customer": "Sam Smith",
-      "createDate": "Fri Sep 22 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Mon Sep 25 2023 11:30:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Sun Sep 24 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Low",
-      "profilePhoto": "profilePhoto7"
+      "createdBy": {
+        "name": "Sam Smith",
+        "imageUrl": "profilePhoto7",
+        "id": "23"
+      },
+      "createDate": "2023-09-22T11:30:00.000Z",
+      "deadlineDate": "2023-09-25T11:30:00.000Z",
+      "updatedDate": "2023-09-24T18:30:00.000Z",
+      "priority": "Low"
     },
     {
       "id": "24",
       "ticket": "How do I change my password?",
-      "customer": "Steve Rogers",
-      "createDate": "Thu Sep 21 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
-      "deadlineDate": "Sun Sep 24 2023 13:00:00 GMT+0000 (Coordinated Universal Time)",
-      "updatedDate": "Tue Sep 27 2023 18:30:00 GMT+0000 (Coordinated Universal Time)",
-      "priority": "Normal",
-      "profilePhoto": "profilePhoto8"
+      "createdBy": {
+        "name": "Steve Rogers",
+        "imageUrl": "profilePhoto8",
+        "id": "24"
+      },
+      "createDate": "2023-09-21T13:00:00.000Z",
+      "deadlineDate": "2023-09-24T13:00:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Normal"
+    },
+    {
+      "id": "hgB_-SN",
+      "ticket": "AAA",
+      "createdBy": {
+        "name": "ggg"
+      },
+      "createDate": "2023-10-27T11:39:31.952Z",
+      "deadlineDate": "2023-10-27T21:00:00.000Z",
+      "updatedDate": "2023-10-29T13:00:49.761Z",
+      "priority": "High",
+      "customer": "ggg"
+    },
+    {
+      "ticket": "AAAA",
+      "customer": "aaa",
+      "deadlineDate": "2023-10-27T21:00:00.000Z",
+      "priority": "High",
+      "createdBy": {
+        "name": "aaa",
+        "imageUrl": "profilePhoto1.png",
+        "id": "1e1818bb-6286-44fd-bd46-7d0a22affda0"
+      },
+      "createDate": "2023-10-29T13:00:32.874Z",
+      "updatedDate": "2023-10-29T13:00:32.874Z",
+      "id": "WmJ9skU"
     }
   ]
 }

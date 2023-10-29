@@ -1,6 +1,7 @@
 import { Notify } from '../../utils/notify';
 import TicketService from '../../service/TicketService';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 import { ITickets, IUpdateTickets } from '../../types/tickets';
 
 export const createTicketAsync = createAsyncThunk(
@@ -8,6 +9,11 @@ export const createTicketAsync = createAsyncThunk(
   async (data: ITickets) => {
     const transformedData = {
       ...data,
+      createdBy: {
+        name: data.customer,
+        imageUrl: 'profilePhoto1.png',
+        id: uuidv4(),
+      },
       createDate: new Date(),
       updatedDate: new Date(),
     };
@@ -26,6 +32,9 @@ export const updateTicketAsync = createAsyncThunk(
   async ({ id, data }: { id: string; data: IUpdateTickets }) => {
     const transformedData = {
       ...data,
+      createdBy: {
+        name: data.customer,
+      },
       updatedDate: new Date(),
     };
 

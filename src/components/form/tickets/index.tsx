@@ -1,5 +1,5 @@
-import BasicDatePicker from './datePicker';
 import CustomSelect from './select';
+import DatePicker from './datePicker';
 import FormInput from '../../common/formInput';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
@@ -35,6 +35,8 @@ const TicketsForm = ({ toggleModal, handleForm, initialValues }: IProps) => {
       keys.forEach((key) => {
         if (key === 'deadlineDate') {
           setValue(key, new Date(initialValues[key]));
+        } else if (key === 'createdBy' && initialValues[key]?.name) {
+          setValue('customer', initialValues[key].name);
         } else {
           setValue(key, initialValues[key]);
         }
@@ -62,7 +64,7 @@ const TicketsForm = ({ toggleModal, handleForm, initialValues }: IProps) => {
           rules={{ required: true }}
           render={({ field }) => (
             <>
-              <BasicDatePicker date={field.value} onChange={field.onChange} errors={errors} />
+              <DatePicker date={field.value} onChange={field.onChange} errors={errors} />
             </>
           )}
         />

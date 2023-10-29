@@ -1,6 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid';
 import Tag from '../common/tags';
-import profilePhoto1 from '../../assets/images/profilePhoto1.png';
+import avatarPlaceholder from '../../assets/images/avatarPlaceholder.png';
 import { Box, Stack } from '@mui/material';
 import { StyledHeading, StyledStack, StyledText, UserPhoto } from './styled';
 import {
@@ -19,7 +19,7 @@ export const columns: GridColDef[] = [
     renderCell: (params) => {
       return (
         <StyledStack>
-          <UserPhoto src={profilePhoto1} alt='userPhoto' />
+          <UserPhoto src={avatarPlaceholder} alt='userPhoto' />
           <Box>
             <StyledHeading>{params.value}</StyledHeading>
             <Box>
@@ -38,7 +38,7 @@ export const columns: GridColDef[] = [
     renderCell: (params) => {
       return (
         <Stack>
-          <StyledHeading>{params.value}</StyledHeading>
+          <StyledHeading>{params.row.createdBy.name}</StyledHeading>
           <StyledText>{formatAsCreateDate(params.row.createDate)}</StyledText>
         </Stack>
       );
@@ -68,3 +68,5 @@ export const columns: GridColDef[] = [
     },
   },
 ];
+
+export const pageSizeOptions = [5, 8, 10, 25];
