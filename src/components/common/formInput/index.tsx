@@ -1,10 +1,9 @@
 import EndAdornment from './endAdorment';
 import { ICommonFieldValues } from '../../../types/auth';
-import { ITicketFieldNames, ITicketFieldValues } from '../../form/tickets/helper';
-// eslint-disable-next-line sort-imports
 import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegister } from 'react-hook-form';
 import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
+import { ITicketFieldNames, ITicketFieldValues } from '../../form/tickets/helper';
 import { useCallback, useState } from 'react';
 
 interface IProps extends IBaseField {

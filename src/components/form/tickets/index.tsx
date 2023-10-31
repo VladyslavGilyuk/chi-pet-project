@@ -1,6 +1,10 @@
+import { AppDispatch } from '../../../store';
 import CustomSelect from './select';
 import DatePicker from './datePicker';
 import FormInput from '../../common/formInput';
+import TicketService from '../../../service/TicketService';
+import { createTicketAsync } from '../../../store/tickets/thunk';
+import { updateTicket } from '../../../store/tickets/slice';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   EmptyHelperText,
@@ -11,16 +15,17 @@ import {
   StyledLoginButton,
 } from './styled';
 import { ITicketFieldValues, TicketsFormHelper, statusOptions } from './helper';
-import { ITicketInitialValues, ITickets, IUpdateTickets } from '../../../types/tickets';
+import { ITicketState, ITickets, IUpdateTickets } from '../../../types/tickets';
 import { memo, useEffect } from 'react';
 
 interface IProps {
   toggleModal: () => void;
   refetchTickets: () => void;
-  handleForm: SubmitHandler<ITickets> | SubmitHandler<IUpdateTickets>;
-  initialValues: ITicketInitialValues | null;
+  initialValues: ITicketState | null;
+  dispatch: AppDispatch;
+  isEdit?: boolean;
 }
-const TicketsForm = ({ toggleModal, handleForm, initialValues }: IProps) => {
+const TicketsForm = ({ toggleModal, refetchTickets, initialValues, dispatch, isEdit }: IProps) => {
   const {
     handleSubmit,
     register,
@@ -35,19 +40,39 @@ const TicketsForm = ({ toggleModal, handleForm, initialValues }: IProps) => {
       keys.forEach((key) => {
         if (key === 'deadlineDate') {
           setValue(key, new Date(initialValues[key]));
-        } else if (key === 'createdBy' && initialValues[key]?.name) {
-          setValue('customer', initialValues[key].name);
         } else {
-          setValue(key, initialValues[key]);
+          setValue(key, initialValues[key as keyof ITicketState]);
         }
       });
     }
   }, [initialValues]);
 
+  const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
+    const body = { ...data };
+    await dispatch(createTicketAsync(body));
+    refetchTickets();
+    toggleModal();
+  };
+
+  const handleEditTicket: SubmitHandler<IUpdateTickets> = async (data: IUpdateTickets) => {
+    const transformedData = {
+      ...data,
+      updatedDate: new Date(),
+    };
+    const ticketId = initialValues?.id;
+    if (ticketId) {
+      const updatedTicket = await TicketService.update(ticketId, transformedData);
+      dispatch(updateTicket(updatedTicket.data));
+      refetchTickets();
+      toggleModal();
+    } else {
+      throw new Error('Error: Invalid ticket id');
+    }
+  };
   return (
     <>
       <StyledHeading>Add tickets</StyledHeading>
-      <form onSubmit={handleSubmit(handleForm)}>
+      <form onSubmit={handleSubmit(isEdit ? handleEditTicket : handleCreateTicket)}>
         {TicketsFormHelper.map((instance) => (
           <FormInput
             {...instance}

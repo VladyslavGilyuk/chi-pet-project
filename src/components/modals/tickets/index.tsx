@@ -1,24 +1,26 @@
+import { AppDispatch } from '../../../store';
 import { BoxContainer } from './styled';
+import { ITicketState } from '../../../types/tickets';
 import { Modal } from '@mui/material';
-import { SubmitHandler } from 'react-hook-form';
 import TicketsForm from '../../form/tickets';
-import { ITicketInitialValues, ITickets, IUpdateTickets } from '../../../types/tickets';
 interface IProps {
+  dispatch: AppDispatch;
   toggleModal: () => void;
   refetchTickets: () => void;
-  handleForm: SubmitHandler<ITickets> | SubmitHandler<IUpdateTickets>;
-  initialValues: ITicketInitialValues | null;
+  initialValues: ITicketState | null;
+  isEdit?: boolean;
 }
 
-const TicketsModal = ({ toggleModal, refetchTickets, handleForm, initialValues }: IProps) => {
+const TicketsModal = ({ dispatch, toggleModal, refetchTickets, initialValues, isEdit }: IProps) => {
   return (
     <Modal open={true} onClose={toggleModal}>
       <BoxContainer>
         <TicketsForm
+          dispatch={dispatch}
           toggleModal={toggleModal}
-          handleForm={handleForm}
           refetchTickets={refetchTickets}
           initialValues={initialValues}
+          isEdit={isEdit}
         />
       </BoxContainer>
     </Modal>

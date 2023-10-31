@@ -1,7 +1,7 @@
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { GridToolbarContainer } from '@mui/x-data-grid';
 import SortIcon from '@mui/icons-material/Sort';
-import { Box, Button, InputLabel, Select, styled } from '@mui/material';
+import { Box, Button, FormControlLabel, InputLabel, Select, styled } from '@mui/material';
 
 import { colors, fonts } from '../../../theme';
 
@@ -39,9 +39,15 @@ const FilterSelect = styled(Select)`
     right: unset;
   }
 `;
+const StyledFormControlLabel = styled(FormControlLabel)`
+  display: block;
+  margin-left: 5px;
+`;
+
 const FilterInputLabel = styled(InputLabel)`
   margin-top: -7px;
 `;
+
 const FilterSubSelect = styled(Select)`
   width: 100px;
   display: flex;
@@ -85,4 +91,5 @@ export {
   StyledInputLabel,
   FilterSubSelect,
   FilterInputLabel,
+  StyledFormControlLabel,
 };

@@ -26,23 +26,6 @@ const StyledDatePicker = styled(DateTimePicker)<StyledTagProps>`
     font-size: ${fonts.size.medium};
     font-weight: ${fonts.weight.small};
   }
-
-  & .MuiOutlinedInput-notchedOutline {
-    box-sizing: border-box;
-    ${({ errors }) => errors && errors.date && `border: 1px solid #d32f2f;`};
-  }
-
-  &:hover,
-  &:focus {
-    & .MuiOutlinedInput-notchedOutline {
-      ${({ errors }) => errors && errors.date && `border: 1px solid #d32f2f;`}
-    }
-  }
-  &:focus-within {
-    & .MuiOutlinedInput-notchedOutline {
-      ${({ errors }) => errors && errors.date && `border: 2px solid #d32f2f;`}
-    }
-  }
 `;
 const HelperText = styled('span')`
   color: #d32f2f;

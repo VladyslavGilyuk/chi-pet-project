@@ -1,13 +1,11 @@
+import { DefaultCell } from './cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
 import Tag from '../common/tags';
-import avatarPlaceholder from '../../assets/images/avatarPlaceholder.png';
-import { Box, Stack } from '@mui/material';
-import { StyledHeading, StyledStack, StyledText, UserPhoto } from './styled';
+import { TicketCell } from './cells/ticketCell';
 import {
   formatAsCreateDate,
   formatAsDeadlineDate,
   formatAsHoursDate,
-  updatedDifference,
 } from '../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
@@ -17,17 +15,7 @@ export const columns: GridColDef[] = [
     width: 450,
     sortable: false,
     renderCell: (params) => {
-      return (
-        <StyledStack>
-          <UserPhoto src={avatarPlaceholder} alt='userPhoto' />
-          <Box>
-            <StyledHeading>{params.value}</StyledHeading>
-            <Box>
-              <StyledText>{updatedDifference(params.row.updatedDate)}</StyledText>
-            </Box>
-          </Box>
-        </StyledStack>
-      );
+      return <TicketCell ticketName={params.value} updatedDate={params.row.updatedDate} />;
     },
   },
   {
@@ -37,10 +25,10 @@ export const columns: GridColDef[] = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <Stack>
-          <StyledHeading>{params.row.createdBy.name}</StyledHeading>
-          <StyledText>{formatAsCreateDate(params.row.createDate)}</StyledText>
-        </Stack>
+        <DefaultCell
+          primaryText={params.row.customer}
+          secondaryText={formatAsCreateDate(params.row.createDate)}
+        />
       );
     },
   },
@@ -51,10 +39,10 @@ export const columns: GridColDef[] = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <Stack>
-          <StyledHeading>{formatAsDeadlineDate(params.row.deadlineDate)}</StyledHeading>
-          <StyledText>{formatAsHoursDate(params.row.deadlineDate)}</StyledText>
-        </Stack>
+        <DefaultCell
+          primaryText={formatAsDeadlineDate(params.row.deadlineDate)}
+          secondaryText={formatAsHoursDate(params.row.deadlineDate)}
+        />
       );
     },
   },

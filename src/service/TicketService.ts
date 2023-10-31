@@ -2,14 +2,14 @@ import axios from './axiosConfig';
 import { IPatchTickets, ITickets } from '../types/tickets';
 
 class TicketService {
-  get(queryParams = '') {
+  getAll(queryParams = '') {
     return axios.get(`/tickets${queryParams}`);
   }
 
-  register(body: ITickets) {
+  create(body: ITickets) {
     return axios.post('/tickets', body);
   }
-  patch(id: string, data: IPatchTickets) {
+  update(id: string, data: IPatchTickets) {
     return axios.patch(`/tickets/${id}`, data);
   }
   delete(id: string) {

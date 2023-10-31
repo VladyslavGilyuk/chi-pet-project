@@ -1,22 +1,21 @@
 import CustomToolbar from './customToolbar';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Stack } from '@mui/material';
-import { SubmitHandler } from 'react-hook-form';
+import { ITicketState } from '../../types/tickets';
+import { MenuCell } from './cells/menuCell';
 import TicketService from '../../service/TicketService';
 import TicketsModal from '../modals/tickets';
+import { tickets } from '../../store/tickets/selector';
 import { useAppDispatch } from '../../store/hooks';
 import { useSearchParams } from 'react-router-dom';
-import { CustomSelect, StyledBox, StyledDataGrid, StyledMenuItem } from './styled';
-import { ITicketInitialValues, IUpdateTickets } from '../../types/tickets';
+import { useSelector } from 'react-redux';
+import { StyledBox, StyledDataGrid } from './styled';
 import { columns, pageSizeOptions } from './helper';
-import { deleteTicketAsync, updateTicketAsync } from '../../store/tickets/thunk';
+import { deleteTicket, setTicketState } from '../../store/tickets/slice';
 import { useCallback, useEffect, useState } from 'react';
 
 const TicketsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [paramsId, setParamsId] = useState('');
-  const [ticketsData, setTicketsData] = useState<ITicketInitialValues[] | null>(null);
+  const [selectedTicket, setSelectedTicket] = useState<ITicketState | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const _sort = searchParams.get('_sort');
@@ -24,20 +23,19 @@ const TicketsTable = () => {
   const priority = searchParams.getAll('priority');
   const _page = searchParams.get('_page');
   const pageSize = searchParams.get('pageSize');
-  const createDate_gte = searchParams.get('createDate_gte');
-  const createDate_lte = searchParams.get('createDate_lte');
 
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>(priority);
   const [paginationModel, setPaginationModel] = useState({
+    // correct this directly
     pageSize: pageSize ? parseInt(pageSize) : 8,
     page: _page ? parseInt(_page) : 0,
   });
-
+  const storeTickets = useSelector(tickets);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetchTickets();
-  }, [_sort, _order, _page, paginationModel, createDate_gte, createDate_lte, selectedPriorities]);
+  }, [_sort, _order, _page, paginationModel, selectedPriorities]);
 
   const buildApiUrl = () => {
     setSearchParams((params) => {
@@ -57,19 +55,14 @@ const TicketsTable = () => {
       ? selectedPriorities.map((priority) => `&priority=${priority}`).join('')
       : '';
 
-    apiUrl +=
-      createDate_gte && createDate_lte
-        ? `&createDate_gte=${createDate_gte}&createDate_lte=${createDate_lte}`
-        : '';
-
     return apiUrl;
   };
 
   const fetchTickets = async () => {
     try {
       const apiUrl = buildApiUrl();
-      const response = await TicketService.get(apiUrl);
-      setTicketsData(response.data);
+      const response = await TicketService.getAll(apiUrl);
+      dispatch(setTicketState(response.data));
     } catch (error) {
       throw new Error('Failed to fetch tickets');
     }
@@ -79,29 +72,25 @@ const TicketsTable = () => {
     setIsModalOpen((prev) => !prev);
   }, []);
 
-  const toggleUpdateModal = useCallback((id?: string) => {
-    setIsUpdateModalOpen((prev) => !prev);
-    id && setParamsId(id);
-  }, []);
-
-  const handleEditClick: SubmitHandler<IUpdateTickets> = async (data: IUpdateTickets) => {
-    const body = { ...data };
-    await dispatch(updateTicketAsync({ id: paramsId, data: body }));
-    fetchTickets();
-    toggleUpdateModal();
-  };
+  const toggleUpdateModal = useCallback(
+    (id?: string) => {
+      setSelectedTicket(storeTickets?.find((ticket) => ticket.id === id) || null);
+      setIsUpdateModalOpen((prev) => !prev);
+    },
+    [storeTickets],
+  );
 
   const handleDeleteClick = async (rowId: string) => {
-    await dispatch(deleteTicketAsync(rowId));
+    const deletedTicket = await TicketService.delete(rowId);
+    dispatch(deleteTicket(deletedTicket.data));
     fetchTickets();
   };
-
   return (
     <StyledBox>
-      {ticketsData && (
+      {storeTickets.length > 0 && (
         <StyledDataGrid
           autoHeight
-          rows={ticketsData}
+          rows={storeTickets}
           rowHeight={92}
           columns={[
             ...columns,
@@ -112,18 +101,11 @@ const TicketsTable = () => {
               sortable: false,
               renderCell: (params) => {
                 return (
-                  <>
-                    <Stack>
-                      <CustomSelect IconComponent={MoreVertIcon}>
-                        <StyledMenuItem onClick={() => toggleUpdateModal(params.row.id)}>
-                          Edit
-                        </StyledMenuItem>
-                        <StyledMenuItem onClick={() => handleDeleteClick(params.row.id)}>
-                          Delete
-                        </StyledMenuItem>
-                      </CustomSelect>
-                    </Stack>
-                  </>
+                  <MenuCell
+                    id={params.row.id}
+                    toggleUpdateModal={toggleUpdateModal}
+                    handleDeleteClick={handleDeleteClick}
+                  />
                 );
               },
             },
@@ -151,10 +133,11 @@ const TicketsTable = () => {
       {isUpdateModalOpen && (
         <>
           <TicketsModal
+            dispatch={dispatch}
             toggleModal={toggleUpdateModal}
-            handleForm={handleEditClick}
             refetchTickets={fetchTickets}
-            initialValues={ticketsData?.find((ticket) => ticket.id === paramsId) || null}
+            initialValues={selectedTicket}
+            isEdit={true}
           />
         </>
       )}

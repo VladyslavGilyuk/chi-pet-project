@@ -46,7 +46,7 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md,json,scss} --config ./.prettierrc",
-    "server": "json-server-auth --watch db.json --port 8080",
+    "server": "json-server-auth --watch db.json --port 8080 --delay 500",
     "dev": "concurrently \"npm run start\" \"npm run server\""
   },
   "eslintConfig": {

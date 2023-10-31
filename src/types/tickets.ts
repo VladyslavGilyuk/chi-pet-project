@@ -1,6 +1,19 @@
 import { AppDispatch } from '../store';
 import { URLSearchParamsInit } from 'react-router-dom';
-
+export interface ITicketState {
+  id: string;
+  ticket: string;
+  customer: string;
+  createDate: Date | string;
+  deadlineDate: Date | string;
+  updatedDate: Date | string;
+  priority: string;
+  createdBy: {
+    name: string;
+    imageUrl: string;
+    id: string;
+  };
+}
 export interface ITickets {
   id: string;
   ticket: string;
@@ -33,7 +46,6 @@ export interface ITicketInitialValues {
   };
   [key: string]: string | Date | object;
 }
-
 export interface IPatchTickets {
   id?: string;
   ticket?: string;
