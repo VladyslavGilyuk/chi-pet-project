@@ -15,7 +15,14 @@ export const columns: GridColDef[] = [
     width: 450,
     sortable: false,
     renderCell: (params) => {
-      return <TicketCell ticketName={params.value} updatedDate={params.row.updatedDate} />;
+      return (
+        <TicketCell>
+          <DefaultCell
+            primaryText={params.value}
+            secondaryText={formatAsCreateDate(params.row.updatedDate)}
+          />
+        </TicketCell>
+      );
     },
   },
   {

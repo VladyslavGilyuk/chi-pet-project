@@ -1,21 +1,16 @@
-import { Box } from '@mui/material';
+import React from 'react';
 import avatarPlaceholder from '../../../assets/images/user.png';
-import { updatedDifference } from '../../../utils/dateFunctions';
-import { StyledHeading, StyledStack, StyledText, UserPhoto } from '../styled';
-interface IProps {
-  ticketName: string;
-  updatedDate: string;
+import { StyledStack, UserPhoto } from '../styled';
+
+interface TicketCellProps {
+  children: React.ReactNode;
 }
-export const TicketCell = ({ ticketName, updatedDate }: IProps) => {
+
+export const TicketCell: React.FC<TicketCellProps> = ({ children }) => {
   return (
     <StyledStack>
       <UserPhoto src={avatarPlaceholder} alt='userPhoto' />
-      <Box>
-        <StyledHeading>{ticketName}</StyledHeading>
-        <Box>
-          <StyledText>{updatedDifference(updatedDate)}</StyledText>
-        </Box>
-      </Box>
+      {children}
     </StyledStack>
   );
 };
