@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import CustomToolbar from './customToolbar';
 import { ITicketState } from '../../types/tickets';
 import { MenuCell } from './cells/menuCell';
@@ -26,10 +27,10 @@ const TicketsTable = () => {
 
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>(priority);
   const [paginationModel, setPaginationModel] = useState({
-    // correct this directly
     pageSize: pageSize ? parseInt(pageSize) : 8,
     page: _page ? parseInt(_page) : 0,
   });
+  const [totalRows, setTotalRows] = useState(0);
   const storeTickets = useSelector(tickets);
   const dispatch = useAppDispatch();
 
@@ -37,7 +38,7 @@ const TicketsTable = () => {
     fetchTickets();
   }, [_sort, _order, _page, paginationModel, selectedPriorities]);
 
-  const buildApiUrl = () => {
+  const buildApiUrl = useCallback(() => {
     setSearchParams((params) => {
       params.delete('priority');
       selectedPriorities.forEach((p) => {
@@ -49,24 +50,28 @@ const TicketsTable = () => {
       return params;
     });
 
-    let apiUrl = `?_sort=${_sort || ''}&_order=${_order || ''}`;
+    let apiUrl = `?_sort=${_sort || ''}&_order=${_order || ''}&_page=${
+      paginationModel.page + 1 || ''
+    }&_limit=${paginationModel.pageSize || ''}`;
 
     apiUrl += selectedPriorities.length
       ? selectedPriorities.map((priority) => `&priority=${priority}`).join('')
       : '';
 
     return apiUrl;
-  };
+  }, [_sort, _order, selectedPriorities, paginationModel]);
 
-  const fetchTickets = async () => {
+  const fetchTickets = useCallback(async () => {
     try {
       const apiUrl = buildApiUrl();
+      console.log(apiUrl);
       const response = await TicketService.getAll(apiUrl);
+      setTotalRows(parseInt(response.headers['x-total-count']));
       dispatch(setTicketState(response.data));
     } catch (error) {
       throw new Error('Failed to fetch tickets');
     }
-  };
+  }, [buildApiUrl, dispatch, selectedPriorities, setSearchParams]);
 
   const toggleModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
@@ -80,11 +85,15 @@ const TicketsTable = () => {
     [storeTickets],
   );
 
-  const handleDeleteClick = async (rowId: string) => {
-    const deletedTicket = await TicketService.delete(rowId);
-    dispatch(deleteTicket(deletedTicket.data));
-    fetchTickets();
-  };
+  const handleDeleteClick = useCallback(
+    async (rowId: string) => {
+      const deletedTicket = await TicketService.delete(rowId);
+      dispatch(deleteTicket(deletedTicket.data));
+      fetchTickets();
+    },
+    [dispatch, fetchTickets],
+  );
+
   return (
     <StyledBox>
       {storeTickets.length > 0 && (
@@ -110,6 +119,8 @@ const TicketsTable = () => {
               },
             },
           ]}
+          paginationMode='server'
+          rowCount={totalRows}
           pageSizeOptions={pageSizeOptions}
           paginationModel={paginationModel}
           onPaginationModelChange={setPaginationModel}

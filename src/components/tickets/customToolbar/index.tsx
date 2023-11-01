@@ -1,5 +1,6 @@
 import { CustomToolbarProps } from '../../../types/tickets';
 import TicketsModal from '../../modals/tickets';
+import { memo } from 'react';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
 import {
   FilterSelect,
@@ -66,7 +67,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
                 key={option}
                 control={
                   <Checkbox
-                    onClick={(e) => e.stopPropagation()} // this prevents
+                    onClick={(e) => e.stopPropagation()}
                     checked={selectedPriorities.includes(option)}
                     onChange={() => handlePriorityFilter(option)}
                   />
@@ -94,4 +95,4 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
   );
 };
 
-export default CustomToolbar;
+export default memo(CustomToolbar);
