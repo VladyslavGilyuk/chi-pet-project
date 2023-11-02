@@ -72,6 +72,14 @@ const SelectsContainer = styled(Box)`
 `;
 const PlusSpan = styled('span')`
   margin-right: 6px;
+  display: flex;
+  color: ${colors.primaryBlue};
+  svg {
+    color: ${colors.primaryBlue};
+    fill: ${colors.primaryBlue};
+    width: 15px;
+    height: 15px;
+  }
 `;
 const StyledFilterAltIcon = styled(FilterAltIcon)`
   fill: ${colors.grayLight};

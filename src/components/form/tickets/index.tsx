@@ -1,10 +1,8 @@
-import { AppDispatch } from '../../../store';
-import CustomSelect from './select';
-import DatePicker from './datePicker';
+/* eslint-disable sort-imports */
+import DatePicker from '../../common/datePicker';
 import FormInput from '../../common/formInput';
-import TicketService from '../../../service/TicketService';
-import { createTicketAsync } from '../../../store/tickets/thunk';
-import { updateTicket } from '../../../store/tickets/slice';
+import { createTicketAsync, updateTicketAsync } from '../../../store/tickets/thunk';
+import { useAppDispatch } from '../../../store/hooks';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   EmptyHelperText,
@@ -16,54 +14,40 @@ import {
 } from './styled';
 import { ITicketFieldValues, TicketsFormHelper, statusOptions } from './helper';
 import { ITicketState, ITickets, IUpdateTickets } from '../../../types/tickets';
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
+import CustomSelect from '../../common/select';
 
 interface IProps {
   toggleModal: () => void;
-  refetchTickets: () => void;
   initialValues: ITicketState | null;
-  dispatch: AppDispatch;
   isEdit?: boolean;
 }
-const TicketsForm = ({ toggleModal, refetchTickets, initialValues, dispatch, isEdit }: IProps) => {
+const TicketsForm = ({ toggleModal, initialValues, isEdit }: IProps) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-    setValue,
     control,
-  } = useForm<ITicketFieldValues>();
+  } = useForm<ITicketFieldValues>({
+    defaultValues: {
+      ...initialValues,
+      deadlineDate: initialValues ? new Date(initialValues.deadlineDate) : '',
+    },
+  });
 
-  useEffect(() => {
-    if (initialValues) {
-      const keys = Object.keys(initialValues);
-      keys.forEach((key) => {
-        if (key === 'deadlineDate') {
-          setValue(key, new Date(initialValues[key]));
-        } else {
-          setValue(key, initialValues[key as keyof ITicketState]);
-        }
-      });
-    }
-  }, [initialValues]);
+  const dispatch = useAppDispatch();
 
   const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
     const body = { ...data };
     await dispatch(createTicketAsync(body));
-    refetchTickets();
     toggleModal();
   };
 
   const handleEditTicket: SubmitHandler<IUpdateTickets> = async (data: IUpdateTickets) => {
-    const transformedData = {
-      ...data,
-      updatedDate: new Date(),
-    };
-    const ticketId = initialValues?.id;
+    const body = { ...data };
+    const ticketId = data.id;
     if (ticketId) {
-      const updatedTicket = await TicketService.update(ticketId, transformedData);
-      dispatch(updateTicket(updatedTicket.data));
-      refetchTickets();
+      await dispatch(updateTicketAsync({ id: ticketId, data: body }));
       toggleModal();
     } else {
       throw new Error('Error: Invalid ticket id');
@@ -105,6 +89,8 @@ const TicketsForm = ({ toggleModal, refetchTickets, initialValues, dispatch, isE
                 onChange={(e) => field.onChange(e.target.value)}
                 options={statusOptions}
                 errors={errors}
+                label='Priority'
+                placeholder='Name'
               />
               {(errors.priority && <HelperText>Tag is required</HelperText>) || (
                 <EmptyHelperText>.</EmptyHelperText>

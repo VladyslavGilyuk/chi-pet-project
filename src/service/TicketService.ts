@@ -13,7 +13,9 @@ class TicketService {
     return axios.patch(`/tickets/${id}`, data);
   }
   delete(id: string) {
-    return axios.delete(`/tickets/${id}`);
+    return axios.get(`/tickets/${id}`).then((response) => {
+      return axios.delete(`/tickets/${id}`).then(() => response.data);
+    });
   }
 }
 

@@ -1,6 +1,6 @@
-import { CustomToolbarProps } from '../../../types/tickets';
+import { ReactComponent as PlusIcon } from '../../../assets/plus.svg';
 import TicketsModal from '../../modals/tickets';
-import { memo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
 import {
   FilterSelect,
@@ -14,18 +14,24 @@ import {
   StyledSortIcon,
   ViewButton,
 } from './styled';
+import { memo, useCallback, useState } from 'react';
 import { priorityOptions, sortingOptions } from './helper';
 
-const CustomToolbar: React.FC<CustomToolbarProps> = ({
-  dispatch,
-  fetchTickets,
-  toggleModal,
-  setSearchParams,
-  selectedPriorities,
-  setSelectedPriorities,
-  isModalOpen,
-}) => {
-  const handleSort = async (option: string) => {
+export type IProps = {
+  selectedPriorities: string[];
+  setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const CustomToolbar: React.FC<IProps> = ({ selectedPriorities, setSelectedPriorities }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
+
+  const handleSort = (option: string) => {
     const [field, order] = option.split('-');
     setSearchParams((params) => {
       params.set('_sort', field);
@@ -35,10 +41,30 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
     });
   };
 
-  const handlePriorityFilter = async (priority: string) => {
-    setSelectedPriorities((prev) =>
-      prev.includes(priority) ? prev.filter((p) => p !== priority) : [...prev, priority],
-    );
+  const handlePriorityFilter = (priority: string) => {
+    setSelectedPriorities((prev) => {
+      if (prev.includes(priority)) {
+        const newPriorities = prev.filter((p) => p !== priority);
+
+        setSearchParams((params) => {
+          params.delete('priority');
+          newPriorities.forEach((p) => {
+            params.append('priority', p);
+          });
+
+          return params;
+        });
+
+        return newPriorities;
+      }
+
+      setSearchParams((params) => {
+        params.append('priority', priority);
+
+        return params;
+      });
+      return [...prev, priority];
+    });
   };
 
   return (
@@ -79,16 +105,14 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
         </FormControl>
       </SelectsContainer>
       <ViewButton onClick={toggleModal}>
-        <PlusSpan>+</PlusSpan> Add Ticket
+        <PlusSpan>
+          <PlusIcon />
+        </PlusSpan>{' '}
+        Add Ticket
       </ViewButton>
       {isModalOpen && (
         <>
-          <TicketsModal
-            dispatch={dispatch}
-            toggleModal={toggleModal}
-            refetchTickets={fetchTickets}
-            initialValues={null}
-          />
+          <TicketsModal toggleModal={toggleModal} initialValues={null} />
         </>
       )}
     </StyledGridToolbarContainer>

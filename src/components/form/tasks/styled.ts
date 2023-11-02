@@ -1,3 +1,4 @@
+import CustomSelect from '../../common/select';
 import { Box, Button, TextField, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
@@ -8,7 +9,19 @@ const Form = styled('form')`
   justify-content: space-between;
   align-items: center;
   padding: 25px 32px 10px 32px;
+  & .MuiSelect-root {
+    background-color: red;
+    padding: 8px !important;
+  }
 `;
+const StyledCustomSelect = styled(CustomSelect)`
+  & .MuiSelect-root,
+  & .MuiSelect-root div {
+    background-color: red;
+    padding: 8px !important;
+  }
+`;
+
 const StyledInput = styled(TextField)`
   width: 300px;
   color: ${colors.grayLight};
@@ -49,4 +62,4 @@ const StyledButton = styled(Button)`
   }
 `;
 
-export { CreateButton, Form, StyledInput, StyledBox, StyledButton };
+export { CreateButton, Form, StyledInput, StyledBox, StyledButton, StyledCustomSelect };

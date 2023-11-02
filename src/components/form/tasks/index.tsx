@@ -1,11 +1,17 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
-import CustomSelect from '../../common/select';
 import { addTask } from '../../../store/tasks/slice';
 import { memo } from 'react';
 import { statusOptions } from './helper';
 import { useDispatch } from 'react-redux';
 import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { CreateButton, Form, StyledBox, StyledButton, StyledInput } from './styled';
+import {
+  CreateButton,
+  Form,
+  StyledBox,
+  StyledButton,
+  StyledCustomSelect,
+  StyledInput,
+} from './styled';
 
 interface IProps {
   handleAddTask: () => void;
@@ -43,10 +49,11 @@ const TaskForm = ({ handleAddTask }: IProps) => {
           control={control}
           defaultValue='Default'
           render={({ field }) => (
-            <CustomSelect
+            <StyledCustomSelect
               value={field.value}
               onChange={(e) => field.onChange(e.target.value)}
               options={statusOptions}
+              taskSelect={true}
             />
           )}
         />

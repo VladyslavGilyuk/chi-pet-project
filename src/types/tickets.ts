@@ -1,5 +1,3 @@
-import { AppDispatch } from '../store';
-import { URLSearchParamsInit } from 'react-router-dom';
 export interface ITicketState {
   id: string;
   ticket: string;
@@ -55,13 +53,3 @@ export interface IPatchTickets {
   updatedDate?: Date | string;
   priority?: string;
 }
-
-export type CustomToolbarProps = {
-  dispatch: AppDispatch;
-  fetchTickets: () => void;
-  toggleModal: () => void;
-  setSearchParams: (callback: (prev: URLSearchParams) => URLSearchParamsInit) => void;
-  selectedPriorities: string[];
-  setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
-  isModalOpen: boolean;
-};

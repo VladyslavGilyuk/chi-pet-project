@@ -1,8 +1,8 @@
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { FieldErrors } from 'react-hook-form';
-import { ITicketFieldValues } from '../helper';
+import { ITicketFieldValues } from '../../form/tickets/helper';
 import { InputLabel, styled } from '@mui/material';
-import { colors, fonts } from '../../../../theme';
+import { colors, fonts } from '../../../theme';
 
 const StyledInputLabel = styled(InputLabel)`
   color: ${colors.primaryGray};

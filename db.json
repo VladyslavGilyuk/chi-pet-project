@@ -11,7 +11,7 @@
       },
       "createDate": "2023-09-24T18:30:00.000Z",
       "deadlineDate": "2023-09-26T18:30:00.000Z",
-      "updatedDate": "2023-10-31T19:55:27.588Z",
+      "updatedDate": "2023-11-01T18:25:32.652Z",
       "priority": "High",
       "customer": "Tom Cruise"
     },
@@ -339,17 +339,17 @@
     },
     {
       "ticket": "AAA",
-      "customer": "vdfvfdvd",
-      "deadlineDate": "2023-11-29T22:00:00.000Z",
+      "customer": "AAttt",
+      "deadlineDate": "2023-11-21T22:00:00.000Z",
       "priority": "High",
       "createdBy": {
         "name": "userName",
         "imageUrl": "profilePhoto1.png",
-        "id": "3e623c8f-bb91-432a-8573-0eb4ae5e4257"
+        "id": "bd4a3925-8822-452c-ad52-8c57fab4bd88"
       },
-      "createDate": "2023-11-01T10:45:16.238Z",
-      "updatedDate": "2023-11-01T15:22:04.395Z",
-      "id": "-R3qAYr"
+      "createDate": "2023-11-02T09:40:52.920Z",
+      "updatedDate": "2023-11-02T12:53:01.671Z",
+      "id": "KtyE--k"
     }
   ]
 }
