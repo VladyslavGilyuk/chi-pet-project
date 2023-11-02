@@ -2,7 +2,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Stack } from '@mui/material';
 import { memo } from 'react';
 import { CustomSelect, StyledMenuItem } from '../styled';
-
 interface IProps {
   id: string;
   handleUpdateItem: (id: string) => void;

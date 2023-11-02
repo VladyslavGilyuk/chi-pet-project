@@ -15,7 +15,6 @@ const TicketsTable = () => {
   const dispatch = useAppDispatch();
 
   const {
-    buildApiUrl,
     searchParams,
     fetchTickets,
     setSelectedPriorities,
@@ -26,7 +25,7 @@ const TicketsTable = () => {
 
   useEffect(() => {
     fetchTickets();
-  }, [searchParams, selectedPriorities.length]);
+  }, [searchParams, selectedPriorities.length, paginationModel]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState<ITicketState | null>(null);
@@ -36,11 +35,12 @@ const TicketsTable = () => {
 
   const handleUpdateItem = useCallback(
     (id?: string) => {
-      setSelectedTicket(storeTickets?.find((ticket) => ticket.id === id) || null);
+      const ticketToEdit = storeTickets?.find((ticket) => ticket.id === id) || null;
+      setSelectedTicket(ticketToEdit);
       setIsModalOpen(true);
     },
 
-    [storeTickets.length],
+    [storeTickets],
   );
 
   const handleRemoveItem = useCallback(async (rowId: string) => {
@@ -79,7 +79,7 @@ const TicketsTable = () => {
           slots={{
             toolbar: () => (
               <CustomToolbar
-                apiUrl={buildApiUrl}
+                apiUrl={`?${searchParams.toString()}`}
                 selectedPriorities={selectedPriorities}
                 setSelectedPriorities={setSelectedPriorities}
               />
@@ -90,7 +90,7 @@ const TicketsTable = () => {
       {isModalOpen && (
         <>
           <TicketsModal
-            apiUrl={buildApiUrl}
+            apiUrl={`?${searchParams.toString()}`}
             toggleModal={() => setIsModalOpen(false)}
             initialValues={selectedTicket}
             isEdit={true}
