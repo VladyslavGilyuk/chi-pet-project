@@ -1,7 +1,7 @@
-/* eslint-disable sort-imports */
+import CustomSelect from '../../common/select';
 import DatePicker from '../../common/datePicker';
 import FormInput from '../../common/formInput';
-import { createTicketAsync, updateTicketAsync } from '../../../store/tickets/thunk';
+import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
@@ -14,15 +14,15 @@ import {
 } from './styled';
 import { ITicketFieldValues, TicketsFormHelper, statusOptions } from './helper';
 import { ITicketState, ITickets, IUpdateTickets } from '../../../types/tickets';
-import { memo } from 'react';
-import CustomSelect from '../../common/select';
+import { createTicketAsync, updateTicketAsync } from '../../../store/tickets/thunk';
 
 interface IProps {
   toggleModal: () => void;
   initialValues: ITicketState | null;
   isEdit?: boolean;
+  apiUrl: string;
 }
-const TicketsForm = ({ toggleModal, initialValues, isEdit }: IProps) => {
+const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => {
   const {
     handleSubmit,
     register,
@@ -38,8 +38,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit }: IProps) => {
   const dispatch = useAppDispatch();
 
   const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
-    const body = { ...data };
-    await dispatch(createTicketAsync(body));
+    await dispatch(createTicketAsync({ apiUrl, data }));
     toggleModal();
   };
 

@@ -17,7 +17,8 @@ export const fetchTicketAsync = createAsyncThunk('tickets/fetchTicket', async (a
 });
 export const createTicketAsync = createAsyncThunk(
   'tickets/createTicket',
-  async (data: ITickets) => {
+  async ({ apiUrl, data }: { apiUrl: string; data: ITickets }, thunkAPI) => {
+    const { dispatch } = thunkAPI;
     const transformedData = {
       ...data,
       createdBy: {
@@ -31,6 +32,7 @@ export const createTicketAsync = createAsyncThunk(
 
     try {
       const response = await TicketService.create(transformedData);
+      await dispatch(fetchTicketAsync(apiUrl));
       return response.data;
     } catch (error) {
       Notify('Ticket creation error');

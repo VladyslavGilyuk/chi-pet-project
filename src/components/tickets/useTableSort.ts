@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 
 interface IProps {
+  buildApiUrl: string;
   searchParams: URLSearchParams;
   fetchTickets: () => Promise<void>;
   selectedPriorities: string[];
@@ -47,6 +48,7 @@ export const useTableSortAndFilter = (): IProps => {
   };
 
   return {
+    buildApiUrl,
     searchParams,
     fetchTickets,
     selectedPriorities,

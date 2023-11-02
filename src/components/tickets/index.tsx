@@ -15,6 +15,7 @@ const TicketsTable = () => {
   const dispatch = useAppDispatch();
 
   const {
+    buildApiUrl,
     searchParams,
     fetchTickets,
     setSelectedPriorities,
@@ -78,6 +79,7 @@ const TicketsTable = () => {
           slots={{
             toolbar: () => (
               <CustomToolbar
+                apiUrl={buildApiUrl}
                 selectedPriorities={selectedPriorities}
                 setSelectedPriorities={setSelectedPriorities}
               />
@@ -88,6 +90,7 @@ const TicketsTable = () => {
       {isModalOpen && (
         <>
           <TicketsModal
+            apiUrl={buildApiUrl}
             toggleModal={() => setIsModalOpen(false)}
             initialValues={selectedTicket}
             isEdit={true}

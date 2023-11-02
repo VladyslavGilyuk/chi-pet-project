@@ -18,11 +18,12 @@ import { memo, useCallback, useState } from 'react';
 import { priorityOptions, sortingOptions } from './helper';
 
 export type IProps = {
+  apiUrl: string;
   selectedPriorities: string[];
   setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const CustomToolbar: React.FC<IProps> = ({ selectedPriorities, setSelectedPriorities }) => {
+const CustomToolbar: React.FC<IProps> = ({ apiUrl, selectedPriorities, setSelectedPriorities }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -112,7 +113,7 @@ const CustomToolbar: React.FC<IProps> = ({ selectedPriorities, setSelectedPriori
       </ViewButton>
       {isModalOpen && (
         <>
-          <TicketsModal toggleModal={toggleModal} initialValues={null} />
+          <TicketsModal toggleModal={toggleModal} initialValues={null} apiUrl={apiUrl} />
         </>
       )}
     </StyledGridToolbarContainer>
