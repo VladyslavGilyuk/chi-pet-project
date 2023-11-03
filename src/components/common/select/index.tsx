@@ -1,7 +1,6 @@
-/* eslint-disable sort-imports */
 import { FieldErrors } from 'react-hook-form';
-import { SelectChangeEvent } from '@mui/material';
 import { ITicketFieldValues } from '../../form/tickets/helper';
+import { SelectChangeEvent } from '@mui/material';
 import {
   StyledInputLabel,
   StyledMenuItem,
@@ -61,32 +60,3 @@ const CustomSelect: React.FC<IProps> = ({
 };
 
 export default CustomSelect;
-/*
-
-import React from 'react';
-import { StyledSelect } from './styled';
-import { MenuItem, SelectChangeEvent } from '@mui/material';
-export interface ISelectOptions {
-  value: string;
-  label: string;
-}
-interface IProps {
-  value: string;
-  onChange: (event: SelectChangeEvent<string>) => void;
-  options: ISelectOptions[];
-}
-
-const CustomSelect: React.FC<IProps> = ({ value, onChange, options }) => {
-  return (
-    <StyledSelect value={value} onChange={(e) => onChange(e as SelectChangeEvent<string>)}>
-      {options.map(({ value, label }) => (
-        <MenuItem key={value} value={value}>
-          {label}
-        </MenuItem>
-      ))}
-    </StyledSelect>
-  );
-};
-
-export default CustomSelect;
-*/

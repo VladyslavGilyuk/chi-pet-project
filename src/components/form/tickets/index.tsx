@@ -37,25 +37,32 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
 
   const dispatch = useAppDispatch();
 
-  const handleCreateTicket: SubmitHandler<ITickets> = async (data: ITickets) => {
-    await dispatch(createTicketAsync({ apiUrl, data }));
-    toggleModal();
-  };
-
-  const handleEditTicket: SubmitHandler<IUpdateTickets> = async (data: IUpdateTickets) => {
-    const body = { ...data };
-    const ticketId = data.id;
-    if (ticketId) {
-      await dispatch(updateTicketAsync({ id: ticketId, data: body }));
+  const handleTicketSubmit: SubmitHandler<ITickets | IUpdateTickets> = async (
+    data: ITickets | IUpdateTickets,
+  ) => {
+    try {
+      if (isEdit) {
+        const body = { ...data } as IUpdateTickets;
+        const ticketId = body.id;
+        if (ticketId) {
+          await dispatch(updateTicketAsync({ id: ticketId, data: body }));
+        } else {
+          throw new Error('Error: Invalid ticket id');
+        }
+      } else {
+        const body = { ...data } as ITickets;
+        await dispatch(createTicketAsync({ apiUrl, data: body }));
+      }
       toggleModal();
-    } else {
-      throw new Error('Error: Invalid ticket id');
+    } catch (error) {
+      throw new Error('Error: Ticket Creation Error');
     }
   };
+
   return (
     <>
       <StyledHeading>Add tickets</StyledHeading>
-      <form onSubmit={handleSubmit(isEdit ? handleEditTicket : handleCreateTicket)}>
+      <form onSubmit={handleSubmit(handleTicketSubmit)}>
         {TicketsFormHelper.map((instance) => (
           <FormInput
             {...instance}

@@ -8,30 +8,25 @@ import { useSelector } from 'react-redux';
 import { useTableSortAndFilter } from './useTableSort';
 import { StyledBox, StyledDataGrid } from './styled';
 import { baseMenuCellConfig, columns, pageSizeOptions } from './helper';
-import { tickets, totalRows } from '../../store/tickets/selector';
-import { useCallback, useEffect, useState } from 'react';
+import { tickets, total } from '../../store/tickets/selector';
+import { useCallback, useState } from 'react';
 
 const TicketsTable = () => {
   const dispatch = useAppDispatch();
 
   const {
     searchParams,
-    fetchTickets,
     setSelectedPriorities,
     selectedPriorities,
     paginationModel,
     setPaginationModel,
   } = useTableSortAndFilter();
 
-  useEffect(() => {
-    fetchTickets();
-  }, [searchParams, selectedPriorities.length, paginationModel]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState<ITicketState | null>(null);
 
   const storeTickets = useSelector(tickets);
-  const storeTotalRows = useSelector(totalRows);
+  const storeTotal = useSelector(total);
 
   const handleUpdateItem = useCallback(
     (id?: string) => {
@@ -70,7 +65,7 @@ const TicketsTable = () => {
             },
           ]}
           paginationMode='server'
-          rowCount={storeTotalRows}
+          rowCount={storeTotal}
           pageSizeOptions={pageSizeOptions}
           paginationModel={paginationModel}
           onPaginationModelChange={setPaginationModel}
@@ -93,6 +88,7 @@ const TicketsTable = () => {
             apiUrl={`?${searchParams.toString()}`}
             toggleModal={() => setIsModalOpen(false)}
             initialValues={selectedTicket}
+            isOpen={isModalOpen}
             isEdit={true}
           />
         </>

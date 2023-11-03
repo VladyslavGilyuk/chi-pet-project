@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { deleteTicketAsync, fetchTicketAsync, updateTicketAsync } from './thunk';
 interface ITicketSliceState {
   tickets: ITicketState[];
-  totalRows: number;
+  total: number;
 }
 
 const initialState: ITicketSliceState = {
   tickets: [],
-  totalRows: 0,
+  total: 0,
 };
 
 export const ticketsSlice = createSlice({
@@ -18,7 +18,7 @@ export const ticketsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchTicketAsync.fulfilled, (state, action) => {
       if (action.payload) {
-        state.totalRows = action.payload.totalCount;
+        state.total = action.payload.totalCount;
         state.tickets = action.payload.data;
       }
     });

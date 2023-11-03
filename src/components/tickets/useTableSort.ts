@@ -1,24 +1,9 @@
 import { fetchTicketAsync } from '../../store/tickets/thunk';
 import { useAppDispatch } from '../../store/hooks';
 import { useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
-interface IProps {
-  searchParams: URLSearchParams;
-  fetchTickets: () => Promise<void>;
-  selectedPriorities: string[];
-  setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
-  paginationModel: {
-    pageSize: number;
-    page: number;
-  };
-  setPaginationModel: React.Dispatch<
-    React.SetStateAction<{
-      pageSize: number;
-      page: number;
-    }>
-  >;
-}
-export const useTableSortAndFilter = (): IProps => {
+import { useEffect, useState } from 'react';
+
+export const useTableSortAndFilter = () => {
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,6 +30,9 @@ export const useTableSortAndFilter = (): IProps => {
     }
   };
 
+  useEffect(() => {
+    fetchTickets();
+  }, [searchParams, selectedPriorities.length, paginationModel]);
   return {
     searchParams,
     fetchTickets,

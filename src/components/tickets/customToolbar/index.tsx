@@ -24,8 +24,7 @@ export type IProps = {
 };
 
 const CustomToolbar: React.FC<IProps> = ({ apiUrl, selectedPriorities, setSelectedPriorities }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams(); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = useCallback(() => {
@@ -108,12 +107,17 @@ const CustomToolbar: React.FC<IProps> = ({ apiUrl, selectedPriorities, setSelect
       <ViewButton onClick={toggleModal}>
         <PlusSpan>
           <PlusIcon />
-        </PlusSpan>{' '}
+        </PlusSpan>
         Add Ticket
       </ViewButton>
       {isModalOpen && (
         <>
-          <TicketsModal toggleModal={toggleModal} initialValues={null} apiUrl={apiUrl} />
+          <TicketsModal
+            toggleModal={toggleModal}
+            initialValues={null}
+            apiUrl={apiUrl}
+            isOpen={isModalOpen}
+          />
         </>
       )}
     </StyledGridToolbarContainer>

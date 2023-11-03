@@ -22,7 +22,7 @@ export const createTicketAsync = createAsyncThunk(
     const transformedData = {
       ...data,
       createdBy: {
-        name: 'userName',
+        name: 'userName', //replace with actual data of user
         imageUrl: 'profilePhoto1.png',
         id: uuidv4(),
       },

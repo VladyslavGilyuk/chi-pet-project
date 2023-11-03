@@ -7,12 +7,13 @@ interface IProps {
   toggleModal: () => void;
   initialValues: ITicketState | null;
   isEdit?: boolean;
+  isOpen: boolean;
   apiUrl: string;
 }
 
-const TicketsModal = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => {
+const TicketsModal = ({ toggleModal, initialValues, isEdit, apiUrl, isOpen }: IProps) => {
   return (
-    <Modal open={true} onClose={toggleModal}>
+    <Modal open={isOpen} onClose={toggleModal}>
       <BoxContainer>
         <TicketsForm
           toggleModal={toggleModal}
