@@ -1,4 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
+export interface ITicketsState {
+  id: string;
+  ticket: string;
+  customer: string;
+  createDate: Date;
+  deadlineDate: Date;
+  updatedDate: Date | string;
+  priority: string;
+  profilePhoto: string;
+}
 
 export const tasks = [
   {

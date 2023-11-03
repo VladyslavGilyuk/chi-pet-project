@@ -1,3 +1,355 @@
 {
-  "users": []
+  "users": [],
+  "tickets": [
+    {
+      "id": "1",
+      "ticket": "Contact Email not Linked",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto2",
+        "id": "2"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-11-01T18:25:32.652Z",
+      "priority": "High",
+      "customer": "Tom Cruise"
+    },
+    {
+      "id": "2",
+      "ticket": "Adding Images to Featured Posts",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto2",
+        "id": "2"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-10-31T19:16:33.284Z",
+      "priority": "Low",
+      "customer": "Matt Damon"
+    },
+    {
+      "id": "3",
+      "ticket": "When will I be charged this month?",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto3",
+        "id": "3"
+      },
+      "createDate": "2023-09-24T00:00:00.000Z",
+      "deadlineDate": "2023-09-26T07:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Robert Downey"
+    },
+    {
+      "id": "4",
+      "ticket": "Payment not going through",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto4",
+        "id": "4"
+      },
+      "createDate": "2023-09-24T17:00:00.000Z",
+      "deadlineDate": "2023-09-25T17:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "Normal",
+      "customer": "Christian"
+    },
+    {
+      "id": "5",
+      "ticket": "Unable to add replies",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto5",
+        "id": "5"
+      },
+      "createDate": "2023-09-24T16:00:00.000Z",
+      "deadlineDate": "2023-09-25T16:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Henry Cavill"
+    },
+    {
+      "id": "6",
+      "ticket": "Downtime since last week",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto6",
+        "id": "6"
+      },
+      "createDate": "2023-09-23T14:00:00.000Z",
+      "deadlineDate": "2023-09-25T14:00:00.000Z",
+      "updatedDate": "2023-10-24T17:21:21.045Z",
+      "priority": "Normal",
+      "customer": "Chris Evans"
+    },
+    {
+      "id": "7",
+      "ticket": "Referral Bonus",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto7",
+        "id": "7"
+      },
+      "createDate": "2023-09-22T11:30:00.000Z",
+      "deadlineDate": "2023-09-25T11:30:00.000Z",
+      "updatedDate": "2023-09-24T18:30:00.000Z",
+      "priority": "Low",
+      "customer": "Sam Smith"
+    },
+    {
+      "id": "8",
+      "ticket": "How do I change my password?",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto8",
+        "id": "8"
+      },
+      "createDate": "2023-09-21T13:00:00.000Z",
+      "deadlineDate": "2023-09-24T13:00:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Normal",
+      "customer": "Steve Rogers"
+    },
+    {
+      "id": "9",
+      "ticket": "Contact Email not Linked",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto1.png",
+        "id": "9"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Tom Cruise"
+    },
+    {
+      "id": "10",
+      "ticket": "Adding Images to Featured Posts",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto2",
+        "id": "10"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Low",
+      "customer": "Matt Damon"
+    },
+    {
+      "id": "11",
+      "ticket": "When will I be charged this month?",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto3",
+        "id": "11"
+      },
+      "createDate": "2023-09-24T00:00:00.000Z",
+      "deadlineDate": "2023-09-26T07:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Robert Downey"
+    },
+    {
+      "id": "12",
+      "ticket": "Payment not going through",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto4",
+        "id": "12"
+      },
+      "createDate": "2023-09-24T17:00:00.000Z",
+      "deadlineDate": "2023-09-25T17:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "Normal",
+      "customer": "Christian"
+    },
+    {
+      "id": "13",
+      "ticket": "Unable to add replies",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto5",
+        "id": "13"
+      },
+      "createDate": "2023-09-24T16:00:00.000Z",
+      "deadlineDate": "2023-09-25T16:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Henry Cavill"
+    },
+    {
+      "id": "14",
+      "ticket": "Downtime since last week",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto6",
+        "id": "14"
+      },
+      "createDate": "2023-09-23T14:00:00.000Z",
+      "deadlineDate": "2023-09-25T14:00:00.000Z",
+      "updatedDate": "2023-10-24T17:21:21.045Z",
+      "priority": "Normal",
+      "customer": "Chris Evans"
+    },
+    {
+      "id": "15",
+      "ticket": "Referral Bonus",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto7",
+        "id": "15"
+      },
+      "createDate": "2023-09-22T11:30:00.000Z",
+      "deadlineDate": "2023-09-25T11:30:00.000Z",
+      "updatedDate": "2023-09-24T18:30:00.000Z",
+      "priority": "Low",
+      "customer": "Sam Smith"
+    },
+    {
+      "id": "16",
+      "ticket": "How do I change my password?",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto8",
+        "id": "16"
+      },
+      "createDate": "2023-09-21T13:00:00.000Z",
+      "deadlineDate": "2023-09-24T13:00:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Normal",
+      "customer": "Steve Rogers"
+    },
+    {
+      "id": "17",
+      "ticket": "Contact Email not Linked",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto1.png",
+        "id": "17"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Tom Cruise"
+    },
+    {
+      "id": "18",
+      "ticket": "Adding Images to Featured Posts",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto2",
+        "id": "18"
+      },
+      "createDate": "2023-09-24T18:30:00.000Z",
+      "deadlineDate": "2023-09-26T18:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "Low",
+      "customer": "Matt Damon"
+    },
+    {
+      "id": "19",
+      "ticket": "When will I be charged this month?",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto3",
+        "id": "19"
+      },
+      "createDate": "2023-09-24T00:00:00.000Z",
+      "deadlineDate": "2023-09-26T07:30:00.000Z",
+      "updatedDate": "2023-09-27T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Robert Downey"
+    },
+    {
+      "id": "20",
+      "ticket": "Payment not going through",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto4",
+        "id": "20"
+      },
+      "createDate": "2023-09-24T17:00:00.000Z",
+      "deadlineDate": "2023-09-25T17:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "Normal",
+      "customer": "Christian Bale"
+    },
+    {
+      "id": "21",
+      "ticket": "Unable to add replies",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto5",
+        "id": "21"
+      },
+      "createDate": "2023-09-24T16:00:00.000Z",
+      "deadlineDate": "2023-09-25T16:00:00.000Z",
+      "updatedDate": "2023-09-26T18:30:00.000Z",
+      "priority": "High",
+      "customer": "Henry Cavill"
+    },
+    {
+      "id": "22",
+      "ticket": "Downtime since last week",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto6",
+        "id": "22"
+      },
+      "createDate": "2023-09-23T14:00:00.000Z",
+      "deadlineDate": "2023-09-25T14:00:00.000Z",
+      "updatedDate": "2023-10-24T17:21:21.045Z",
+      "priority": "Normal",
+      "customer": "Chris Evans"
+    },
+    {
+      "id": "23",
+      "ticket": "No",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto7",
+        "id": "23"
+      },
+      "createDate": "2023-09-22T11:30:00.000Z",
+      "deadlineDate": "2023-09-25T11:30:00.000Z",
+      "updatedDate": "2023-09-24T18:30:00.000Z",
+      "priority": "Low",
+      "customer": "Sam Smith"
+    },
+    {
+      "id": "24",
+      "ticket": "How do I change my password?",
+      "createdBy": {
+        "name": "user",
+        "imageUrl": "profilePhoto8",
+        "id": "24"
+      },
+      "createDate": "2023-09-21T13:00:00.000Z",
+      "deadlineDate": "2023-09-24T13:00:00.000Z",
+      "updatedDate": "2023-10-31T19:16:45.121Z",
+      "priority": "Normal",
+      "customer": "Steve Rogers"
+    },
+    {
+      "ticket": "AAA",
+      "customer": "AAttt",
+      "deadlineDate": "2023-11-21T22:00:00.000Z",
+      "priority": "High",
+      "createdBy": {
+        "name": "userName",
+        "imageUrl": "profilePhoto1.png",
+        "id": "bd4a3925-8822-452c-ad52-8c57fab4bd88"
+      },
+      "createDate": "2023-11-02T09:40:52.920Z",
+      "updatedDate": "2023-11-02T12:53:01.671Z",
+      "id": "KtyE--k"
+    }
+  ]
 }

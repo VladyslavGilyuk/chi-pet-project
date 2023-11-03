@@ -1,5 +1,7 @@
+import TicketsTable from '../../components/table/tickets';
+
 const Tickets = () => {
-  return <div>Tickets</div>;
+  return <TicketsTable />;
 };
 
 export default Tickets;

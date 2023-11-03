@@ -9,7 +9,7 @@ export type TFieldType = 'password' | 'text';
 export interface IBaseField {
   label: string;
   validations: {
-    required: string;
+    required: string | boolean;
     pattern?: {
       value: RegExp;
       message: string;
