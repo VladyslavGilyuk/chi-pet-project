@@ -1,5 +1,5 @@
-import { ReactComponent as PlusIcon } from '../../../assets/plus.svg';
-import TicketsModal from '../../modals/tickets';
+import { ReactComponent as PlusIcon } from '../../../../assets/plus.svg';
+import TicketsModal from '../../../modals/tickets';
 import { useSearchParams } from 'react-router-dom';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
 import {

@@ -1,6 +1,7 @@
 import CustomSelect from '../../common/select';
 import DatePicker from '../../common/datePicker';
 import FormInput from '../../common/formInput';
+import { Notify } from '../../../utils/notify';
 import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -43,19 +44,14 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
     try {
       if (isEdit) {
         const body = { ...data } as IUpdateTickets;
-        const ticketId = body.id;
-        if (ticketId) {
-          await dispatch(updateTicketAsync({ id: ticketId, data: body }));
-        } else {
-          throw new Error('Error: Invalid ticket id');
-        }
+        await dispatch(updateTicketAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as ITickets;
         await dispatch(createTicketAsync({ apiUrl, data: body }));
       }
       toggleModal();
     } catch (error) {
-      throw new Error('Error: Ticket Creation Error');
+      Notify('Something went wrong');
     }
   };
 

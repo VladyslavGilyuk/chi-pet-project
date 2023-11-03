@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, MenuItem, Select, Typography, styled } from '@mui/material';
-import { colors, fonts } from '../../theme';
+import { colors, fonts } from '../../../theme';
 
 const StyledDataGrid = styled(DataGrid)`
   && {

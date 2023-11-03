@@ -1,5 +1,5 @@
-import { fetchTicketAsync } from '../../store/tickets/thunk';
-import { useAppDispatch } from '../../store/hooks';
+import { fetchTicketAsync } from '../../../store/tickets/thunk';
+import { useAppDispatch } from '../../../store/hooks';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

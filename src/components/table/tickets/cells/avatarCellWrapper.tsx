@@ -1,5 +1,5 @@
 import React from 'react';
-import avatarPlaceholder from '../../../assets/images/user.png';
+import avatarPlaceholder from '../../../../assets/images/user.png';
 import { StyledStack, UserPhoto } from '../styled';
 
 interface TicketCellProps {

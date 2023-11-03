@@ -22,7 +22,7 @@ export interface ITickets {
   priority: string;
 }
 export interface IUpdateTickets {
-  id?: string;
+  id: string;
   ticket?: string;
   customer?: string;
   createDate?: Date | string;

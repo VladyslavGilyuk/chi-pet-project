@@ -1,14 +1,14 @@
 import CustomToolbar from './customToolbar';
-import { ITicketState } from '../../types/tickets';
-import MenuCell from './cells/menuCell';
-import TicketsModal from '../modals/tickets';
-import { deleteTicketAsync } from '../../store/tickets/thunk';
-import { useAppDispatch } from '../../store/hooks';
+import { ITicketState } from '../../../types/tickets';
+import MenuCell from './cells/actionCell';
+import TicketsModal from '../../modals/tickets';
+import { deleteTicketAsync } from '../../../store/tickets/thunk';
+import { useAppDispatch } from '../../../store/hooks';
 import { useSelector } from 'react-redux';
 import { useTableSortAndFilter } from './useTableSort';
 import { StyledBox, StyledDataGrid } from './styled';
 import { baseMenuCellConfig, columns, pageSizeOptions } from './helper';
-import { tickets, total } from '../../store/tickets/selector';
+import { tickets, total } from '../../../store/tickets/selector';
 import { useCallback, useState } from 'react';
 
 const TicketsTable = () => {
@@ -38,8 +38,8 @@ const TicketsTable = () => {
     [storeTickets],
   );
 
-  const handleRemoveItem = useCallback(async (rowId: string) => {
-    await dispatch(deleteTicketAsync(rowId));
+  const handleRemoveItem = useCallback(async (id: string, apiUrl: string) => {
+    await dispatch(deleteTicketAsync({ id, apiUrl }));
   }, []);
 
   return (
@@ -57,6 +57,7 @@ const TicketsTable = () => {
                 return (
                   <MenuCell
                     id={params.row.id}
+                    apiUrl={`?${searchParams.toString()}`}
                     handleUpdateItem={handleUpdateItem}
                     handleRemoveItem={handleRemoveItem}
                   />

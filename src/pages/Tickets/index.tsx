@@ -1,4 +1,4 @@
-import TicketsTable from '../../components/tickets';
+import TicketsTable from '../../components/table/tickets';
 
 const Tickets = () => {
   return <TicketsTable />;

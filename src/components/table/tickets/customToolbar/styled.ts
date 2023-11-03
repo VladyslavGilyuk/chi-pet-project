@@ -3,7 +3,7 @@ import { GridToolbarContainer } from '@mui/x-data-grid';
 import SortIcon from '@mui/icons-material/Sort';
 import { Box, Button, FormControlLabel, InputLabel, Select, styled } from '@mui/material';
 
-import { colors, fonts } from '../../../theme';
+import { colors, fonts } from '../../../../theme';
 
 const ViewButton = styled(Button)`
   color: ${colors.primaryBlue};

@@ -12,7 +12,7 @@ export const fetchTicketAsync = createAsyncThunk('tickets/fetchTicket', async (a
 
     return { data, totalCount };
   } catch (error) {
-    Notify('Ticket creation error');
+    Notify('Something went wrong');
   }
 });
 export const createTicketAsync = createAsyncThunk(
@@ -35,7 +35,7 @@ export const createTicketAsync = createAsyncThunk(
       await dispatch(fetchTicketAsync(apiUrl));
       return response.data;
     } catch (error) {
-      Notify('Ticket creation error');
+      Notify('Something went wrong');
     }
   },
 );
@@ -51,16 +51,21 @@ export const updateTicketAsync = createAsyncThunk(
       const response = await TicketService.update(id, transformedData);
       return response.data;
     } catch (error) {
-      Notify('Error');
+      Notify('Something went wrong');
     }
   },
 );
 
-export const deleteTicketAsync = createAsyncThunk('tickets/deleteTicket', async (id: string) => {
-  try {
-    const response = await TicketService.delete(id);
-    return response;
-  } catch (error) {
-    Notify('Error');
-  }
-});
+export const deleteTicketAsync = createAsyncThunk(
+  'tickets/deleteTicket',
+  async ({ id, apiUrl }: { id: string; apiUrl: string }, thunkAPI) => {
+    const { dispatch } = thunkAPI;
+    try {
+      const response = await TicketService.delete(id);
+      await dispatch(fetchTicketAsync(apiUrl));
+      return response;
+    } catch (error) {
+      Notify('Something went wrong');
+    }
+  },
+);

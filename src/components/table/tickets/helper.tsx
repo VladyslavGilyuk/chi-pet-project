@@ -1,12 +1,12 @@
 import { DefaultCell } from './cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
-import Tag from '../common/tags';
-import { TicketCell } from './cells/ticketCell';
+import Tag from '../../common/tags';
+import { TicketCell } from './cells/avatarCellWrapper';
 import {
   formatAsCreateDate,
   formatAsDeadlineDate,
   formatAsHoursDate,
-} from '../../utils/dateFunctions';
+} from '../../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
   {
