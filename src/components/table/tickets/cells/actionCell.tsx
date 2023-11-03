@@ -8,7 +8,7 @@ interface IProps {
   handleUpdateItem: (id: string) => void;
   handleRemoveItem: (id: string, apiUrl: string) => void;
 }
-const MenuCell = ({ id, handleUpdateItem, handleRemoveItem, apiUrl }: IProps) => {
+const ActionCell = ({ id, handleUpdateItem, handleRemoveItem, apiUrl }: IProps) => {
   return (
     <Stack>
       <CustomSelect IconComponent={MoreVertIcon}>
@@ -19,4 +19,4 @@ const MenuCell = ({ id, handleUpdateItem, handleRemoveItem, apiUrl }: IProps) =>
   );
 };
 
-export default memo(MenuCell);
+export default memo(ActionCell);

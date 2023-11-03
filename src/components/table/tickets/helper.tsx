@@ -1,7 +1,8 @@
+import { AvatarCellWrapper } from './cells/avatarCellWrapper';
 import { DefaultCell } from './cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
 import Tag from '../../common/tags';
-import { TicketCell } from './cells/avatarCellWrapper';
+
 import {
   formatAsCreateDate,
   formatAsDeadlineDate,
@@ -16,12 +17,12 @@ export const columns: GridColDef[] = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <TicketCell>
+        <AvatarCellWrapper>
           <DefaultCell
             primaryText={params.value}
             secondaryText={formatAsCreateDate(params.row.updatedDate)}
           />
-        </TicketCell>
+        </AvatarCellWrapper>
       );
     },
   },

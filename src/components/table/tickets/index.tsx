@@ -1,6 +1,6 @@
+import ActionCell from './cells/actionCell';
 import CustomToolbar from './customToolbar';
 import { ITicketState } from '../../../types/tickets';
-import MenuCell from './cells/actionCell';
 import TicketsModal from '../../modals/tickets';
 import { deleteTicketAsync } from '../../../store/tickets/thunk';
 import { useAppDispatch } from '../../../store/hooks';
@@ -55,7 +55,7 @@ const TicketsTable = () => {
               ...baseMenuCellConfig,
               renderCell: (params) => {
                 return (
-                  <MenuCell
+                  <ActionCell
                     id={params.row.id}
                     apiUrl={`?${searchParams.toString()}`}
                     handleUpdateItem={handleUpdateItem}
