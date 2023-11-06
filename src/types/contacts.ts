@@ -1,7 +1,4 @@
-import { AppDispatch } from '../store';
 import { FieldValues } from 'react-hook-form';
-import { URLSearchParamsInit } from 'react-router-dom';
-
 export interface IContactState {
   id: string;
   email: string;
@@ -32,7 +29,6 @@ export interface IPatchContacts {
   address?: string;
 }
 export interface IUpdateContacts {
-  // check it later  for the necessity of usage
   id: string;
   firstName?: string;
   lastName?: string;
@@ -51,7 +47,6 @@ export interface IContactsDB {
     id: string;
   };
 }
-
 export interface IContactInitialValues {
   id: string;
   email: string;
@@ -65,15 +60,6 @@ export interface IContactInitialValues {
   };
   [key: string]: string | Date | object;
 }
-
-export type CustomToolbarProps = {
-  dispatch: AppDispatch;
-  fetchTickets: () => void;
-  toggleModal: () => void;
-  setSearchParams: (callback: (prev: URLSearchParams) => URLSearchParamsInit) => void;
-  isModalOpen: boolean;
-};
-
 export interface IContactFieldValues extends FieldValues {
   id: string;
   firstName: string;

@@ -1,5 +1,6 @@
+import CustomModal from '../../../modals/customModal';
+import { ISortingOptions } from '..';
 import { ReactComponent as PlusIcon } from '../../../../assets/plus.svg';
-import TicketsModal from '../../../modals/tickets';
 import { useSearchParams } from 'react-router-dom';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
 import {
@@ -15,15 +16,26 @@ import {
   ViewButton,
 } from './styled';
 import { memo, useCallback, useState } from 'react';
-import { priorityOptions, sortingOptions } from './helper';
 
 export type IProps = {
   apiUrl: string;
   selectedPriorities: string[];
   setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
+  sortingOptions: ISortingOptions[];
+  disabledFilter?: boolean;
+  priorityOptions?: string[];
+  contactsForm?: boolean;
 };
 
-const CustomToolbar: React.FC<IProps> = ({ apiUrl, selectedPriorities, setSelectedPriorities }) => {
+const CustomToolbar: React.FC<IProps> = ({
+  apiUrl,
+  selectedPriorities,
+  setSelectedPriorities,
+  disabledFilter,
+  sortingOptions,
+  priorityOptions,
+  contactsForm,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams(); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -85,38 +97,41 @@ const CustomToolbar: React.FC<IProps> = ({ apiUrl, selectedPriorities, setSelect
             ))}
           </SortSelect>
         </FormControl>
-        <FormControl>
-          <StyledInputLabel shrink={false}>Filter</StyledInputLabel>
-          <FilterSelect IconComponent={StyledFilterAltIcon} value='' label='Priority'>
-            {priorityOptions.map((option) => (
-              <StyledFormControlLabel
-                key={option}
-                control={
-                  <Checkbox
-                    onClick={(e) => e.stopPropagation()}
-                    checked={selectedPriorities.includes(option)}
-                    onChange={() => handlePriorityFilter(option)}
-                  />
-                }
-                label={option}
-              />
-            ))}
-          </FilterSelect>
-        </FormControl>
+        {!disabledFilter ? (
+          <FormControl>
+            <StyledInputLabel shrink={false}>Filter</StyledInputLabel>
+            <FilterSelect IconComponent={StyledFilterAltIcon} value='' label='Filter'>
+              {priorityOptions?.map((option) => (
+                <StyledFormControlLabel
+                  key={option}
+                  control={
+                    <Checkbox
+                      onClick={(e) => e.stopPropagation()}
+                      checked={selectedPriorities.includes(option)}
+                      onChange={() => handlePriorityFilter(option)}
+                    />
+                  }
+                  label={option}
+                />
+              ))}
+            </FilterSelect>
+          </FormControl>
+        ) : null}
       </SelectsContainer>
       <ViewButton onClick={toggleModal}>
         <PlusSpan>
           <PlusIcon />
         </PlusSpan>
-        Add Ticket
+        Add {contactsForm ? 'Contact' : 'Ticket'}
       </ViewButton>
       {isModalOpen && (
         <>
-          <TicketsModal
+          <CustomModal
             toggleModal={toggleModal}
             initialValues={null}
             apiUrl={apiUrl}
             isOpen={isModalOpen}
+            contactsForm={contactsForm}
           />
         </>
       )}

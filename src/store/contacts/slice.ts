@@ -1,8 +1,6 @@
-/* eslint-disable sort-imports */
 import { IContactState } from '../../types/contacts';
-import { deleteContactAsync, fetchContactAsync, updateContactAsync } from './thunk';
 import { createSlice } from '@reduxjs/toolkit';
-
+import { deleteContactAsync, fetchContactAsync, updateContactAsync } from './thunk';
 interface IContactSliceState {
   contacts: IContactState[];
   total: number;
@@ -25,16 +23,16 @@ export const contactsSlice = createSlice({
       }
     });
     builder.addCase(updateContactAsync.fulfilled, (state, action) => {
-      const updatedTicket = action.payload;
-      const index = state.contacts.findIndex((t) => t.id === updatedTicket.id);
+      const updatedContact = action.payload;
+      const index = state.contacts.findIndex((t) => t.id === updatedContact.id);
 
       if (index !== -1) {
-        state.contacts[index] = updatedTicket;
+        state.contacts[index] = updatedContact;
       }
     });
     builder.addCase(deleteContactAsync.fulfilled, (state, action) => {
-      const deletedTicket = action.payload;
-      state.contacts = state.contacts.filter((t) => t.id !== deletedTicket.id);
+      const deletedContact = action.payload;
+      state.contacts = state.contacts.filter((t) => t.id !== deletedContact.id);
     });
   },
 });

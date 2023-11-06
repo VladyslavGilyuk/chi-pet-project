@@ -1,18 +1,49 @@
 import ActionCell from './cells/actionCell';
+import CustomModal from '../../modals/customModal';
 import CustomToolbar from './customToolbar';
+import { GridColDef } from '@mui/x-data-grid';
+import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
-import TicketsModal from '../../modals/tickets';
-import { deleteTicketAsync } from '../../../store/tickets/thunk';
+import { RootState } from '../../../store';
 import { useAppDispatch } from '../../../store/hooks';
 import { useSelector } from 'react-redux';
-import { useTableSortAndFilter } from './useTableSort';
+import { DeleteAsyncThunk, FetchAthynkThunk, useTableSortAndFilter } from './useTableSortAndFilter';
 import { StyledBox, StyledDataGrid } from './styled';
-import { baseMenuCellConfig, columns, pageSizeOptions } from './helper';
-import { tickets, total } from '../../../store/tickets/selector';
+import { baseMenuCellConfig, pageSizeOptions } from './helper';
 import { useCallback, useState } from 'react';
 
-const TicketsTable = () => {
+export interface ISortingOptions {
+  label: string;
+  value: string;
+}
+
+interface IProps {
+  items: (state: RootState) => ITicketState[] | IContactState[];
+  total: (state: RootState) => number;
+  fetch: FetchAthynkThunk;
+  onDelete: DeleteAsyncThunk;
+  columns: GridColDef[];
+  sortingOptions: ISortingOptions[];
+  priorityOptions?: string[];
+  disabledFilter?: boolean;
+  contactsForm?: boolean;
+}
+
+const Table: React.FC<IProps> = ({
+  items,
+  total,
+  fetch,
+  onDelete,
+  columns,
+  sortingOptions,
+  priorityOptions,
+  disabledFilter,
+  contactsForm,
+}) => {
   const dispatch = useAppDispatch();
+
+  const storeItems = useSelector(items);
+  const storeTotal = useSelector(total);
 
   const {
     searchParams,
@@ -20,34 +51,31 @@ const TicketsTable = () => {
     selectedPriorities,
     paginationModel,
     setPaginationModel,
-  } = useTableSortAndFilter();
+  } = useTableSortAndFilter(fetch);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTicket, setSelectedTicket] = useState<ITicketState | null>(null);
-
-  const storeTickets = useSelector(tickets);
-  const storeTotal = useSelector(total);
+  const [selectedItem, setSelectedItem] = useState<ITicketState | IContactState | null>(null);
 
   const handleUpdateItem = useCallback(
     (id?: string) => {
-      const ticketToEdit = storeTickets?.find((ticket) => ticket.id === id) || null;
-      setSelectedTicket(ticketToEdit);
+      const itemToEdit =
+        (storeItems as (ITicketState | IContactState)[])?.find((item) => item.id === id) || null;
+      setSelectedItem(itemToEdit);
       setIsModalOpen(true);
     },
-
-    [storeTickets],
+    [storeItems],
   );
 
   const handleRemoveItem = useCallback(async (id: string, apiUrl: string) => {
-    await dispatch(deleteTicketAsync({ id, apiUrl }));
+    await dispatch(onDelete({ id, apiUrl }));
   }, []);
 
   return (
     <StyledBox>
-      {storeTickets?.length > 0 && (
+      {storeItems?.length > 0 && (
         <StyledDataGrid
           autoHeight
-          rows={storeTickets}
+          rows={storeItems}
           rowHeight={92}
           columns={[
             ...columns,
@@ -78,6 +106,10 @@ const TicketsTable = () => {
                 apiUrl={`?${searchParams.toString()}`}
                 selectedPriorities={selectedPriorities}
                 setSelectedPriorities={setSelectedPriorities}
+                sortingOptions={sortingOptions}
+                priorityOptions={priorityOptions}
+                disabledFilter={disabledFilter}
+                contactsForm={contactsForm}
               />
             ),
           }}
@@ -85,12 +117,13 @@ const TicketsTable = () => {
       )}
       {isModalOpen && (
         <>
-          <TicketsModal
+          <CustomModal
             apiUrl={`?${searchParams.toString()}`}
             toggleModal={() => setIsModalOpen(false)}
-            initialValues={selectedTicket}
+            initialValues={selectedItem}
             isOpen={isModalOpen}
             isEdit={true}
+            contactsForm={contactsForm}
           />
         </>
       )}
@@ -98,4 +131,4 @@ const TicketsTable = () => {
   );
 };
 
-export default TicketsTable;
+export default Table;

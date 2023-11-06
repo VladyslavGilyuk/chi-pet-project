@@ -1,9 +1,8 @@
-/* eslint-disable sort-imports */
+import { ContactsFormHelper } from './helper';
 import FormInput from '../../common/formInput';
 import { Notify } from '../../../utils/notify';
 import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { FlexContainer, StyledCancelButton, StyledHeading, StyledLoginButton } from './styled';
 import {
   IContactFieldValues,
@@ -11,9 +10,8 @@ import {
   IContacts,
   IUpdateContacts,
 } from '../../../types/contacts';
-import { ContactsFormHelper } from './helper';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { createContactAsync, updateContactAsync } from '../../../store/contacts/thunk';
-
 interface IProps {
   toggleModal: () => void;
   initialValues: IContactState | null;

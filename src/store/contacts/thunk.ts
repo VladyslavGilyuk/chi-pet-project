@@ -1,9 +1,8 @@
-/* eslint-disable sort-imports */
+import ContactService from '../../service/ContactService';
 import { Notify } from '../../utils/notify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import { IContacts, IUpdateContacts } from '../../types/contacts';
-import ContactService from '../../service/ContactService';
 
 export const fetchContactAsync = createAsyncThunk(
   'contacts/fetchContact',

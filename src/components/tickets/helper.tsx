@@ -1,13 +1,13 @@
-import { AvatarCellWrapper } from './cells/avatarCellWrapper';
-import { DefaultCell } from './cells/defaultCell';
+import { AvatarCellWrapper } from '../common/table/cells/avatarCellWrapper';
+import { DefaultCell } from '../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
-import Tag from '../../common/tags';
+import Tag from '../common/tags';
 
 import {
   formatAsCreateDate,
   formatAsDeadlineDate,
   formatAsHoursDate,
-} from '../../../utils/dateFunctions';
+} from '../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
   {
@@ -65,5 +65,15 @@ export const columns: GridColDef[] = [
   },
 ];
 
-export const pageSizeOptions = [5, 8, 10, 25];
-export const baseMenuCellConfig = { field: 'menu', headerName: '', width: 15, sortable: false };
+export const sortingOptions = [
+  { label: 'Ticket Asc', value: 'ticket-asc' },
+  { label: 'Ticket Desc', value: 'ticket-desc' },
+  { label: 'Customer Asc', value: 'customer-asc' },
+  { label: 'Customer Desc', value: 'customer-desc' },
+  { label: 'Create Date Asc', value: 'createDate-asc' },
+  { label: 'Create Date Desc', value: 'createDate-desc' },
+  { label: 'Priority Asc', value: 'priority-asc' },
+  { label: 'Priority Desc', value: 'priority-desc' },
+];
+
+export const priorityOptions = ['High', 'Normal', 'Low'];

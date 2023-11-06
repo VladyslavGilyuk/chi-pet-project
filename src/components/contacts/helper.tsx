@@ -1,7 +1,7 @@
-import { AvatarCellWrapper } from './cells/avatarCellWrapper';
-import { DefaultCell } from './cells/defaultCell';
+import { AvatarCellWrapper } from '../common/table/cells/avatarCellWrapper';
+import { DefaultCell } from '../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
-import { formatAsDeadlineDate } from '../../../utils/dateFunctions';
+import { formatAsDeadlineDate } from '../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
   {
@@ -46,5 +46,13 @@ export const columns: GridColDef[] = [
   },
 ];
 
-export const pageSizeOptions = [5, 8, 10, 25];
-export const baseMenuCellConfig = { field: 'menu', headerName: '', width: 15, sortable: false };
+export const sortingOptions = [
+  { label: 'Name Asc', value: 'firstName-asc' },
+  { label: 'Name Desc', value: 'firstName-desc' },
+  { label: 'Email Asc', value: 'email-asc' },
+  { label: 'Email Desc', value: 'email-desc' },
+  { label: 'Address Asc', value: 'address-asc' },
+  { label: 'Address Desc', value: 'address-desc' },
+  { label: 'Create Date Asc', value: 'createDate-asc' },
+  { label: 'Create Date Desc', value: 'createDate-desc' },
+];
