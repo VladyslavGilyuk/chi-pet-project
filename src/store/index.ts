@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import contactsReducer from './contacts/slice';
 import tasksReducer from './tasks/slice';
 import ticketsReducer from './tickets/slice';
 import userReducer from './user/slice';
@@ -8,6 +9,7 @@ export const store = configureStore({
     user: userReducer,
     tasks: tasksReducer,
     tickets: ticketsReducer,
+    contacts: contactsReducer,
   },
 });
 

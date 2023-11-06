@@ -1,3 +1,4 @@
+import Contacts from './pages/Contacts';
 import ErrorBoundary from './components/errorBoundary';
 import Layout from './layouts/mainLayout';
 import Overview from './pages/Overview';
@@ -21,6 +22,7 @@ function App() {
           <Route path={ROUTE_PATH.Home} element={<Layout />}>
             <Route index path={ROUTE_PATH.Home} element={<Overview />} />
             <Route path={ROUTE_PATH.Tickets} element={<Tickets />} />
+            <Route path={ROUTE_PATH.Contacts} element={<Contacts />} />
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>
