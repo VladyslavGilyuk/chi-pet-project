@@ -1,7 +1,7 @@
+import { IUserState } from '../../types/user';
 import { Notify } from '../../utils/notify';
 import TicketService from '../../service/TicketService';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import { ITickets, IUpdateTickets } from '../../types/tickets';
 
 export const fetchTicketAsync = createAsyncThunk('tickets/fetchTicket', async (apiUrl: string) => {
@@ -17,14 +17,18 @@ export const fetchTicketAsync = createAsyncThunk('tickets/fetchTicket', async (a
 });
 export const createTicketAsync = createAsyncThunk(
   'tickets/createTicket',
-  async ({ apiUrl, data }: { apiUrl: string; data: ITickets }, thunkAPI) => {
+  async (
+    { apiUrl, data, userStore }: { apiUrl: string; data: ITickets; userStore: IUserState },
+    thunkAPI,
+  ) => {
     const { dispatch } = thunkAPI;
+
     const transformedData = {
       ...data,
       createdBy: {
-        name: 'userName', //replace with actual data of user
+        name: `${userStore.firstName} ${userStore.lastName}`,
         imageUrl: 'profilePhoto1.png',
-        id: uuidv4(),
+        id: userStore.id?.toString(),
       },
       createDate: new Date(),
       updatedDate: new Date(),

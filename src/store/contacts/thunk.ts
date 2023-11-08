@@ -1,7 +1,7 @@
 import ContactService from '../../service/ContactService';
+import { IUserState } from '../../types/user';
 import { Notify } from '../../utils/notify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import { IContacts, IUpdateContacts } from '../../types/contacts';
 
 export const fetchContactAsync = createAsyncThunk(
@@ -20,15 +20,18 @@ export const fetchContactAsync = createAsyncThunk(
 );
 export const createContactAsync = createAsyncThunk(
   'contacts/createContact',
-  async ({ apiUrl, data }: { apiUrl: string; data: IContacts }, thunkAPI) => {
+  async (
+    { apiUrl, data, userStore }: { apiUrl: string; data: IContacts; userStore: IUserState },
+    thunkAPI,
+  ) => {
     const { dispatch } = thunkAPI;
     const transformedData = {
       ...data,
       createDate: new Date(),
       createdBy: {
-        name: 'userName', //replace with actual data of user
+        name: `${userStore.firstName} ${userStore.lastName}`,
         imageUrl: 'profilePhoto1.png',
-        id: uuidv4(),
+        id: userStore.id?.toString(),
       },
     };
 

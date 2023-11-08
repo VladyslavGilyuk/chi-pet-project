@@ -4,6 +4,8 @@ import FormInput from '../../common/formInput';
 import { Notify } from '../../../utils/notify';
 import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
+import { useSelector } from 'react-redux';
+import { user } from '../../../store/user/selectors';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   EmptyHelperText,
@@ -16,7 +18,6 @@ import {
 import { ITicketFieldValues, TicketsFormHelper, statusOptions } from './helper';
 import { ITicketState, ITickets, IUpdateTickets } from '../../../types/tickets';
 import { createTicketAsync, updateTicketAsync } from '../../../store/tickets/thunk';
-
 interface IProps {
   toggleModal: () => void;
   initialValues: ITicketState | null;
@@ -37,6 +38,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
   });
 
   const dispatch = useAppDispatch();
+  const userStore = useSelector(user);
 
   const handleTicketSubmit: SubmitHandler<ITickets | IUpdateTickets> = async (
     data: ITickets | IUpdateTickets,
@@ -47,7 +49,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
         await dispatch(updateTicketAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as ITickets;
-        await dispatch(createTicketAsync({ apiUrl, data: body }));
+        await dispatch(createTicketAsync({ apiUrl, data: body, userStore: userStore }));
       }
       toggleModal();
     } catch (error) {

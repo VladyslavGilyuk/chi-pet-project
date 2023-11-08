@@ -3,6 +3,8 @@ import FormInput from '../../common/formInput';
 import { Notify } from '../../../utils/notify';
 import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
+import { useSelector } from 'react-redux';
+import { user } from '../../../store/user/selectors';
 import { FlexContainer, StyledCancelButton, StyledHeading, StyledLoginButton } from './styled';
 import {
   IContactFieldValues,
@@ -12,6 +14,7 @@ import {
 } from '../../../types/contacts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { createContactAsync, updateContactAsync } from '../../../store/contacts/thunk';
+
 interface IProps {
   toggleModal: () => void;
   initialValues: IContactState | null;
@@ -30,6 +33,7 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
   });
 
   const dispatch = useAppDispatch();
+  const userStore = useSelector(user);
 
   const handleContactSubmit: SubmitHandler<IContacts | IUpdateContacts> = async (
     data: IContacts | IUpdateContacts,
@@ -40,7 +44,7 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
         await dispatch(updateContactAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as IContacts;
-        await dispatch(createContactAsync({ apiUrl, data: body }));
+        await dispatch(createContactAsync({ apiUrl, data: body, userStore: userStore }));
       }
       toggleModal();
     } catch (error) {

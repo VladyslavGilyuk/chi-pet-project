@@ -1,4 +1,4 @@
-export interface UserState {
+export interface IUserState {
   token: string;
   email: string;
   firstName: string;
