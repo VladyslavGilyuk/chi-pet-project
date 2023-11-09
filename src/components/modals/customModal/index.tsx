@@ -1,5 +1,6 @@
 import { BoxContainer } from './styled';
 import ContactsForm from '../../form/contacts';
+import { EFormType } from '../../common/table';
 import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
 import { Modal } from '@mui/material';
@@ -12,21 +13,14 @@ interface IProps {
   isEdit?: boolean;
   isOpen: boolean;
   apiUrl: string;
-  contactsForm?: boolean;
+  formType: EFormType;
 }
 
-const CustomModal = ({
-  toggleModal,
-  initialValues,
-  isEdit,
-  apiUrl,
-  isOpen,
-  contactsForm,
-}: IProps) => {
+const CustomModal = ({ toggleModal, initialValues, isEdit, apiUrl, isOpen, formType }: IProps) => {
   return (
     <Modal open={isOpen} onClose={toggleModal}>
       <BoxContainer>
-        {contactsForm ? (
+        {formType === EFormType.Contacts ? (
           <ContactsForm
             toggleModal={toggleModal}
             initialValues={initialValues as IContactState}

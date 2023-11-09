@@ -1,19 +1,18 @@
-import Table from '../common/table';
+import { contactsStore } from '../../store/contacts/selector';
+import Table, { EFormType } from '../common/table';
 import { columns, sortingOptions } from './helper';
-import { contacts, total } from '../../store/contacts/selector';
 import { deleteContactAsync, fetchContactAsync } from '../../store/contacts/thunk';
 
 const ContactsTable = () => {
   return (
     <Table
       columns={columns}
-      fetch={fetchContactAsync}
-      items={contacts}
-      total={total}
-      onDelete={deleteContactAsync}
+      fetchAction={fetchContactAsync}
+      storeData={contactsStore}
+      deleteAction={deleteContactAsync}
       sortingOptions={sortingOptions}
       disabledFilter
-      contactsForm
+      formType={EFormType.Contacts}
     />
   );
 };

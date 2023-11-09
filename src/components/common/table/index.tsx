@@ -17,33 +17,39 @@ export interface ISortingOptions {
   value: string;
 }
 
+export enum EFormType {
+  Contacts = 'Contacts',
+  Tickets = 'Tickets',
+}
+type DataSelector = (state: RootState) => {
+  storeItems: ITicketState[] | IContactState[];
+  storeTotal: number;
+};
+
 interface IProps {
-  items: (state: RootState) => ITicketState[] | IContactState[];
-  total: (state: RootState) => number;
-  fetch: FetchAthynkThunk;
-  onDelete: DeleteAsyncThunk;
+  storeData: DataSelector;
+  fetchAction: FetchAthynkThunk;
+  deleteAction: DeleteAsyncThunk;
   columns: GridColDef[];
   sortingOptions: ISortingOptions[];
   priorityOptions?: string[];
   disabledFilter?: boolean;
-  contactsForm?: boolean;
+  formType: EFormType;
 }
 
 const Table: React.FC<IProps> = ({
-  items,
-  total,
-  fetch,
-  onDelete,
+  storeData,
+  fetchAction,
+  deleteAction,
   columns,
   sortingOptions,
   priorityOptions,
   disabledFilter,
-  contactsForm,
+  formType,
 }) => {
   const dispatch = useAppDispatch();
 
-  const storeItems = useSelector(items);
-  const storeTotal = useSelector(total);
+  const { storeItems, storeTotal } = useSelector(storeData);
 
   const {
     searchParams,
@@ -51,7 +57,7 @@ const Table: React.FC<IProps> = ({
     selectedPriorities,
     paginationModel,
     setPaginationModel,
-  } = useTableSortAndFilter(fetch);
+  } = useTableSortAndFilter(fetchAction);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ITicketState | IContactState | null>(null);
@@ -67,7 +73,7 @@ const Table: React.FC<IProps> = ({
   );
 
   const handleRemoveItem = useCallback(async (id: string, apiUrl: string) => {
-    await dispatch(onDelete({ id, apiUrl }));
+    await dispatch(deleteAction({ id, apiUrl }));
   }, []);
 
   return (
@@ -109,7 +115,7 @@ const Table: React.FC<IProps> = ({
                 sortingOptions={sortingOptions}
                 priorityOptions={priorityOptions}
                 disabledFilter={disabledFilter}
-                contactsForm={contactsForm}
+                formType={formType}
               />
             ),
           }}
@@ -123,7 +129,7 @@ const Table: React.FC<IProps> = ({
             initialValues={selectedItem}
             isOpen={isModalOpen}
             isEdit={true}
-            contactsForm={contactsForm}
+            formType={formType}
           />
         </>
       )}

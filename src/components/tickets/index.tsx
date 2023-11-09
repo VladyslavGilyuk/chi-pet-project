@@ -1,18 +1,18 @@
-import Table from '../common/table';
+import { ticketsStore } from '../../store/tickets/selector';
+import Table, { EFormType } from '../common/table';
 import { columns, priorityOptions, sortingOptions } from './helper';
 import { deleteTicketAsync, fetchTicketAsync } from '../../store/tickets/thunk';
-import { tickets, total } from '../../store/tickets/selector';
 
 const TicketsTable = () => {
   return (
     <Table
       columns={columns}
-      fetch={fetchTicketAsync}
-      items={tickets}
-      total={total}
-      onDelete={deleteTicketAsync}
+      fetchAction={fetchTicketAsync}
+      storeData={ticketsStore}
+      deleteAction={deleteTicketAsync}
       sortingOptions={sortingOptions}
       priorityOptions={priorityOptions}
+      formType={EFormType.Tickets}
     />
   );
 };
