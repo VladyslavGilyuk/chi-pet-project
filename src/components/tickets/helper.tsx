@@ -13,7 +13,7 @@ export const columns: GridColDef[] = [
   {
     field: 'ticket',
     headerName: 'Ticket details',
-    width: 450,
+    width: 420,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -29,7 +29,7 @@ export const columns: GridColDef[] = [
   {
     field: 'customer',
     headerName: 'Customer name',
-    width: 230,
+    width: 210,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -43,7 +43,7 @@ export const columns: GridColDef[] = [
   {
     field: 'deadlineDate',
     headerName: 'Date',
-    width: 170,
+    width: 150,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -57,7 +57,7 @@ export const columns: GridColDef[] = [
   {
     field: 'priority',
     headerName: 'Priority',
-    width: 110,
+    width: 80,
     sortable: false,
     renderCell: (params) => {
       return <Tag text={params.value} />;

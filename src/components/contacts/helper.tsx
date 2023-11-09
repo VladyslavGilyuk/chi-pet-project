@@ -7,7 +7,7 @@ export const columns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Name',
-    width: 380,
+    width: 310,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -29,7 +29,7 @@ export const columns: GridColDef[] = [
   {
     field: 'address',
     headerName: 'Address',
-    width: 200,
+    width: 160,
     sortable: false,
     renderCell: (params) => {
       return <DefaultCell adressText={params.row.address} />;
@@ -38,7 +38,7 @@ export const columns: GridColDef[] = [
   {
     field: 'createDate',
     headerName: 'Created At',
-    width: 130,
+    width: 140,
     sortable: false,
     renderCell: (params) => {
       return <DefaultCell primaryText={formatAsDeadlineDate(params.row.createDate)} />;
