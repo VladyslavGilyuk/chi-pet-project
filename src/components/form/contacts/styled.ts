@@ -1,4 +1,4 @@
-import { Box, Button, Typography, styled } from '@mui/material';
+import { Box, Button, TextField, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
 const StyledHeading = styled(Typography)`
@@ -63,6 +63,17 @@ const HelperText = styled(Box)`
   margin-bottom: 0;
   margin-left: 14px;
 `;
+const HelperImageText = styled(Box)`
+  color: ${colors.primaryBlack};
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  text-align: left;
+  margin-top: 3px;
+  margin-right: 14px;
+  margin-bottom: 0;
+  margin-left: 14px;
+`;
 const EmptyHelperText = styled(Box)`
   visibility: hidden;
   font-weight: 400;
@@ -74,6 +85,9 @@ const EmptyHelperText = styled(Box)`
   margin-bottom: 0;
   margin-left: 14px;
 `;
+const StyledInput = styled(TextField)`
+  display: none;
+`;
 export {
   StyledHeading,
   StyledLoginButton,
@@ -81,4 +95,6 @@ export {
   FlexContainer,
   HelperText,
   EmptyHelperText,
+  StyledInput,
+  HelperImageText,
 };

@@ -1,11 +1,22 @@
+import { ReactComponent as AddImageIcon } from '../../../assets/addImage.svg';
 import { ContactsFormHelper } from './helper';
 import FormInput from '../../common/formInput';
 import { Notify } from '../../../utils/notify';
-import { memo } from 'react';
+
 import { useAppDispatch } from '../../../store/hooks';
 import { useSelector } from 'react-redux';
 import { user } from '../../../store/user/selectors';
-import { FlexContainer, StyledCancelButton, StyledHeading, StyledLoginButton } from './styled';
+import { Button, IconButton } from '@mui/material';
+import {
+  EmptyHelperText,
+  FlexContainer,
+  HelperImageText,
+  HelperText,
+  StyledCancelButton,
+  StyledHeading,
+  StyledInput,
+  StyledLoginButton,
+} from './styled';
 import {
   IContactFieldValues,
   IContactState,
@@ -14,6 +25,7 @@ import {
 } from '../../../types/contacts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { createContactAsync, updateContactAsync } from '../../../store/contacts/thunk';
+import { memo, useState } from 'react';
 interface IProps {
   toggleModal: () => void;
   initialValues: IContactState | null;
@@ -21,6 +33,8 @@ interface IProps {
   apiUrl: string;
 }
 const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => {
+  const [fileName, setFileName] = useState<string | null>(null);
+
   const {
     handleSubmit,
     register,
@@ -51,10 +65,51 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
     }
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInput = event.target;
+    if (fileInput.files && fileInput.files.length > 0) {
+      setFileName(fileInput.files[0].name);
+    } else {
+      setFileName(null);
+    }
+  };
+
+  const getHelperComponent = () => {
+    switch (true) {
+      case !!fileName:
+        return <HelperImageText>{fileName}</HelperImageText>;
+      case !!errors['image']:
+        return <HelperText>Image is required</HelperText>;
+      default:
+        return <EmptyHelperText>.</EmptyHelperText>;
+    }
+  };
   return (
     <>
       <StyledHeading>Add contacts</StyledHeading>
       <form onSubmit={handleSubmit(handleContactSubmit)}>
+        <label htmlFor='icon-button-photo'>
+          <StyledInput
+            {...register('image', { required: true })}
+            error={!!errors['image']}
+            inputProps={{
+              accept: 'image/*',
+            }}
+            id='icon-button-photo'
+            type='file'
+            onChange={handleFileChange}
+          />
+
+          <IconButton color='primary' component='span'>
+            <AddImageIcon />
+          </IconButton>
+
+          <Button>
+            <label htmlFor='icon-button-photo'>Add Photo </label>
+          </Button>
+
+          {getHelperComponent()}
+        </label>
         {ContactsFormHelper.map((instance) => (
           <FormInput
             {...instance}
