@@ -1,28 +1,25 @@
-/* eslint-disable no-console */
-/* eslint-disable sort-imports */
 import { ReactComponent as ProfileIcon } from '../../assets/profile.svg';
+import { ROUTE_PATH } from '../../routes';
 import { ReactComponent as RingIcon } from '../../assets/ring.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { links } from '../navBar/helper';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { user } from '../../store/user/selectors';
+import { Dropdown, Menu, MenuItem } from '@mui/base';
 import {
   HeaderContainer,
   IconsContainer,
-  StyledMenuButton,
+  Listbox,
   ProfileContainer,
+  StyledButton,
   StyledHeaderText,
   StyledHr,
+  StyledMenuButton,
   StyledTypography,
-  StyledButton,
-  Listbox,
 } from './styled';
-import { Dropdown } from '@mui/base/Dropdown';
-import { Menu } from '@mui/base/Menu';
-import { MenuItem } from '@mui/base/MenuItem';
-import { ROUTE_PATH } from '../../routes';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 const Header: React.FC = () => {
   const currentUser = useSelector(user);
   const location = useLocation();
