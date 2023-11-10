@@ -40,7 +40,7 @@ const SignInForm = () => {
       <div>
         <FlexContainer>
           <StyledFooterText variant='subtitle1'>{t('signIn.footer')}</StyledFooterText>
-          <StyledSignUpLink href={ROUTE_PATH.SingUp} underline='none'>
+          <StyledSignUpLink href={ROUTE_PATH.SignUp} underline='none'>
             {t('signIn.link')}
           </StyledSignUpLink>
         </FlexContainer>

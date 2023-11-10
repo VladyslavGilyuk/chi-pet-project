@@ -9,7 +9,7 @@ const PrivateRoute = () => {
   const user = userJSON ? JSON.parse(userJSON) : false;
   dispatch(setUser(user));
 
-  return user.token ? <Outlet /> : <Navigate to={ROUTE_PATH.SingIn} />;
+  return user.token ? <Outlet /> : <Navigate to={ROUTE_PATH.SignIn} />;
 };
 
 export default PrivateRoute;

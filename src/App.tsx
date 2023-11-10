@@ -20,8 +20,8 @@ function App() {
         <GlobalStyles />
         <Routes>
           <Route element={<PublicRoute />}>
-            <Route path={ROUTE_PATH.SingIn} index element={<SignInPage />} />
-            <Route path={ROUTE_PATH.SingUp} element={<SignUpPage />} />
+            <Route path={ROUTE_PATH.SignIn} index element={<SignInPage />} />
+            <Route path={ROUTE_PATH.SignUp} element={<SignUpPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path={ROUTE_PATH.Home} element={<Layout />}>
