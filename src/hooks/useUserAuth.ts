@@ -1,15 +1,17 @@
-import { ROUTE_PATH } from '../routes';
 import { setUser } from '../store/user/slice';
 import { useAppDispatch } from '../store/hooks';
-import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivateRoute = () => {
+const useUserAuth = () => {
   const dispatch = useAppDispatch();
+
   const userJSON = localStorage.getItem('user');
   const user = userJSON ? JSON.parse(userJSON) : false;
+  const isAuthenticated = Boolean(user.token);
   dispatch(setUser(user));
 
-  return user.token ? <Outlet /> : <Navigate to={ROUTE_PATH.SignIn} />;
+  return {
+    isAuthenticated,
+  };
 };
 
-export default PrivateRoute;
+export default useUserAuth;

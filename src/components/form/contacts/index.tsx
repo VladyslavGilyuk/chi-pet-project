@@ -57,7 +57,7 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
         await dispatch(updateContactAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as IContacts;
-        await dispatch(createContactAsync({ apiUrl, data: body, userStore: userStore }));
+        await dispatch(createContactAsync({ apiUrl, data: body, user: userStore }));
       }
       toggleModal();
     } catch (error) {

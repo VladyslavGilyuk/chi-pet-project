@@ -21,7 +21,7 @@ export const fetchContactAsync = createAsyncThunk(
 export const createContactAsync = createAsyncThunk(
   'contacts/createContact',
   async (
-    { apiUrl, data, userStore }: { apiUrl: string; data: IContacts; userStore: IUserState },
+    { apiUrl, data, user }: { apiUrl: string; data: IContacts; user: IUserState },
     thunkAPI,
   ) => {
     const { dispatch } = thunkAPI;
@@ -29,9 +29,9 @@ export const createContactAsync = createAsyncThunk(
       ...data,
       createDate: new Date(),
       createdBy: {
-        name: `${userStore.firstName} ${userStore.lastName}`,
+        name: `${user.firstName} ${user.lastName}`,
         imageUrl: 'profilePhoto1.png',
-        id: userStore.id?.toString(),
+        id: user.id?.toString(),
       },
     };
 

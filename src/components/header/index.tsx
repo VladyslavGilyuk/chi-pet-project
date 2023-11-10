@@ -3,8 +3,8 @@ import { ROUTE_PATH } from '../../routes';
 import { ReactComponent as RingIcon } from '../../assets/ring.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { links } from '../navBar/helper';
+import { logOut } from '../../store/user/slice';
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { user } from '../../store/user/selectors';
 import { Dropdown, Menu, MenuItem } from '@mui/base';
 import {
@@ -18,18 +18,20 @@ import {
   StyledMenuButton,
   StyledTypography,
 } from './styled';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const currentUser = useSelector(user);
   const location = useLocation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const pageName = useMemo(
     () => links.find((link) => link.to === location.pathname)?.name ?? '',
     [location.pathname],
   );
   const createHandleMenuClick = () => {
-    localStorage.removeItem('user');
+    dispatch(logOut());
     navigate(ROUTE_PATH.SignIn);
   };
   return (

@@ -18,7 +18,7 @@ export const fetchTicketAsync = createAsyncThunk('tickets/fetchTicket', async (a
 export const createTicketAsync = createAsyncThunk(
   'tickets/createTicket',
   async (
-    { apiUrl, data, userStore }: { apiUrl: string; data: ITickets; userStore: IUserState },
+    { apiUrl, data, user }: { apiUrl: string; data: ITickets; user: IUserState },
     thunkAPI,
   ) => {
     const { dispatch } = thunkAPI;
@@ -26,9 +26,9 @@ export const createTicketAsync = createAsyncThunk(
     const transformedData = {
       ...data,
       createdBy: {
-        name: `${userStore.firstName} ${userStore.lastName}`,
+        name: `${user.firstName} ${user.lastName}`,
         imageUrl: 'profilePhoto1.png',
-        id: userStore.id?.toString(),
+        id: user.id?.toString(),
       },
       createDate: new Date(),
       updatedDate: new Date(),

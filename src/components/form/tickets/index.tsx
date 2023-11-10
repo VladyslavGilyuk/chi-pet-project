@@ -49,7 +49,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
         await dispatch(updateTicketAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as ITickets;
-        await dispatch(createTicketAsync({ apiUrl, data: body, userStore: userStore }));
+        await dispatch(createTicketAsync({ apiUrl, data: body, user: userStore }));
       }
       toggleModal();
     } catch (error) {
