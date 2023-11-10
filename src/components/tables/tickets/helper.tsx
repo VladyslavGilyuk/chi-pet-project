@@ -1,13 +1,13 @@
-import { AvatarCellWrapper } from '../common/table/cells/avatarCellWrapper';
-import { DefaultCell } from '../common/table/cells/defaultCell';
+import { AvatarCellWrapper } from '../../common/table/cells/avatarCellWrapper';
+import { DefaultCell } from '../../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
-import Tag from '../common/tags';
+import Tag from '../../common/tags';
 
 import {
   formatAsCreateDate,
   formatAsDeadlineDate,
   formatAsHoursDate,
-} from '../../utils/dateFunctions';
+} from '../../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
   {

@@ -1,7 +1,7 @@
-import { AvatarCellWrapper } from '../common/table/cells/avatarCellWrapper';
-import { DefaultCell } from '../common/table/cells/defaultCell';
+import { AvatarCellWrapper } from '../../common/table/cells/avatarCellWrapper';
+import { DefaultCell } from '../../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
-import { formatAsDeadlineDate } from '../../utils/dateFunctions';
+import { formatAsDeadlineDate } from '../../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
   {

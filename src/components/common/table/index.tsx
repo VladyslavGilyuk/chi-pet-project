@@ -5,13 +5,10 @@ import { GridColDef } from '@mui/x-data-grid';
 import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
 import { RootState } from '../../../store';
-import { useAppDispatch } from '../../../store/hooks';
-import { useSelector } from 'react-redux';
-import { DeleteAsyncThunk, FetchAthynkThunk, useTableSortAndFilter } from './useTableSortAndFilter';
+import { useTable } from './useTable';
+import { DeleteAsyncThunk, FetchAthynkThunk } from './useTableSortAndFilter';
 import { StyledBox, StyledDataGrid } from './styled';
 import { baseMenuCellConfig, pageSizeOptions } from './helper';
-import { useCallback, useState } from 'react';
-
 export interface ISortingOptions {
   label: string;
   value: string;
@@ -21,9 +18,9 @@ export enum EFormType {
   Contacts = 'Contacts',
   Tickets = 'Tickets',
 }
-type DataSelector = (state: RootState) => {
-  storeItems: ITicketState[] | IContactState[];
-  storeTotal: number;
+export type DataSelector = (state: RootState) => {
+  data: ITicketState[] | IContactState[];
+  total: number;
 };
 
 interface IProps {
@@ -47,41 +44,27 @@ const Table: React.FC<IProps> = ({
   disabledFilter,
   formType,
 }) => {
-  const dispatch = useAppDispatch();
-
-  const { storeItems, storeTotal } = useSelector(storeData);
-
   const {
     searchParams,
-    setSelectedPriorities,
+    data,
+    total,
     selectedPriorities,
+    setSelectedPriorities,
     paginationModel,
     setPaginationModel,
-  } = useTableSortAndFilter(fetchAction);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ITicketState | IContactState | null>(null);
-
-  const handleUpdateItem = useCallback(
-    (id?: string) => {
-      const itemToEdit =
-        (storeItems as (ITicketState | IContactState)[])?.find((item) => item.id === id) || null;
-      setSelectedItem(itemToEdit);
-      setIsModalOpen(true);
-    },
-    [storeItems],
-  );
-
-  const handleRemoveItem = useCallback(async (id: string, apiUrl: string) => {
-    await dispatch(deleteAction({ id, apiUrl }));
-  }, []);
+    handleUpdateItem,
+    handleRemoveItem,
+    isModalOpen,
+    setIsModalOpen,
+    selectedItem,
+  } = useTable({ fetchAction, deleteAction, storeData });
 
   return (
     <StyledBox>
-      {storeItems?.length > 0 && (
+      {data?.length > 0 && (
         <StyledDataGrid
           autoHeight
-          rows={storeItems}
+          rows={data}
           rowHeight={92}
           columns={[
             ...columns,
@@ -100,7 +83,7 @@ const Table: React.FC<IProps> = ({
             },
           ]}
           paginationMode='server'
-          rowCount={storeTotal}
+          rowCount={total}
           pageSizeOptions={pageSizeOptions}
           paginationModel={paginationModel}
           onPaginationModelChange={setPaginationModel}

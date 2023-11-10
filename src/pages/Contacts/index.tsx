@@ -1,4 +1,4 @@
-import ContactsTable from '../../components/contacts';
+import ContactsTable from '../../components/tables/contacts';
 
 const Contacts = () => {
   return <ContactsTable />;

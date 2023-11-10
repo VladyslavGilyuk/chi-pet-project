@@ -1,7 +1,7 @@
-import { contactsStore } from '../../store/contacts/selector';
-import Table, { EFormType } from '../common/table';
+import { contactsStore } from '../../../store/contacts/selector';
+import Table, { EFormType } from '../../common/table';
 import { columns, sortingOptions } from './helper';
-import { deleteContactAsync, fetchContactAsync } from '../../store/contacts/thunk';
+import { deleteContactAsync, fetchContactAsync } from '../../../store/contacts/thunk';
 
 const ContactsTable = () => {
   return (
