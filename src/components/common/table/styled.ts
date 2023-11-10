@@ -77,7 +77,8 @@ const StyledDataGrid = styled(DataGrid)`
 `;
 
 const StyledBox = styled(Box)`
-  width: 1200px;
+  width: 100%;
+  max-width: 1130px;
   margin: 0 auto;
   background-color: #fff;
 
@@ -91,6 +92,7 @@ const StyledStack = styled(Box)`
   gap: 24px;
 `;
 const StyledHeading = styled(Typography)`
+  white-space: wrap;
   color: ${colors.primaryBlack};
   font-size: ${fonts.size.medium} !important;
   font-style: normal;
@@ -129,6 +131,15 @@ const StyledMenuItem = styled(MenuItem)`
   align-items: center;
   margin: 0 auto;
 `;
+const StyledAdressText = styled(Typography)`
+  white-space: wrap;
+  color: #000000;
+  font-size: ${fonts.size.small} !important;
+  font-style: normal;
+  font-weight: ${fonts.weight.small} !important;
+  line-height: 16px !important;
+  letter-spacing: 0.1px;
+`;
 export {
   UserPhoto,
   StyledStack,
@@ -138,4 +149,5 @@ export {
   StyledBox,
   CustomSelect,
   StyledMenuItem,
+  StyledAdressText,
 };

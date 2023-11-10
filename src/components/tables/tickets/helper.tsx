@@ -1,5 +1,5 @@
-import { AvatarCellWrapper } from './cells/avatarCellWrapper';
-import { DefaultCell } from './cells/defaultCell';
+import { AvatarCellWrapper } from '../../common/table/cells/avatarCellWrapper';
+import { DefaultCell } from '../../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
 import Tag from '../../common/tags';
 
@@ -13,7 +13,7 @@ export const columns: GridColDef[] = [
   {
     field: 'ticket',
     headerName: 'Ticket details',
-    width: 450,
+    width: 420,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -29,7 +29,7 @@ export const columns: GridColDef[] = [
   {
     field: 'customer',
     headerName: 'Customer name',
-    width: 230,
+    width: 210,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -43,7 +43,7 @@ export const columns: GridColDef[] = [
   {
     field: 'deadlineDate',
     headerName: 'Date',
-    width: 170,
+    width: 150,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -57,7 +57,7 @@ export const columns: GridColDef[] = [
   {
     field: 'priority',
     headerName: 'Priority',
-    width: 110,
+    width: 80,
     sortable: false,
     renderCell: (params) => {
       return <Tag text={params.value} />;
@@ -65,5 +65,15 @@ export const columns: GridColDef[] = [
   },
 ];
 
-export const pageSizeOptions = [5, 8, 10, 25];
-export const baseMenuCellConfig = { field: 'menu', headerName: '', width: 15, sortable: false };
+export const sortingOptions = [
+  { label: 'Ticket Asc', value: 'ticket-asc' },
+  { label: 'Ticket Desc', value: 'ticket-desc' },
+  { label: 'Customer Asc', value: 'customer-asc' },
+  { label: 'Customer Desc', value: 'customer-desc' },
+  { label: 'Create Date Asc', value: 'createDate-asc' },
+  { label: 'Create Date Desc', value: 'createDate-desc' },
+  { label: 'Priority Asc', value: 'priority-asc' },
+  { label: 'Priority Desc', value: 'priority-desc' },
+];
+
+export const priorityOptions = ['High', 'Normal', 'Low'];

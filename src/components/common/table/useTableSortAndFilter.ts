@@ -1,9 +1,34 @@
-import { fetchTicketAsync } from '../../../store/tickets/thunk';
+import { AsyncThunk } from '@reduxjs/toolkit';
+import { IContactState } from '../../../types/contacts';
+import { ITicketState } from '../../../types/tickets';
+import { deleteContactAsync } from '../../../store/contacts/thunk';
 import { useAppDispatch } from '../../../store/hooks';
 import { useSearchParams } from 'react-router-dom';
+import { AppDispatch, RootState } from '../../../store';
 import { useEffect, useState } from 'react';
 
-export const useTableSortAndFilter = () => {
+export type FetchAthynkThunk = AsyncThunk<
+  | {
+      data: IContactState[] | ITicketState[];
+      totalCount: number;
+    }
+  | undefined,
+  string,
+  {
+    state: RootState;
+    dispatch: AppDispatch;
+  }
+>;
+export type DeleteAsyncThunk = AsyncThunk<
+  ReturnType<typeof deleteContactAsync>,
+  { id: string; apiUrl: string },
+  {
+    state: RootState;
+    dispatch: AppDispatch;
+  }
+>;
+
+export const useTableSortAndFilter = (fetch: FetchAthynkThunk) => {
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +49,7 @@ export const useTableSortAndFilter = () => {
       return params;
     });
     try {
-      await dispatch(fetchTicketAsync(`?${searchParams.toString()}`));
+      await dispatch(fetch(`?${searchParams.toString()}`));
     } catch (error) {
       throw new Error('Failed to fetch tickets');
     }
