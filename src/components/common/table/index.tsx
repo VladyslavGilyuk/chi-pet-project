@@ -5,77 +5,66 @@ import { GridColDef } from '@mui/x-data-grid';
 import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
 import { RootState } from '../../../store';
-import { useAppDispatch } from '../../../store/hooks';
-import { useSelector } from 'react-redux';
-import { DeleteAsyncThunk, FetchAthynkThunk, useTableSortAndFilter } from './useTableSortAndFilter';
+import { useTable } from './useTable';
+import { DeleteAsyncThunk, FetchAthynkThunk } from './useTableSortAndFilter';
 import { StyledBox, StyledDataGrid } from './styled';
 import { baseMenuCellConfig, pageSizeOptions } from './helper';
-import { useCallback, useState } from 'react';
-
 export interface ISortingOptions {
   label: string;
   value: string;
 }
 
+export enum EFormType {
+  Contacts = 'Contacts',
+  Tickets = 'Tickets',
+}
+export type DataSelector = (state: RootState) => {
+  data: ITicketState[] | IContactState[];
+  total: number;
+};
+
 interface IProps {
-  items: (state: RootState) => ITicketState[] | IContactState[];
-  total: (state: RootState) => number;
-  fetch: FetchAthynkThunk;
-  onDelete: DeleteAsyncThunk;
+  storeData: DataSelector;
+  fetchAction: FetchAthynkThunk;
+  deleteAction: DeleteAsyncThunk;
   columns: GridColDef[];
   sortingOptions: ISortingOptions[];
   priorityOptions?: string[];
   disabledFilter?: boolean;
-  contactsForm?: boolean;
+  formType: EFormType;
 }
 
 const Table: React.FC<IProps> = ({
-  items,
-  total,
-  fetch,
-  onDelete,
+  storeData,
+  fetchAction,
+  deleteAction,
   columns,
   sortingOptions,
   priorityOptions,
   disabledFilter,
-  contactsForm,
+  formType,
 }) => {
-  const dispatch = useAppDispatch();
-
-  const storeItems = useSelector(items);
-  const storeTotal = useSelector(total);
-
   const {
     searchParams,
-    setSelectedPriorities,
+    data,
+    total,
     selectedPriorities,
+    setSelectedPriorities,
     paginationModel,
     setPaginationModel,
-  } = useTableSortAndFilter(fetch);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ITicketState | IContactState | null>(null);
-
-  const handleUpdateItem = useCallback(
-    (id?: string) => {
-      const itemToEdit =
-        (storeItems as (ITicketState | IContactState)[])?.find((item) => item.id === id) || null;
-      setSelectedItem(itemToEdit);
-      setIsModalOpen(true);
-    },
-    [storeItems],
-  );
-
-  const handleRemoveItem = useCallback(async (id: string, apiUrl: string) => {
-    await dispatch(onDelete({ id, apiUrl }));
-  }, []);
+    handleUpdateItem,
+    handleRemoveItem,
+    isModalOpen,
+    setIsModalOpen,
+    selectedItem,
+  } = useTable({ fetchAction, deleteAction, storeData });
 
   return (
     <StyledBox>
-      {storeItems?.length > 0 && (
+      {data?.length > 0 && (
         <StyledDataGrid
           autoHeight
-          rows={storeItems}
+          rows={data}
           rowHeight={92}
           columns={[
             ...columns,
@@ -94,7 +83,7 @@ const Table: React.FC<IProps> = ({
             },
           ]}
           paginationMode='server'
-          rowCount={storeTotal}
+          rowCount={total}
           pageSizeOptions={pageSizeOptions}
           paginationModel={paginationModel}
           onPaginationModelChange={setPaginationModel}
@@ -109,7 +98,7 @@ const Table: React.FC<IProps> = ({
                 sortingOptions={sortingOptions}
                 priorityOptions={priorityOptions}
                 disabledFilter={disabledFilter}
-                contactsForm={contactsForm}
+                formType={formType}
               />
             ),
           }}
@@ -123,7 +112,7 @@ const Table: React.FC<IProps> = ({
             initialValues={selectedItem}
             isOpen={isModalOpen}
             isEdit={true}
-            contactsForm={contactsForm}
+            formType={formType}
           />
         </>
       )}

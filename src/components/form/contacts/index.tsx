@@ -14,7 +14,6 @@ import {
 } from '../../../types/contacts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { createContactAsync, updateContactAsync } from '../../../store/contacts/thunk';
-
 interface IProps {
   toggleModal: () => void;
   initialValues: IContactState | null;

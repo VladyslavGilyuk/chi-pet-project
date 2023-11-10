@@ -1,8 +1,8 @@
 import CustomModal from '../../../modals/customModal';
-import { ISortingOptions } from '..';
 import { ReactComponent as PlusIcon } from '../../../../assets/plus.svg';
 import { useSearchParams } from 'react-router-dom';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
+import { EFormType, ISortingOptions } from '..';
 import {
   FilterSelect,
   PlusSpan,
@@ -22,9 +22,9 @@ export type IProps = {
   selectedPriorities: string[];
   setSelectedPriorities: React.Dispatch<React.SetStateAction<string[]>>;
   sortingOptions: ISortingOptions[];
+  formType: EFormType;
   disabledFilter?: boolean;
   priorityOptions?: string[];
-  contactsForm?: boolean;
 };
 
 const CustomToolbar: React.FC<IProps> = ({
@@ -34,7 +34,7 @@ const CustomToolbar: React.FC<IProps> = ({
   disabledFilter,
   sortingOptions,
   priorityOptions,
-  contactsForm,
+  formType,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams(); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -97,7 +97,7 @@ const CustomToolbar: React.FC<IProps> = ({
             ))}
           </SortSelect>
         </FormControl>
-        {!disabledFilter ? (
+        {!disabledFilter && (
           <FormControl>
             <StyledInputLabel shrink={false}>Filter</StyledInputLabel>
             <FilterSelect IconComponent={StyledFilterAltIcon} value='' label='Filter'>
@@ -116,13 +116,13 @@ const CustomToolbar: React.FC<IProps> = ({
               ))}
             </FilterSelect>
           </FormControl>
-        ) : null}
+        )}
       </SelectsContainer>
       <ViewButton onClick={toggleModal}>
         <PlusSpan>
           <PlusIcon />
         </PlusSpan>
-        Add {contactsForm ? 'Contact' : 'Ticket'}
+        Add {formType}
       </ViewButton>
       {isModalOpen && (
         <>
@@ -131,7 +131,7 @@ const CustomToolbar: React.FC<IProps> = ({
             initialValues={null}
             apiUrl={apiUrl}
             isOpen={isModalOpen}
-            contactsForm={contactsForm}
+            formType={formType}
           />
         </>
       )}

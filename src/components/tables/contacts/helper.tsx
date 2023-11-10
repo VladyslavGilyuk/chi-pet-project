@@ -1,13 +1,13 @@
-import { AvatarCellWrapper } from '../common/table/cells/avatarCellWrapper';
-import { DefaultCell } from '../common/table/cells/defaultCell';
+import { AvatarCellWrapper } from '../../common/table/cells/avatarCellWrapper';
+import { DefaultCell } from '../../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';
-import { formatAsDeadlineDate } from '../../utils/dateFunctions';
+import { formatAsDeadlineDate } from '../../../utils/dateFunctions';
 
 export const columns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Name',
-    width: 380,
+    width: 310,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -29,7 +29,7 @@ export const columns: GridColDef[] = [
   {
     field: 'address',
     headerName: 'Address',
-    width: 200,
+    width: 160,
     sortable: false,
     renderCell: (params) => {
       return <DefaultCell adressText={params.row.address} />;
@@ -38,7 +38,7 @@ export const columns: GridColDef[] = [
   {
     field: 'createDate',
     headerName: 'Created At',
-    width: 130,
+    width: 140,
     sortable: false,
     renderCell: (params) => {
       return <DefaultCell primaryText={formatAsDeadlineDate(params.row.createDate)} />;
@@ -49,10 +49,6 @@ export const columns: GridColDef[] = [
 export const sortingOptions = [
   { label: 'Name Asc', value: 'firstName-asc' },
   { label: 'Name Desc', value: 'firstName-desc' },
-  { label: 'Email Asc', value: 'email-asc' },
-  { label: 'Email Desc', value: 'email-desc' },
-  { label: 'Address Asc', value: 'address-asc' },
-  { label: 'Address Desc', value: 'address-desc' },
   { label: 'Create Date Asc', value: 'createDate-asc' },
   { label: 'Create Date Desc', value: 'createDate-desc' },
 ];

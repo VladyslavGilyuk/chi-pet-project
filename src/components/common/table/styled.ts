@@ -77,7 +77,8 @@ const StyledDataGrid = styled(DataGrid)`
 `;
 
 const StyledBox = styled(Box)`
-  width: 1200px;
+  width: 100%;
+  max-width: 1130px;
   margin: 0 auto;
   background-color: #fff;
 
