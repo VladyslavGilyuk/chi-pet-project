@@ -63,6 +63,17 @@ const HelperText = styled(Box)`
   margin-bottom: 0;
   margin-left: 14px;
 `;
+const HelperImageText = styled(Box)`
+  color: ${colors.primaryBlack};
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  text-align: left;
+  margin-top: 3px;
+  margin-right: 14px;
+  margin-bottom: 0;
+  margin-left: 14px;
+`;
 const EmptyHelperText = styled(Box)`
   visibility: hidden;
   font-weight: 400;
@@ -74,6 +85,7 @@ const EmptyHelperText = styled(Box)`
   margin-bottom: 0;
   margin-left: 14px;
 `;
+
 export {
   StyledHeading,
   StyledLoginButton,
@@ -81,4 +93,5 @@ export {
   FlexContainer,
   HelperText,
   EmptyHelperText,
+  HelperImageText,
 };

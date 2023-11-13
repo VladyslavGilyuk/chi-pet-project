@@ -1,8 +1,11 @@
 import { ContactsFormHelper } from './helper';
 import FormInput from '../../common/formInput';
+import ImageUploader from '../../common/imageUploader';
 import { Notify } from '../../../utils/notify';
 import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
+import { useSelector } from 'react-redux';
+import { user } from '../../../store/user/selectors';
 import { FlexContainer, StyledCancelButton, StyledHeading, StyledLoginButton } from './styled';
 import {
   IContactFieldValues,
@@ -30,6 +33,7 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
   });
 
   const dispatch = useAppDispatch();
+  const currentUser = useSelector(user);
 
   const handleContactSubmit: SubmitHandler<IContacts | IUpdateContacts> = async (
     data: IContacts | IUpdateContacts,
@@ -40,18 +44,18 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
         await dispatch(updateContactAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as IContacts;
-        await dispatch(createContactAsync({ apiUrl, data: body }));
+        await dispatch(createContactAsync({ apiUrl, data: body, user: currentUser }));
       }
       toggleModal();
     } catch (error) {
       Notify('Something went wrong');
     }
   };
-
   return (
     <>
       <StyledHeading>Add contacts</StyledHeading>
       <form onSubmit={handleSubmit(handleContactSubmit)}>
+        <ImageUploader register={register} errors={errors} />
         {ContactsFormHelper.map((instance) => (
           <FormInput
             {...instance}
@@ -70,7 +74,6 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
           >
             Save
           </StyledLoginButton>
-
           <StyledCancelButton
             onClick={toggleModal}
             variant='contained'

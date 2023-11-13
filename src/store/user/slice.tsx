@@ -1,8 +1,8 @@
-import { UserState } from '../../types/user';
+import { IUserState } from '../../types/user';
 import { createSlice } from '@reduxjs/toolkit';
 import { signInAsync, signUpAsync } from './thunk';
 
-const initialState: UserState = {
+const initialState: IUserState = {
   token: '',
   email: '',
   firstName: '',
@@ -12,7 +12,17 @@ const initialState: UserState = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      return {
+        ...action.payload,
+      };
+    },
+    logOut: () => {
+      localStorage.removeItem('user');
+      return initialState;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(signInAsync.fulfilled, (state, action) => {
       const responseData = action.payload;
@@ -34,5 +44,5 @@ export const userSlice = createSlice({
     });
   },
 });
-
+export const { setUser, logOut } = userSlice.actions;
 export default userSlice.reducer;
