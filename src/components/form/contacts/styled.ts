@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography, styled } from '@mui/material';
+import { Box, Button, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
 const StyledHeading = styled(Typography)`
@@ -85,9 +85,7 @@ const EmptyHelperText = styled(Box)`
   margin-bottom: 0;
   margin-left: 14px;
 `;
-const StyledInput = styled(TextField)`
-  display: none;
-`;
+
 export {
   StyledHeading,
   StyledLoginButton,
@@ -95,6 +93,5 @@ export {
   FlexContainer,
   HelperText,
   EmptyHelperText,
-  StyledInput,
   HelperImageText,
 };

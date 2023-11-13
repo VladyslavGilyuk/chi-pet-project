@@ -8,7 +8,6 @@ const BoxContainer = styled(Box)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 380px;
-  height: 600px;
   background: ${colors.primaryWhite};
   color: black;
   z-index: 10;

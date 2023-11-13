@@ -1,22 +1,12 @@
-import { ReactComponent as AddImageIcon } from '../../../assets/addImage.svg';
 import { ContactsFormHelper } from './helper';
 import FormInput from '../../common/formInput';
+import ImageUploader from '../../common/imageUploader';
 import { Notify } from '../../../utils/notify';
-
+import { memo } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
 import { useSelector } from 'react-redux';
 import { user } from '../../../store/user/selectors';
-import { Button, IconButton } from '@mui/material';
-import {
-  EmptyHelperText,
-  FlexContainer,
-  HelperImageText,
-  HelperText,
-  StyledCancelButton,
-  StyledHeading,
-  StyledInput,
-  StyledLoginButton,
-} from './styled';
+import { FlexContainer, StyledCancelButton, StyledHeading, StyledLoginButton } from './styled';
 import {
   IContactFieldValues,
   IContactState,
@@ -25,7 +15,6 @@ import {
 } from '../../../types/contacts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { createContactAsync, updateContactAsync } from '../../../store/contacts/thunk';
-import { memo, useState } from 'react';
 interface IProps {
   toggleModal: () => void;
   initialValues: IContactState | null;
@@ -33,8 +22,6 @@ interface IProps {
   apiUrl: string;
 }
 const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => {
-  const [fileName, setFileName] = useState<string | null>(null);
-
   const {
     handleSubmit,
     register,
@@ -46,7 +33,7 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
   });
 
   const dispatch = useAppDispatch();
-  const userStore = useSelector(user);
+  const currentUser = useSelector(user);
 
   const handleContactSubmit: SubmitHandler<IContacts | IUpdateContacts> = async (
     data: IContacts | IUpdateContacts,
@@ -57,59 +44,18 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
         await dispatch(updateContactAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as IContacts;
-        await dispatch(createContactAsync({ apiUrl, data: body, user: userStore }));
+        await dispatch(createContactAsync({ apiUrl, data: body, user: currentUser }));
       }
       toggleModal();
     } catch (error) {
       Notify('Something went wrong');
     }
   };
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const fileInput = event.target;
-    if (fileInput.files && fileInput.files.length > 0) {
-      setFileName(fileInput.files[0].name);
-    } else {
-      setFileName(null);
-    }
-  };
-
-  const getHelperComponent = () => {
-    switch (true) {
-      case !!fileName:
-        return <HelperImageText>{fileName}</HelperImageText>;
-      case !!errors['image']:
-        return <HelperText>Image is required</HelperText>;
-      default:
-        return <EmptyHelperText>.</EmptyHelperText>;
-    }
-  };
   return (
     <>
       <StyledHeading>Add contacts</StyledHeading>
       <form onSubmit={handleSubmit(handleContactSubmit)}>
-        <label htmlFor='icon-button-photo'>
-          <StyledInput
-            {...register('image', { required: true })}
-            error={!!errors['image']}
-            inputProps={{
-              accept: 'image/*',
-            }}
-            id='icon-button-photo'
-            type='file'
-            onChange={handleFileChange}
-          />
-
-          <IconButton color='primary' component='span'>
-            <AddImageIcon />
-          </IconButton>
-
-          <Button>
-            <label htmlFor='icon-button-photo'>Add Photo </label>
-          </Button>
-
-          {getHelperComponent()}
-        </label>
+        <ImageUploader register={register} errors={errors} />
         {ContactsFormHelper.map((instance) => (
           <FormInput
             {...instance}
@@ -128,7 +74,6 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
           >
             Save
           </StyledLoginButton>
-
           <StyledCancelButton
             onClick={toggleModal}
             variant='contained'

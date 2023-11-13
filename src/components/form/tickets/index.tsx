@@ -38,7 +38,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
   });
 
   const dispatch = useAppDispatch();
-  const userStore = useSelector(user);
+  const currentUser = useSelector(user);
 
   const handleTicketSubmit: SubmitHandler<ITickets | IUpdateTickets> = async (
     data: ITickets | IUpdateTickets,
@@ -49,7 +49,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
         await dispatch(updateTicketAsync({ id: body.id, data: body }));
       } else {
         const body = { ...data } as ITickets;
-        await dispatch(createTicketAsync({ apiUrl, data: body, user: userStore }));
+        await dispatch(createTicketAsync({ apiUrl, data: body, user: currentUser }));
       }
       toggleModal();
     } catch (error) {

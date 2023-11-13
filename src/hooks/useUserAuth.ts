@@ -1,16 +1,18 @@
 import { setUser } from '../store/user/slice';
 import { useAppDispatch } from '../store/hooks';
+import { useEffect } from 'react';
 
 const useUserAuth = () => {
   const dispatch = useAppDispatch();
 
-  const userJSON = localStorage.getItem('user');
-  const user = userJSON ? JSON.parse(userJSON) : false;
-  const isAuthenticated = Boolean(user.token);
-  dispatch(setUser(user));
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+
+  useEffect(() => {
+    user && dispatch(setUser(user));
+  }, [dispatch, user]);
 
   return {
-    isAuthenticated,
+    isAuth: !!user?.token,
   };
 };
 
