@@ -12,23 +12,23 @@ interface IProps {
 const ImageUploader = ({ register, errors }: IProps) => {
   return (
     <ImageContainer>
+      <StyledInput
+        {...register('image', { required: true })}
+        error={!!errors['image']}
+        inputProps={{
+          accept: 'image/*',
+        }}
+        id='icon-button-photo'
+        type='file'
+      />
       <label htmlFor='icon-button-photo'>
-        <StyledInput
-          {...register('image', { required: true })}
-          error={!!errors['image']}
-          inputProps={{
-            accept: 'image/*',
-          }}
-          id='icon-button-photo'
-          type='file'
-        />
         <IconButton color='primary' component='span'>
           <AddImageIcon />
         </IconButton>
-        <Button>
-          <label htmlFor='icon-button-photo'>Add Photo </label>
-        </Button>
       </label>
+      <Button>
+        <label htmlFor='icon-button-photo'>Add Photo </label>
+      </Button>
     </ImageContainer>
   );
 };
