@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <StyledWrapper>
       <StyledImage>
-        <LogoIcon />
+        <LogoIcon data-testid='logo-icon' />
       </StyledImage>
       <StyledTypography> Dashboard Kit </StyledTypography>
     </StyledWrapper>
