@@ -1,12 +1,10 @@
 import '@testing-library/jest-dom';
 import Logo from './index';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
-test('renders logo and text', () => {
-  const { getByText, getByTestId } = render(<Logo />);
+test('Should render logo and text', () => {
+  render(<Logo />);
 
-  const logoIcon = getByTestId('logo-icon');
-  const text = getByText(/Dashboard Kit/i);
-  expect(logoIcon).toBeInTheDocument();
-  expect(text).toBeInTheDocument();
+  expect(screen.getByTestId('logo-icon')).toBeInTheDocument();
+  expect(screen.getByTestId('logo-text')).toBeInTheDocument();
 });

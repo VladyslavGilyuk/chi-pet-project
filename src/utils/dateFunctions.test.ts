@@ -1,34 +1,25 @@
 import '@testing-library/jest-dom';
-import { format } from 'date-fns';
-import { formatAsOfDate } from './dateFunctions';
+import {
+  formatAsCreateDate,
+  formatAsDeadlineDate,
+  formatAsHoursDate,
+  formatAsOfDate,
+  updatedDifference,
+} from './dateFunctions';
 
-jest.mock('date-fns', () => ({
-  format: jest.fn(),
-}));
-
-describe('formatAsOfDate', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test('formats the date correctly', () => {
+describe('Date functions tests', () => {
+  test('Should return correct format of Date', () => {
     const currentDate = new Date('2019-05-25T21:41:00');
+    const currentStringDate = '2019-05-25T21:41:00';
+    const todayDate = new Date().toString();
+    const passedDate = '2023-11-13T21:41:00';
 
-    (format as jest.Mock).mockReturnValue('as of 25 May 2019, 09:41 PM');
+    expect(formatAsOfDate(currentDate)).toEqual('as of 25 May 2019, 09:41 PM');
+    expect(formatAsCreateDate(currentStringDate)).toEqual('on 25.05.2019');
+    expect(formatAsDeadlineDate(currentStringDate)).toEqual('May 25, 2019');
+    expect(formatAsHoursDate(currentStringDate)).toEqual('9:41 PM');
 
-    const result = formatAsOfDate(currentDate);
-
-    expect(format).toHaveBeenCalledWith(currentDate, "'as of' dd MMM yyyy, hh:mm a");
-
-    expect(result).toBe('as of 25 May 2019, 09:41 PM');
+    expect(updatedDifference(todayDate)).toEqual('Updated today');
+    expect(updatedDifference(passedDate)).toEqual('Updated 2 days ago');
   });
 });
-/*
-describe('formatAsCreateDate', () => {
-  it('should format the date correctly', () => {
-    const createDate = '2023-01-15T12:30:00';
-    const formattedDate = formatAsCreateDate(createDate);
-    expect(formattedDate).toBe('on 15.01.2023');
-  });
-});
-*/

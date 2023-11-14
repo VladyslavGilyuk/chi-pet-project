@@ -38,6 +38,7 @@ const CustomSelect: React.FC<IProps> = ({
     <>
       <StyledInputLabel>{label}</StyledInputLabel>
       <StyledSelect
+        data-testid='custom-select'
         value={value || ''}
         onChange={(e) => onChange(e as SelectChangeEvent<string>)}
         error={!!errors?.tag}

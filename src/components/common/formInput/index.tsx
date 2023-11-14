@@ -7,7 +7,6 @@ import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
 import { ITicketFieldNames, ITicketFieldValues } from '../../form/tickets/helper';
 import { useCallback, useState } from 'react';
-
 interface IProps extends IBaseField {
   name: TSignInFieldNames | TSignUpFieldNames | ITicketFieldNames | IContactFieldNames;
   register:
@@ -41,11 +40,17 @@ const FormInput: React.FC<IProps> = ({
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <StyledInput
         {...register(name, validations)}
+        id={name}
+        data-testid={`${name}-input`}
         InputProps={{
           autoComplete: 'off',
           sx: { height: 42, fontSize: 14 },
           endAdornment: showIcon && (
-            <EndAdornment show={showPassword} handleClick={handleShowPasswordClick} />
+            <EndAdornment
+              data-testid='toggle-password-icon'
+              show={showPassword}
+              handleClick={handleShowPasswordClick}
+            />
           ),
         }}
         placeholder={placeholder}

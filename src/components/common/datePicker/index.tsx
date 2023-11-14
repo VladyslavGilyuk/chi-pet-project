@@ -12,10 +12,10 @@ interface IProps {
   errors: FieldErrors<ITicketFieldValues>;
 }
 
-export default function BasicDatePicker({ date, onChange, errors }: IProps) {
+export default function DatePicker({ date, onChange, errors }: IProps) {
   return (
     <>
-      <StyledInputLabel>Date</StyledInputLabel>
+      <StyledInputLabel data-testid='date_picker_heading'>Date</StyledInputLabel>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DemoContainer components={['DatePicker']}>
           <StyledDatePicker

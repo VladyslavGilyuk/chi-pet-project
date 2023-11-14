@@ -10,8 +10,12 @@ function LanguageSwitcher() {
 
   return (
     <div>
-      <StyledButton onClick={() => changeLanguage('en')}>English</StyledButton>
-      <StyledButton onClick={() => changeLanguage('uk')}>Українська</StyledButton>
+      <StyledButton data-testid='en_button' onClick={() => changeLanguage('en')}>
+        English
+      </StyledButton>
+      <StyledButton data-testid='uk_button' onClick={() => changeLanguage('uk')}>
+        Українська
+      </StyledButton>
     </div>
   );
 }

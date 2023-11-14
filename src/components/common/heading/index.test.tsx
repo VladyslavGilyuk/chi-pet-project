@@ -1,18 +1,18 @@
 import '@testing-library/jest-dom/extend-expect';
 import Heading from './index';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('Heading component', () => {
-  it('renders with only heading', () => {
-    const { getByText } = render(<Heading heading='Test Heading' />);
+  it('Should render with only heading', () => {
+    render(<Heading heading='Test Heading' />);
 
-    expect(getByText('Test Heading')).toBeInTheDocument();
+    expect(screen.getByText('Test Heading')).toBeInTheDocument();
   });
 
-  it('renders with heading and description', () => {
-    const { getByText } = render(<Heading heading='Test Heading' description='Test Description' />);
+  it('Should render with heading and description', () => {
+    render(<Heading heading='Test Heading' description='Test Description' />);
 
-    expect(getByText('Test Heading')).toBeInTheDocument();
-    expect(getByText('Test Description')).toBeInTheDocument();
+    expect(screen.getByText('Test Heading')).toBeInTheDocument();
+    expect(screen.getByText('Test Description')).toBeInTheDocument();
   });
 });
