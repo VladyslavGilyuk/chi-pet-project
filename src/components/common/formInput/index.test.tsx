@@ -49,11 +49,11 @@ describe('FormInput', () => {
     );
     expect(screen.getByLabelText('Password')).toHaveAttribute('type', 'password');
 
-    fireEvent.click(screen.getByTestId('adornment_button')); //depends on endAdorment
+    fireEvent.click(screen.getByTestId('adornment_button'));
 
     expect(screen.getByLabelText('Password')).toHaveAttribute('type', 'text');
 
-    fireEvent.click(screen.getByTestId('adornment_button')); //depends on endAdorment
+    fireEvent.click(screen.getByTestId('adornment_button'));
 
     expect(screen.getByLabelText('Password')).toHaveAttribute('type', 'password');
   });

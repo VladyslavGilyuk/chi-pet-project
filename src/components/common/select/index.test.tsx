@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
+//import userEvent from '@testing-library/user-event';
 import CustomSelect, { ISelectOptions } from './index';
 import { render, screen } from '@testing-library/react';
 
@@ -31,4 +32,19 @@ describe('CustomSelect', () => {
 
     expect(screen.getByRole('button', { name: 'option1' })).toBeInTheDocument();
   });
+  /*
+  it('Should call onChange when the value changes', () => {
+    render(<CustomSelect {...mockProps} />);
+
+    const select = screen.getByTestId('custom-select');
+
+    // Simulate a change event by selecting the option with the label 'Option 1'
+    userEvent.selectOptions(select, 'Option 1');
+
+    // Assert that onChange is called with the expected value
+    expect(mockProps.onChange).toHaveBeenCalledWith(
+      expect.objectContaining({ target: { value: 'option1' } }),
+    );
+  });
+  */
 });

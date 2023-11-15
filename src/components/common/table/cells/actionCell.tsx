@@ -11,9 +11,13 @@ interface IProps {
 const ActionCell = ({ id, handleUpdateItem, handleRemoveItem, apiUrl }: IProps) => {
   return (
     <Stack>
-      <CustomSelect IconComponent={MoreVertIcon}>
-        <StyledMenuItem onClick={() => handleUpdateItem(id)}>Edit</StyledMenuItem>
-        <StyledMenuItem onClick={() => handleRemoveItem(id, apiUrl)}>Delete</StyledMenuItem>
+      <CustomSelect data-testid='custom_select' IconComponent={MoreVertIcon}>
+        <StyledMenuItem data-testid='edit_button' onClick={() => handleUpdateItem(id)}>
+          Edit
+        </StyledMenuItem>
+        <StyledMenuItem data-testid='delete_button' onClick={() => handleRemoveItem(id, apiUrl)}>
+          Delete
+        </StyledMenuItem>
       </CustomSelect>
     </Stack>
   );

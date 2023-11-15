@@ -9,7 +9,7 @@ interface IProps {
 export const AvatarCellWrapper: React.FC<IProps> = ({ children }) => {
   return (
     <StyledStack>
-      <UserPhoto src={avatarPlaceholder} alt='userPhoto' />
+      <UserPhoto data-testid='user_photo' src={avatarPlaceholder} alt='userPhoto' />
       {children}
     </StyledStack>
   );

@@ -19,6 +19,7 @@ export default function DatePicker({ date, onChange, errors }: IProps) {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DemoContainer components={['DatePicker']}>
           <StyledDatePicker
+            data-testid='styled_date_picker'
             value={date === '' ? null : date}
             onChange={onChange}
             errors={errors}
