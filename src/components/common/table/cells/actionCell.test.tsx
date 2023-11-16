@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import ActionCell from './actionCell';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 jest.mock('@mui/icons-material/MoreVert', () => ({
   __esModule: true,
@@ -20,11 +20,11 @@ describe('ActionCell component', () => {
     expect(screen.getByTestId('more-vert-icon')).toBeInTheDocument();
     expect(screen.getByTestId('custom_select')).toBeInTheDocument();
   });
-  /*
-  it('Should render Edit and Delete menu items when select is clicked', () => {
+
+  it('Should render Edit and Delete menu items', () => {
     render(<ActionCell {...mockProps} />);
-    fireEvent.click(screen.getByTestId('custom_select'));
-    expect(screen.getByText('edit_button')).toBeInTheDocument();
+    fireEvent.mouseDown(screen.getByRole('button'));
+    expect(screen.getByTestId('edit_button')).toBeInTheDocument();
     expect(screen.getByTestId('delete_button')).toBeInTheDocument();
-  });*/
+  });
 });

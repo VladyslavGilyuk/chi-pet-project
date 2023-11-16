@@ -1,10 +1,10 @@
 import { BoxContainer } from './styled';
-import ContactsForm from '../../form/contacts';
+import ContactsForm from '../../forms/contacts';
 import { EFormType } from '../../common/table';
 import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
 import { Modal } from '@mui/material';
-import TicketsForm from '../../form/tickets';
+import TicketsForm from '../../forms/tickets';
 import { memo } from 'react';
 
 interface IProps {

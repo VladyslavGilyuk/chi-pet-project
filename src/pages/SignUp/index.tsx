@@ -2,7 +2,7 @@ import Heading from '../../components/common/heading';
 import LanguageSwitcher from '../../components/common/languageSwitcher';
 import Logo from '../../components/common/logo';
 import React from 'react';
-import SignUpForm from '../../components/form/singUp';
+import SignUpForm from '../../components/forms/singUp';
 import { useTranslation } from 'react-i18next';
 import { FormContainer, Wrapper } from './styled';
 

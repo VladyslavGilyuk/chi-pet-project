@@ -1,11 +1,11 @@
 import EndAdornment from './endAdorment';
 import { ICommonFieldValues } from '../../../types/auth';
-import { IContactFieldNames } from '../../form/contacts/helper';
+import { IContactFieldNames } from '../../forms/contacts/helper';
 import { IContactFieldValues } from '../../../types/contacts';
 import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegister } from 'react-hook-form';
 import { FormInputWrapper, StyledInput, StyledLabel } from './styled';
 import { IBaseField, TSignInFieldNames, TSignUpFieldNames } from '../../../utils/formHelpers';
-import { ITicketFieldNames, ITicketFieldValues } from '../../form/tickets/helper';
+import { ITicketFieldNames, ITicketFieldValues } from '../../forms/tickets/helper';
 import { useCallback, useState } from 'react';
 interface IProps extends IBaseField {
   name: TSignInFieldNames | TSignUpFieldNames | ITicketFieldNames | IContactFieldNames;

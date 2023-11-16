@@ -1,7 +1,7 @@
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { FieldErrors } from 'react-hook-form';
-import { ITicketFieldValues } from '../../form/tickets/helper';
+import { ITicketFieldValues } from '../../forms/tickets/helper';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimeValidationError, PickerChangeHandlerContext } from '@mui/x-date-pickers';
 import { EmptyHelperText, HelperText, StyledDatePicker, StyledInputLabel } from './styled';
