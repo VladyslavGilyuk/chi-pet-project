@@ -1,5 +1,6 @@
 import ActionCell from './cells/actionCell';
-import CustomModal from '../../modals/customModal';
+import AddEditContact from '../../modals/addEditContact';
+import AddEditTicket from '../../modals/addEditTicket';
 import CustomToolbar from './customToolbar';
 import { GridColDef } from '@mui/x-data-grid';
 import { IContactState } from '../../../types/contacts';
@@ -106,14 +107,23 @@ const Table: React.FC<IProps> = ({
       )}
       {isModalOpen && (
         <>
-          <CustomModal
-            apiUrl={`?${searchParams.toString()}`}
-            toggleModal={() => setIsModalOpen(false)}
-            initialValues={selectedItem}
-            isOpen={isModalOpen}
-            isEdit={true}
-            formType={formType}
-          />
+          {formType === EFormType.Contacts ? (
+            <AddEditContact
+              apiUrl={`?${searchParams.toString()}`}
+              toggleModal={() => setIsModalOpen(false)}
+              initialValues={selectedItem}
+              isOpen={isModalOpen}
+              isEdit={true}
+            />
+          ) : (
+            <AddEditTicket
+              apiUrl={`?${searchParams.toString()}`}
+              toggleModal={() => setIsModalOpen(false)}
+              initialValues={selectedItem}
+              isOpen={isModalOpen}
+              isEdit={true}
+            />
+          )}
         </>
       )}
     </StyledBox>

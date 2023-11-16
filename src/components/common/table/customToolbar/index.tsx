@@ -1,4 +1,5 @@
-import CustomModal from '../../../modals/customModal';
+import AddEditContact from '../../../modals/addEditContact';
+import AddEditTicket from '../../../modals/addEditTicket';
 import { ReactComponent as PlusIcon } from '../../../../assets/plus.svg';
 import { useSearchParams } from 'react-router-dom';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
@@ -126,13 +127,21 @@ const CustomToolbar: React.FC<IProps> = ({
       </ViewButton>
       {isModalOpen && (
         <>
-          <CustomModal
-            toggleModal={toggleModal}
-            initialValues={null}
-            apiUrl={apiUrl}
-            isOpen={isModalOpen}
-            formType={formType}
-          />
+          {formType === EFormType.Contacts ? (
+            <AddEditContact
+              toggleModal={toggleModal}
+              initialValues={null}
+              apiUrl={apiUrl}
+              isOpen={isModalOpen}
+            />
+          ) : (
+            <AddEditTicket
+              toggleModal={toggleModal}
+              initialValues={null}
+              apiUrl={apiUrl}
+              isOpen={isModalOpen}
+            />
+          )}
         </>
       )}
     </StyledGridToolbarContainer>
