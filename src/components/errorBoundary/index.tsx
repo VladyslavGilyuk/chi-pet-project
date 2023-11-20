@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-
 interface Props {
   children: React.ReactNode;
 }
-
 interface State {
   hasError: boolean;
 }
-
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -20,7 +17,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return <h3>Something went wrong...</h3>;
+      return <h3 data-testid='error_message'>Something went wrong...</h3>;
     }
 
     return this.props.children;

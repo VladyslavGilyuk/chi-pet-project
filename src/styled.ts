@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { createGlobalStyle } from 'styled-components';
 import { createTheme } from '@mui/material/styles';
 import { colors, fonts } from './theme';

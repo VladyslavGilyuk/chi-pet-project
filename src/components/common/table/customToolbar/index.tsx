@@ -81,7 +81,7 @@ const CustomToolbar: React.FC<IProps> = ({
   };
 
   return (
-    <StyledGridToolbarContainer>
+    <StyledGridToolbarContainer data-testid='custom_toolbar'>
       <SelectsContainer>
         <FormControl>
           <StyledInputLabel data-testid='sort_select_heading' shrink={false}>

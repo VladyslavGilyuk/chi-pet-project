@@ -15,7 +15,7 @@ interface IProps {
 
 const AddEditTicket = ({ toggleModal, initialValues, isEdit, apiUrl, isOpen }: IProps) => {
   return (
-    <Modal data-testid='modal' open={isOpen} onClose={toggleModal}>
+    <Modal data-testid='ticket_modal' open={isOpen} onClose={toggleModal}>
       <BoxContainer>
         <TicketsForm
           toggleModal={toggleModal}

@@ -42,7 +42,7 @@ describe('AddEditContact', () => {
       />,
     );
 
-    expect(screen.getByTestId('modal')).toBeInTheDocument();
+    expect(screen.getByTestId('contact_modal')).toBeInTheDocument();
     expect(screen.getByTestId('contacts-form')).toBeInTheDocument();
   });
   it('Should not render modal when isOpen is false', () => {
@@ -56,7 +56,7 @@ describe('AddEditContact', () => {
       />,
     );
 
-    expect(screen.queryByTestId('modal')).toBeNull();
+    expect(screen.queryByTestId('contact_modal')).toBeNull();
   });
   it('Should call toggleModal when modal is closed', () => {
     render(

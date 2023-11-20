@@ -43,7 +43,7 @@ describe('AddEditTicket', () => {
       />,
     );
 
-    expect(screen.getByTestId('modal')).toBeInTheDocument();
+    expect(screen.getByTestId('ticket_modal')).toBeInTheDocument();
     expect(screen.getByTestId('tickets-form')).toBeInTheDocument();
   });
   it('Should not render modal when isOpen is false', () => {
@@ -57,7 +57,7 @@ describe('AddEditTicket', () => {
       />,
     );
 
-    expect(screen.queryByTestId('modal')).toBeNull();
+    expect(screen.queryByTestId('ticket_modal')).toBeNull();
   });
   it('Should call toggleModal when modal is closed', () => {
     render(

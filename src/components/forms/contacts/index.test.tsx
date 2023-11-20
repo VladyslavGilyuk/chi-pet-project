@@ -72,7 +72,7 @@ describe('ContactsForm Component', () => {
       </Provider>,
     );
     expect(screen.getByTestId('form_heading')).toBeInTheDocument();
-    expect(screen.getByTestId('form')).toBeInTheDocument();
+    expect(screen.getByTestId('contacts_form')).toBeInTheDocument();
     expect(screen.getByText('Save')).toBeInTheDocument();
     expect(screen.getByText('Cancel')).toBeInTheDocument();
 

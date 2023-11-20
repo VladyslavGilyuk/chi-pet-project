@@ -15,7 +15,7 @@ interface IProps {
 
 const AddEditContact = ({ toggleModal, initialValues, isEdit, apiUrl, isOpen }: IProps) => {
   return (
-    <Modal data-testid='modal' open={isOpen} onClose={toggleModal}>
+    <Modal data-testid='contact_modal' open={isOpen} onClose={toggleModal}>
       <BoxContainer>
         <ContactsForm
           toggleModal={toggleModal}

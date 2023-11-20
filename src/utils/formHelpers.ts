@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export type TSignInFieldNames = 'password' | 'email';
 export type TSignUpFieldNames =
   | 'password'

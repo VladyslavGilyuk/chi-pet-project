@@ -78,5 +78,10 @@
     "eslint-plugin-react": "^7.33.2",
     "prettier": "^3.0.3",
     "react-router-dom": "^6.15.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }
