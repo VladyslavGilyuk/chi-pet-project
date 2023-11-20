@@ -61,7 +61,7 @@ const Table: React.FC<IProps> = ({
   } = useTable({ fetchAction, deleteAction, storeData });
 
   return (
-    <StyledBox>
+    <StyledBox data-testid='table'>
       {data?.length > 0 && (
         <StyledDataGrid
           autoHeight

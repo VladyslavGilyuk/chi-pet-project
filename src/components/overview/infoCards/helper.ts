@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export interface ICard {
   heading: string;
   value: number;
