@@ -10,7 +10,7 @@ const SignUpForm = () => {
   const { SingUpFormHelper } = useFormHelpers(t);
   return (
     <FormInputWrapper>
-      <form onSubmit={handleSubmit(onSignUpSubmit)}>
+      <form onSubmit={handleSubmit(onSignUpSubmit)} data-testid={`signUp_form`}>
         {SingUpFormHelper.map((instance) => (
           <FormInput
             {...instance}
@@ -21,6 +21,7 @@ const SignUpForm = () => {
           />
         ))}
         <StyledLoginButton
+          data-testid={`register_button`}
           type='submit'
           variant='contained'
           fullWidth={true}
