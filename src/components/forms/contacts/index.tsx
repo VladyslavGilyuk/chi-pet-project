@@ -53,8 +53,8 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
   };
   return (
     <>
-      <StyledHeading>Add contacts</StyledHeading>
-      <form onSubmit={handleSubmit(handleContactSubmit)}>
+      <StyledHeading data-testid='form_heading'>Add contacts</StyledHeading>
+      <form data-testid='contacts_form' onSubmit={handleSubmit(handleContactSubmit)}>
         <ImageUploader register={register} errors={errors} />
         {ContactsFormHelper.map((instance) => (
           <FormInput

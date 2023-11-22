@@ -1,5 +1,5 @@
 import { FieldErrors } from 'react-hook-form';
-import { ITicketFieldValues } from '../../form/tickets/helper';
+import { ITicketFieldValues } from '../../forms/tickets/helper';
 import { SelectChangeEvent } from '@mui/material';
 import {
   StyledInputLabel,
@@ -38,6 +38,7 @@ const CustomSelect: React.FC<IProps> = ({
     <>
       <StyledInputLabel>{label}</StyledInputLabel>
       <StyledSelect
+        data-testid='custom-select'
         value={value || ''}
         onChange={(e) => onChange(e as SelectChangeEvent<string>)}
         error={!!errors?.tag}
@@ -50,7 +51,7 @@ const CustomSelect: React.FC<IProps> = ({
         }}
       >
         {options.map(({ value, label }) => (
-          <StyledMenuItem key={value} value={value}>
+          <StyledMenuItem key={value} value={value} data-testid={`item_${value}`}>
             {label}
           </StyledMenuItem>
         ))}

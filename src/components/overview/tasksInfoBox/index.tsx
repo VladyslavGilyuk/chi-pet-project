@@ -2,7 +2,7 @@ import { ReactComponent as AddIcon } from '../../../assets/add.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Tag from '../../common/tags';
-import TaskForm from '../../form/tasks';
+import TaskForm from '../../forms/tasks';
 import TasksModal from '../../modals/tasks';
 import { toggleTask } from '../../../store/tasks/slice';
 import { visibleTasks } from '../../../store/tasks/selector';

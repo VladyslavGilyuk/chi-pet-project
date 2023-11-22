@@ -1,6 +1,6 @@
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { FieldErrors } from 'react-hook-form';
-import { ITicketFieldValues } from '../../form/tickets/helper';
+import { ITicketFieldValues } from '../../forms/tickets/helper';
 import { InputLabel, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 

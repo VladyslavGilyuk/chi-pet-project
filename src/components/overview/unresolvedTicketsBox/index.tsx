@@ -27,20 +27,22 @@ const UnresolvedTicketsBox = () => {
   return (
     <Container>
       <HeadingContainer>
-        <HeadingText>Unresolved tickets</HeadingText>
-        <StyledButton onClick={toggleModal}>View details</StyledButton>
+        <HeadingText data-testid='heading'>Unresolved tickets</HeadingText>
+        <StyledButton data-testid='heading-button' onClick={toggleModal}>
+          View details
+        </StyledButton>
       </HeadingContainer>
       <GroupContainer>
-        <Group>Group:</Group>
-        <GroupName>Support</GroupName>
+        <Group data-testid='group-label'>Group:</Group>
+        <GroupName data-testid='group-name'>Support</GroupName>
       </GroupContainer>
       {visibleTickets.map(({ status, Total }, index) => {
         return (
           <Fragment key={index}>
             <MainInfoContainer>
               <TicketsContainer>
-                <StatusName>{status}</StatusName>
-                <Value>{Total}</Value>
+                <StatusName data-testid={`status-${status}`}>{status}</StatusName>
+                <Value data-testid={`total-${Total}`}>{Total}</Value>
               </TicketsContainer>
             </MainInfoContainer>
             {index !== visibleTickets.length - 1 && <StyledHr />}
@@ -49,7 +51,7 @@ const UnresolvedTicketsBox = () => {
       })}
       {isModalOpen && (
         <>
-          <UnresolvedTicketsModal toggleModal={toggleModal} />
+          <UnresolvedTicketsModal data-testid='modal' toggleModal={toggleModal} />
         </>
       )}
     </Container>

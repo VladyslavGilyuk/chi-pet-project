@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { AvatarCellWrapper } from '../../common/table/cells/avatarCellWrapper';
 import { DefaultCell } from '../../common/table/cells/defaultCell';
 import { GridColDef } from '@mui/x-data-grid';

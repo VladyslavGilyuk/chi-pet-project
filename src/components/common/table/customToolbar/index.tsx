@@ -1,4 +1,5 @@
-import CustomModal from '../../../modals/customModal';
+import AddEditContact from '../../../modals/addEditContact';
+import AddEditTicket from '../../../modals/addEditTicket';
 import { ReactComponent as PlusIcon } from '../../../../assets/plus.svg';
 import { useSearchParams } from 'react-router-dom';
 import { Checkbox, FormControl, MenuItem } from '@mui/material';
@@ -80,18 +81,25 @@ const CustomToolbar: React.FC<IProps> = ({
   };
 
   return (
-    <StyledGridToolbarContainer>
+    <StyledGridToolbarContainer data-testid='custom_toolbar'>
       <SelectsContainer>
         <FormControl>
-          <StyledInputLabel shrink={false}>Sort</StyledInputLabel>
+          <StyledInputLabel data-testid='sort_select_heading' shrink={false}>
+            Sort
+          </StyledInputLabel>
           <SortSelect
+            data-testid='sort_select'
             IconComponent={StyledSortIcon}
             label='Sort'
             value=''
             onChange={(e) => handleSort(e.target.value as string)}
           >
             {sortingOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                data-testid={`item_${option.value}`}
+              >
                 {option.label}
               </MenuItem>
             ))}
@@ -99,8 +107,15 @@ const CustomToolbar: React.FC<IProps> = ({
         </FormControl>
         {!disabledFilter && (
           <FormControl>
-            <StyledInputLabel shrink={false}>Filter</StyledInputLabel>
-            <FilterSelect IconComponent={StyledFilterAltIcon} value='' label='Filter'>
+            <StyledInputLabel shrink={false} data-testid='sort_filter_heading'>
+              Filter
+            </StyledInputLabel>
+            <FilterSelect
+              data-testid='sort_filter'
+              IconComponent={StyledFilterAltIcon}
+              value=''
+              label='Filter'
+            >
               {priorityOptions?.map((option) => (
                 <StyledFormControlLabel
                   key={option}
@@ -118,21 +133,29 @@ const CustomToolbar: React.FC<IProps> = ({
           </FormControl>
         )}
       </SelectsContainer>
-      <ViewButton onClick={toggleModal}>
+      <ViewButton onClick={toggleModal} data-testid='add_button'>
         <PlusSpan>
-          <PlusIcon />
+          <PlusIcon data-testid='plus_icon' />
         </PlusSpan>
         Add {formType}
       </ViewButton>
       {isModalOpen && (
         <>
-          <CustomModal
-            toggleModal={toggleModal}
-            initialValues={null}
-            apiUrl={apiUrl}
-            isOpen={isModalOpen}
-            formType={formType}
-          />
+          {formType === EFormType.Contacts ? (
+            <AddEditContact
+              toggleModal={toggleModal}
+              initialValues={null}
+              apiUrl={apiUrl}
+              isOpen={isModalOpen}
+            />
+          ) : (
+            <AddEditTicket
+              toggleModal={toggleModal}
+              initialValues={null}
+              apiUrl={apiUrl}
+              isOpen={isModalOpen}
+            />
+          )}
         </>
       )}
     </StyledGridToolbarContainer>

@@ -1,7 +1,7 @@
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { FieldErrors } from 'react-hook-form';
-import { ITicketFieldValues } from '../../form/tickets/helper';
+import { ITicketFieldValues } from '../../forms/tickets/helper';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimeValidationError, PickerChangeHandlerContext } from '@mui/x-date-pickers';
 import { EmptyHelperText, HelperText, StyledDatePicker, StyledInputLabel } from './styled';
@@ -12,13 +12,14 @@ interface IProps {
   errors: FieldErrors<ITicketFieldValues>;
 }
 
-export default function BasicDatePicker({ date, onChange, errors }: IProps) {
+export default function DatePicker({ date, onChange, errors }: IProps) {
   return (
     <>
-      <StyledInputLabel>Date</StyledInputLabel>
+      <StyledInputLabel data-testid='date_picker_heading'>Date</StyledInputLabel>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DemoContainer components={['DatePicker']}>
           <StyledDatePicker
+            data-testid='styled_date_picker'
             value={date === '' ? null : date}
             onChange={onChange}
             errors={errors}

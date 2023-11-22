@@ -9,9 +9,18 @@ interface EndAdornmentProps {
 
 const EndAdornment: React.FC<EndAdornmentProps> = ({ show, handleClick }) => {
   return (
-    <InputAdornment position='end'>
-      <IconButton aria-label='toggle visibility' onClick={handleClick} edge='end'>
-        {show ? <VisibilityOff /> : <Visibility />}
+    <InputAdornment data-testid='adornment_input' position='end'>
+      <IconButton
+        data-testid='adornment_button'
+        aria-label='toggle visibility'
+        onClick={handleClick}
+        edge='end'
+      >
+        {show ? (
+          <VisibilityOff data-testid='adornment_visibility_off' />
+        ) : (
+          <Visibility data-testid='adornment_visibility' />
+        )}
       </IconButton>
     </InputAdornment>
   );
