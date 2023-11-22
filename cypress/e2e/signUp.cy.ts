@@ -37,6 +37,7 @@ describe('SignUp form', () => {
     cy.get('.Toastify__toast-body').should('contain', 'Sign up error');
   });
   it('Should register new user and navigate to Overview page when all fields are correctly completed', () => {
+    cy.intercept('POST', 'http://localhost:8080/register', { fixture: 'users.json' }).as('getUser');
     cy.visit('http://localhost:3000/SignUp');
 
     cy.get('[data-testid="email_input"]').find('input').type('useremail2@gmail.com');
@@ -47,7 +48,7 @@ describe('SignUp form', () => {
       .find('input')
       .type('useremail2@gmail.comA1');
 
-    cy.get('[data-testid="register_button"]').click();
+    cy.get('[data-testid="register_button"]').click().wait('@getUser');
 
     cy.url().should('eq', 'http://localhost:3000/');
   });

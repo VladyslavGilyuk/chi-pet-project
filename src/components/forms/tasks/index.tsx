@@ -36,6 +36,7 @@ const TaskForm = ({ handleAddTask }: IProps) => {
   return (
     <Form onSubmit={handleSubmit(handleCreateTask)}>
       <StyledInput
+        data-testid='tasks_input'
         key='text'
         {...register('text', { required: true })}
         placeholder='Enter text'
@@ -58,10 +59,10 @@ const TaskForm = ({ handleAddTask }: IProps) => {
           )}
         />
 
-        <CreateButton variant='contained' type='submit'>
+        <CreateButton variant='contained' type='submit' data-testid='create_task_button'>
           Create
         </CreateButton>
-        <StyledButton onClick={handleAddTask}>
+        <StyledButton onClick={handleAddTask} data-testid='close_task_button'>
           <CloseIcon />
         </StyledButton>
       </StyledBox>

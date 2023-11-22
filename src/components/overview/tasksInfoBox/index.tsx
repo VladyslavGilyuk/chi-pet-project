@@ -41,16 +41,18 @@ const TasksInfoBox = () => {
   }, []);
 
   return (
-    <Container>
+    <Container data-testid='tasksInfoBox'>
       <HeadingContainer>
         <HeadingText>Tasks</HeadingText>
-        <ViewButton onClick={toggleModal}>View all</ViewButton>
+        <ViewButton onClick={toggleModal} data-testid='open_tasks_modal'>
+          View all
+        </ViewButton>
       </HeadingContainer>
       <TimelineText>Today</TimelineText>
       {!isTaskCreation ? (
         <TicketsContainer>
           <CreateText>Create new task</CreateText>
-          <AddIcon onClick={handleAddTask} />
+          <AddIcon onClick={handleAddTask} data-testid='add_task_button' />
         </TicketsContainer>
       ) : (
         <TaskForm handleAddTask={handleAddTask} />
@@ -62,6 +64,7 @@ const TasksInfoBox = () => {
           <Fragment key={index}>
             <CheckboxContainer>
               <FormControlLabel
+                data-testid='label'
                 control={
                   <Checkbox
                     icon={<RadioButtonUncheckedIcon />}

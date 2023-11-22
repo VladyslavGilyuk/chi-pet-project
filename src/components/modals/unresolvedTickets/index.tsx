@@ -23,11 +23,11 @@ interface IProps {
 
 const UnresolvedTicketsModal = ({ toggleModal }: IProps) => {
   return (
-    <Modal open={true} onClose={toggleModal}>
+    <Modal open={true} onClose={toggleModal} data-testid='unresolved_tickets_modal'>
       <BoxContainer>
         <HeadingContainer>
           <HeadingText>Unresolved tickets</HeadingText>
-          <StyledButton onClick={toggleModal}>
+          <StyledButton onClick={toggleModal} data-testid='close_unresolved_tickets_modal'>
             <CloseIcon />
           </StyledButton>
         </HeadingContainer>
