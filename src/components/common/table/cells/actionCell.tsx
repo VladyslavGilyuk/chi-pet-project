@@ -12,7 +12,7 @@ const ActionCell = ({ id, handleUpdateItem, handleRemoveItem, apiUrl }: IProps) 
   return (
     <Stack>
       <CustomSelect data-testid='custom_select' IconComponent={MoreVertIcon}>
-        <StyledMenuItem data-testid='edit_button' onClick={() => handleUpdateItem(id)}>
+        <StyledMenuItem data-testid={`edit_button`} onClick={() => handleUpdateItem(id)}>
           Edit
         </StyledMenuItem>
         <StyledMenuItem data-testid='delete_button' onClick={() => handleRemoveItem(id, apiUrl)}>

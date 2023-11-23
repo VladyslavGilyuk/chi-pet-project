@@ -19,3 +19,25 @@ Cypress.Commands.add('login', (email, password) => {
     },
   );
 });
+
+Cypress.Commands.add('addTicket', () => {
+  cy.visit('http://localhost:3000/tickets?_page=1&_limit=8&_sort=ticket&_order=asc').wait(2000);
+
+  cy.get('[data-testid="add_button"]').click();
+  cy.get('input[placeholder="Add description"]').type('A');
+  cy.get('input[placeholder="Name"]').type('Customer');
+
+  cy.get('input[placeholder="MM/DD/YYYY hh:mm aa"]')
+    .type('11/25/2023 12:00 AM')
+    .get('[data-testid="custom-select"]')
+    .click()
+    .get('[data-testid="item_High"]')
+    .click();
+
+  cy.get('[data-testid="save_button"]').click();
+});
+
+Cypress.Commands.add('deleteTicket', () => {
+  cy.get('[data-testid="custom_select"]').first().click();
+  cy.get('[data-testid="delete_button"]').click();
+});

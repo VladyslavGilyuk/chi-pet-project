@@ -9,7 +9,7 @@ interface IProps {
 export const DefaultCell = ({ primaryText, secondaryText, adressText }: IProps) => {
   return (
     <Stack>
-      <StyledHeading data-testid='heading'>{primaryText}</StyledHeading>
+      <StyledHeading data-testid={`heading_${primaryText}`}>{primaryText}</StyledHeading>
       <StyledText data-testid='text'>{secondaryText}</StyledText>
       <StyledAdressText data-testid='address'>{adressText}</StyledAdressText>
     </Stack>

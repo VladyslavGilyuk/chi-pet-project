@@ -2,5 +2,7 @@
   "email": "useremail@gmail.com",
   "password": "userPasswordA1",
   "accessToken": "mockToken",
-  "id": "1"
+  "id": "1",
+  "firstName": "userName",
+  "lastName": "userLastName"
 }

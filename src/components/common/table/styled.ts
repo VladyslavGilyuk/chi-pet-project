@@ -116,6 +116,12 @@ const UserPhoto = styled('img')`
   object-fit: cover;
   border: 1px solid black;
 `;
+const NoDataImage = styled('img')`
+  display: block;
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+`;
 const CustomSelect = styled(Select)`
   width: 39px;
   & .MuiOutlinedInput-notchedOutline {
@@ -150,4 +156,5 @@ export {
   CustomSelect,
   StyledMenuItem,
   StyledAdressText,
+  NoDataImage,
 };

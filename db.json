@@ -1,5 +1,13 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "useremail@gmail.com",
+      "password": "$2a$10$4vWc5vUPnrYdS/JDJs5jR.gKOp96Xv0Ab.ECprm9BTBKGWetCSGb2",
+      "firstName": "userName",
+      "lastName": "userLastName",
+      "id": 1
+    }
+  ],
   "tickets": [
     {
       "id": "1",

@@ -21,6 +21,7 @@ describe('SignUp form', () => {
     cy.get('[data-testid="password_input"]').find('input').type('111111');
     cy.get('[data-testid="password_input"]').find('input').should('have.value', '111111');
   });
+
   it('Should show error if user is already registered', () => {
     cy.visit('http://localhost:3000/SignUp');
 
@@ -36,6 +37,7 @@ describe('SignUp form', () => {
 
     cy.get('.Toastify__toast-body').should('contain', 'Sign up error');
   });
+
   it('Should register new user and navigate to Overview page when all fields are correctly completed', () => {
     cy.intercept('POST', 'http://localhost:8080/register', { fixture: 'users.json' }).as('getUser');
     cy.visit('http://localhost:3000/SignUp');

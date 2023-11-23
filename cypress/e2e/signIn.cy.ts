@@ -53,6 +53,14 @@ describe('SignIn form', () => {
     cy.get('.Toastify__toast-body').should('contain', 'Invalid email or password');
   });
   it('Should sign in registered user', () => {
-    cy.login('useremail@gmail.com', 'userPasswordA1');
+    cy.visit('http://localhost:3000');
+
+    cy.get('[data-testid="email_input"]').find('input').type('useremail@gmail.com');
+
+    cy.get('[data-testid="password_input"]').find('input').type('useremail@gmail.comA1');
+
+    cy.get('[data-testid="logIn_button"]').click();
+
+    cy.url().should('eq', 'http://localhost:3000/');
   });
 });
