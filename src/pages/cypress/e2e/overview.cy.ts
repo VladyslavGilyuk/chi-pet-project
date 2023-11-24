@@ -97,3 +97,4 @@ describe('Overview page', () => {
     cy.get('[data-testid="tasks_modal"] input[type="checkbox"]').first().should('not.be.checked');
   });
 });
+export {};

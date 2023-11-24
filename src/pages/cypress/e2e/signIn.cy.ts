@@ -64,3 +64,4 @@ describe('SignIn form', () => {
     cy.url().should('eq', 'http://localhost:3000/');
   });
 });
+export {};

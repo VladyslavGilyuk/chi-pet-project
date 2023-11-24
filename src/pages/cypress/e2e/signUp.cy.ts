@@ -55,3 +55,4 @@ describe('SignUp form', () => {
     cy.url().should('eq', 'http://localhost:3000/');
   });
 });
+export {};

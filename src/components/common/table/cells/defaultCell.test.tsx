@@ -18,6 +18,6 @@ describe('DefaultCell component', () => {
 
     expect(screen.getByTestId('heading_Primary Text')).toHaveTextContent(primaryText);
     expect(screen.getByTestId('text')).toHaveTextContent(secondaryText);
-    expect(screen.getByTestId('address')).toHaveTextContent(adressText);
+    expect(screen.getByTestId('address_Address Text')).toHaveTextContent(adressText);
   });
 });

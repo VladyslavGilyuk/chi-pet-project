@@ -37,7 +37,21 @@ Cypress.Commands.add('addTicket', () => {
   cy.get('[data-testid="save_button"]').click();
 });
 
-Cypress.Commands.add('deleteTicket', () => {
+Cypress.Commands.add('addContact', () => {
+  cy.visit('http://localhost:3000/contacts?_page=1&_limit=8&_sort=firstName&_order=asc').wait(2000);
+
+  cy.get('[data-testid="add_button"]').click();
+
+  cy.get('input[placeholder="First Name"]').type('A');
+  cy.get('input[placeholder="Last Name"]').type('LastName');
+  cy.get('input[placeholder="Email"]').type('lastname@gmail.com');
+  cy.get('input[placeholder="Address"]').type('The 5th Avenue, NY');
+
+  cy.get('[data-testid="save_button"]').click();
+});
+
+Cypress.Commands.add('deleteCreatedItem', () => {
   cy.get('[data-testid="custom_select"]').first().click();
   cy.get('[data-testid="delete_button"]').click();
 });
+export {};

@@ -19,6 +19,7 @@ declare namespace Cypress {
   interface Chainable<Subject = any> {
     login(email: string, password: string): Chainable;
     addTicket(): Chainable;
-    deleteTicket(): Chainable;
+    addContact(): Chainable;
+    deleteCreatedItem(): Chainable;
   }
 }

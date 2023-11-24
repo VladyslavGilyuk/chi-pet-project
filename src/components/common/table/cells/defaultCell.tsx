@@ -11,7 +11,7 @@ export const DefaultCell = ({ primaryText, secondaryText, adressText }: IProps) 
     <Stack>
       <StyledHeading data-testid={`heading_${primaryText}`}>{primaryText}</StyledHeading>
       <StyledText data-testid='text'>{secondaryText}</StyledText>
-      <StyledAdressText data-testid='address'>{adressText}</StyledAdressText>
+      <StyledAdressText data-testid={`address_${adressText}`}>{adressText}</StyledAdressText>
     </Stack>
   );
 };
