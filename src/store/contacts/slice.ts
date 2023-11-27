@@ -4,11 +4,13 @@ import { deleteContactAsync, fetchContactAsync, updateContactAsync } from './thu
 interface IContactSliceState {
   contacts: IContactState[];
   total: number;
+  loading: boolean;
 }
 
 const initialState: IContactSliceState = {
   contacts: [],
   total: 0,
+  loading: false,
 };
 
 export const contactsSlice = createSlice({
@@ -16,8 +18,12 @@ export const contactsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchContactAsync.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchContactAsync.fulfilled, (state, action) => {
       if (action.payload) {
+        state.loading = false;
         state.total = action.payload.totalCount;
         state.contacts = action.payload.data;
       }
