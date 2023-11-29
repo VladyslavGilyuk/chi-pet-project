@@ -71,6 +71,7 @@ const ContactsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) =>
             variant='contained'
             fullWidth={true}
             disableElevation={true}
+            data-testid={'save_button'}
           >
             Save
           </StyledLoginButton>

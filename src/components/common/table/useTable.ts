@@ -14,7 +14,7 @@ interface IProps {
 export const useTable = ({ storeData, fetchAction, deleteAction }: IProps) => {
   const dispatch = useAppDispatch();
 
-  const { data, total } = useSelector(storeData);
+  const { data, total, isLoading } = useSelector(storeData);
 
   const {
     searchParams,
@@ -45,6 +45,7 @@ export const useTable = ({ storeData, fetchAction, deleteAction }: IProps) => {
     searchParams,
     data,
     total,
+    isLoading,
     selectedPriorities,
     setSelectedPriorities,
     paginationModel,

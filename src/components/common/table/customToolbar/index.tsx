@@ -124,6 +124,7 @@ const CustomToolbar: React.FC<IProps> = ({
                       onClick={(e) => e.stopPropagation()}
                       checked={selectedPriorities.includes(option)}
                       onChange={() => handlePriorityFilter(option)}
+                      data-testid={`item_${option}`}
                     />
                   }
                   label={option}

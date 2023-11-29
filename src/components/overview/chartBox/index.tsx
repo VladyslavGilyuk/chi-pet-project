@@ -22,7 +22,7 @@ const ChartBox = () => {
 
   return (
     <Container>
-      <ChartContainer>
+      <ChartContainer data-testid='chart'>
         <StyledHeader>Today’s trends</StyledHeader>
         <DateContainer>
           <StyledDate>{date}</StyledDate>
@@ -35,7 +35,7 @@ const ChartBox = () => {
         </DateContainer>
         <Chart />
       </ChartContainer>
-      <AdditionalInfoContainer>
+      <AdditionalInfoContainer data-testid='side_data'>
         {additionalData.map(({ heading, value }, index) => {
           return (
             <StyledBox key={heading} last={index === additionalData.length - 1 ? 'true' : ''}>

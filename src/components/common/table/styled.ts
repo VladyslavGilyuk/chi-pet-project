@@ -116,6 +116,12 @@ const UserPhoto = styled('img')`
   object-fit: cover;
   border: 1px solid black;
 `;
+const NoDataImage = styled('img')`
+  display: block;
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+`;
 const CustomSelect = styled(Select)`
   width: 39px;
   & .MuiOutlinedInput-notchedOutline {
@@ -140,6 +146,10 @@ const StyledAdressText = styled(Typography)`
   line-height: 16px !important;
   letter-spacing: 0.1px;
 `;
+
+const StyledSpinnerBox = styled(Box)`
+  margin-top: 350px;
+`;
 export {
   UserPhoto,
   StyledStack,
@@ -150,4 +160,6 @@ export {
   CustomSelect,
   StyledMenuItem,
   StyledAdressText,
+  NoDataImage,
+  StyledSpinnerBox,
 };

@@ -41,7 +41,7 @@ const FormInput: React.FC<IProps> = ({
       <StyledInput
         {...register(name, validations)}
         id={name}
-        data-testid={`${name}-input`}
+        data-testid={`${name}_input`}
         InputProps={{
           autoComplete: 'off',
           sx: { height: 42, fontSize: 14 },

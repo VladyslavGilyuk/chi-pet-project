@@ -18,7 +18,7 @@ const SignInForm = () => {
   const { SingInFormHelper } = useFormHelpers(t);
   return (
     <FormInputWrapper>
-      <form onSubmit={handleSubmit(onSignInSubmit)}>
+      <form onSubmit={handleSubmit(onSignInSubmit)} data-testid={`signIn_form`}>
         {SingInFormHelper.map((instance) => (
           <FormInput
             {...instance}
@@ -26,9 +26,11 @@ const SignInForm = () => {
             register={register}
             isError={!!errors[instance.name]}
             helperMsg={errors[instance.name]?.message}
+            data-testid={`input_${instance.name}`}
           />
         ))}
         <StyledLoginButton
+          data-testid={`logIn_button`}
           type='submit'
           variant='contained'
           fullWidth={true}
@@ -40,7 +42,7 @@ const SignInForm = () => {
       <div>
         <FlexContainer>
           <StyledFooterText variant='subtitle1'>{t('signIn.footer')}</StyledFooterText>
-          <StyledSignUpLink href={ROUTE_PATH.SignUp} underline='none'>
+          <StyledSignUpLink href={ROUTE_PATH.SignUp} underline='none' data-testid={`signUp_button`}>
             {t('signIn.link')}
           </StyledSignUpLink>
         </FlexContainer>

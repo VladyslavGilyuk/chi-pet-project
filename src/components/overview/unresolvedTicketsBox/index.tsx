@@ -25,7 +25,7 @@ const UnresolvedTicketsBox = () => {
   }, []);
 
   return (
-    <Container>
+    <Container data-testid='unresolvedTicketsBox'>
       <HeadingContainer>
         <HeadingText data-testid='heading'>Unresolved tickets</HeadingText>
         <StyledButton data-testid='heading-button' onClick={toggleModal}>

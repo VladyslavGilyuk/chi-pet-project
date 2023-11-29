@@ -4,11 +4,13 @@ import { deleteTicketAsync, fetchTicketAsync, updateTicketAsync } from './thunk'
 interface ITicketSliceState {
   tickets: ITicketState[];
   total: number;
+  loading: boolean;
 }
 
 const initialState: ITicketSliceState = {
   tickets: [],
   total: 0,
+  loading: false,
 };
 
 export const ticketsSlice = createSlice({
@@ -16,8 +18,12 @@ export const ticketsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchTicketAsync.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchTicketAsync.fulfilled, (state, action) => {
       if (action.payload) {
+        state.loading = false;
         state.total = action.payload.totalCount;
         state.tickets = action.payload.data;
       }

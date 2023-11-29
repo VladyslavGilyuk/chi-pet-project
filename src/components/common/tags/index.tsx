@@ -9,7 +9,7 @@ const Tag: React.FC<IProps> = ({ text }) => {
   const { color, backgroundColor } = tagColorMap[text] || tagColorMap.Default;
 
   return (
-    <StyledTag color={color} backgroundColor={backgroundColor}>
+    <StyledTag color={color} backgroundColor={backgroundColor} data-testid='tag'>
       {text}
     </StyledTag>
   );

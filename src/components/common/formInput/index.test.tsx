@@ -22,7 +22,7 @@ describe('FormInput', () => {
   it('Should render input, and check for corresponding text in label and placeholder', () => {
     render(<FormInput {...mockProps} />);
 
-    expect(screen.getByTestId('text-input')).toBeInTheDocument();
+    expect(screen.getByTestId('text_input')).toBeInTheDocument();
     expect(screen.getByLabelText('Test Label')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Test Placeholder')).toBeInTheDocument();
   });

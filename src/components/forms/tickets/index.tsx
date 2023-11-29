@@ -68,6 +68,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
             register={register}
             isError={!!errors[instance.name]}
             helperMsg={errors[instance.name]?.message}
+            data-testid={`input_${instance.name}`}
           />
         ))}
         <Controller
@@ -77,7 +78,12 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
           rules={{ required: true }}
           render={({ field }) => (
             <>
-              <DatePicker date={field.value} onChange={field.onChange} errors={errors} />
+              <DatePicker
+                data-testid='demo'
+                date={field.value}
+                onChange={field.onChange}
+                errors={errors}
+              />
             </>
           )}
         />
@@ -104,6 +110,7 @@ const TicketsForm = ({ toggleModal, initialValues, isEdit, apiUrl }: IProps) => 
         />
         <FlexContainer>
           <StyledLoginButton
+            data-testid='save_button'
             type='submit'
             variant='contained'
             fullWidth={true}

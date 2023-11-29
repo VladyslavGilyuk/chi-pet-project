@@ -30,11 +30,11 @@ const TasksModal = ({ toggleModal }: IProps) => {
   };
 
   return (
-    <Modal open={true} onClose={toggleModal}>
+    <Modal open={true} onClose={toggleModal} data-testid='tasks_modal'>
       <BoxContainer>
         <HeadingContainer>
           <HeadingText>Tasks</HeadingText>
-          <ViewButton onClick={toggleModal}>
+          <ViewButton onClick={toggleModal} data-testid='close_tasks_modal'>
             <CloseIcon />
           </ViewButton>
         </HeadingContainer>
@@ -47,6 +47,7 @@ const TasksModal = ({ toggleModal }: IProps) => {
                 <FormControlLabel
                   control={
                     <Checkbox
+                      data-testid='modal_checkbox'
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<CheckCircleIcon />}
                       checked={checked}

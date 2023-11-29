@@ -5,11 +5,14 @@ import CustomToolbar from './customToolbar';
 import { GridColDef } from '@mui/x-data-grid';
 import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
+import { LinearProgress } from '@mui/material';
+import NotFound from '../../../assets/NotFound.jpg';
 import { RootState } from '../../../store';
 import { useTable } from './useTable';
 import { DeleteAsyncThunk, FetchAthynkThunk } from './useTableSortAndFilter';
-import { StyledBox, StyledDataGrid } from './styled';
+import { NoDataImage, StyledBox, StyledDataGrid, StyledSpinnerBox } from './styled';
 import { baseMenuCellConfig, pageSizeOptions } from './helper';
+
 export interface ISortingOptions {
   label: string;
   value: string;
@@ -22,6 +25,7 @@ export enum EFormType {
 export type DataSelector = (state: RootState) => {
   data: ITicketState[] | IContactState[];
   total: number;
+  isLoading: boolean;
 };
 
 interface IProps {
@@ -49,6 +53,7 @@ const Table: React.FC<IProps> = ({
     searchParams,
     data,
     total,
+    isLoading,
     selectedPriorities,
     setSelectedPriorities,
     paginationModel,
@@ -62,7 +67,11 @@ const Table: React.FC<IProps> = ({
 
   return (
     <StyledBox data-testid='table'>
-      {data?.length > 0 && (
+      {isLoading ? (
+        <StyledSpinnerBox>
+          <LinearProgress />
+        </StyledSpinnerBox>
+      ) : data?.length > 0 ? (
         <StyledDataGrid
           autoHeight
           rows={data}
@@ -104,6 +113,8 @@ const Table: React.FC<IProps> = ({
             ),
           }}
         />
+      ) : (
+        <NoDataImage src={NotFound} alt='Not Found' data-testid='not_found_image' />
       )}
       {isModalOpen && (
         <>
