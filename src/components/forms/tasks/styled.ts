@@ -23,7 +23,7 @@ const StyledCustomSelect = styled(CustomSelect)`
 `;
 
 const StyledInput = styled(TextField)`
-  width: 300px;
+  width: 250px;
   color: ${colors.grayLight};
   font-size: ${fonts.size.medium};
   font-style: normal;

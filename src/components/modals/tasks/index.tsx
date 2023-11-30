@@ -13,7 +13,7 @@ import {
   StatusName,
   StyledHr,
   ViewButton,
-} from '../../overview/tasksInfoBox/styled';
+} from '../../cards/tasksInfoBox/styled';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface IProps {

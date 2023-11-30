@@ -58,7 +58,7 @@ export const columns: GridColDef[] = [
   {
     field: 'priority',
     headerName: 'Priority',
-    width: 80,
+    width: 85,
     sortable: false,
     renderCell: (params) => {
       return <Tag text={params.value} />;

@@ -8,6 +8,7 @@ interface StyledTagProps {
 export const StyledTag = styled('div')<StyledTagProps>`
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.color};
+  text-align: center;
   font-size: 11px;
   font-style: normal;
   font-weight: ${fonts.weight.large};

@@ -5,12 +5,12 @@ import CustomToolbar from './customToolbar';
 import { GridColDef } from '@mui/x-data-grid';
 import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
-import { LinearProgress } from '@mui/material';
 import NotFound from '../../../assets/NotFound.jpg';
 import { RootState } from '../../../store';
+import Spinner from '../spinner';
 import { useTable } from './useTable';
 import { DeleteAsyncThunk, FetchAthynkThunk } from './useTableSortAndFilter';
-import { NoDataImage, StyledBox, StyledDataGrid, StyledSpinnerBox } from './styled';
+import { NoDataImage, StyledBox, StyledDataGrid } from './styled';
 import { baseMenuCellConfig, pageSizeOptions } from './helper';
 
 export interface ISortingOptions {
@@ -68,9 +68,7 @@ const Table: React.FC<IProps> = ({
   return (
     <StyledBox data-testid='table'>
       {isLoading ? (
-        <StyledSpinnerBox>
-          <LinearProgress />
-        </StyledSpinnerBox>
+        <Spinner />
       ) : data?.length > 0 ? (
         <StyledDataGrid
           autoHeight
