@@ -1,11 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
+import { AvatarCellWrapper } from './cells/avatarCellWrapper';
+import { DefaultCell } from './cells/defaultCell';
 import { EFormType } from './';
 import { Provider } from 'react-redux';
 import Table from './index';
+import Tag from '../tags';
 import { store } from '../../../store';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Meta, StoryObj } from '@storybook/react';
+import {
+  formatAsCreateDate,
+  formatAsDeadlineDate,
+  formatAsHoursDate,
+} from '../../../utils/dateFunctions';
 
 const meta = {
   title: 'Table',
@@ -99,9 +106,59 @@ export const Default: Story = {
     fetchAction: mockFetchAction as any,
     deleteAction: mockFetchAction as any,
     columns: [
-      { field: 'id', headerName: 'ID', width: 100 },
-      { field: 'name', headerName: 'Name', width: 200 },
-      { field: 'email', headerName: 'Email', width: 300 },
+      {
+        field: 'ticket',
+        headerName: 'Ticket details',
+        width: 420,
+        sortable: false,
+        renderCell: (params) => {
+          return (
+            <AvatarCellWrapper>
+              <DefaultCell
+                primaryText={params.value}
+                secondaryText={formatAsCreateDate(params.row.updatedDate)}
+              />
+            </AvatarCellWrapper>
+          );
+        },
+      },
+      {
+        field: 'customer',
+        headerName: 'Customer name',
+        width: 210,
+        sortable: false,
+        renderCell: (params) => {
+          return (
+            <DefaultCell
+              primaryText={params.row.customer}
+              secondaryText={formatAsCreateDate(params.row.createDate)}
+            />
+          );
+        },
+      },
+      {
+        field: 'deadlineDate',
+        headerName: 'Date',
+        width: 150,
+        sortable: false,
+        renderCell: (params) => {
+          return (
+            <DefaultCell
+              primaryText={formatAsDeadlineDate(params.row.deadlineDate)}
+              secondaryText={formatAsHoursDate(params.row.deadlineDate)}
+            />
+          );
+        },
+      },
+      {
+        field: 'priority',
+        headerName: 'Priority',
+        width: 85,
+        sortable: false,
+        renderCell: (params) => {
+          return <Tag text={params.value} />;
+        },
+      },
     ],
     sortingOptions: [
       { label: 'Name (A-Z)', value: 'nameAsc' },

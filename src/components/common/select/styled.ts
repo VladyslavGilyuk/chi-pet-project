@@ -2,7 +2,7 @@ import { InputLabel, MenuItem, Select, Typography, styled } from '@mui/material'
 import { colors, fonts } from '../../../theme';
 
 const StyledSelect = styled(Select)<{ width?: string; padding?: string }>`
-  width: '100%';
+  width: ${({ width }) => width || `100%`};
   color: ${colors.primaryBlack};
   font-size: 14px;
   font-style: normal;
@@ -10,8 +10,7 @@ const StyledSelect = styled(Select)<{ width?: string; padding?: string }>`
   line-height: 20px;
   letter-spacing: 0.3px;
   & div {
-    width: ${({ width }) => width || '100%'};
-    padding: ${({ padding }) => padding || '11px'};
+    padding: ${({ padding }) => padding || `11px`};
     color: ${colors.primaryBlack};
     font-size: ${fonts.size.medium};
     font-weight: ${fonts.weight.small};
