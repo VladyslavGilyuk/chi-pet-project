@@ -7,7 +7,7 @@ import { IContactState } from '../../../types/contacts';
 import { ITicketState } from '../../../types/tickets';
 import NotFound from '../../../assets/NotFound.jpg';
 import { RootState } from '../../../store';
-import Spinner from '../spinner';
+import Spinner from '../spinners/linear';
 import { useTable } from './useTable';
 import { DeleteAsyncThunk, FetchAthynkThunk } from './useTableSortAndFilter';
 import { NoDataImage, StyledBox, StyledDataGrid } from './styled';
