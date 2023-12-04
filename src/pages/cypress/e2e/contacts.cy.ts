@@ -56,7 +56,8 @@ describe('Contacts page', () => {
   });
   it('Should change pagination size', () => {
     cy.visit('http://localhost:3000/contacts');
-    cy.get('[aria-labelledby=":r5: :r4:"]').click();
+
+    cy.get('.MuiTablePagination-select').click();
     cy.get('.MuiPopover-root li').contains('10').click();
 
     cy.url().should('eq', 'http://localhost:3000/contacts?_page=1&_limit=10');

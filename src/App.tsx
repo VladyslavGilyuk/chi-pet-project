@@ -1,45 +1,45 @@
 import CircularSpinner from './components/common/spinners/circular';
 import ErrorBoundary from './components/errorBoundary';
+import PrivateRoute from './routes/privateRoute';
+import PublicRoute from './routes/publicRoute';
 import { ROUTE_PATH } from './routes';
 import { ThemeProvider } from '@mui/material';
 import { GlobalStyles, theme } from './styled';
 import { Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
-const LazyContacts = lazy(() => import('./pages/Contacts'));
-const LazyOverview = lazy(() => import('./pages/Overview'));
-const LazyPageNotFound = lazy(() => import('./pages/NotFound'));
-const LazySignInPage = lazy(() => import('./pages/SignIn'));
-const LazySignUpPage = lazy(() => import('./pages/SignUp'));
-const LazyLayout = lazy(() => import('./layouts/mainLayout'));
-const LazyTickets = lazy(() => import('./pages/Tickets'));
-const LazyPrivateRoute = lazy(() => import('./routes/privateRoute'));
-const LazyPublicRoute = lazy(() => import('./routes/publicRoute'));
+const Contacts = lazy(() => import('./pages/Contacts'));
+const Overview = lazy(() => import('./pages/Overview'));
+const PageNotFound = lazy(() => import('./pages/NotFound'));
+const SignInPage = lazy(() => import('./pages/SignIn'));
+const SignUpPage = lazy(() => import('./pages/SignUp'));
+const Layout = lazy(() => import('./layouts/mainLayout'));
+const Tickets = lazy(() => import('./pages/Tickets'));
 
-function App() {
+const App = () => {
   return (
     <ErrorBoundary>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Suspense fallback={<CircularSpinner />}>
           <Routes>
-            <Route element={<LazyPublicRoute />}>
-              <Route path={ROUTE_PATH.SignIn} index element={<LazySignInPage />} />
-              <Route path={ROUTE_PATH.SignUp} element={<LazySignUpPage />} />
+            <Route element={<PublicRoute />}>
+              <Route path={ROUTE_PATH.SignIn} index element={<SignInPage />} />
+              <Route path={ROUTE_PATH.SignUp} element={<SignUpPage />} />
             </Route>
-            <Route element={<LazyPrivateRoute />}>
-              <Route path={ROUTE_PATH.Home} element={<LazyLayout />}>
-                <Route index path={ROUTE_PATH.Home} element={<LazyOverview />} />
-                <Route path={ROUTE_PATH.Tickets} element={<LazyTickets />} />
-                <Route path={ROUTE_PATH.Contacts} element={<LazyContacts />} />
+            <Route element={<PrivateRoute />}>
+              <Route path={ROUTE_PATH.Home} element={<Layout />}>
+                <Route index path={ROUTE_PATH.Home} element={<Overview />} />
+                <Route path={ROUTE_PATH.Tickets} element={<Tickets />} />
+                <Route path={ROUTE_PATH.Contacts} element={<Contacts />} />
               </Route>
             </Route>
-            <Route path='*' element={<LazyPageNotFound />} />
+            <Route path='*' element={<PageNotFound />} />
           </Routes>
         </Suspense>
       </ThemeProvider>
     </ErrorBoundary>
   );
-}
+};
 
 export default App;
