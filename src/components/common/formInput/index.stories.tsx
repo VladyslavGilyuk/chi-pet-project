@@ -1,8 +1,4 @@
-/* eslint-disable no-console */
-
 import FormInput from './index';
-import { ICommonFieldValues } from '../../../types/auth';
-import { UseFormRegister } from 'react-hook-form';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -14,7 +10,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mockRegister = (): UseFormRegister<ICommonFieldValues> | any => {
+const mockRegister = (): any => {
   return;
 };
 export const Default: Story = {
@@ -26,7 +22,7 @@ export const Default: Story = {
     type: 'text',
     register: mockRegister,
     isError: false,
-    showIcon: true,
+    showIcon: false,
     helperMsg: '',
     isFullWidth: false,
   },
@@ -45,34 +41,6 @@ export const Password: Story = {
     isFullWidth: false,
   },
 };
-export const HiddenIcon: Story = {
-  args: {
-    label: 'Example Label',
-    name: 'firstName',
-    validations: { required: 'string' },
-    placeholder: 'Example Placeholder',
-    type: 'text',
-    register: mockRegister,
-    isError: false,
-    showIcon: false,
-    helperMsg: '',
-    isFullWidth: false,
-  },
-};
-export const HelperMsg: Story = {
-  args: {
-    label: 'Example Label',
-    name: 'firstName',
-    validations: { required: 'string' },
-    placeholder: 'Example Placeholder',
-    type: 'text',
-    register: mockRegister,
-    isError: false,
-    showIcon: true,
-    helperMsg: 'Example helper message',
-    isFullWidth: false,
-  },
-};
 export const WithError: Story = {
   args: {
     label: 'Example Label',
@@ -83,7 +51,7 @@ export const WithError: Story = {
     register: mockRegister,
     isError: true,
     showIcon: true,
-    helperMsg: '',
+    helperMsg: 'Example helper message',
     isFullWidth: false,
   },
 };

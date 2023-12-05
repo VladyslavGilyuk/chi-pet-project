@@ -136,6 +136,13 @@ export const Default: Story = {
   },
 };
 
+export const WithoutFilter: Story = {
+  args: {
+    ...Default.args,
+    disabledFilter: true,
+  },
+};
+
 export const EmptyTable: Story = {
   args: {
     ...Default.args,
@@ -143,17 +150,6 @@ export const EmptyTable: Story = {
       data: [],
       total: 0,
       isLoading: false,
-    }),
-  },
-};
-
-export const LoadingTable: Story = {
-  args: {
-    ...Default.args,
-    storeData: () => ({
-      data: [],
-      total: 0,
-      isLoading: true,
     }),
   },
 };

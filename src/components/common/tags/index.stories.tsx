@@ -1,9 +1,17 @@
+import { Box } from '@mui/material';
 import Tag from './index';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Tag',
   component: Tag,
+  decorators: [
+    (Story) => (
+      <Box style={{ width: '100px' }}>
+        <Story />
+      </Box>
+    ),
+  ],
 } satisfies Meta<typeof Tag>;
 
 export default meta;
