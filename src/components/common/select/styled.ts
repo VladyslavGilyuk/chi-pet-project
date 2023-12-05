@@ -1,8 +1,8 @@
 import { InputLabel, MenuItem, Select, Typography, styled } from '@mui/material';
 import { colors, fonts } from '../../../theme';
 
-const StyledTicketsSelect = styled(Select)`
-  width: 100%;
+const StyledSelect = styled(Select)<{ width?: string; padding?: string }>`
+  width: ${({ width }) => width || `100%`};
   color: ${colors.primaryBlack};
   font-size: 14px;
   font-style: normal;
@@ -10,12 +10,13 @@ const StyledTicketsSelect = styled(Select)`
   line-height: 20px;
   letter-spacing: 0.3px;
   & div {
-    padding: 11px;
+    padding: ${({ padding }) => padding || `11px`};
     color: ${colors.primaryBlack};
     font-size: ${fonts.size.medium};
     font-weight: ${fonts.weight.small};
   }
 `;
+
 const StyledTasksSelect = styled(Select)`
   & div {
     width: 50px;
@@ -44,10 +45,4 @@ const StyledMenuItem = styled(MenuItem)`
   font-size: ${fonts.size.medium};
   font-weight: ${fonts.weight.small};
 `;
-export {
-  StyledTicketsSelect,
-  StyledTasksSelect,
-  StyledInputLabel,
-  StyledPlaceholder,
-  StyledMenuItem,
-};
+export { StyledSelect, StyledTasksSelect, StyledInputLabel, StyledPlaceholder, StyledMenuItem };

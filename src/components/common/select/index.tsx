@@ -1,13 +1,7 @@
 import { FieldErrors } from 'react-hook-form';
 import { ITicketFieldValues } from '../../forms/tickets/helper';
 import { SelectChangeEvent } from '@mui/material';
-import {
-  StyledInputLabel,
-  StyledMenuItem,
-  StyledPlaceholder,
-  StyledTasksSelect,
-  StyledTicketsSelect,
-} from './styled';
+import { StyledInputLabel, StyledMenuItem, StyledPlaceholder, StyledSelect } from './styled';
 
 export interface ISelectOptions {
   value: string;
@@ -20,8 +14,8 @@ interface IProps {
   errors?: FieldErrors<ITicketFieldValues>;
   label?: string;
   placeholder?: string;
+  width?: string;
   padding?: string;
-  taskSelect?: boolean;
 }
 
 const CustomSelect: React.FC<IProps> = ({
@@ -31,14 +25,16 @@ const CustomSelect: React.FC<IProps> = ({
   errors,
   label,
   placeholder,
-  taskSelect,
+  width,
+  padding,
 }) => {
-  const StyledSelect = taskSelect ? StyledTasksSelect : StyledTicketsSelect;
   return (
     <>
       <StyledInputLabel>{label}</StyledInputLabel>
       <StyledSelect
         data-testid='custom-select'
+        width={width}
+        padding={padding}
         value={value || ''}
         onChange={(e) => onChange(e as SelectChangeEvent<string>)}
         error={!!errors?.tag}

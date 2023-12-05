@@ -1,8 +1,8 @@
 import { ActionContainer } from './styled';
-import ChartBox from '../../components/overview/chartBox';
-import InfoCards from '../../components/overview/infoCards';
-import TasksInfoBox from '../../components/overview/tasksInfoBox';
-import UnresolvedTicketsBox from '../../components/overview/unresolvedTicketsBox';
+import ChartBox from '../../components/charts/chartBox';
+import InfoCards from '../../components/cards/infoCards';
+import TasksInfoBox from '../../components/cards/tasksInfoBox';
+import UnresolvedTicketsBox from '../../components/cards/unresolvedTicketsBox';
 
 const Overview = () => {
   return (

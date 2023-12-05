@@ -1,7 +1,7 @@
 import { ReactComponent as CloseIcon } from '../../../assets/close.svg';
 import { Fragment } from 'react';
 import Tag from '../../common/tags';
-import { tickets } from '../../overview/unresolvedTicketsBox/helper';
+import { tickets } from '../../cards/unresolvedTicketsBox/helper';
 import {
   BoxContainer,
   HeadingContainer,
@@ -10,11 +10,7 @@ import {
   TicketsContainer,
   Value,
 } from './styled';
-import {
-  HeadingText,
-  MainInfoContainer,
-  StyledHr,
-} from '../../overview/unresolvedTicketsBox/styled';
+import { HeadingText, MainInfoContainer, StyledHr } from '../../cards/unresolvedTicketsBox/styled';
 import { Modal, Typography } from '@mui/material';
 
 interface IProps {

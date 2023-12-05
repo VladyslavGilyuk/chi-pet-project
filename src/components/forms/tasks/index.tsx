@@ -54,7 +54,8 @@ const TaskForm = ({ handleAddTask }: IProps) => {
               value={field.value}
               onChange={(e) => field.onChange(e.target.value)}
               options={statusOptions}
-              taskSelect={true}
+              width='90px'
+              padding='8px'
             />
           )}
         />

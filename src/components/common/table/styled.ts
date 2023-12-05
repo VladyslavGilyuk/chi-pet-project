@@ -147,9 +147,6 @@ const StyledAdressText = styled(Typography)`
   letter-spacing: 0.1px;
 `;
 
-const StyledSpinnerBox = styled(Box)`
-  margin-top: 350px;
-`;
 export {
   UserPhoto,
   StyledStack,
@@ -161,5 +158,4 @@ export {
   StyledMenuItem,
   StyledAdressText,
   NoDataImage,
-  StyledSpinnerBox,
 };
